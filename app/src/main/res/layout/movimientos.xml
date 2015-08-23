@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee"
+    android:fillViewport="true" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#FFFFFF"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/layoutMovimientos"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.5"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="25dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/Tipo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:text="@string/tipo"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:width="160dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/cantidad"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:text="@string/cantidad"
+                        android:textColor="#000000"
+                        android:textSize="16dp" />
+
+                    <ImageView
+                        android:id="@+id/cantidadIcon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/cantidad" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/fondo_spinner"
+                    android:paddingLeft="10dp"
+                    android:prompt="@string/tipoMovimientos"
+                    android:textColor="#000000" />
+
+                <EditText
+                    android:id="@+id/cajaCantidad"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/fondo_text"
+                    android:gravity="center"
+                    android:inputType="numberDecimal"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/descripcion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"                        
+                        android:text="@string/concepto"
+                        android:textColor="#000000"
+                        android:textSize="16dp" />
+
+                    <ImageView
+                        android:id="@+id/conceptoIcon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="50dp"
+                        android:background="@drawable/concepto" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/fecha"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/fecha"
+                        android:textColor="#000000"
+                        android:textSize="16dp" />
+
+                    <ImageView
+                        android:id="@+id/fechaIcon"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/calendar" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <Spinner
+                    android:id="@+id/spinnerMeses"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/fondo_spinner"
+                    android:paddingLeft="10dp"
+                    android:prompt="@string/mes"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/cajaDescripcion"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/fondo_text"
+                    android:paddingLeft="10dp" />
+
+                <Button
+                    android:id="@+id/botonFecha"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/fondo_text"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="@string/seleccioneFecha" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/textoCategoria"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:text="@string/categoria"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:width="80dp" />
+
+                <TextView
+                    android:id="@+id/textoSubCategoria"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:text="@string/subcategoria"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:width="100dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <Spinner
+                    android:id="@+id/spinnerCategoria"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/fondo_spinner"
+                    android:longClickable="true"
+                    android:paddingLeft="5dp"
+                    android:prompt="@string/categorias"
+                    android:text="vacio" />
+
+                <Spinner
+                    android:id="@+id/spinnerSubCategoria"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/fondo_spinner"
+                    android:longClickable="true"
+                    android:orientation="horizontal"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="15dp"
+                    android:prompt="@string/subcategorias"
+                    android:text="vacio" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <CheckBox
+                    android:id="@+id/checkTarjeta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/textoPagoTarjeta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="@string/pagadoTarjeta"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:width="150dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <Spinner
+                    android:id="@+id/spinnerTarjetas"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/fondo_spinner"
+                    android:longClickable="true"
+                    android:paddingLeft="10dp"
+                    android:prompt="@string/selecTarjeta"
+                    android:text="vacio" />
+
+                <Button
+                    android:id="@+id/botonCrear"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/fondo_text"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="@string/guardar" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <com.google.android.gms.ads.AdView
+                    android:id="@+id/adView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    ads:adSize="BANNER"
+                    ads:adUnitId="ca-app-pub-2303483383476811/5654684082" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <!-- </LinearLayout> </ScrollView> -->
+
+</ScrollView>

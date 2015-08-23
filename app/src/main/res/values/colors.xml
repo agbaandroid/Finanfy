@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="actionBarColor" type="color">#33b5e5</item>
+    <item name="blanco" type="color">#FFFFFF</item>
+    <color name="fondodrawable">#eaeaea</color>
+    <item name="txtGris" type="color">#878787</item>
+
+</resources>

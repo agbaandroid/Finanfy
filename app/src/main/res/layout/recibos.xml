@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/layoutRecibo"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:text="@string/tituloRecibo"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#00A3E8" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#9BF1F2" />
+
+    <LinearLayout
+        android:id="@+id/layoutRecibos"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/descripcionRecibo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/concepto"
+            android:textColor="#000000"
+            android:textSize="16dp"
+            android:width="120dp" />
+
+        <TextView
+            android:id="@+id/cantidadRecibo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/cantidad"
+            android:textColor="#000000"
+            android:textSize="16dp"
+            android:width="125dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutRecibos"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/cajaDescripcionRecibo"
+            android:layout_width="125dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:textColor="#000000"
+            android:background="@drawable/fondo_text"
+            android:paddingLeft="10dp" />
+
+        <EditText
+            android:id="@+id/cajaCantidadRecibo"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="5dp"
+            android:textColor="#000000"
+            android:background="@drawable/fondo_text"
+            android:inputType="numberDecimal"
+            android:paddingLeft="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutRecibos"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textoFechaDesdeRecibo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/desde"
+            android:textColor="#000000"
+            android:textSize="16dp"
+            android:width="90dp" />
+
+        <TextView
+            android:id="@+id/textoFechaHastaRecibo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/hasta"
+            android:textColor="#000000"
+            android:textSize="16dp"
+            android:width="90dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutRecibos"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/botonFechaReciboDesde"
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/fondo_text"
+            android:text="@string/desde" />
+
+        <Button
+            android:id="@+id/botonFechaReciboHasta"
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/fondo_text"
+            android:text="@string/hasta" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutRecibos"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textoCategoriaRecibo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:imeOptions="actionSend|flagNoEnterAction"
+            android:text="@string/categoria"
+            android:textColor="#000000"
+            android:textSize="16dp"
+            android:width="120dp" />
+
+        <TextView
+            android:id="@+id/textoSubCategoriaRecibo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/subcategoria"
+            android:textColor="#000000"
+            android:textSize="16dp"
+            android:width="120dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutRecibos"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <Spinner
+            android:id="@+id/spinnerCategoriaRecibo"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/fondo_spinner"
+            android:longClickable="true"
+            android:paddingLeft="10dp"
+            android:prompt="@string/categorias"
+            android:text="vacio" />
+
+        <Spinner
+            android:id="@+id/spinnerSubCategoriaRecibo"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/fondo_spinner"
+            android:longClickable="true"
+            android:paddingLeft="10dp"
+            android:prompt="@string/subcategorias"
+            android:text="vacio" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutRecibos"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <CheckBox
+            android:id="@+id/checkTarjetaRecibo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp" />
+
+        <TextView
+            android:id="@+id/textoPagoTarjetaRecibo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/pagadoTarjeta"
+            android:textColor="#000000"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutRecibos"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <Spinner
+            android:id="@+id/spinnerTarjetasRecibo"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/fondo_spinner"
+            android:longClickable="true"
+            android:paddingLeft="10dp"
+            android:prompt="@string/selecTarjeta" />
+
+        <Button
+            android:id="@+id/botonCrearRecibo"
+            android:layout_width="130dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/fondo_text"
+            android:text="@string/guardar" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Money Control</string>
+    <string name="tipoMovimientos">Select a type</string>
+    <string name="textoNominas">Select a Payslip</string>
+    <string name="textoAnios">Select a year</string>
+
+    <string-array name="tipoMovimientosArray">
+        <item>Expense</item>
+        <item>Payslip</item>
+        <item>Entry</item>
+        <item>Invoice</item>
+    </string-array>
+    <string-array name="tipoEditMovimientosArray">
+        <item>Expense</item>
+        <item>Payslip</item>
+        <item>Entry</item>
+    </string-array>
+    <string-array name="tipoFiltroResumen">
+        <item>Classic</item>
+        <item>Categories</item>
+        <item>Subcategories</item>
+    </string-array>
+
+    <string name="mes">Month</string>
+
+    <string-array name="mesArray">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+    <string-array name="nominasArray">
+        <item>-</item>
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+    <string-array name="filtroArray">
+        <item>-</item>
+        <item>Category</item>
+        <item>Subcategory</item>
+    </string-array>
+
+    <string name="tipoFiltro">Choose an option</string>
+    <string name="categorias">Categories</string>
+    <string name="subcategorias">Subcategories</string>
+    <string name="categoriasMay">CATEGORIES</string>
+    <string name="subcategoriasMay">SUBCATEGORIES</string>
+
+    <string-array name="opcionesInformesArray">
+        <item>Payslip</item>
+        <item>Date</item>
+    </string-array>
+
+    <!-- movimientos.xml -->
+    <string name="tipo">Type</string>
+    <string name="nuevoRegistro">New Register</string>
+    <string name="editarRegistro">Edit Register</string>
+    <string name="cantidad">Quantity</string>
+    <string name="concepto">Concept</string>
+    <string name="seleccioneFecha">Select a Date</string>
+    <string name="categoria">Category</string>
+    <string name="subcategoria">Subcategory</string>
+    <string name="pagadoTarjeta">Paid with credit card</string>
+    <string name="guardar">Save</string>
+    <!-- resumen.xml -->
+    <string name="resumen">Summary</string>
+    <string name="nomina">Payslip</string>
+    <string name="anio">Year</string>
+    <string name="mostrarPor">Show by</string>
+    <string name="total">Total: </string>
+    <!-- resumenTarjeta.xml -->
+    <string name="resumenTarjeta">Credit Card Summary</string>
+    <string name="creditCard">Credit Card</string>
+    <!-- estadisticas.xml -->
+    <string name="estadisticas">Statistics</string>
+    <string name="infoGlobal">Global information</string>
+    <string name="totalIngresos">Total Entries</string>
+    <string name="totalGastos">Total expenses</string>
+    <string name="balance">Balance</string>
+    <string name="infoRegistros">Register information</string>
+    <string name="nRegistros">Amount of registers</string>
+    <string name="nIngresos">Amount of entries</string>
+    <string name="nGastos">Amount de expenses</string>
+    <string name="infoCategorias">Categories information</string>
+    <string name="nTotalCategorias">Total amount of categories</string>
+    <string name="nCategorias">Amount of categories</string>
+    <string name="nSubcategorias">Amount of subcategories</string>
+
+    <!-- Configuracion -->
+    <string name="configuracion">Options</string>
+    <string name="tituloEstilos">Select a style</string>
+    <string name="tituloSeguridad">Security options</string>
+    <string name="tituloValorar">Rate the app</string>
+    <string name="botonValorar">Rate it now</string>
+    <string name="botonMasTarde">Later</string>
+    <string name="msgValorar1">If you like the app and consider it usefull, please recomend it.</string>
+    <string name="msgValorar2">you can rate it with 5 stars only in 1 minute.</string>
+    <string name="msgValorar3">Thank you very much.</string>
+    <string name="tituloDonar">Donation</string>
+    <string name="botonDonar">Donate now</string>
+    <string name="msgDonar1">If you like the app help us to improve it.</string>
+    <string name="msgDonar2">Every donation will be grateful, it only takes you a minute.</string>
+    <string name="msgDonar3">Thank you very much</string>
+    <string name="activarPass">Activate password</string>
+    <string name="desactivarPass">Desactivate password</string>
+    <string name="modificarPass">Modify Password</string>
+    <string name="nuevaPass">New Password (Min. 4)</string>
+    <string name="repetirPass">Repeat Password (Min. 4)</string>
+    <string name="antiguaPass">Last Password</string>
+    <string name="introducirPass">Put Password</string>
+    <string name="passActivada">Password ON</string>
+    <string name="passDesactivada">Password off</string>
+    <string name="exportar">Export</string>
+    <string name="importar">Import</string>
+    <string name="reset">Reset</string>
+    <string name="msgExportar">The data base will be saved in this route: </string>
+    <string name="msgImportar">For a correctly import, the database must be in this route.</string>
+    <string name="ruta">/sdcard/SalaryControl/</string>
+    <string name="tituloMenuBD">Data base options</string>
+    <string name="importarOK">Database imported correctly </string>
+    <string name="importarError">An error ocurred during the import of the database.</string>
+    <string name="exportOK">Database exported correctly</string>
+    <string name="exportError"> An error ocurred during the exportation of the database.</string>
+
+    <!-- Comunes -->
+    <string name="crear">Create</string>
+    <string name="cancelar">Cancel</string>
+    <string name="eliminar">Delete</string>
+    <string name="editar">Edit</string>
+    <string name="msnEliminar">Are you sure you want delete the category? All the vinculated registers will be modified.</string>
+    <string name="msnEditar">The modification will be apply to all the vinculated registers.</string>
+    <string name="aniadir">Add</string>
+    <string name="info">Information</string>
+    <string name="aceptar">Accept</string>
+    <string name="atencion">Attention</string>
+    <string name="catEditOK">The category has been edited successfully.</string>
+    <string name="catEditKO">An error ocurred during the editation of the category.</string>
+    <string name="subEditOK">The subcategory has been edited successfully.</string>
+    <string name="subEditKO">An error ocurred during the editation of the subcategory.</string>
+    <string name="catDeleteOK">The category has been deleted successfully.</string>
+    <string name="catDeleteKO">An error ocurred during the remove of the category.</string>
+    <string name="subDeleteOK">The subcategory has been deleted successfully.</string>
+    <string name="subDeleteKO">An error ocurred during the remove of the subcategory.</string>
+    <string name="guardarRegistroOK">The register has been saved successfully.</string>
+    <string name="guardarRegistroKO">An error ocurred during the saved of the archive. Please, check out the data.</string>
+    <string name="editarRegistroOK">The register has been edited successfully.</string>
+    <string name="editarRegistroKO"> An error ocurred during the editation of the register subcategory.	Please, check out the data.</string>
+    <string name="errorNomina">Already exist a payslip for the selected month.</string>
+    <string name="camposObligatorios">Amount and concept sections are obligatory. Check out that the information is correct.</string>
+    <string name="elijaOpcion">Select an option</string>
+    <string name="espere">Please wait...</string>
+    <string name="preparandoBD">Preparing Database...</string>
+    <string name="deleteRegistroOk">The register has been removed successfully.</string>
+    <string name="deleteRegistroError">An error ocurred during the removed of the register.</string>
+    <string name="addCatOk">The category has been created.</string>
+    <string name="addCatKO">An error ocurred during the creation of the category.</string>
+    <string name="addSubOK">The subcategory has been created.</string>
+    <string name="addSubKO">An error ocurred during the creation of the category.</string>
+    <string name="msnEliminarRegistro">Are you sure you want delete the category?</string>
+    <string name="msnSalirApp">Are you sure you want to exit?</string>
+    <string name="msnResetDB">Are you sure you want reset the database?</string>
+    <string name="msnRecuerdeDB">Remember that all the register and categories will be deleted.</string>
+    <string name="version">Version 3.2.1</string>
+    <string name="cambio1">1. Complete redesign of the application.</string>
+    <string name="cambio2">2. New icon.</string>
+    <string name="cambio3">3. Pro functionalities unlocked. (Receipts, reports, etc...)</string>
+    <string name="informacion">Information</string>
+
+    <!-- Manifest -->
+    <string name="aniadirCategoria">Add category </string>
+    <string name="aniadirSubcategoria">Add subcategory</string>
+    <string name="editarCategoria">Edit category</string>
+    <string name="editarSubcategoria">Edit subcategory</string>
+    <string name="eliminarCategoria">Delete category</string>
+    <string name="eliminarSubcategoria">Delete subcategory </string>
+    <string name="selecCategoria">Select a category</string>
+    <string name="selecSubcategoria">Select a subcategory</string>
+
+    <!-- Settings -->
+    <string name="acerca">About</string>
+    <string name="database">Database</string>
+    <string name="volver">Back</string>
+    <string name="msnDBOk">Database reset properly.</string>
+    <string name="msnDBError">An error ocurred during the reset of the database.</string>
+    <string name="msnDesarrollador">This app has been created by AGBA Android Apps.</string>
+    <string name="msnIncidencias">If you have any problem with the app or find a mistake, please send us an email:</string>
+    <string name="msnEmail">agba.androidapps@gmail.com</string>
+    <string name="msnSugerencias">Please, send us your suggestions, thank you very much. </string>
+
+    <color name="titlebackgroundcolor">#3232CD</color>
+    <color name="titletextcolor">#FFFF00</color>
+
+    <!-- Nuevo diseño -->
+
+    <string name="cargando">Loading...</string>
+    <string name="todas">All</string>
+    <string name="generarExcel">Generate Excel</string>
+    <string name="generarGrafico">Generate graphic</string>
+    <string name="nombreFichero">File Name </string>
+    <string name="generarPor">Generate by</string>
+    <string name="selecNomina">Select a payslip </string>
+    <string name="desde">From</string>
+    <string name="hasta">To </string>
+    <string name="generar">Generate</string>
+    <string name="mostrarCategorias">Show categories</string>
+    <string name="rutaExcel">The Excel file will be saved in that route: </string>
+    <string name="mismoFichero">If exist a file with the same name, it will be replaced.</string>
+    <string name="excelOK">The Excel file has been generated successfully.</string>
+    <string name="excelKO">An error ocurred during the generation of the Excel.</string>
+    <string name="errorExcel">Please, check out the information, the date range is not correct.</string>
+    <string name="ingresosGastos">Entries/Expenses</string>
+    <string name="fecha">Date</string>
+    <string name="addCard">Add credit card</string>
+    <string name="addCardKO">An error occurred during the creation of the credit card.</string>
+    <string name="editCard">Edit credit card </string>
+    <string name="editCardKO">An error occurred during the modification of the credit card.</string>
+    <string name="deleteCard">Delete credit card</string>
+    <string name="deleteKO">An error ocurred during the deleted of the credit card.</string>
+    <string name="selecTarjeta">Select a credit card</string>
+    <string name="tarjetaOK">The credit card has been created successfully.</string>
+    <string name="tarjetaEdit">The credit card has been modified successfully. </string>
+    <string name="mnsTarjeta">If you delete the credit card, all the vinculated register will be modified and linked to the main credit card. </string>
+    <string name="tarjetaDelete">The credit card has been deleted successfully.</string>
+    <string name="tarjetaPrincipal">The main credit card must not be deleted. </string>
+    <string name="editRecibo">Edit invoice</string>
+    <string name="deleteRecibo">Delete invoice</string>
+    <string name="selecRecibo">Select an invoice</string>
+    <string name="addReciboOK">The invoice has been created successfully.</string>
+    <string name="addReciboKO">An error ocurred during the creation of the invoice.</string>
+    <string name="reciboOK">The invoice has been modified successfully.</string>
+    <string name="reciboKO">An error ocurred during the modification of the invoice.</string>
+    <string name="eliminarReciboPreg">Are you sure you want delete the invoice?</string>
+    <string name="deleteReciboOK">The invoice has been deleted successfully.</string>
+    <string name="deleteReciboKO">An error ocurred during the delete of the invoice.</string>
+    <string name="seguridadList">Security</string>
+    <string name="databaseList">Database</string>
+    <string name="valorarList">Rate the app</string>
+    <string name="tarjetasList">Credit cards</string>
+    <string name="recibosList">Invoices</string>
+    <string name="twitterList">Twitter</string>
+    <string name="estadisticasList">Statistics</string>
+    <string name="tituloRecibo">Invoices</string>
+    <string name="tituloTarjeta">Credit cards</string>
+    <string name="tituloGraficos">Graphics</string>
+    <string name="tituloInformes">Reports</string>
+    <string name="tarjeta">Credit card</string>
+    <string name="tabNuevo">New</string>
+    <string name="tabResumen">Summary</string>
+    <string name="tabTarjetas">Credit cards</string>
+    <string name="tabInformes">Reports</string>
+    <string name="tabMas">More</string>
+    <string name="versionPro">Money control PRO</string>
+    <string name="mensajePro1">This option is only available in the PRO version.</string>
+    <string name="mensajePro2">If you like the app and want these and other exclusives caracteristics, download the PRO version.</string>
+    <string name="mensajePro3">This will help us to improve, thank you very much.</string>
+    <string name="botonDescargar">Download</string>
+    <string name="mensajeInforPro1">You have exceeded the mensual limit for this report.</string>
+    <string name="mensajeInforPro2">If you like the app and want get unlimited reports and other exclusive caracteristics, download the PRO versión.</string>
+    <string name="mensajeInforPro3">This will help us to improve, thank you very much.</string>
+    <string name="addRecibo">New invoice</string>
+    <string name="countdown">Days Counter Widgets</string>
+    <string name="cuentasList">Manage accounts</string>
+    <string name="cuentaseleccionada">Selected account</string>
+    <string name="masOpciones">More options</string>
+    <string name="selectOtraCuenta">Select another account</string>
+    <string name="addNewCuenta">Add a new account</string>
+    <string name="deleteCuenta">Delete account</string>
+    <string name="addCuenta">Add account</string>
+    <string name="editCuenta">Edit account</string>
+    <string name="selectCuenta">Select an account</string>
+    <string name="deleteCuentaMns">If you delete an account, all your records and receipts will be removed.</string>
+    <string name="maxNumCuenta">You have exceeded the maximum of possible accounts in the free version. If you want to add more accounts please download Money Control Pro.</string>
+    <string name="addCuentaOK">The account has been created successfully.</string>
+    <string name="editCuentaOK">The account has been modified successfully.</string>
+    <string name="deleteCuentaOK">The account has been removed successfully.</string>
+    <string name="addCuentaKO">An error ocurred during the creation of the account.</string>
+    <string name="editCuentaKO">An error ocurred during the editation of the account.</string>
+    <string name="deleteCuentaKO">An error ocurred during the remove of the account.</string>
+    <string name="cuentaPrincipal">The master account can´t be deleted.</string>
+
+    <string-array name="titles">
+        <item>New</item>
+        <item>Summary</item>
+        <item>Categories</item>
+        <item>Reports</item>
+        <item>Credit cards</item>
+        <item>Invoices</item>
+        <item>Security</item>
+        <item>Database</item>
+        <item>Statistics</item>
+        <item>Settings</item>
+        <item>Rate the app</item>
+        <item>Shop</item>
+    </string-array>
+
+    <string name="iconLite">Free</string>
+    <string name="iconPremium">Premium</string>
+    <string name="ajustes">Settings</string>
+    <string name="textoConfPrincipal">Data visualization</string>
+    <string name="textoConfNominas">Show monthly summary per salary</string>
+    <string name="tituloTienda">Shop</string>
+    <string name="deleteAds">Remove advertise</string>
+    <string name="moreCat">Premium Categories</string>
+    <string name="txtDeleteAds">Remove all the advertise forever.</string>
+    <string name="txtMoreCat">Unlock all the images from the premium categories.</string>
+    <string name="tituloPremium">Premium user</string>
+    <string name="txtAllPremium">Unlock all the content forever with one single payment.</string>
+    <string name="errorCompra">An error has been ocurred during the shopping. Please, try again later.</string>
+    <string name="errorVeri">Purchase error. Authenticity verification failed.</string>
+    <string name="comprar">Buy</string>
+    <string name="masTarde">Later</string>
+    <string name="ok">OK</string>
+    <string name="gracias">Thank you for your order. You must restart the application for the changes to take effect.</string>
+    <string name="productoComprado">The selected product is already activated.</string>
+    <string name="importPro">Are you sure you want to import the Money Control Pro database?. Remember that all the saved data will be overwritten.</string>
+    <string name="botonImportPro">Import Pro</string>
+	<string name="textoConfCategorias">Show summary per categories</string>
+	<string name="filtro">Filter</string>
+	<string name="pulseDosVeces">Press back button again to exit</string>
+	<string name="noDatos">No data found</string>	
+</resources>

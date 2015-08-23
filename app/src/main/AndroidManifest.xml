@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.agudoApp.salaryApp"
+    android:versionCode="56"
+    android:versionName="3.2.2" >
+
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="20" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+    <!-- Permisos -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.android.vending.BILLING" />
+
+    <application
+        android:icon="@drawable/icon_app"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.AppCompat.Light" 
+        android:name="android.support.multidex.MultiDexApplication">
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".general.CargandoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Pestañas -->
+        <activity
+            android:name=".general.ControlGastosActivity"
+            android:icon="@drawable/icon_app"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme"
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified" >
+        </activity>
+
+        <!-- Activities principales -->
+        <activity
+            android:name=".general.Recibos"
+            android:label="Recibos"
+            android:theme="@style/Theme.AppCompat.Light.Dialog"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activities.Categorias"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.AddCuenta"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.SelectCuenta"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.DeleteCuenta"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.EditCuenta"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+
+        <!-- Categorias -->
+        <activity
+            android:name=".activities.AddCat"
+            android:label="@string/aniadirCategoria"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.AddSub"
+            android:label="@string/aniadirSubcategoria"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.EditCat"
+            android:label="@string/selecCategoria"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.EditSub"
+            android:label="@string/selecSubcategoria"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.EditSubTexto"
+            android:label="@string/editarSubcategoria"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.EditCatTexto"
+            android:label="@string/editarCategoria"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.DeleteSub"
+            android:label="@string/selecSubcategoria"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.DeleteCat"
+            android:label="@string/selecCategoria"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.CantidadActivity"
+            android:label="@string/selecSubcategoria"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+
+        <!-- Editar movimiento -->
+        <activity
+            android:name=".activities.EditMovimiento"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme"
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified" />
+
+        <!-- Preferencias -->
+        <activity
+            android:name=".activities.Preferences"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme"
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified" />
+
+        <!-- Configuración -->
+        <activity
+            android:name=".activities.SeguridadIntroducir"
+            android:label="@string/nuevaPass"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.SeguridadRepetir"
+            android:label="@string/repetirPass"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.SeguridadAntigua"
+            android:label="@string/antiguaPass"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.SeguridadComprobar"
+            android:label="@string/introducirPass"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.AddTarjeta"
+            android:label="@string/addCard"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.EditTarjeta"
+            android:label="@string/selecTarjeta"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.EditTarTexto"
+            android:label="@string/editCard"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.DeleteTarjeta"
+            android:label="@string/selecTarjeta"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.EditRecibo"
+            android:label="@string/selecRecibo"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.EditRecTexto"
+            android:label="@string/editRecibo"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.DeleteRecibo"
+            android:label="@string/selecRecibo"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+
+        <!-- Publicidad -->
+
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent" />
+        <!--
+             <activity
+            android:name="com.google.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation" />
+        -->
+
+
+        <!-- Informes -->
+        <activity
+            android:name=".informes.InformesActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".informes.DatosInforme"
+            android:label="@string/tituloInformes"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".informes.DatosGrafico"
+            android:label="@string/tituloGraficos"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".informes.GraficoRoscoActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme" />
+        <activity
+            android:name=".informes.GraficoBarrasActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar" />
+    </application>
+
+</manifest>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/layoutAddCat"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:text="@string/tituloInformes"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#00A3E8" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#9BF1F2" />
+
+    <LinearLayout
+        android:id="@+id/layoutRecibos"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/NombreInforme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nombreFichero"
+            android:textColor="#000000"
+            android:textSize="16dp" />
+
+        <EditText
+            android:id="@+id/cajaNombreInforme"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/fondo_text"
+            android:textColor="#000000"
+            android:inputType="text"
+            android:paddingLeft="10dp" />
+
+        <TextView
+            android:id="@+id/GenerarPor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/generarPor"
+            android:textColor="#000000"
+            android:textSize="16dp" />
+
+        <Spinner
+            android:id="@+id/spinnerInforme"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/fondo_spinner"
+            android:paddingLeft="10dp"
+            android:prompt="@string/tipoFiltro" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutRecibos"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textoNominasInforme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/selecNomina"
+            android:textColor="#000000"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutRecibos"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textoFechaDesdeInforme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/desde"
+            android:textColor="#000000"
+            android:textSize="16dp"
+            android:visibility="gone"
+            android:width="90dp" />
+
+        <TextView
+            android:id="@+id/textoFechaHastaInforme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/hasta"
+            android:textColor="#000000"
+            android:textSize="16dp"
+            android:visibility="gone"
+            android:width="90dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutRecibos"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <Spinner
+            android:id="@+id/spinnerNominaInforme"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:background="@drawable/fondo_spinner"
+            android:paddingLeft="2dp"
+            android:prompt="@string/textoNominas" />
+
+        <Spinner
+            android:id="@+id/spinnerAniosInforme"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/fondo_spinner"
+            android:paddingLeft="2dp"
+            android:prompt="@string/textoAnios" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutRecibos"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/botonFechaInformeDesde"
+            android:layout_width="115dp"
+            android:layout_height="40dp"
+            android:background="@drawable/fondo_text"
+            android:text="@string/desde"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/botonFechaInformeHasta"
+            android:layout_width="115dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="25dp"
+            android:background="@drawable/fondo_text"
+            android:text="@string/hasta"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutRecibos"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal" >
+
+        <CheckBox
+            android:id="@+id/checkInformesCategorias"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textoInformesCategorias"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/mostrarCategorias"
+            android:textColor="#000000"
+            android:textSize="16dp" />
+
+        <CheckBox
+            android:id="@+id/checkInformesCategorias2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/textoInformesCategorias2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/mostrarCategorias"
+            android:textColor="#000000"
+            android:textSize="16dp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutRecibos"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/botonGenerar"
+            android:layout_width="110dp"
+            android:layout_height="35dp"
+            android:background="@drawable/fondo_text"
+            android:text="@string/generar" />
+
+        <Button
+            android:id="@+id/botonCancelarInforme"
+            android:layout_width="110dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="25dp"
+            android:background="@drawable/fondo_text"
+            android:text="@string/cancelar" />
+
+        <Button
+            android:id="@+id/botonGenerar2"
+            android:layout_width="110dp"
+            android:layout_height="35dp"
+            android:background="@drawable/fondo_text"
+            android:text="@string/generar"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/botonCancelarInforme2"
+            android:layout_width="110dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="25dp"
+            android:background="@drawable/fondo_text"
+            android:text="@string/cancelar"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</LinearLayout>

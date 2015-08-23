@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Contrôle de dépenses</string>
+    <string name="tipoMovimientos">Choisir un type</string>
+    <string name="textoNominas">Choisir un salaire</string>
+    <string name="textoAnios">Choisir une année</string>
+
+    <string-array name="tipoMovimientosArray">
+        <item>Dépense</item>
+        <item>Salaire</item>
+        <item>Revenu</item>
+        <item>Reçu</item>
+    </string-array>
+    <string-array name="tipoEditMovimientosArray">
+        <item>Dépense</item>
+        <item>Salaire</item>
+        <item>Revenu</item>
+    </string-array>
+    <string-array name="tipoFiltroResumen">
+        <item>Classique</item>
+        <item>Catégories</item>
+        <item>Sous-catégories</item>
+    </string-array>
+
+    <string name="mes">Mois</string>
+
+    <string-array name="mesArray">
+        <item>Janvier</item>
+        <item>Février</item>
+        <item>Mars</item>
+        <item>Avril</item>
+        <item>Mai</item>
+        <item>Juin</item>
+        <item>Juillet</item>
+        <item>Août</item>
+        <item>Septembre</item>
+        <item>Octobre</item>
+        <item>Novembre</item>
+        <item>Décembre</item>
+    </string-array>
+    <string-array name="nominasArray">
+        <item>-</item>
+        <item>Janvier</item>
+        <item>Février</item>
+        <item>Mars</item>
+        <item>Avril</item>
+        <item>Mai</item>
+        <item>Juin</item>
+        <item>Juillet</item>
+        <item>Août</item>
+        <item>Septembre</item>
+        <item>Octobre</item>
+        <item>Novembre</item>
+        <item>Décembre</item>
+    </string-array>
+    <string-array name="filtroArray">
+        <item>-</item>
+        <item>Catégorie</item>
+        <item>Sous-catégorie</item>
+    </string-array>
+
+    <string name="tipoFiltro">Choisir une option</string>
+    <string name="categorias">Catégories</string>
+    <string name="subcategorias">Sous-catégories</string>
+    <string name="categoriasMay">CATÉGORIES</string>
+    <string name="subcategoriasMay">SOUS-CATÉGORIES</string>
+
+    <string-array name="opcionesInformesArray">
+        <item>Salaire</item>
+        <item>Date</item>
+    </string-array>
+
+    <!-- movimientos.xml -->
+    <string name="tipo">Type</string>
+    <string name="nuevoRegistro">Nouveau enregistrement</string>
+    <string name="editarRegistro">Editer l’ enregistrement</string>
+    <string name="cantidad">Montant</string>
+    <string name="concepto">Concept</string>
+    <string name="seleccioneFecha">Choisir une date</string>
+    <string name="categoria">Catégorie</string>
+    <string name="subcategoria">Sous-catégorie</string>
+    <string name="pagadoTarjeta">Payé par carte</string>
+    <string name="guardar">Sauvegarder</string>
+    <!-- resumen.xml -->
+    <string name="resumen">Résumé</string>
+    <string name="nomina">Salaire</string>
+    <string name="anio">Année</string>
+    <string name="mostrarPor">A montrer pour</string>
+    <string name="total">Total: </string>
+    <!-- resumenTarjeta.xml -->
+    <string name="resumenTarjeta">Résumé de la carte de crédit</string>
+    <string name="creditCard">Carte de crédit</string>
+    <!-- estadisticas.xml -->
+    <string name="estadisticas">Statistiques</string>
+    <string name="infoGlobal">Informations générales</string>
+    <string name="totalIngresos">Revenue total</string>
+    <string name="totalGastos">Total de dépenses</string>
+    <string name="balance">Bilan</string>
+    <string name="infoRegistros">Enregistrements d’informations</string>
+    <string name="nRegistros">Nº des enregistrements</string>
+    <string name="nIngresos">Nº des revenus</string>
+    <string name="nGastos">Nº des dépenses</string>
+    <string name="infoCategorias">Catégories d’informations</string>
+    <string name="nTotalCategorias">Total des catégories</string>
+    <string name="nCategorias">Nº des catégories</string>
+    <string name="nSubcategorias">Nº des sous- catégories</string>
+
+    <!-- Configuracion -->
+    <string name="configuracion">Options</string>
+    <string name="tituloEstilos">Choisir un style</string>
+    <string name="tituloSeguridad">Options de sécurité</string>
+    <string name="tituloValorar">Evaluer l’application</string>
+    <string name="botonValorar">Evaluer maintenant</string>
+    <string name="botonMasTarde">Après</string>
+    <string name="msgValorar1">Si vous aimez l’application et que vous l’avez
+		trouvée utile, Recommander la S’il vous plait.</string>
+    <string name="msgValorar2">Vous pouvez évaluer l’application avec 5 étoiles
+		juste dans une minute.</string>
+    <string name="msgValorar3">Merci beaucoup.</string>
+    <string name="tituloDonar">Donation</string>
+    <string name="botonDonar">Faire un don maintenant</string>
+    <string name="msgDonar1">Si vous aimez l’application, aidez nous a
+		l’améliorer encore.</string>
+    <string name="msgDonar2">Chaque don sera accueilli, vous pouvez le faire en
+		une minute.</string>
+    <string name="msgDonar3">Merci beaucoup.</string>
+    <string name="activarPass">Activer le mot de passe</string>
+    <string name="desactivarPass">Désactiver le mot de passe</string>
+    <string name="modificarPass">Modifier le mot de passe</string>
+    <string name="nuevaPass">Nouveau mot de passe (min. 4)</string>
+    <string name="repetirPass">Répéter le mot de passe (min. 4)</string>
+    <string name="antiguaPass">Ancien mot de passe</string>
+    <string name="introducirPass">Entrer le mot de passe</string>
+    <string name="passActivada">Mot de passe activé</string>
+    <string name="passDesactivada">Mot de passe désactivé</string>
+    <string name="exportar">Exporter</string>
+    <string name="importar">Importer</string>
+    <string name="reset">Rétablir</string>
+    <string name="msgExportar">La base de données sera enregistrée dans ce chemin:
+</string>
+    <string name="msgImportar">N’oubliez pas de faire correctement l’importation,
+		la base de données doit être dans ce chemin :</string>
+    <string name="ruta">/sdcard/SalaryControl/</string>
+    <string name="tituloMenuBD">Options de la base de données</string>
+    <string name="importarOK">l’importation de la base de données a été faite
+		correctement</string>
+    <string name="importarError">Une erreur s’est produite lors de l’importation de
+		la base de données</string>
+    <string name="exportOK">l’exportation de la base de données a été faite
+		correctement</string>
+    <string name="exportError">Une erreur s’est produite lors de l’exportation de
+		la base de données</string>
+
+    <!-- Comunes -->
+    <string name="crear">Créer</string>
+    <string name="cancelar">Annuler</string>
+    <string name="eliminar">Supprimer</string>
+    <string name="editar">Modifier</string>
+    <string name="msnEliminar">Vous êtes sûr de vouloir supprimer la catégorie?
+		Vous risquez de modifier toutes les enregistrements liées.</string>
+    <string name="msnEditar">N’oubliez pas que la modification sera appliquée a
+		tous les enregistrements.</string>
+    <string name="aniadir">Ajouter</string>
+    <string name="info">information</string>
+    <string name="aceptar">OK</string>
+    <string name="atencion">Avertissement</string>
+    <string name="catEditOK">La catégorie a été modifiée correctement.</string>
+    <string name="catEditKO">Une erreur s’est produite lors de la modification
+		de la catégorie.</string>
+    <string name="subEditOK">La sous-catégorie a été modifiée correctement.
+</string>
+    <string name="subEditKO">Une erreur s’est produite lors de la modification
+		de la sous-catégorie.</string>
+    <string name="catDeleteOK">La catégorie a été supprimée correctement.</string>
+    <string name="catDeleteKO">Une erreur s’est produite lors de la suppression de
+		la catégorie.</string>
+    <string name="subDeleteOK">La sous-catégorie a été supprimée correctement.
+</string>
+    <string name="subDeleteKO">Une erreur s’est produite lors de la suppression de
+		la sous-catégorie.</string>
+    <string name="guardarRegistroOK">L’enregistrement a été sauvegardé correctement.
+</string>
+    <string name="guardarRegistroKO">Une erreur s’est produite lors de la sauvegarde de
+		l’enregistrement, Vérifier les informations S’il vous plait.</string>
+    <string name="editarRegistroOK">L’enregistrement a été modifié correctement.
+</string>
+    <string name="editarRegistroKO">Une erreur s’est produite lors de la modification
+		de l’enregistrement, Vérifier les informations S’il vous plait.
+</string>
+    <string name="errorNomina">Il existe déjà un salaire pour le mois choisit.
+</string>
+    <string name="camposObligatorios">Les champs du montant et du concept sont
+		obligatoire, Assurez-vous d’avoir fournir les informations
+		correctement.</string>
+    <string name="elijaOpcion">Choisir une option</string>
+    <string name="espere">Patientez S’il vous plait…</string>
+    <string name="preparandoBD">Préparation de la base de données...</string>
+    <string name="deleteRegistroOk">L’enregistrement a été supprimé correctement.
+</string>
+    <string name="deleteRegistroError">Une erreur s’est produite lors de la suppression de
+		l’enregistrement.</string>
+    <string name="addCatOk">La catégorie a été crée correctement.</string>
+    <string name="addCatKO">Une erreur s’est produite lors de la création de la
+		catégorie.</string>
+    <string name="addSubOK">La sous-catégorie a été crée correctement.</string>
+    <string name="addSubKO">Une erreur s’est produite lors de la création de la
+		sous-catégorie.</string>
+    <string name="msnEliminarRegistro">Vous êtes sûr de vouloir supprimer
+		l’enregistrement?</string>
+    <string name="msnSalirApp">Vous êtes sûr de vouloir quitter?</string>
+    <string name="msnResetDB">Vous êtes sûr de vouloir rétablir la base de
+		données?</string>
+    <string name="msnRecuerdeDB">N’oubliez pas que toutes les catégories et les
+		enregistrements seront supprimées.</string>
+    <string name="version">Version 3.2.1</string>
+    <string name="cambio1">1. Refonte complète de l’application.</string>
+    <string name="cambio2">2. Nouvelle icône.</string>
+    <string name="cambio3">3. De nouvelles fonctionnalités pro déverrouillées. (Reçus, rapports, etc ...)</string>
+    <string name="informacion">Information</string>
+
+    <!-- Manifest -->
+    <string name="aniadirCategoria">Ajouter une catégorie</string>
+    <string name="aniadirSubcategoria">Ajouter une sous-catégorie</string>
+    <string name="editarCategoria">Modifier une catégorie</string>
+    <string name="editarSubcategoria">Modifier une sous-catégorie</string>
+    <string name="eliminarCategoria">Supprimer une catégorie</string>
+    <string name="eliminarSubcategoria">Supprimer une sous-catégorie</string>
+    <string name="selecCategoria">Choisir une catégorie</string>
+    <string name="selecSubcategoria">Choisir une sous-catégorie</string>
+
+    <!-- Settings -->
+    <string name="acerca">A propos de</string>
+    <string name="database">Base de donnée</string>
+    <string name="volver">Précédent</string>
+    <string name="msnDBOk">La base de données a été modifiée correctement.
+</string>
+    <string name="msnDBError">Une erreur s’est produite lors du rétablissement de
+		l’enregistrement.</string>
+    <string name="msnDesarrollador">L’application a été développée par AGBA Android
+		App.</string>
+    <string name="msnIncidencias">Si vous rencontrerez n’importe quel problème avec
+		l’utilisation de l’application ou vous trouverez une erreur,
+		envoyez-nous un e-mail:</string>
+    <string name="msnEmail">agba.androidapps@gmail.com</string>
+    <string name="msnSugerencias">S’il vous plait, envoyer-nous vos suggestions afin
+		de continuer a améliorez l’application. Merci beaucoup.</string>
+
+    <!-- Nuevo diseño -->
+
+    <string name="cargando">Chargement...</string>
+    <string name="todas">Toutes</string>
+    <string name="generarExcel">Générer fichier excel</string>
+    <string name="generarGrafico">Générer graphique</string>
+    <string name="nombreFichero">Nom du fichier</string>
+    <string name="generarPor">Générer par/avec</string>
+    <string name="selecNomina">Sélectionner une fiche de paie</string>
+    <string name="desde">Depuis</string>
+    <string name="hasta">Jusqu’à</string>
+    <string name="generar">Générer</string>
+    <string name="mostrarCategorias">Afficher par catégorie</string>
+    <string name="rutaExcel">Le fichier excel sera enregistré à l’adresse suivante :</string>
+    <string name="mismoFichero">Si un fichier du même nom est existant, il sera remplacé.</string>
+    <string name="excelOK">Le fichier excel a bien été créé.</string>
+    <string name="excelKO">Une erreur s’est produite au moment de générer le fichier excel.</string>
+    <string name="errorExcel">Merci de vérifier les données, l’intervalle de dates est incorrect.</string>
+    <string name="ingresosGastos">Recettes/Dépenses</string>
+    <string name="fecha">Date</string>
+    <string name="addCard">Ajouter une carte de crédit</string>
+    <string name="addCardKO">Une erreur s’est produite à l’ajout de la carte de crédit.</string>
+    <string name="editCard">Editer carte de crédit</string>
+    <string name="editCardKO">Une erreur s’est produite en modifiant la carte de crédit.</string>
+    <string name="deleteCard">Eliminer carte de crédit</string>
+    <string name="deleteKO">Une erreur s’est produite en éliminant la carte de crédit.</string>
+    <string name="selecTarjeta">Sélectionner une carte de crédit</string>
+    <string name="tarjetaOK">La carte de crédit a bien été rajoutée.</string>
+    <string name="tarjetaEdit">La carte de crédit a bien été modifiée.</string>
+    <string name="mnsTarjeta">Après élimination de la carte de crédit, tous les registres qui l’utilisaient seront modifiés automatiquement en leur assignant la carte de crédit principale.</string>
+    <string name="tarjetaDelete">La carte de crédit a bien été supprimée.</string>
+    <string name="tarjetaPrincipal">Il n’est pas possible de supprimer la carte de crédit principal.</string>
+    <string name="editRecibo">Editer le reçu</string>
+    <string name="deleteRecibo">Eliminer le reçu</string>
+    <string name="selecRecibo">Sélectionner un reçu</string>
+    <string name="addReciboOK">Le reçu a été créé correctement.</string>
+    <string name="addReciboKO">Une erreur s’est produite lors de la création du reçu.</string>
+    <string name="reciboOK">Le reçu a bien été modifié.</string>
+    <string name="reciboKO">Une erreur s’est produite lors de la modification du reçu.</string>
+    <string name="eliminarReciboPreg">Êtes-vous sûr de vouloir supprimer le reçu?</string>
+    <string name="deleteReciboOK">Le reçu a bien été supprimé.</string>
+    <string name="deleteReciboKO">Une erreur s’est produite lors de la suppression du reçu.</string>
+    <string name="seguridadList">Sécurité</string>
+    <string name="databaseList">Base de données</string>
+    <string name="valorarList">Noter application</string>
+    <string name="tarjetasList">Cartes de crédit</string>
+    <string name="recibosList">Reçus</string>
+    <string name="twitterList">Twitter</string>
+    <string name="estadisticasList">Statistiques</string>
+    <string name="tituloRecibo">Reçus</string>
+    <string name="tituloTarjeta">Cartes</string>
+    <string name="tituloGraficos">Graphiques</string>
+    <string name="tituloInformes">Rapports</string>
+    <string name="tarjeta">Carte</string>
+    <string name="tabNuevo">Nouveau</string>
+    <string name="tabResumen">Résumé</string>
+    <string name="tabTarjetas">Cartes</string>
+    <string name="tabInformes">Rapports</string>
+    <string name="tabMas">Plus</string>
+    <string name="versionPro">Contrôle de dépenses Pro</string>
+    <string name="mensajePro1">Cette option est valable seulement dans la version Pro.</string>
+    <string name="mensajePro2">Si vous aimez cette application et voulez profiter d’options supplémentaires, téléchargez Contrôle de dépenses Pro.</string>
+    <string name="mensajePro3">Cela nous aidera à continuer, merci beaucoup.</string>
+    <string name="botonDescargar">Télécharger.</string>
+    <string name="mensajeInforPro1">La limite mensuelle est dépassée pour ce type de rapport.</string>
+    <string name="mensajeInforPro2">Si vous aimez l’application y voulez profitez de rapports illimités et d’autres options supplémentaires, téléchargez Contrôle de dépenses Pro.</string>
+    <string name="mensajeInforPro3">Cela nous aidera à continuer, merci beaucoup.</string>
+    <string name="addRecibo">Nouveau reçu</string>
+    <string name="countdown">Days Counter Widgets</string>
+    <string name="cuentasList">Gérer les comptes</string>
+    <string name="cuentaseleccionada">Compte sélectionné</string>
+    <string name="masOpciones">Plus d´options</string>
+    <string name="selectOtraCuenta">Sélectionner un autre compte</string>
+    <string name="addNewCuenta">Ajouter un nouveau compte</string>
+    <string name="deleteCuenta">Supprimer le compte</string>
+    <string name="addCuenta">Ajouter un compte</string>
+    <string name="editCuenta">Modifier le compte</string>
+    <string name="selectCuenta">Sélectionnez un compte</string>
+    <string name="deleteCuentaMns">Lorsque vous supprimez un compte, tous vos dossiers et les recettes seront supprimés.</string>
+    <string name="maxNumCuenta">Vous avez dépassé les comptes maximales possibles dans la version gratuite. Pour ajouter d´autres comptes, téléchargez Contrôle de dépenses Pro.</string>
+    <string name="addCuentaOK">Le compte a été crée correctement.</string>
+    <string name="editCuentaOK">Le compte a été modifiée correctement.</string>
+    <string name="deleteCuentaOK">Le compte a été supprimée correctement.</string>
+    <string name="addCuentaKO">Une erreur s’est produite lors de la création de le compte.</string>
+    <string name="editCuentaKO">Une erreur s’est produite lors de la modification de le compte.</string>
+    <string name="deleteCuentaKO">Une erreur s’est produite lors de la suppression de le compte.</string>
+    <string name="cuentaPrincipal">Il n’est pas possible de supprimer le compte principal.</string>
+
+    <string-array name="titles">
+        <item>Nouveau</item>
+        <item>Résumé</item>
+        <item>Catégories</item>
+        <item>Rapports</item>
+        <item>Cartes de crédit</item>
+        <item>Factures</item>
+        <item>Sécurité</item>
+        <item>Base de données</item>
+        <item>Statistiques</item>
+        <item>Paramètres</item>
+        <item>Évaluer l’application</item>
+        <item>Boutique</item>
+    </string-array>
+
+    <string name="iconLite">Gratuit</string>
+    <string name="iconPremium">Premium</string>
+    <string name="ajustes">Paramètres</string>
+    <string name="textoConfPrincipal">Visualisation des données</string>
+    <string name="textoConfNominas">Montrer résumé mensuel par salaire</string>
+    <string name="tituloTienda">Boutique</string>
+    <string name="deleteAds">Supprimer la publicité</string>
+    <string name="moreCat">Catégories Premium</string>
+    <string name="txtDeleteAds">Supprimer toute la publicité.</string>
+    <string name="txtMoreCat">Débloquer toutes les images dans les catégories Premium.</string>
+    <string name="tituloPremium">Utilisateur Premium</string>
+    <string name="txtAllPremium">Débloquer tout le contenu toujours avec un seul versement.</string>
+    <string name="errorCompra">Il y avait une erreur lors de la commande. S’il vous plaît, réessayez plus tard.</string>
+    <string name="errorVeri">Erreur dans l’achat. Vérification de l’authenticité a échoué.</string>
+    <string name="comprar">Acheter</string>
+    <string name="masTarde">Plus tard</string>
+    <string name="ok">OK</string>
+    <string name="gracias">Merci pour votre commande. Vous devez redémarrer l’application pour que les modifications prennent effet.</string>
+    <string name="productoComprado">Le produit sélectionné est déjà activé.</string>
+    <string name="importPro">Etes-vous sûr que vous voulez importer la base de données Contrôle de dépenses?. Rappelez-vous que toutes les données enregistrées seront écrasées.</string>
+    <string name="botonImportPro">Importer Pro</string>
+    <string name="textoConfCategorias">Mostrer résumé par catégorie</string>
+    <string name="filtro">Filtre</string>
+    <string name="pulseDosVeces">Press back button again to exit</string>
+	<string name="noDatos">Aucune donnée disponible</string>
+</resources>

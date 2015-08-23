@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:fillViewport="true" >
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/toolbar" />
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layoutEditMov"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2.5"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_weight="0.5"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/TipoEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:text="@string/tipo"
+                        android:textColor="#000000"
+                        android:textSize="16dp"
+                        android:width="160dp" />
+
+                    <TextView
+                        android:id="@+id/cantidadEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="30dp"
+                        android:layout_weight="1"
+                        android:text="@string/cantidad"
+                        android:textColor="#000000"
+                        android:textSize="16dp" />
+
+                    <ImageView
+                        android:id="@+id/cantidadIconEdit"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/cantidad" />
+                </LinearLayout>
+
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <Spinner
+                        android:id="@+id/spinnerEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/fondo_spinner"
+                        android:paddingLeft="10dp"
+                        android:prompt="@string/tipoMovimientos"
+                        android:textColor="#000000" />
+
+                    <EditText
+                        android:id="@+id/cajaCantidadEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/fondo_text"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:inputType="numberDecimal"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0.5"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/descripcionEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:text="@string/concepto"
+                        android:textColor="#000000"
+                        android:textSize="16dp" />
+
+                    <ImageView
+                        android:id="@+id/conceptoIconEdit"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/concepto" />
+
+                    <TextView
+                        android:id="@+id/fechaEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="110dp"
+                        android:layout_weight="1"
+                        android:text="@string/fecha"
+                        android:textColor="#000000"
+                        android:textSize="16dp" />
+
+                    <ImageView
+                        android:id="@+id/fechaIconEdit"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/calendar" />
+                </LinearLayout>
+
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <Spinner
+                        android:id="@+id/spinnerMesesEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="0.6"
+                        android:background="@drawable/fondo_spinner"
+                        android:paddingLeft="10dp"
+                        android:prompt="@string/mes"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/cajaDescripcionEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="0.6"
+                        android:background="@drawable/fondo_text"
+                        android:paddingLeft="10dp" />
+
+                    <Button
+                        android:id="@+id/botonFechaEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/fondo_text"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:text="@string/seleccioneFecha" />
+                </LinearLayout>
+
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0.5"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/textoCategoriaEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="0.2"
+                        android:text="@string/categoria"
+                        android:textColor="#000000"
+                        android:textSize="16dp"
+                        android:width="80dp" />
+
+                    <TextView
+                        android:id="@+id/textoSubCategoriaEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:layout_weight="0.2"
+                        android:text="@string/subcategoria"
+                        android:textColor="#000000"
+                        android:textSize="16dp"
+                        android:width="100dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <Spinner
+                        android:id="@+id/spinnerCategoriaEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/fondo_spinner"
+                        android:longClickable="true"
+                        android:paddingLeft="10dp"
+                        android:prompt="@string/categorias"
+                        android:text="vacio" />
+
+                    <Spinner
+                        android:id="@+id/spinnerSubCategoriaEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/fondo_spinner"
+                        android:longClickable="true"
+                        android:orientation="horizontal"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="15dp"
+                        android:prompt="@string/subcategorias"
+                        android:text="vacio" />
+                </LinearLayout>
+
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <CheckBox
+                        android:id="@+id/checkTarjetaEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/textoPagoTarjetaEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="@string/pagadoTarjeta"
+                        android:textColor="#000000"
+                        android:textSize="16dp"
+                        android:width="150dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <Spinner
+                        android:id="@+id/spinnerTarjetaEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="0.8"
+                        android:background="@drawable/fondo_spinner"
+                        android:longClickable="true"
+                        android:paddingLeft="10dp"
+                        android:prompt="@string/selecTarjeta"
+                        android:text="vacio" />
+
+                    <Button
+                        android:id="@+id/botonEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="60dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/fondo_text"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:text="@string/guardar" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.4"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    xmlns:ads="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal" >
+
+                    <com.google.android.gms.ads.AdView
+                        android:id="@+id/adViewEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        ads:adSize="BANNER"
+                        ads:adUnitId="ca-app-pub-2303483383476811/4038350087" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <!-- </LinearLayout> </ScrollView> -->
+
+    </LinearLayout>
+
+</ScrollView>

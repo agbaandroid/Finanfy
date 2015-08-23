@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Control de gastos</string>
+    <string name="tipoMovimientos">Seleccione un tipo</string>
+    <string name="textoNominas">Seleccione una nómina</string>
+    <string name="textoAnios">Seleccione un año</string>
+
+    <string-array name="tipoMovimientosArray">
+        <item>Gasto</item>
+        <item>Nómina</item>
+        <item>Ingreso</item>
+        <item>Recibo</item>
+    </string-array>
+    <string-array name="tipoEditMovimientosArray">
+        <item>Gasto</item>
+        <item>Nómina</item>
+        <item>Ingreso</item>
+    </string-array>
+    <string-array name="tipoFiltroResumen">
+        <item>Clásico</item>
+        <item>Categorías</item>
+        <item>Subcategorías</item>
+    </string-array>
+
+    <string name="mes">Mes</string>
+
+    <string-array name="mesArray">
+        <item>Enero</item>
+        <item>Febrero</item>
+        <item>Marzo</item>
+        <item>Abril</item>
+        <item>Mayo</item>
+        <item>Junio</item>
+        <item>Julio</item>
+        <item>Agosto</item>
+        <item>Septiembre</item>
+        <item>Octubre</item>
+        <item>Noviembre</item>
+        <item>Diciembre</item>
+    </string-array>
+    <string-array name="nominasArray">
+        <item>-</item>
+        <item>Enero</item>
+        <item>Febrero</item>
+        <item>Marzo</item>
+        <item>Abril</item>
+        <item>Mayo</item>
+        <item>Junio</item>
+        <item>Julio</item>
+        <item>Agosto</item>
+        <item>Septiembre</item>
+        <item>Octubre</item>
+        <item>Noviembre</item>
+        <item>Diciembre</item>
+    </string-array>
+    <string-array name="filtroArray">
+        <item>-</item>
+        <item>Categoría</item>
+        <item>Subcategoría</item>
+    </string-array>
+
+    <string name="tipoFiltro">Elija una opción</string>
+    <string name="categorias">Categorías</string>
+    <string name="subcategorias">Subcategorías</string>
+    <string name="categoriasMay">CATEGORÍAS</string>
+    <string name="subcategoriasMay">SUBCATEGORÍAS</string>
+
+    <string-array name="opcionesInformesArray">
+        <item>Nómina</item>
+        <item>Fecha</item>
+    </string-array>
+
+    <!-- movimientos.xml -->
+    <string name="tipo">Tipo</string>
+    <string name="nuevoRegistro">Nuevo registro</string>
+    <string name="editarRegistro">Editar registro</string>
+    <string name="cantidad">Cantidad</string>
+    <string name="concepto">Concepto</string>
+    <string name="fecha">Fecha</string>
+    <string name="seleccioneFecha">Seleccione una fecha</string>
+    <string name="categoria">Categoría</string>
+    <string name="subcategoria">Subcategoría</string>
+    <string name="pagadoTarjeta">Pagado con tarjeta</string>
+    <string name="guardar">Guardar</string>
+    <!-- resumen.xml -->
+    <string name="resumen">Resumen</string>
+    <string name="nomina">Nómina</string>
+    <string name="anio">Año</string>
+    <string name="mostrarPor">Mostrar por</string>
+    <string name="total">Total: </string>
+    <!-- resumenTarjeta.xml -->
+    <string name="resumenTarjeta">Resumen tarjeta de crédito</string>
+    <string name="creditCard">Tarjeta</string>
+    <!-- estadisticas.xml -->
+    <string name="estadisticas">Estadísticas</string>
+    <string name="infoGlobal">Información global</string>
+    <string name="totalIngresos">Total ingresos</string>
+    <string name="totalGastos">Total gastos</string>
+    <string name="balance">Balance</string>
+    <string name="infoRegistros">Información de registros</string>
+    <string name="nRegistros">Nº de registros</string>
+    <string name="nIngresos">Nº de ingresos</string>
+    <string name="nGastos">Nº de gastos</string>
+    <string name="infoCategorias">Información de categorías</string>
+    <string name="nTotalCategorias">Nº total de categorías</string>
+    <string name="nCategorias">Nº de categorías</string>
+    <string name="nSubcategorias">Nº de subcategorías</string>
+
+    <!-- Configuracion -->
+    <string name="configuracion">Opciones</string>
+    <string name="tituloEstilos">Seleccione un estilo</string>
+    <string name="tituloSeguridad">Opciones de seguridad</string>
+    <string name="tituloValorar">Valora la aplicación</string>
+    <string name="botonValorar">Valorar ahora</string>
+    <string name="botonMasTarde">Más tarde</string>
+    <string name="msgValorar1">Si te gusta la aplicación y te ha sido de utilidad,
+		por favor recomiéndala.</string>
+    <string name="msgValorar2">Valórala en Google Play con 5 estrellas, sólo te
+		llevará un minuto.</string>
+    <string name="msgValorar3">Muchas gracias.</string>
+    <string name="tituloDonar">Donación</string>
+    <string name="botonDonar">Donar ahora</string>
+    <string name="msgDonar1">Si te gusta la aplicación, ayúdanos a seguir
+		mejorándola.</string>
+    <string name="msgDonar2">Cualquier donación será muy agradecida, sólo te
+		llevará un minuto.</string>
+    <string name="msgDonar3">Muchas gracias.</string>
+    <string name="activarPass">Activar contraseña</string>
+    <string name="desactivarPass">Desactivar contraseña</string>
+    <string name="modificarPass">Modificar contraseña</string>
+    <string name="nuevaPass">Nueva contraseña (Min. 4)</string>
+    <string name="repetirPass">Repetir contraseña (Min. 4)</string>
+    <string name="antiguaPass">Contraseña anterior</string>
+    <string name="introducirPass">Introduzca la contraseña</string>
+    <string name="passActivada">Contraseña activada</string>
+    <string name="passDesactivada">Contraseña desactivada</string>
+    <string name="exportar">Exportar</string>
+    <string name="importar">Importar</string>
+    <string name="reset">Resetear</string>
+    <string name="msgExportar">La base de datos se guardará en la siguiente ruta:</string>
+    <string name="msgImportar">Recuerde que para realizar correctamente la
+		importación, la base de datos debe estar en la siguiente ruta:</string>
+    <string name="ruta">/sdcard/SalaryControl/</string>
+    <string name="tituloMenuBD">Opciones de base de datos</string>
+    <string name="importarOK">Base de datos importada correctamente</string>
+    <string name="importarError">Error importando base de datos</string>
+    <string name="exportOK">Base de datos exportada correctamente</string>
+    <string name="exportError">Error exportando base de datos</string>
+
+    <!-- Comunes -->
+    <string name="crear">Crear</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="editar">Editar</string>
+    <string name="msnEliminar">¿Está seguro que desea eliminar la categoría?
+		Recuerde que serán modificados todos los registros que la utilicen.</string>
+    <string name="msnEditar">Recuerde que la modificación se aplicará a todos
+		los registros que la utilicen.</string>
+    <string name="aniadir">Añadir</string>
+    <string name="info">Información</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="atencion">Atención</string>
+    <string name="catEditOK">La categoría se ha editado correctamente.</string>
+    <string name="catEditKO">Se ha producido un error al editar la categoría.</string>
+    <string name="subEditOK">La subcategoría se ha editado correctamente.</string>
+    <string name="subEditKO">Se ha producido un error al editar la
+		subcategoría.</string>
+    <string name="catDeleteOK">La categoría se ha eliminado correctamente.</string>
+    <string name="catDeleteKO">Se ha producido un error al eliminar la
+		categoría.</string>
+    <string name="subDeleteOK">La subcategoría se ha eliminado correctamente.</string>
+    <string name="subDeleteKO">Se ha producido un error al eliminar la
+		subcategoría.</string>
+    <string name="guardarRegistroOK">El registro se ha guardado correctamente.</string>
+    <string name="guardarRegistroKO">Se ha producido un error al guardar el registro,
+		por favor revise los datos.</string>
+    <string name="editarRegistroOK">El registro se ha editado correctamente.</string>
+    <string name="editarRegistroKO">Se ha producido un error al editar el registro,
+		por
+		favor revise los datos.</string>
+    <string name="errorNomina">Ya existe una nómina para el mes seleccionado.</string>
+    <string name="camposObligatorios">Los campos Cantidad y Concepto son obligatorios,
+		asegurese de haber introducido los datos correctamente.</string>
+    <string name="elijaOpcion">Elija una opción</string>
+    <string name="espere">Espere por favor...</string>
+    <string name="preparandoBD">Preparando base de datos...</string>
+    <string name="deleteRegistroOk">El registro se ha eliminado correctamente.</string>
+    <string name="deleteRegistroError">Se ha producido un error al eliminar el
+		registro.</string>
+    <string name="addCatOk">La categoría se ha creado correctamente</string>
+    <string name="addCatKO">Se ha producido un error al crear la categoría</string>
+    <string name="addSubOK">La subcategoría se ha creado correctamente</string>
+    <string name="addSubKO">Se ha producido un error al crear la
+		subcategoría</string>
+    <string name="msnEliminarRegistro">¿Está seguro que desea eliminar el registro?</string>
+    <string name="msnSalirApp">¿Está seguro que desea salir de la aplicación?</string>
+    <string name="msnResetDB">¿Está seguro que desea resetear la base de datos?</string>
+    <string name="msnRecuerdeDB">Recuerde que todas las categorías y registros
+		creados serán eliminados.</string>
+    <string name="version">Versión 3.2.1</string>
+    <string name="cambio1">1. Rediseño completo de la aplicación.</string>
+    <string name="cambio2">2. Nuevo icono.</string>
+    <string name="cambio3">3. Funcionalidades Pro desbloqueadas (Recibos, Nº informes, etc...)</string>
+    <string name="informacion">Información</string>
+
+    <!-- Manifest -->
+    <string name="aniadirCategoria">Añadir categoría</string>
+    <string name="aniadirSubcategoria">Añadir subcategoría</string>
+    <string name="editarCategoria">Editar categoría</string>
+    <string name="editarSubcategoria">Editar subcategoría</string>
+    <string name="eliminarCategoria">Eliminar categoría</string>
+    <string name="eliminarSubcategoria">Eliminar subcategoría</string>
+    <string name="selecCategoria">Seleccione una categoría</string>
+    <string name="selecSubcategoria">Seleccione una subcategoría</string>
+
+    <!-- Settings -->
+    <string name="acerca">Acerca de</string>
+    <string name="database">Base de datos</string>
+    <string name="volver">Volver</string>
+    <string name="msnDBOk">Base de datos reseteada correctamente</string>
+    <string name="msnDBError">	Se ha producido un error al resetear la base de
+	datos</string>
+    <string name="msnDesarrollador">Esta aplicación ha sido desarrollada por AGBA
+		Android Apps.</string>
+    <string name="msnIncidencias">Si tiene algún problema utilizando la aplicación o
+		encuentra algun error, envíe un correo a la siguiente dirección:</string>
+    <string name="msnEmail">agba.androidapps@gmail.com</string>
+    <string name="msnSugerencias">Por favor, envíenos sus sugerencias para seguir
+		mejorando la aplicación. Muchas gracias.</string>
+
+    <color name="titlebackgroundcolor">#3232CD</color>
+    <color name="titletextcolor">#FFFF00</color>
+
+    <!-- Nuevo diseño -->
+
+    <string name="cargando">Cargando...</string>
+    <string name="todas">Todas</string>
+    <string name="generarExcel">Generar excel</string>
+    <string name="generarGrafico">Generar gráfico</string>
+    <string name="nombreFichero">Nombre del fichero</string>
+    <string name="generarPor">Generar por</string>
+    <string name="selecNomina">Seleccione una nómina</string>
+    <string name="desde">Desde</string>
+    <string name="hasta">Hasta</string>
+    <string name="generar">Generar</string>
+    <string name="mostrarCategorias">Mostrar por categorías</string>
+    <string name="rutaExcel">La hoja excel se guardará en la siguiente dirección:</string>
+    <string name="mismoFichero">Si existe un fichero con el mismo nombre se sustituirá.</string>
+    <string name="excelOK">La hoja excel se ha generado correctamente.</string>
+    <string name="excelKO">Se ha producido un error al generar el excel.</string>
+    <string name="errorExcel">Por favor revise los datos, el intervalo de fechas es incorrecto.</string>
+    <string name="ingresosGastos">Ingresos/Gastos</string>    
+    <string name="addCard">Añadir tarjeta</string>
+    <string name="addCardKO">Se ha producido un error al crear la tarjeta de crédito.</string>
+    <string name="editCard">Editar tarjeta</string>
+    <string name="editCardKO">Se ha producido un error al modificar la tarjeta de crédito.</string>
+    <string name="deleteCard">Eliminar tarjeta</string>
+    <string name="deleteKO">Se ha producido un error al eliminar la tarjeta de crédito.</string>
+    <string name="selecTarjeta">Seleccione una tarjeta</string>
+    <string name="tarjetaOK">La tarjeta de crédito se ha creado correctamente.</string>
+    <string name="tarjetaEdit">La tarjeta de crédito se ha modificado correctamente.</string>
+    <string name="mnsTarjeta">Al eliminar la tarjeta de crédito, todos los registros que la 
+utilizaran serán modificados automáticamente, asignandoles la tarjeta
+principal.</string>
+    <string name="tarjetaDelete">La tarjeta de crédito se ha eliminado correctamente.</string>
+    <string name="tarjetaPrincipal">No se puede eliminar la tarjeta principal.</string>
+    <string name="editRecibo">Editar recibo</string>
+    <string name="deleteRecibo">Eliminar recibo</string>
+    <string name="selecRecibo">Seleccione un recibo</string>
+    <string name="addReciboOK">El recibo se ha creado correctamente.</string>
+    <string name="addReciboKO">Se ha producido un error al crear el recibo.</string>
+    <string name="reciboOK">El recibo se ha modificado correctamente.</string>
+    <string name="reciboKO">Se ha producido un error al modificar el recibo.</string>
+    <string name="eliminarReciboPreg">¿Está seguro que desea eliminar el recibo?</string>
+    <string name="deleteReciboOK">El recibo se ha eliminado correctamente.</string>
+    <string name="deleteReciboKO">Se ha producido un error al eliminar el recibo.</string>
+    <string name="seguridadList">Seguridad</string>
+    <string name="databaseList">Base de datos</string>
+    <string name="valorarList">Valorar aplicación</string>
+    <string name="tarjetasList">Tarjetas de crédito</string>
+    <string name="recibosList">Recibos</string>
+    <string name="twitterList">Twitter</string>
+    <string name="estadisticasList">Estadísticas</string>
+    <string name="tituloRecibo">Recibos</string>
+    <string name="tituloTarjeta">Tarjetas</string>
+    <string name="tituloGraficos">Gráficos</string>
+    <string name="tituloInformes">Informes</string>
+    <string name="tarjeta">Tarjeta</string>
+    <string name="tabNuevo">Nuevo</string>
+    <string name="tabResumen">Resumen</string>
+    <string name="tabTarjetas">Tarjetas</string>
+    <string name="tabInformes">Informes</string>
+    <string name="tabMas">Más</string>
+    <string name="versionPro">Control de gastos Pro</string>
+    <string name="mensajePro1">Esta opción solamente está disponible en nuestra versión Pro.</string>
+    <string name="mensajePro2">Si te gusta la aplicación y quieres disfrutar de esta y otras características exclusivas, descarga Control de gastos Pro.</string>
+    <string name="mensajePro3">Nos ayudará a seguir mejorando, muchas gracias.</string>
+    <string name="botonDescargar">Descargar</string>
+    <string name="mensajeInforPro1">Se ha sobrepasado el limite mensual para este tipo de informe.</string>
+    <string name="mensajeInforPro2">Si te gusta la aplicación y quieres disfrutar de informes ilimitados y otras características exclusivas, descarga Control de gastos Pro.</string>
+    <string name="mensajeInforPro3">Nos ayudará a seguir mejorando, muchas gracias.</string>
+    <string name="addRecibo">Nuevo recibo</string>
+    <string name="countdown">Contador de Días Widgets</string>
+    <string name="cuentasList">Gestionar cuentas</string>
+    <string name="cuentaseleccionada">Cuenta seleccionada</string>
+    <string name="masOpciones">Más opciones</string>
+    <string name="selectOtraCuenta">Seleccionar otra cuenta</string>
+    <string name="addNewCuenta">Añadir nueva cuenta</string>
+    <string name="deleteCuenta">Eliminar cuenta</string>
+    <string name="addCuenta">Añadir cuenta</string>
+    <string name="editCuenta">Editar cuenta</string>
+    <string name="selectCuenta">Seleccione una cuenta</string>
+    <string name="deleteCuentaMns">Al eliminar una cuenta, se eliminarán todos sus registros y recibos.</string>
+    <string name="maxNumCuenta">Ha superado el máximo de cuentas posibles en la versión gratuita. Si desea añadir más cuentas descargue Control de Gastos Pro.</string>
+    <string name="addCuentaOK">La cuenta se ha creado correctamente.</string>
+    <string name="editCuentaOK">La cuenta se ha modificado correctamente.</string>
+    <string name="deleteCuentaOK">La cuenta se ha eliminado correctamente.</string>
+    <string name="addCuentaKO">Se ha producido un error al crear la cuenta.</string>
+    <string name="editCuentaKO">Se ha producido un error al modificar la cuenta.</string>
+    <string name="deleteCuentaKO">Se ha producido un error al eliminar la cuenta.</string>
+    <string name="cuentaPrincipal">No se puede eliminar la cuenta principal.</string>
+
+    <string-array name="titles">
+        <item>NUEVO</item>
+        <item>RESUMEN</item>
+        <item>CATEGORÍAS</item>
+        <item>INFORMES</item>
+        <item>TARJETAS</item>
+        <item>RECIBOS</item>
+        <item>SEGURIDAD</item>
+        <item>BASE DE DATOS</item>
+        <item>ESTADÍSTICAS</item>
+        <item>AJUSTES</item>
+        <item>VALORAR APP</item>
+        <item>TIENDA</item>
+    </string-array>
+
+    <string name="iconLite">Gratis</string>
+    <string name="iconPremium">Premium</string>
+    <string name="ajustes">Ajustes</string>
+    <string name="textoConfPrincipal">Visualización de datos</string>
+    <string name="textoConfNominas">Mostrar resumen mensual por nóminas</string>
+    <string name="tituloTienda">Tienda</string>
+    <string name="deleteAds">Eliminar publicidad</string>
+    <string name="moreCat">Categorías Premium</string>
+    <string name="txtDeleteAds">Elimina toda la publicidad de la aplicación para siempre.</string>
+    <string name="txtMoreCat">Desbloquea todas las imágenes de las categorías Premium.</string>
+    <string name="tituloPremium">Usuario Premium</string>
+    <string name="txtAllPremium">Desbloquea todo el contenido con un solo pago y para siempre.</string>
+    <string name="errorCompra">Se ha producido un error al realizar la compra. Intentelo más tarde.</string>
+    <string name="errorVeri">Error en compra. Verificación de autenticidad fallida.</string>
+    <string name="comprar">Comprar</string>
+    <string name="masTarde">Más tarde</string>
+    <string name="ok">OK</string>
+    <string name="gracias">Gracias por realizar su compra. Deberá reiniciar la aplicación para que se apliquen los cambios.</string>
+    <string name="productoComprado">El producto seleccionado ya está activado.</string>
+    <string name="importPro">¿Está seguro de que desea importar la base de datos de Control de gastos Pro?. Recuerde que todos los datos guardados se sobreescribirán.</string>
+    <string name="botonImportPro">Importar Pro</string>
+	<string name="textoConfCategorias">Mostrar resumen por categorías</string>
+	<string name="filtro">Filtro</string>
+	<string name="pulseDosVeces">Vuelva a pulsar atrás para salir</string>
+	<string name="noDatos">No se han encontrado registros</string>
+</resources>

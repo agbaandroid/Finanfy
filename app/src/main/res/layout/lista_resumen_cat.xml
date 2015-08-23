@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="@drawable/fondo_lista_opciones"
+	android:layout_marginLeft="5dp" android:layout_marginRight="5dp">
+
+	<TextView android:id="@+id/textNomCategoria"
+		android:layout_width="160dp" android:layout_height="30dp"
+		android:layout_marginLeft="4dp" android:gravity="left"
+		android:layout_marginTop="20dp" android:textColor="#000000" />
+
+	<TextView android:id="@+id/textResumenCategoriaCant"
+		android:layout_width="fill_parent" android:layout_height="30dp"
+		android:layout_toRightOf="@+id/textNomCategoria" android:gravity="right"
+		android:layout_marginTop="20dp" android:textColor="#000000"
+		android:paddingRight="5dp" />
+
+</RelativeLayout>
