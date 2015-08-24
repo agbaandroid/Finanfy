@@ -5,7 +5,7 @@
     android:versionName="3.2.2" >
 
     <uses-sdk
-        android:minSdkVersion="9"
+        android:minSdkVersion="11"
         android:targetSdkVersion="20" />
 
     <supports-screens
@@ -208,6 +208,13 @@
             android:label="@string/app_name"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar" />
+
+        <activity
+            android:name=".activities.NuevoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme"
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified"/>
+
     </application>
 
 </manifest>

@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
@@ -283,9 +282,9 @@ public final class NuevoMovimientosFragment extends Fragment {
 	// Aadiendo funcionalidad a las opciones de men
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		LayoutInflater li = LayoutInflater.from(getActivity());
+		/*LayoutInflater li = LayoutInflater.from(this);
 		View view = null;
-		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		AlertDialog alert;
 		switch (item.getItemId()) {
 		case R.id.btInfo:
@@ -320,9 +319,13 @@ public final class NuevoMovimientosFragment extends Fragment {
 			alert = builder.create();
 			alert.show();
 			return true;
+		case android.R.id.home:
+			finish();
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
-		}
+		}*/
+		return true;
 	}
 
 	@Override

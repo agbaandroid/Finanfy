@@ -11,6 +11,7 @@ import com.agudoApp.salaryApp.R;
 public class CantidadActivity extends Activity {
 
     private TextView txtCantidad;
+    private TextView txtAceptar;
 
     private LinearLayout num1;
     private LinearLayout num2;
@@ -34,6 +35,7 @@ public class CantidadActivity extends Activity {
         setContentView(R.layout.cantidad);
 
         txtCantidad = (TextView) findViewById(R.id.txtCant);
+        txtAceptar = (TextView) findViewById(R.id.txtAceptar);
 
         num0 = (LinearLayout) findViewById(R.id.num0);
         num1 = (LinearLayout) findViewById(R.id.num1);
@@ -56,12 +58,19 @@ public class CantidadActivity extends Activity {
             public void onClick(View v) {
                 if (txtCantidad.getText().equals("-")) {
                     txtCantidad.setText("0.");
-                } else if(txtCantidad.getText().equals("0")){
+                    btnAceptar.setEnabled(false);
+                    txtAceptar.setTextColor(getResources().getColor(R.color.txtGris));
+                } else if (txtCantidad.getText().equals("0")) {
                     txtCantidad.setText("0.0");
-                }else {
+                    btnAceptar.setEnabled(true);
+                    txtAceptar.setTextColor(getResources().getColor(R.color.txtNegro));
+                } else {
                     txtCantidad.setText(txtCantidad.getText() + "0");
+                    btnAceptar.setEnabled(true);
+                    txtAceptar.setTextColor(getResources().getColor(R.color.txtNegro));
                 }
                 btnBorrar.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -76,6 +85,8 @@ public class CantidadActivity extends Activity {
                     txtCantidad.setText(txtCantidad.getText() + "1");
                 }
                 btnBorrar.setVisibility(View.VISIBLE);
+                btnAceptar.setEnabled(true);
+                txtAceptar.setTextColor(getResources().getColor(R.color.txtNegro));
             }
         });
 
@@ -90,6 +101,8 @@ public class CantidadActivity extends Activity {
                     txtCantidad.setText(txtCantidad.getText() + "2");
                 }
                 btnBorrar.setVisibility(View.VISIBLE);
+                btnAceptar.setEnabled(true);
+                txtAceptar.setTextColor(getResources().getColor(R.color.txtNegro));
             }
         });
 
@@ -104,6 +117,8 @@ public class CantidadActivity extends Activity {
                     txtCantidad.setText(txtCantidad.getText() + "3");
                 }
                 btnBorrar.setVisibility(View.VISIBLE);
+                btnAceptar.setEnabled(true);
+                txtAceptar.setTextColor(getResources().getColor(R.color.txtNegro));
             }
         });
 
@@ -118,6 +133,8 @@ public class CantidadActivity extends Activity {
                     txtCantidad.setText(txtCantidad.getText() + "4");
                 }
                 btnBorrar.setVisibility(View.VISIBLE);
+                btnAceptar.setEnabled(true);
+                txtAceptar.setTextColor(getResources().getColor(R.color.txtNegro));
             }
         });
 
@@ -132,6 +149,8 @@ public class CantidadActivity extends Activity {
                     txtCantidad.setText(txtCantidad.getText() + "5");
                 }
                 btnBorrar.setVisibility(View.VISIBLE);
+                btnAceptar.setEnabled(true);
+                txtAceptar.setTextColor(getResources().getColor(R.color.txtNegro));
             }
         });
 
@@ -146,6 +165,8 @@ public class CantidadActivity extends Activity {
                     txtCantidad.setText(txtCantidad.getText() + "6");
                 }
                 btnBorrar.setVisibility(View.VISIBLE);
+                btnAceptar.setEnabled(true);
+                txtAceptar.setTextColor(getResources().getColor(R.color.txtNegro));
             }
         });
 
@@ -160,6 +181,8 @@ public class CantidadActivity extends Activity {
                     txtCantidad.setText(txtCantidad.getText() + "7");
                 }
                 btnBorrar.setVisibility(View.VISIBLE);
+                btnAceptar.setEnabled(true);
+                txtAceptar.setTextColor(getResources().getColor(R.color.txtNegro));
             }
         });
 
@@ -174,6 +197,8 @@ public class CantidadActivity extends Activity {
                     txtCantidad.setText(txtCantidad.getText() + "8");
                 }
                 btnBorrar.setVisibility(View.VISIBLE);
+                btnAceptar.setEnabled(true);
+                txtAceptar.setTextColor(getResources().getColor(R.color.txtNegro));
             }
         });
 
@@ -188,6 +213,8 @@ public class CantidadActivity extends Activity {
                     txtCantidad.setText(txtCantidad.getText() + "9");
                 }
                 btnBorrar.setVisibility(View.VISIBLE);
+                btnAceptar.setEnabled(true);
+                txtAceptar.setTextColor(getResources().getColor(R.color.txtNegro));
             }
         });
 
@@ -200,6 +227,8 @@ public class CantidadActivity extends Activity {
                     }
                 }
                 btnBorrar.setVisibility(View.VISIBLE);
+                btnAceptar.setEnabled(false);
+                txtAceptar.setTextColor(getResources().getColor(R.color.txtGris));
             }
         });
 
@@ -216,13 +245,31 @@ public class CantidadActivity extends Activity {
                 } else {
                     btnBorrar.setVisibility(View.VISIBLE);
                 }
+
+                if ((txtCantidad.getText().toString().substring(txtCantidad.getText().toString().length() - 1,
+                        txtCantidad.getText().toString().length()).equals("."))) {
+                    btnAceptar.setEnabled(false);
+                    txtAceptar.setTextColor(getResources().getColor(R.color.txtGris));
+                } else {
+                    btnAceptar.setEnabled(true);
+                    txtAceptar.setTextColor(getResources().getColor(R.color.txtNegro));
+                }
             }
         });
 
         btnAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtCantidad.setText(txtCantidad.getText() + "0");
+                String importe;
+                if (txtCantidad.getText().toString().equals("-")) {
+                    importe = "0";
+                } else {
+                    importe = txtCantidad.getText().toString();
+                }
+
+                getIntent().putExtra("importe", importe);
+                setResult(RESULT_OK, getIntent());
+                finish();
             }
         });
         btnCancelar.setOnClickListener(new View.OnClickListener() {

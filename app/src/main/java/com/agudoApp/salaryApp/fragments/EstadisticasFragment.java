@@ -1,10 +1,6 @@
 package com.agudoApp.salaryApp.fragments;
 
-import java.text.DecimalFormat;
-
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
@@ -21,6 +17,8 @@ import android.widget.TextView;
 
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.database.GestionBBDD;
+
+import java.text.DecimalFormat;
 
 public class EstadisticasFragment extends Fragment {
 	private static final String KEY_CONTENT = "EstadisticasFragment:Content";
@@ -140,9 +138,9 @@ public class EstadisticasFragment extends Fragment {
 	// Aadiendo funcionalidad a las opciones de men
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		LayoutInflater li = LayoutInflater.from(getActivity());
+		/*LayoutInflater li = LayoutInflater.from(this);
 		View view = null;
-		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		AlertDialog alert;
 		switch (item.getItemId()) {
 		case R.id.btInfo:
@@ -177,9 +175,13 @@ public class EstadisticasFragment extends Fragment {
 			alert = builder.create();
 			alert.show();
 			return true;
+		case android.R.id.home:
+			finish();
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
-		}
+		}*/
+		return true;
 	}
 
 	public void cargarDatos() {

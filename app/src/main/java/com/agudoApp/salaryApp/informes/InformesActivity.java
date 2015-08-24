@@ -10,7 +10,6 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -146,7 +145,7 @@ public class InformesActivity extends Activity {
 	// Aadiendo funcionalidad a las opciones de men
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		LayoutInflater li = LayoutInflater.from(this);
+		/*LayoutInflater li = LayoutInflater.from(this);
 		View view = null;
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		AlertDialog alert;
@@ -183,8 +182,12 @@ public class InformesActivity extends Activity {
 			alert = builder.create();
 			alert.show();
 			return true;
+		case android.R.id.home:
+			finish();
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
-		}
+		}*/
+		return true;
 	}
 }

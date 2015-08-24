@@ -1,14 +1,5 @@
 package com.agudoApp.salaryApp.fragments;
 
-import java.sql.Date;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.Locale;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -45,6 +36,7 @@ import android.widget.Toast;
 
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.activities.EditMovimiento;
+import com.agudoApp.salaryApp.activities.NuevoActivity;
 import com.agudoApp.salaryApp.adapters.ListAdapter;
 import com.agudoApp.salaryApp.adapters.ListaAdapterResumenExpandibleAdapter;
 import com.agudoApp.salaryApp.adapters.ListaAdapterResumenExpandibleSubAdapter;
@@ -54,6 +46,15 @@ import com.agudoApp.salaryApp.model.Movimiento;
 import com.agudoApp.salaryApp.model.Recibo;
 import com.agudoApp.salaryApp.model.Tarjeta;
 
+import java.sql.Date;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.Locale;
+
 public final class ResumenFragment extends Fragment {
 	private static final String KEY_CONTENT = "ResumenFragment:Content";
 	private final String BD_NOMBRE = "BDGestionGastos";
@@ -62,6 +63,7 @@ public final class ResumenFragment extends Fragment {
 	static final int MENSAJE_ERROR_DELETE = 5;
 	static final int MENSAJE_OK_DELETE = 6;
 	static final int MENSAJE_CONFIRMAR_ELIMINAR = 7;
+	static final int NUEVO_REGISTRO = 1;
 	static final int BOTON_BACK = 99;
 	private Spinner spinnerNomina;
 	private Spinner spinnerAnios;
@@ -969,42 +971,15 @@ public final class ResumenFragment extends Fragment {
 	// Aadiendo funcionalidad a las opciones de men
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		LayoutInflater li = LayoutInflater.from(getActivity());
-		View view = null;
-		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-		AlertDialog alert;
 		switch (item.getItemId()) {
-		case R.id.btInfo:
-			view = li.inflate(R.layout.info, null);
-			builder.setView(view);
-			builder.setTitle(getResources().getString(R.string.informacion));
-			builder.setIcon(R.drawable.ic_info_azul);
-			builder.setCancelable(false);
-			builder.setPositiveButton(getResources()
-					.getString(R.string.aceptar),
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							dialog.cancel();
-						}
-					});
-			alert = builder.create();
-			alert.show();
+		case R.id.action_add:
+			Intent intent = new Intent(getActivity(),  NuevoActivity.class);
+			startActivity(intent);
 			return true;
-		case R.id.btAcerca:
-			view = li.inflate(R.layout.acerca, null);
-			builder.setView(view);
-			builder.setTitle(getResources().getString(R.string.app_name));
-			builder.setIcon(R.drawable.icon_app);
-			builder.setCancelable(false);
-			builder.setPositiveButton(getResources()
-					.getString(R.string.aceptar),
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							dialog.cancel();
-						}
-					});
-			alert = builder.create();
-			alert.show();
+		case R.id.action_filter:
+			return true;
+		case android.R.id.home:
+			getActivity().finish();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -1577,4 +1552,6 @@ public final class ResumenFragment extends Fragment {
 					R.string.elijaOpcion));
 		}
 	}
+
+
 }

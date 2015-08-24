@@ -323,7 +323,6 @@ trovare un errore, inviare una mail al seguente indirizzo: </string>
     <string name="cuentaPrincipal">Impossibile rimuovere l´account principale.</string>
     
     <string-array name="titles">
-        <item>Nuovo</item>
         <item>Sommario</item>
         <item>Categorie</item>
         <item>Rapporti</item>
@@ -336,6 +335,8 @@ trovare un errore, inviare una mail al seguente indirizzo: </string>
         <item>Valutare app</item>
         <item>Negozio</item>
     </string-array>
+
+    <string name="nuevo">Nuovo</string>
 
     <string name="iconLite">Libero</string>
     <string name="iconPremium">Premium</string>
@@ -362,4 +363,9 @@ trovare un errore, inviare una mail al seguente indirizzo: </string>
     <string name="filtro">Filtro</string>
     <string name="pulseDosVeces">Press back button again to exit</string>
     <string name="noDatos">Nessun dato trovato</string>
+
+    <string-array name="modoPago">
+        <item>Es_Metático</item>
+        <item>Es_Tarjeta</item>
+    </string-array>
 </resources> 

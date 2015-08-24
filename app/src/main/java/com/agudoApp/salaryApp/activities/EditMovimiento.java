@@ -610,7 +610,7 @@ public class EditMovimiento extends ActionBarActivity {
 	// Aadiendo funcionalidad a las opciones de men
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		LayoutInflater li = LayoutInflater.from(this);
+		/*LayoutInflater li = LayoutInflater.from(this);
 		View view = null;
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		AlertDialog alert;
@@ -652,7 +652,8 @@ public class EditMovimiento extends ActionBarActivity {
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
-		}
+		}*/
+		return true;
 	}
 
 	public void obtenerDatos() {

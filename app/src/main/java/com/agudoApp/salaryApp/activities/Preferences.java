@@ -1,14 +1,10 @@
 package com.agudoApp.salaryApp.activities;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.agudoApp.salaryApp.R;
 
@@ -33,7 +29,7 @@ public class Preferences extends PreferenceActivity {
 	// Aadiendo funcionalidad a las opciones de men
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		LayoutInflater li = LayoutInflater.from(this);
+		/*LayoutInflater li = LayoutInflater.from(this);
 		View view = null;
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		AlertDialog alert;
@@ -75,7 +71,8 @@ public class Preferences extends PreferenceActivity {
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
-		}
+		}*/
+		return true;
 	}
 
 }

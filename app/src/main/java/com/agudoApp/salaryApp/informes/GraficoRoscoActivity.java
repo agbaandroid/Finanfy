@@ -1,13 +1,6 @@
 package com.agudoApp.salaryApp.informes;
 
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Locale;
-
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,11 +8,9 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -29,6 +20,10 @@ import com.agudoApp.salaryApp.database.GestionBBDD;
 import com.agudoApp.salaryApp.graficos.PieChartView;
 import com.agudoApp.salaryApp.model.Categoria;
 import com.agudoApp.salaryApp.model.Movimiento;
+
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Locale;
 
 public class GraficoRoscoActivity extends ActionBarActivity {
 
@@ -116,7 +111,7 @@ public class GraficoRoscoActivity extends ActionBarActivity {
 	// Aadiendo funcionalidad a las opciones de men
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		LayoutInflater li = LayoutInflater.from(this);
+		/*LayoutInflater li = LayoutInflater.from(this);
 		View view = null;
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		AlertDialog alert;
@@ -158,7 +153,8 @@ public class GraficoRoscoActivity extends ActionBarActivity {
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
-		}
+		}*/
+		return true;
 	}
 
 	public int cuentaSeleccionada() {

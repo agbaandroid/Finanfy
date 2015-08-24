@@ -5,5 +5,6 @@
     <item name="blanco" type="color">#FFFFFF</item>
     <color name="fondodrawable">#eaeaea</color>
     <item name="txtGris" type="color">#878787</item>
+    <item name="txtNegro" type="color">#000000</item>
 
 </resources>

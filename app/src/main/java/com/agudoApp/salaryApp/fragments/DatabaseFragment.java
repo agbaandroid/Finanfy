@@ -132,9 +132,9 @@ public class DatabaseFragment extends Fragment {
 	// Aadiendo funcionalidad a las opciones de men
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		LayoutInflater li = LayoutInflater.from(getActivity());
+		/*LayoutInflater li = LayoutInflater.from(this);
 		View view = null;
-		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		AlertDialog alert;
 		switch (item.getItemId()) {
 		case R.id.btInfo:
@@ -169,9 +169,13 @@ public class DatabaseFragment extends Fragment {
 			alert = builder.create();
 			alert.show();
 			return true;
+		case android.R.id.home:
+			finish();
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
-		}
+		}*/
+		return true;
 	}
 
 	protected Dialog onCreateDialog(int id) {

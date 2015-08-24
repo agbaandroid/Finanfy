@@ -35,7 +35,6 @@ import com.agudoApp.salaryApp.fragments.CuentasFragment;
 import com.agudoApp.salaryApp.fragments.DatabaseFragment;
 import com.agudoApp.salaryApp.fragments.EstadisticasFragment;
 import com.agudoApp.salaryApp.fragments.InformesFragment;
-import com.agudoApp.salaryApp.fragments.NuevoMovimientosFragment;
 import com.agudoApp.salaryApp.fragments.RecibosFragment;
 import com.agudoApp.salaryApp.fragments.ResumenFragment;
 import com.agudoApp.salaryApp.fragments.SeguridadFragment;
@@ -248,53 +247,49 @@ public class ControlGastosActivity extends ActionBarActivity {
 			fragment = new CuentasFragment();
 			break;
 		case 0:
-			fragment = new NuevoMovimientosFragment(isPremium, isSinPublicidad,
-					isCategoriaPremium);
-			break;
-		case 1:
 			fragment = new ResumenFragment(isPremium, isSinPublicidad,
 					isCategoriaPremium);
 			break;
-		case 2:
+		case 1:
 			fragment = new CategoriasFragment(isPremium, isSinPublicidad,
 					isCategoriaPremium);
 			break;
-		case 3:
+		case 2:
 			fragment = new InformesFragment(isPremium, isSinPublicidad,
 					isCategoriaPremium);
 			break;
-		case 4:
+		case 3:
 			fragment = new TarjetasFragment(isPremium, isSinPublicidad,
 					isCategoriaPremium);
 			break;
-		case 5:
+		case 4:
 			fragment = new RecibosFragment(isPremium, isSinPublicidad,
 					isCategoriaPremium);
 			break;
-		case 6:
+		case 5:
 			fragment = new SeguridadFragment(isPremium, isSinPublicidad,
 					isCategoriaPremium);
 			break;
-		case 7:
+		case 6:
 			fragment = new DatabaseFragment(isPremium, isSinPublicidad,
 					isCategoriaPremium);
 			break;
-		case 8:
+		case 7:
 			fragment = new EstadisticasFragment(isPremium, isSinPublicidad,
 					isCategoriaPremium);
 			break;
-		case 9:
+		case 8:
 			Intent intent = new Intent(this, Preferences.class);
 			startActivity(intent);
 			break;
-		case 10:
+		case 9:
 			Intent intent1 = null;
 			intent1 = new Intent(
 					"android.intent.action.VIEW",
 					Uri.parse("https://play.google.com/store/apps/details?id=com.agudoApp.salaryApp"));
 			startActivity(intent1);
 			break;
-		case 11:
+		case 10:
 			/*fragment = new TiendaFragment(isPremium, isSinPublicidad,
 					isCategoriaPremium);
 			break;*/
@@ -313,7 +308,7 @@ public class ControlGastosActivity extends ActionBarActivity {
 			if (position != 0) {
 				setTitle(titlesMenu[position - 1]);
 				mAdapter.setSelectedItem(position - 1);
-				textoHeader.setTextColor(Color.GRAY);
+				//textoHeader.setTextColor(Color.GRAY);
 			} else {
 				setTitle("Cuentas");
 				mAdapter.setSelectedItem(99);

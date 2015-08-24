@@ -346,7 +346,6 @@ principal.</string>
     <string name="cuentaPrincipal">No se puede eliminar la cuenta principal.</string>
 
     <string-array name="titles">
-        <item>Nuevo</item>
         <item>Resumen</item>
         <item>Categorías</item>
         <item>Informes</item>
@@ -359,6 +358,8 @@ principal.</string>
         <item>Valorar aplicación</item>
         <item>Tienda</item>
     </string-array>
+
+    <string name="nuevo">Nuevo</string>
 
     <string name="iconLite">Gratis</string>
     <string name="iconPremium">Premium</string>
@@ -385,4 +386,9 @@ principal.</string>
 	<string name="filtro">Filtro</string>
 	<string name="pulseDosVeces">Vuelva a pulsar atrás para salir</string>
 	<string name="noDatos">No se han encontrado registros</string>
+
+    <string-array name="modoPago">
+        <item>Es_Metático</item>
+        <item>Es_Tarjeta</item>
+    </string-array>
 </resources>

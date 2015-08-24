@@ -17,28 +17,22 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/actionBarColor"
-                android:minHeight="?attr/actionBarSize" />
-        </LinearLayout>
+                android:minHeight="?attr/actionBarSize"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <!-- Contenido Principal -->
             <FrameLayout
                 android:id="@+id/content_frame"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="#FFFFFF" />
         </LinearLayout>
-        <!-- Menú Lateral -->
-
 
         <ListView
             android:id="@+id/left_drawer"
@@ -49,6 +43,5 @@
             android:divider="#FFFFFF" />
 
     </android.support.v4.widget.DrawerLayout>
-
 
 </RelativeLayout>

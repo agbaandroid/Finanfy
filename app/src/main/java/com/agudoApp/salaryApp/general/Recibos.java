@@ -1,10 +1,5 @@
 package com.agudoApp.salaryApp.general;
 
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.LinkedList;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -19,7 +14,6 @@ import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -47,6 +41,11 @@ import com.agudoApp.salaryApp.adapters.ListAdapterSpinner;
 import com.agudoApp.salaryApp.database.GestionBBDD;
 import com.agudoApp.salaryApp.model.Categoria;
 import com.agudoApp.salaryApp.model.Tarjeta;
+
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.LinkedList;
 
 public class Recibos extends Activity {
 
@@ -442,7 +441,7 @@ public class Recibos extends Activity {
 	// Aadiendo funcionalidad a las opciones de men
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		LayoutInflater li = LayoutInflater.from(this);
+		/*LayoutInflater li = LayoutInflater.from(this);
 		View view = null;
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		AlertDialog alert;
@@ -479,9 +478,13 @@ public class Recibos extends Activity {
 			alert = builder.create();
 			alert.show();
 			return true;
+		case android.R.id.home:
+			finish();
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
-		}
+		}*/
+		return true;
 	}
 
 	private void updateDisplayDesde(int dia, int mes, int anio) {

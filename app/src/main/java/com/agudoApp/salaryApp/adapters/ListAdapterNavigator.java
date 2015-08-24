@@ -1,7 +1,5 @@
 package com.agudoApp.salaryApp.adapters;
 
-import java.util.Locale;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -9,10 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.agudoApp.salaryApp.R;
+
+import java.util.Locale;
 
 public class ListAdapterNavigator extends BaseAdapter {
 	private LayoutInflater mInflater;
@@ -48,7 +48,7 @@ public class ListAdapterNavigator extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		TextView text;
 		ImageView icon;
-		RelativeLayout layoutNavigator;
+		LinearLayout layoutNavigator;
 
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.lista_navigator, null);
@@ -56,7 +56,7 @@ public class ListAdapterNavigator extends BaseAdapter {
 
 		text = (TextView) convertView.findViewById(R.id.textNavigator);
 		icon = (ImageView) convertView.findViewById(R.id.iconNavigator);
-		layoutNavigator = (RelativeLayout) convertView.findViewById(R.id.layoutNavigator);
+		layoutNavigator = (LinearLayout) convertView.findViewById(R.id.layoutNavigator);
 		text.setText(listaOpciones[position]);
 		
 		layoutNavigator.setBackgroundResource(R.color.blanco);
@@ -70,39 +70,36 @@ public class ListAdapterNavigator extends BaseAdapter {
 
 		switch (position) {
 		case 0:
-			icon.setBackgroundResource(R.drawable.nuevo);
-			break;
-		case 1:
 			icon.setBackgroundResource(R.drawable.resumen);
 			break;
-		case 2:
+		case 1:
 			icon.setBackgroundResource(R.drawable.categorias);
 			break;
-		case 3:
+		case 2:
 			icon.setBackgroundResource(R.drawable.informe);
 			break;
-		case 4:
+		case 3:
 			icon.setBackgroundResource(R.drawable.tarjetas);
 			break;
-		case 5:
+		case 4:
 			icon.setBackgroundResource(R.drawable.recibo);
 			break;
-		case 6:
+		case 5:
 			icon.setBackgroundResource(R.drawable.seguridad);
 			break;
-		case 7:
+		case 6:
 			icon.setBackgroundResource(R.drawable.database);
 			break;	
-		case 8:
+		case 7:
 			icon.setBackgroundResource(R.drawable.estadisticas);
 			break;
-		case 9:
+		case 8:
 			icon.setBackgroundResource(R.drawable.ajustes);
 			break;
-		case 10:
+		case 9:
 			icon.setBackgroundResource(R.drawable.valorar);
 			break;
-		case 11:
+		case 10:
 			icon.setBackgroundResource(R.drawable.home);
 			break;
 		}		
