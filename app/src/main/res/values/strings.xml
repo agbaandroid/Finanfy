@@ -344,4 +344,12 @@
         <item>Es_Metático</item>
         <item>Es_Tarjeta</item>
     </string-array>
+
+    <string-array name="fechas">
+        <item>Es_Mensual </item>
+        <item>Es_Intervalo de fechas</item>
+    </string-array>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

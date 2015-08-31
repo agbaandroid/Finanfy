@@ -42,6 +42,13 @@
             android:choiceMode="singleChoice"
             android:divider="#FFFFFF" />
 
+        <include
+            android:id="@+id/right_drawer"
+            layout="@layout/filtros"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="right" />
+
     </android.support.v4.widget.DrawerLayout>
 
 </RelativeLayout>

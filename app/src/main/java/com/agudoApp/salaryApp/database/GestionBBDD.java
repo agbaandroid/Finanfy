@@ -1,18 +1,5 @@
 package com.agudoApp.salaryApp.database;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.channels.FileChannel;
-import java.sql.Date;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Locale;
-
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -25,6 +12,19 @@ import com.agudoApp.salaryApp.model.Cuenta;
 import com.agudoApp.salaryApp.model.Movimiento;
 import com.agudoApp.salaryApp.model.Recibo;
 import com.agudoApp.salaryApp.model.Tarjeta;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
+import java.sql.Date;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
 
 public class GestionBBDD {
 
@@ -701,6 +701,31 @@ public class GestionBBDD {
 		if (fechaInicio != null && fechaActual != null) {
 			Cursor movimientos = consultarMovimientos(db, fechaInicio,
 					fechaActual, idCuenta);
+			listaMovimientos = obtenerDatosMovimientos(movimientos);
+		}
+		return listaMovimientos;
+	}
+
+	// Metodo que obtiene listado de movimientos al iniciar la actividad
+	public ArrayList<Movimiento> getMovimientosFiltros(SQLiteDatabase db,
+														 int month, int year, int idCuenta) {
+		ArrayList<Movimiento> listaMovimientos = new ArrayList<Movimiento>();
+
+		Date fechaInicio = null;
+		Date fechaFin = null;
+
+		if (month != 0) {
+			fechaInicio = new Date(year - 1900, month, 1);
+			fechaFin = getFinMes(month + 1, year);
+		} else {
+			fechaInicio = new Date(year - 1900, 0, 1);
+			fechaFin = new Date(year - 1900, 12, 31);
+		}
+
+		// Obtenemos los movimientos del mes entero
+		if (fechaInicio != null && fechaFin != null) {
+			Cursor movimientos = consultarMovimientos(db, fechaInicio,
+					fechaFin, idCuenta);
 			listaMovimientos = obtenerDatosMovimientos(movimientos);
 		}
 		return listaMovimientos;

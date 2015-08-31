@@ -35,8 +35,8 @@ import com.agudoApp.salaryApp.fragments.CuentasFragment;
 import com.agudoApp.salaryApp.fragments.DatabaseFragment;
 import com.agudoApp.salaryApp.fragments.EstadisticasFragment;
 import com.agudoApp.salaryApp.fragments.InformesFragment;
+import com.agudoApp.salaryApp.fragments.NuevoResumenFragment;
 import com.agudoApp.salaryApp.fragments.RecibosFragment;
-import com.agudoApp.salaryApp.fragments.ResumenFragment;
 import com.agudoApp.salaryApp.fragments.SeguridadFragment;
 import com.agudoApp.salaryApp.fragments.TarjetasFragment;
 import com.agudoApp.salaryApp.model.Cuenta;
@@ -52,6 +52,7 @@ public class ControlGastosActivity extends ActionBarActivity {
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 	private ListView navList;
+	private ListView filterList;
 	private DrawerLayout navDrawerLayout;
 	private ActionBarDrawerToggle actionBarDrawer;
 	private ListAdapterNavigator mAdapter;
@@ -158,6 +159,9 @@ public class ControlGastosActivity extends ActionBarActivity {
 		// Set previous array as adapter of the list
 		mAdapter = new ListAdapterNavigator(this, titlesMenu);
 		navList.setAdapter(mAdapter);
+
+
+
 		navList.setOnItemClickListener(new DrawerItemClickListener());
 
 		ImageView closfyIcon = (ImageView) findViewById(R.id.closfyIcon);
@@ -247,7 +251,7 @@ public class ControlGastosActivity extends ActionBarActivity {
 			fragment = new CuentasFragment();
 			break;
 		case 0:
-			fragment = new ResumenFragment(isPremium, isSinPublicidad,
+			fragment = new NuevoResumenFragment(isPremium, isSinPublicidad,
 					isCategoriaPremium);
 			break;
 		case 1:

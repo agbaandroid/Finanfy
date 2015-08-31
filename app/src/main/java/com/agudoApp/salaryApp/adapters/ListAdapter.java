@@ -1,18 +1,20 @@
 package com.agudoApp.salaryApp.adapters;
 
-import java.util.ArrayList;
-import java.util.Locale;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.model.Movimiento;
+import com.agudoApp.salaryApp.util.Util;
+
+import java.util.ArrayList;
+import java.util.Locale;
 
 public class ListAdapter extends BaseAdapter {
 	private LayoutInflater mInflater;
@@ -45,62 +47,61 @@ public class ListAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		TextView text;
-		TextView text2;
-		TextView text3;
-		TextView text4;
+		TextView txtFecha;
+		TextView txtCategoria;
+		TextView txtSubcategoria;
+		TextView txtDescripcion;
+		TextView txtCant;
+		ImageView imgView;
 
 		if (convertView == null) {
-			convertView = mInflater.inflate(R.layout.lista, null);
+			convertView = mInflater.inflate(R.layout.lista_movimientos, null);
 		}
 
-		text = (TextView) convertView.findViewById(R.id.textConcep);
-		text2 = (TextView) convertView.findViewById(R.id.textCant);
-		text3 = (TextView) convertView.findViewById(R.id.textCat);
-		text4 = (TextView) convertView.findViewById(R.id.textFech);
+		txtFecha = (TextView) convertView.findViewById(R.id.txtFecha);
+		txtCategoria = (TextView) convertView.findViewById(R.id.txtCategoria);
+		txtDescripcion = (TextView) convertView.findViewById(R.id.txtDescripcion);
+		txtCant = (TextView) convertView.findViewById(R.id.txtCant);
+		imgView = (ImageView) convertView.findViewById(R.id.iconCategoria);
 
-		text.setText(listaMov.get(position).toString());
-		text2.setText(listaMov.get(position).getCantidadAux());
-		text4.setText(listaMov.get(position).getFecha().toString());
+		if(!listaMov.get(position).toString().equals("")) {
+			txtDescripcion.setText(listaMov.get(position).toString());
+		}else{
+			txtDescripcion.setVisibility(View.GONE);
+		}
+		txtCant.setText(listaMov.get(position).getCantidadAux());
+		txtFecha.setText(listaMov.get(position).getFecha().toString());
+		imgView.setBackgroundResource(Util.obtenerIconoCategoria(listaMov.get(position).getIdIconCat()));
 
 		if (listaMov.get(position).getCantidadAux().substring(0, 1).equals("-")) {
-			text2.setTextColor(Color.RED);
-		} else {
-			text2.setTextColor(Color.argb(255, 98, 186, 14));
-			//text2.setTextColor(Color.argb(255, 31, 107, 38));
+			txtCant.setTextColor(Color.RED);
 		}
+
+		Locale locale = Locale.getDefault();
+		String languaje = locale.getLanguage();
 
 		// rellenamos el campo de las categorias
 		if (!listaMov.get(position).getDescCategoria().equals("-")) {
-			if (!listaMov.get(position).getDescSubcategoria().equals("-")) {
-				text3.setText(listaMov.get(position).getDescCategoria()
-						+ "  >  "
-						+ listaMov.get(position).getDescSubcategoria());
-			} else {
-				text3.setText(listaMov.get(position).getDescCategoria());
-			}
+			txtCategoria.setText(listaMov.get(position).getDescCategoria());
 		} else {
-			if (!listaMov.get(position).getDescSubcategoria().equals("-")) {
-				text3.setText(listaMov.get(position).getDescSubcategoria());
+			if (languaje.equals("es") || languaje.equals("es-rUS")
+					|| languaje.equals("ca")) {
+				txtCategoria.setText("Sin categoría");
+			} else if (languaje.equals("fr")) {
+				txtCategoria.setText("Sans catégorie");
+			} else if (languaje.equals("de")) {
+				txtCategoria.setText("Keine Kategorie");
+			} else if (languaje.equals("en")) {
+				txtCategoria.setText("No category");
+			} else if (languaje.equals("it")) {
+				txtCategoria.setText("Senza categoria");
+			} else if (languaje.equals("pt")) {
+				txtCategoria.setText("Sem categoria");
 			} else {
-				if (languaje.equals("es") || languaje.equals("es-rUS")
-						|| languaje.equals("ca")) {
-					text3.setText("Otros");
-				} else if (languaje.equals("fr")) {
-					text3.setText("Autres");
-				} else if (languaje.equals("de")) {
-					text3.setText("Andere");
-				} else if (languaje.equals("en")) {
-					text3.setText("Others");
-				} else if (languaje.equals("it")) {
-					text3.setText("Altri");
-				} else if (languaje.equals("pt")) {
-					text3.setText("Outros");
-				} else {
-					text3.setText("Others");
-				}
+				txtCategoria.setText("No category");
 			}
 		}
+
 		return convertView;
 	}
 
