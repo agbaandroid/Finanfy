@@ -54,6 +54,20 @@
         <item>Novembre</item>
         <item>Décembre</item>
     </string-array>
+
+    <string name="enero">Janvier</string>
+    <string name="febrero">Février</string>
+    <string name="marzo">Mars</string>
+    <string name="abril">Avril</string>
+    <string name="mayo">Mai</string>
+    <string name="junio">Juin</string>
+    <string name="julio">Juillet</string>
+    <string name="agosto">Août</string>
+    <string name="septiembre">Septembre</string>
+    <string name="octubre">Octobre</string>
+    <string name="noviembre">Novembre</string>
+    <string name="diciembre">Décembre</string>
+
     <string-array name="filtroArray">
         <item>-</item>
         <item>Catégorie</item>

@@ -714,13 +714,8 @@ public class GestionBBDD {
 		Date fechaInicio = null;
 		Date fechaFin = null;
 
-		if (month != 0) {
-			fechaInicio = new Date(year - 1900, month, 1);
-			fechaFin = getFinMes(month + 1, year);
-		} else {
-			fechaInicio = new Date(year - 1900, 0, 1);
-			fechaFin = new Date(year - 1900, 12, 31);
-		}
+        fechaInicio = new Date(year - 1900, month, 1);
+        fechaFin = getFinMes(month + 1, year);
 
 		// Obtenemos los movimientos del mes entero
 		if (fechaInicio != null && fechaFin != null) {

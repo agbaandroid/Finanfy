@@ -21,10 +21,12 @@ public class ListAdapter extends BaseAdapter {
 	private ArrayList<Movimiento> listaMov = new ArrayList<Movimiento>();
 	Locale locale = Locale.getDefault();
 	String languaje = locale.getLanguage();
+	Context context;
 
 	public ListAdapter(Context context, ArrayList<Movimiento> lista) {
 		listaMov = lista;
 		mInflater = LayoutInflater.from(context);
+		this.context = context;
 	}
 
 	@Override
@@ -75,6 +77,8 @@ public class ListAdapter extends BaseAdapter {
 
 		if (listaMov.get(position).getCantidadAux().substring(0, 1).equals("-")) {
 			txtCant.setTextColor(Color.RED);
+		}else{
+			txtCant.setTextColor(context.getResources().getColor(R.color.txtAzul));
 		}
 
 		Locale locale = Locale.getDefault();
