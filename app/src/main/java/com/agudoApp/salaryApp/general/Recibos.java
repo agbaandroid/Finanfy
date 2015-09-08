@@ -302,7 +302,7 @@ public class Recibos extends Activity {
 		ArrayList<Categoria> listCategorias = new ArrayList<Categoria>();
 		// Recuperamos el listado del spinner Categorias
 		listCategorias = (ArrayList<Categoria>) gestion.getCategorias(db,
-				"Categorias", "idCategoria");
+				"Categorias", "idCategoria", this);
 
 		// Creamos el adaptador
 		ListAdapterSpinner spinner_adapterCat = new ListAdapterSpinner(this,
@@ -314,7 +314,7 @@ public class Recibos extends Activity {
 	public void obtenerSubcategorias() {
 		ArrayList<Categoria> listSubcategorias = new ArrayList<Categoria>();
 		listSubcategorias = (ArrayList<Categoria>) gestion.getCategorias(db,
-				"Subcategorias", "idSubcategoria");
+				"Subcategorias", "idSubcategoria", this);
 
 		// Creamos el adaptador
 		ListAdapterSpinner spinner_adapterSubcat = new ListAdapterSpinner(this,

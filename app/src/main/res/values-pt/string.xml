@@ -324,6 +324,20 @@
         <item>Loja</item>
     </string-array>
 
+    <string-array name="titlesMayusculas">
+        <item>RESUMO</item>
+        <item>CATEGORIAS</item>
+        <item>INFORMAÇÕES</item>
+        <item>CARTÕES</item>
+        <item>RECIBOS</item>
+        <item>SEGURANÇA</item>
+        <item>BANCO DE DADOS</item>
+        <item>ESTATÍSTICAS</item>
+        <item>CONFIGURAÇÕES</item>
+        <item>TAXA DE APLICAÇÃO</item>
+        <item>LOJA</item>
+    </string-array>
+
     <string name="nuevo">Novo</string>
 
     <string name="iconLite">Livre</string>
@@ -354,6 +368,7 @@
 
 
     <string-array name="modoPago">
+        <item>Es_Todo</item>
         <item>Es_Metático</item>
         <item>Es_Tarjeta</item>
     </string-array>
@@ -362,4 +377,6 @@
         <item>Es_Mensual </item>
         <item>Es_Intervalo de fechas</item>
     </string-array>
+
+    <string name="otros">Es_Otros</string>
 </resources>

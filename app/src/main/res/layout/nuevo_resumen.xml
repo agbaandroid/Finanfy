@@ -119,7 +119,7 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:background="#FFFFFF"
+        android:background="@drawable/fondo_listas"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
@@ -154,9 +154,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="1dp"
                 android:layout_marginTop="1dp"
-                android:background="#FF56FF"
                 android:groupIndicator="@null"
-                android:visibility="gone" />
+                 />
 
             <ListView
                 android:id="@+id/listaMovimientos"
@@ -164,6 +163,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:divider="#EEEEEE"
+                android:visibility="gone"
                 android:dividerHeight="1px" />
         </LinearLayout>
 
@@ -171,8 +171,6 @@
             android:id="@+id/layoutTotal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/layoutListas"
-            android:layout_alignParentBottom="true"
             android:background="#EEEEEE"
             android:gravity="center_vertical"
             android:orientation="horizontal">

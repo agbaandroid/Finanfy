@@ -192,7 +192,7 @@ public class EditMovimiento extends ActionBarActivity {
 							spinnerMeses.setVisibility(0);
 							ArrayList<Categoria> listCategorias = (ArrayList<Categoria>) gestion
 									.getCategorias(db, "Categorias",
-											"idCategoria");
+											"idCategoria", EditMovimiento.this);
 
 							for (int i = 0; i < listCategorias.size(); i++) {
 								Categoria cat = listCategorias.get(i);
@@ -500,7 +500,7 @@ public class EditMovimiento extends ActionBarActivity {
 		ArrayList<Categoria> listCategorias = new ArrayList<Categoria>();
 		// Recuperamos el listado del spinner Categorias
 		listCategorias = (ArrayList<Categoria>) gestion.getCategorias(db,
-				"Categorias", "idCategoria");
+				"Categorias", "idCategoria", this);
 
 		// Creamos el adaptador
 		ListAdapterSpinner spinner_adapterCat = new ListAdapterSpinner(this,
@@ -512,7 +512,7 @@ public class EditMovimiento extends ActionBarActivity {
 	public void obtenerSubcategorias() {
 		ArrayList<Categoria> listSubcategorias = new ArrayList<Categoria>();
 		listSubcategorias = (ArrayList<Categoria>) gestion.getCategorias(db,
-				"Subcategorias", "idSubcategoria");
+				"Subcategorias", "idSubcategoria", this);
 
 		// Creamos el adaptador
 		ListAdapterSpinner spinner_adapterSubcat = new ListAdapterSpinner(this,
@@ -678,10 +678,10 @@ public class EditMovimiento extends ActionBarActivity {
 		String cant = "";
 		// Recuperamos el listado del spinner Categorias
 		ArrayList<Categoria> listCategorias = (ArrayList<Categoria>) gestion
-				.getCategorias(db, "Categorias", "idCategoria");
+				.getCategorias(db, "Categorias", "idCategoria", this);
 		// Recuperamos el listado del spinner Subategorias
 		ArrayList<Categoria> listSubcategorias = (ArrayList<Categoria>) gestion
-				.getCategorias(db, "Subcategorias", "idSubcategoria");
+				.getCategorias(db, "Subcategorias", "idSubcategoria", this);
 		// Recuperamos el listado del spinner Tarjetas
 		ArrayList<Tarjeta> listTarjetas = (ArrayList<Tarjeta>) gestion
 				.getTarjetas(db);

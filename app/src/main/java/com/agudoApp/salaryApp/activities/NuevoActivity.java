@@ -370,8 +370,8 @@ public class NuevoActivity extends AppCompatActivity {
         ArrayList<Categoria> listSubcategorias = new ArrayList<Categoria>();
         db = openOrCreateDatabase(BD_NOMBRE, 1, null);
         if (db != null) {
-            listSubcategorias = (ArrayList<Categoria>) gestion.getCategoriasEditDelete(
-                    db, "Subcategorias", "idSubcategoria");
+            listSubcategorias = (ArrayList<Categoria>) gestion.getCategorias(
+                    db, "Subcategorias", "idSubcategoria", this);
         }
         db.close();
 

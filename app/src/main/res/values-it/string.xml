@@ -350,6 +350,20 @@ trovare un errore, inviare una mail al seguente indirizzo: </string>
         <item>Negozio</item>
     </string-array>
 
+    <string-array name="titlesMayusculas">
+        <item>SOMMARIO</item>
+        <item>CATEGORIE</item>
+        <item>RAPPORTI</item>
+        <item>CARTE DI CREDITO</item>
+        <item>FATTURE</item>
+        <item>SICUREZZA</item>
+        <item>DATABASE</item>
+        <item>STATISTICA</item>
+        <item>CONFIGURAZIONE</item>
+        <item>VALUTARE APP</item>
+        <item>NEGOZIO</item>
+    </string-array>
+
     <string name="nuevo">Nuovo</string>
 
     <string name="iconLite">Libero</string>
@@ -379,6 +393,7 @@ trovare un errore, inviare una mail al seguente indirizzo: </string>
     <string name="noDatos">Nessun dato trovato</string>
 
     <string-array name="modoPago">
+        <item>Es_Todo</item>
         <item>Es_Metático</item>
         <item>Es_Tarjeta</item>
     </string-array>
@@ -387,4 +402,6 @@ trovare un errore, inviare una mail al seguente indirizzo: </string>
         <item>Es_Mensual </item>
         <item>Es_Intervalo de fechas</item>
     </string-array>
+
+    <string name="otros">Es_Otros</string>
 </resources> 

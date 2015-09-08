@@ -198,6 +198,7 @@ public final class NuevoMovimientosFragment extends Fragment {
 				onCreateDialog(DATE_DIALOG_ID);
 			}
 		});
+
 	}
 
 	public void obtenerCategorias() {
@@ -206,7 +207,7 @@ public final class NuevoMovimientosFragment extends Fragment {
 		if (db != null) {
 			// Recuperamos el listado del spinner Categorias
 			listCategorias = (ArrayList<Categoria>) gestion.getCategorias(db,
-					"Categorias", "idCategoria");
+					"Categorias", "idCategoria", getActivity());
 		}
 		db.close();
 
@@ -263,7 +264,7 @@ public final class NuevoMovimientosFragment extends Fragment {
 		db = getActivity().openOrCreateDatabase(BD_NOMBRE, 1, null);
 		if (db != null) {
 			listSubcategorias = (ArrayList<Categoria>) gestion.getCategorias(
-					db, "Subcategorias", "idSubcategoria");
+					db, "Subcategorias", "idSubcategoria", getActivity());
 		}
 		db.close();
 

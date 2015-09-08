@@ -362,6 +362,20 @@
         <item>Boutique</item>
     </string-array>
 
+    <string-array name="titlesMayusculas">
+        <item>RÉSUMÉ</item>
+        <item>CATÉGORIES</item>
+        <item>RAPPORTS</item>
+        <item>CARTES DE CRÉDIT</item>
+        <item>FACTURES</item>
+        <item>SÉCURITÉ</item>
+        <item>BASE DE DONÉES</item>
+        <item>STATISTIQUES</item>
+        <item>PARAMÈTRES</item>
+        <item>ÉVALUER L’APPLICATION</item>
+        <item>BOUTIQUE</item>
+    </string-array>
+
     <string name="nuevo">Nouveau</string>
 
     <string name="iconLite">Gratuit</string>
@@ -391,6 +405,7 @@
 	<string name="noDatos">Aucune donnée disponible</string>
 
     <string-array name="modoPago">
+        <item>Es_Todo</item>
         <item>Es_Metático</item>
         <item>Es_Tarjeta</item>
     </string-array>
@@ -399,4 +414,6 @@
         <item>Es_Mensual </item>
         <item>Es_Intervalo de fechas</item>
     </string-array>
+
+    <string name="otros">Es_Otros</string>
 </resources>

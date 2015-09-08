@@ -49,6 +49,7 @@ import java.util.Calendar;
 public class ControlGastosActivity extends ActionBarActivity {
 	// Menu navegacin
 	private String[] titlesMenu;
+	private String[] titlesMenuMayusculas;
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 	private ListView navList;
@@ -155,9 +156,10 @@ public class ControlGastosActivity extends ActionBarActivity {
 		getSupportActionBar().show();
 
 		titlesMenu = getResources().getStringArray(R.array.titles);
+		titlesMenuMayusculas = getResources().getStringArray(R.array.titlesMayusculas);
 
 		// Set previous array as adapter of the list
-		mAdapter = new ListAdapterNavigator(this, titlesMenu);
+		mAdapter = new ListAdapterNavigator(this, titlesMenuMayusculas);
 		navList.setAdapter(mAdapter);
 
 
@@ -314,7 +316,7 @@ public class ControlGastosActivity extends ActionBarActivity {
 				mAdapter.setSelectedItem(position - 1);
 				//textoHeader.setTextColor(Color.GRAY);
 			} else {
-				setTitle("Cuentas");
+				setTitle("Es_Cuentas");
 				mAdapter.setSelectedItem(99);
 				textoHeader.setTextColor(Color.argb(255, 0, 163, 232));
 			}

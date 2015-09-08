@@ -1,10 +1,5 @@
 package com.agudoApp.salaryApp.activities;
 
-import java.sql.Date;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.LinkedList;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -31,6 +26,11 @@ import com.agudoApp.salaryApp.database.GestionBBDD;
 import com.agudoApp.salaryApp.model.Categoria;
 import com.agudoApp.salaryApp.model.Recibo;
 import com.agudoApp.salaryApp.model.Tarjeta;
+
+import java.sql.Date;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class EditRecTexto extends Activity {
 
@@ -286,10 +286,10 @@ public class EditRecTexto extends Activity {
 
 		// Recuperamos el listado del spinner Categorias
 		ArrayList<Categoria> listCategorias = (ArrayList<Categoria>) gestion
-				.getCategorias(db, "Categorias", "idCategoria");
+				.getCategorias(db, "Categorias", "idCategoria", this);
 		// Recuperamos el listado del spinner Subategorias
 		ArrayList<Categoria> listSubcategorias = (ArrayList<Categoria>) gestion
-				.getCategorias(db, "Subcategorias", "idSubcategoria");
+				.getCategorias(db, "Subcategorias", "idSubcategoria", this);
 		// Recuperamos el listado del spinner Tarjetas
 		ArrayList<Tarjeta> listTarjetas = (ArrayList<Tarjeta>) gestion
 				.getTarjetas(db);
@@ -385,7 +385,7 @@ public class EditRecTexto extends Activity {
 		ArrayList<Categoria> listCategorias = new ArrayList<Categoria>();
 		// Recuperamos el listado del spinner Categorias
 		listCategorias = (ArrayList<Categoria>) gestion.getCategorias(db,
-				"Categorias", "idCategoria");
+				"Categorias", "idCategoria", this);
 
 		// Creamos el adaptador
 		ListAdapterSpinner spinner_adapterCat = new ListAdapterSpinner(this,
@@ -396,7 +396,7 @@ public class EditRecTexto extends Activity {
 	public void obtenerSubcategorias() {
 		ArrayList<Categoria> listSubcategorias = new ArrayList<Categoria>();
 		listSubcategorias = (ArrayList<Categoria>) gestion.getCategorias(db,
-				"Subcategorias", "idSubcategoria");
+				"Subcategorias", "idSubcategoria", this);
 
 		// Creamos el adaptador
 		ListAdapterSpinner spinner_adapterSubcat = new ListAdapterSpinner(this,

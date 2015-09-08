@@ -2,24 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_navigation"
+    android:background="@drawable/fondo_listas"
     android:orientation="horizontal" >
 
     <ImageView
         android:id="@+id/imagenCat"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="20dp"
         android:background="@drawable/defecto" />
 
     <TextView
-        android:id="@+id/textCategoriasEditDelete"
+        android:id="@+id/txtCategoria"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginBottom="20dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="20dp"
         android:gravity="left"

@@ -373,6 +373,20 @@ principal.</string>
         <item>Tienda</item>
     </string-array>
 
+    <string-array name="titlesMayusculas">
+        <item>RESUMEN</item>
+        <item>CATEGORÍAS</item>
+        <item>INFORMER</item>
+        <item>TARJETAS</item>
+        <item>RECIBOS</item>
+        <item>SEGURIDAD</item>
+        <item>BASE DE DATOS</item>
+        <item>ESTADÍSTICAS</item>
+        <item>AJUSTES</item>
+        <item>VALORAR APLICACIÓN</item>
+        <item>TIENDA</item>
+    </string-array>
+
     <string name="nuevo">Nuevo</string>
 
     <string name="iconLite">Gratis</string>
@@ -402,6 +416,7 @@ principal.</string>
 	<string name="noDatos">No se han encontrado registros</string>
 
     <string-array name="modoPago">
+        <item>Es_Todo</item>
         <item>Es_Metático</item>
         <item>Es_Tarjeta</item>
     </string-array>
@@ -410,4 +425,6 @@ principal.</string>
         <item>Es_Mensual </item>
         <item>Es_Intervalo de fechas</item>
     </string-array>
+
+    <string name="otros">Es_Otros</string>
 </resources>

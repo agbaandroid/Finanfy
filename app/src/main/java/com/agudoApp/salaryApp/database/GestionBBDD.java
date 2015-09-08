@@ -1,12 +1,14 @@
 package com.agudoApp.salaryApp.database;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
 import android.util.Log;
 
+import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.model.Categoria;
 import com.agudoApp.salaryApp.model.Cuenta;
 import com.agudoApp.salaryApp.model.Movimiento;
@@ -450,7 +452,7 @@ public class GestionBBDD {
 	}
 
 	public List<Categoria> getCategorias(SQLiteDatabase db, String tabla,
-			String id) {
+			String id, Context context) {
 		List<Categoria> listaCategorias = new ArrayList<Categoria>();
 		Cursor c1 = db.query(tabla,
 				new String[] { id, "descripcion", "idIcon" }, null, null, null,
@@ -459,7 +461,11 @@ public class GestionBBDD {
 			do {
 				Categoria categoria = new Categoria();
 				categoria.setId(c1.getString(0));
-				categoria.setDescripcion(c1.getString(1));
+				if(categoria.getId().equals("0")) {
+					categoria.setDescripcion(context.getResources().getString(R.string.otros));
+				}else{
+					categoria.setDescripcion(c1.getString(1));
+				}
 				categoria.setIdIcon(c1.getInt(2));
 				listaCategorias.add(categoria);
 			} while (c1.moveToNext());
@@ -1588,7 +1594,7 @@ public class GestionBBDD {
 			this.copyFile(dbFile, file);
 			return true;
 		} catch (IOException e) {
-			Log.e("Error al exportar la base de datos", e.getMessage(), e);
+			Log.e("Error al exportar", e.getMessage(), e);
 			return false;
 		}
 	}
@@ -1623,7 +1629,7 @@ public class GestionBBDD {
 
 				return true;
 			} catch (IOException e) {
-				Log.e("Error al exportar la base de datos", e.getMessage(), e);
+				Log.e("Error al exportar", e.getMessage(), e);
 				return false;
 			}
 		} else {
@@ -1662,7 +1668,7 @@ public class GestionBBDD {
 
 				return true;
 			} catch (IOException e) {
-				Log.e("Error al exportar la base de datos", e.getMessage(), e);
+				Log.e("Error al exportar", e.getMessage(), e);
 				return false;
 			}
 		} else {
@@ -1710,7 +1716,7 @@ public class GestionBBDD {
 				}
 				return true;
 			} catch (IOException e) {
-				Log.e("Error al exportar la base de datos", e.getMessage(), e);
+				Log.e("Error al exportar", e.getMessage(), e);
 				return false;
 			}
 		} else {

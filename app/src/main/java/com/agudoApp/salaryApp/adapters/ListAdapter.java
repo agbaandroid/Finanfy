@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.agudoApp.salaryApp.R;
@@ -51,10 +52,10 @@ public class ListAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		TextView txtFecha;
 		TextView txtCategoria;
-		TextView txtSubcategoria;
 		TextView txtDescripcion;
 		TextView txtCant;
 		ImageView imgView;
+		LinearLayout layoutTarjeta;
 
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.lista_movimientos, null);
@@ -65,6 +66,7 @@ public class ListAdapter extends BaseAdapter {
 		txtDescripcion = (TextView) convertView.findViewById(R.id.txtDescripcion);
 		txtCant = (TextView) convertView.findViewById(R.id.txtCant);
 		imgView = (ImageView) convertView.findViewById(R.id.iconCategoria);
+		layoutTarjeta = (LinearLayout) convertView.findViewById(R.id.layoutTarjeta);
 
 		if(!listaMov.get(position).toString().equals("")) {
 			txtDescripcion.setText(listaMov.get(position).toString());
@@ -81,29 +83,17 @@ public class ListAdapter extends BaseAdapter {
 			txtCant.setTextColor(context.getResources().getColor(R.color.txtAzul));
 		}
 
-		Locale locale = Locale.getDefault();
-		String languaje = locale.getLanguage();
-
 		// rellenamos el campo de las categorias
 		if (!listaMov.get(position).getDescCategoria().equals("-")) {
 			txtCategoria.setText(listaMov.get(position).getDescCategoria());
 		} else {
-			if (languaje.equals("es") || languaje.equals("es-rUS")
-					|| languaje.equals("ca")) {
-				txtCategoria.setText("Sin categoría");
-			} else if (languaje.equals("fr")) {
-				txtCategoria.setText("Sans catégorie");
-			} else if (languaje.equals("de")) {
-				txtCategoria.setText("Keine Kategorie");
-			} else if (languaje.equals("en")) {
-				txtCategoria.setText("No category");
-			} else if (languaje.equals("it")) {
-				txtCategoria.setText("Senza categoria");
-			} else if (languaje.equals("pt")) {
-				txtCategoria.setText("Sem categoria");
-			} else {
-				txtCategoria.setText("No category");
-			}
+			txtCategoria.setText(context.getResources().getString(R.string.otros));
+		}
+
+		if (listaMov.get(position).isTarjeta()) {
+			layoutTarjeta.setVisibility(View.VISIBLE);
+		}else{
+			layoutTarjeta.setVisibility(View.GONE);
 		}
 
 		return convertView;

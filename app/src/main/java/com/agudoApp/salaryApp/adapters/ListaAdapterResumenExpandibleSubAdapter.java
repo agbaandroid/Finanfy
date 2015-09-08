@@ -1,9 +1,5 @@
 package com.agudoApp.salaryApp.adapters;
 
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Locale;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -19,6 +15,9 @@ import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.model.Categoria;
 import com.agudoApp.salaryApp.model.Movimiento;
 import com.agudoApp.salaryApp.util.Util;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class ListaAdapterResumenExpandibleSubAdapter extends
 		BaseExpandableListAdapter {
@@ -50,7 +49,7 @@ public class ListaAdapterResumenExpandibleSubAdapter extends
 		TextView text2;
 		TextView text3;
 		TextView text4;
-		LinearLayout linearLayoutLista;
+		LinearLayout layoutTarjeta;
 
 		child = (ArrayList<Movimiento>) childtems.get(groupPosition);
 		mov = child.get(childPosition);
@@ -61,50 +60,40 @@ public class ListaAdapterResumenExpandibleSubAdapter extends
 			convertView = infalInflater.inflate(R.layout.lista, null);
 		}
 
-		linearLayoutLista = (LinearLayout) convertView
-				.findViewById(R.id.linearLayoutLista);
-
-		text = (TextView) convertView.findViewById(R.id.textConcep);
-		text2 = (TextView) convertView.findViewById(R.id.textCant);
-		text3 = (TextView) convertView.findViewById(R.id.textCat);
-		text4 = (TextView) convertView.findViewById(R.id.textFech);
+		layoutTarjeta = (LinearLayout) convertView.findViewById(R.id.layoutTarjeta);
+		text = (TextView) convertView.findViewById(R.id.txtDescripcion);
+		text2 = (TextView) convertView.findViewById(R.id.txtCant);
+		text3 = (TextView) convertView.findViewById(R.id.txtCategoria);
+		text4 = (TextView) convertView.findViewById(R.id.txtFecha);
 
 		text.setText(mov.toString());
+		if(mov.toString().equals("")) {
+			text.setVisibility(View.GONE);
+		}
+
 		text2.setText(mov.getCantidadAux());
 		text4.setText(mov.getFecha().toString());
 
 		if (mov.getCantidadAux().substring(0, 1).equals("-")) {
 			text2.setTextColor(Color.RED);
 		} else {
-			text2.setTextColor(Color.argb(255, 98, 186, 14));
-			// text2.setTextColor(Color.argb(255, 31, 107, 38));
+			text2.setTextColor(_context.getResources().getColor(R.color.txtAzul));
 		}
 
-		if (!mov.getDescSubcategoria().equals("-")) {
-			text3.setText(mov.getDescSubcategoria());
+		if (!mov.getDescCategoria().equals("-")) {
+			text3.setText(mov.getDescCategoria());
 		} else {
-			Locale locale = Locale.getDefault();
-			String languaje = locale.getLanguage();
-
-			if (languaje.equals("es") || languaje.equals("es-rUS")
-					|| languaje.equals("ca")) {
-				text3.setText("Sin categoria");
-			} else if (languaje.equals("fr")) {
-				text3.setText("Sans catégorie");
-			} else if (languaje.equals("de")) {
-				text3.setText("Keine Kategorie");
-			} else if (languaje.equals("en")) {
-				text3.setText("No category");
-			} else if (languaje.equals("it")) {
-				text3.setText("Senza categoria");
-			} else if (languaje.equals("pt")) {
-				text3.setText("Sem categoria");
-			} else {
-				text3.setText("No category");
-			}
+			text3.setText(_context.getResources().getString(R.string.otros));
 		}
 
-		return convertView;
+		if (mov.isTarjeta()) {
+			layoutTarjeta.setVisibility(View.VISIBLE);
+		}else{
+			layoutTarjeta.setVisibility(View.GONE);
+		}
+
+
+			return convertView;
 	}
 
 	@Override
@@ -133,16 +122,16 @@ public class ListaAdapterResumenExpandibleSubAdapter extends
 		}
 
 		TextView lblListHeader = (TextView) convertView
-				.findViewById(R.id.textCategorias);
+				.findViewById(R.id.txtCategoria);
 		lblListHeader.setText(headerTitle);
 
 		TextView lblListCant = (TextView) convertView
-				.findViewById(R.id.textCantCategoria);
+				.findViewById(R.id.txtCant);
 
 		lblListCant.setText(String.valueOf(df.format(total)));
 
 		ImageView categoriaIcon = (ImageView) convertView
-				.findViewById(R.id.categoriaIcon);
+				.findViewById(R.id.iconCategoria);
 
 		categoriaIcon.setBackgroundDrawable(_context.getResources()
 				.getDrawable(Util.obtenerIconoCategoria(cat.getIdIcon())));
@@ -150,8 +139,7 @@ public class ListaAdapterResumenExpandibleSubAdapter extends
 		if (total < 0) {
 			lblListCant.setTextColor(Color.RED);
 		} else {
-			lblListCant.setTextColor(Color.argb(255, 98, 186, 14));
-			// lblListCant.setTextColor(Color.argb(255, 31, 107, 38));
+			lblListCant.setTextColor(_context.getResources().getColor(R.color.txtAzul));
 		}
 
 		return convertView;
