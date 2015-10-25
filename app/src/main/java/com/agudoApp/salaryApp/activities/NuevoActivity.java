@@ -47,7 +47,6 @@ public class NuevoActivity extends AppCompatActivity {
     private TextView txtIngreso;
     int tipoRegistro = 0;
 
-
     private LinearLayout layoutFecha;
     private LinearLayout layoutCant;
     private TextView txtFecha;

@@ -3,6 +3,9 @@ package com.agudoApp.salaryApp.util;
 import android.content.Context;
 
 import com.agudoApp.salaryApp.R;
+import com.agudoApp.salaryApp.model.IconTarjeta;
+
+import java.util.ArrayList;
 
 public class Util {
 
@@ -61,7 +64,7 @@ public class Util {
 			icon = R.drawable.coctel1;
 			break;
 		case 16:
-			icon = R.drawable.compra_ropa;
+			icon = R.drawable.compris;
 			break;
 		case 17:
 			icon = R.drawable.compra_super;
@@ -218,5 +221,60 @@ public class Util {
 			break;
 		}
 		return icon;
+	}
+
+
+	public static int obtenerIconoTarjeta(int idIcon) {
+		int icon = 0;
+
+		switch (idIcon) {
+			case 0:
+				icon = R.drawable.visa;
+				break;
+			case 1:
+				icon = R.drawable.visa_debit;
+				break;
+			case 2:
+				icon = R.drawable.visa_electron;
+				break;
+			case 3:
+				icon = R.drawable.mastercard;
+				break;
+			case 4:
+				icon = R.drawable.american;
+				break;
+			case 5:
+				icon = R.drawable.american2;
+				break;
+			case 6:
+				icon = R.drawable.paypal;
+				break;
+			case 7:
+				icon = R.drawable.union;
+				break;
+			case 8:
+				icon = R.drawable.wester;
+				break;
+			case 9:
+				icon = R.drawable.cirrus;
+				break;
+			default:
+				icon = R.drawable.visa;
+				break;
+		}
+		return icon;
+	}
+
+
+	public static ArrayList<IconTarjeta> obtenerIconosTarjetas(){
+		ArrayList<IconTarjeta> listIcon = new ArrayList<IconTarjeta>();
+
+		for(int i=0;i<10;i++){
+			IconTarjeta icon = new IconTarjeta();
+			icon.setId(i);
+			listIcon.add(icon);
+		}
+
+		return listIcon;
 	}
 }

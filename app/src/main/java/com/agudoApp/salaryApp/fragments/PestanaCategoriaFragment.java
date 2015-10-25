@@ -1,17 +1,24 @@
 package com.agudoApp.salaryApp.fragments;
 
+import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.agudoApp.salaryApp.R;
-import com.agudoApp.salaryApp.adapters.ListAdapterCategorias;
+import com.agudoApp.salaryApp.activities.NuevoEditCategoriaActivity;
 import com.agudoApp.salaryApp.database.GestionBBDD;
 import com.agudoApp.salaryApp.model.Categoria;
+import com.agudoApp.salaryApp.util.Util;
 
 import java.util.ArrayList;
 
@@ -92,5 +99,95 @@ public class PestanaCategoriaFragment extends Fragment {
 		}
 
 		return listCategorias;
+	}
+
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		rellenarListaCategorias();
+	}
+
+	public class ListAdapterCategorias extends BaseAdapter {
+		private LayoutInflater mInflater;
+		private ArrayList<Categoria> listaCat = new ArrayList<Categoria>();
+		private Context context;
+
+		public ListAdapterCategorias(Context context, ArrayList<Categoria> lista) {
+			listaCat = lista;
+			mInflater = LayoutInflater.from(context);
+			this.context = context;
+		}
+
+		@Override
+		public int getCount() {
+			// TODO Auto-generated method stub
+			return listaCat.size();
+		}
+
+		@Override
+		public Object getItem(int position) {
+			// TODO Auto-generated method stub
+			return listaCat.get(position);
+		}
+
+		public int getPositionById(String id) {
+			int posi = 0;
+			for (int i = 0; i < listaCat.size(); i++) {
+				Categoria cat = listaCat.get(i);
+				if (cat.getId().equals(id)) {
+					posi = i;
+					break;
+				}
+			}
+			return posi;
+		}
+
+		@Override
+		public long getItemId(int position) {
+			// TODO Auto-generated method stub
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			TextView text;
+			ImageView iconCategoria;
+			LinearLayout layoutCategoria;
+
+			if (convertView == null) {
+				convertView = mInflater.inflate(R.layout.lista_pestana_categorias, null);
+			}
+
+			text = (TextView) convertView.findViewById(R.id.txtCategoria);
+			text.setText(listaCat.get(position).toString());
+
+			iconCategoria = (ImageView) convertView.findViewById(R.id.imagenCat);
+			iconCategoria.setBackgroundDrawable(context.getResources().getDrawable(
+					Util.obtenerIconoCategoria(listaCat.get(position).getIdIcon())));
+
+			layoutCategoria = (LinearLayout) convertView.findViewById(R.id.layoutCategoria);
+
+			layoutCategoria.setTag(position);
+
+			layoutCategoria.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+
+					int posiSel = (int) v.getTag();
+					Categoria cat = listaCat.get(posiSel);
+					// TODO Auto-generated method stub
+					Intent intent = new Intent(context, NuevoEditCategoriaActivity.class);
+					Bundle bundle = new Bundle();
+					bundle.putBoolean("isCategoria", true);
+					bundle.putString("idCategoria", cat.getId());
+					intent.putExtras(bundle);
+					startActivity(intent);
+				}
+			});
+
+			return convertView;
+		}
+
 	}
 }

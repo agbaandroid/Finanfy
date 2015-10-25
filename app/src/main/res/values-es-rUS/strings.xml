@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Control de gastos</string>
+    <string name="app_name">Finanfy</string>
     <string name="tipoMovimientos">Seleccione un tipo</string>
     <string name="textoNominas">Seleccione una nómina</string>
     <string name="textoAnios">Seleccione un año</string>
@@ -416,6 +416,11 @@ principal.</string>
 	<string name="noDatos">No se han encontrado registros</string>
 
     <string-array name="modoPago">
+        <item>Es_Metático</item>
+        <item>Es_Tarjeta</item>
+    </string-array>
+
+    <string-array name="modoPagoFiltro">
         <item>Es_Todo</item>
         <item>Es_Metático</item>
         <item>Es_Tarjeta</item>
@@ -424,6 +429,11 @@ principal.</string>
     <string-array name="fechas">
         <item>Es_Mensual </item>
         <item>Es_Intervalo de fechas</item>
+    </string-array>
+
+    <string-array name="tipoTarjeta">
+        <item>ES_Crédito</item>
+        <item>ES_Débito</item>
     </string-array>
 
     <string name="otros">Es_Otros</string>

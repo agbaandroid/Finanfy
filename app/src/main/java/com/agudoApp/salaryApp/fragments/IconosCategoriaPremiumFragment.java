@@ -1,16 +1,14 @@
 package com.agudoApp.salaryApp.fragments;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +16,9 @@ import android.widget.ImageView;
 
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.database.GestionBBDD;
-import com.agudoApp.salaryApp.general.ControlGastosActivity;
+import com.agudoApp.salaryApp.general.FinanfyActivity;
 
-public class IconosCategoriaPremiumFragment extends Fragment {/*
+public class IconosCategoriaPremiumFragment extends Fragment {
 	private static final String KEY_CONTENT = "PestanaCategoriaFragment:Content";
 	private SQLiteDatabase db;
 	final GestionBBDD gestion = new GestionBBDD();
@@ -32,9 +30,6 @@ public class IconosCategoriaPremiumFragment extends Fragment {/*
 
 	// arbitrario) cdigo de solicitud para el flujo de compra
 	static final int RC_REQUEST = 10001;
-
-	// The helper object
-	IabHelper mHelper;
 
 	static final int MSG_MORE_CAT = 1;
 	static final String SKU_CATEGORIAS_PREMIUM = "categorias_premium";
@@ -97,7 +92,7 @@ public class IconosCategoriaPremiumFragment extends Fragment {/*
 		super.onActivityCreated(savedInstanceState);
 
 		Bundle bundle = getArguments();
-		isPremium = bundle.getBoolean("isPremium", false);
+		//isPremium = bundle.getBoolean("isPremium", false);
 
 		Bundle extras = getActivity().getIntent().getExtras();
 		if (extras != null) {
@@ -120,37 +115,6 @@ public class IconosCategoriaPremiumFragment extends Fragment {/*
 		if (flujo == null) {
 			flujo = "";
 		}
-
-		String base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtE1VzKOP/eS4Q8sV9F/"
-				+ "2iCONOmNXvdrbjJmFe3cpevp9Bfm4TK7mm4ZNzG8UBAIntUlFkLFm1T5medFnohtklilMPM5D3NkuAQVd9uRsRZ"
-				+ "wB6nakkE7Kz0ayv+h81SyiL2fzWiZSMT355tdCmFM730hWqSuK5syd60wOPYv8FUzqf1cjXQ8kZdIHTiAnJqox3k"
-				+ "IswcLz2WnaQSvKiSDIUmNGqL6BxLKx0wF+h181nb6AcZ6FlhphfmATAI5DJUxTXAs7m0D0bAE6xnh66uXGhWKDxJ"
-				+ "AXkXZ0n2lsUi+ZEofK6Jw4NnsIRi3BDy5G16ILD4ELLZWj4zSXBhCXFVC9TQIDAQAB";
-
-		// Cree el helper, pasndole nuestro contexto y la clave pblica para
-		// verificar la firma
-		mHelper = new IabHelper(getActivity(), base64EncodedPublicKey);
-
-		// Iniciar configuracin. Esta es asncrona y el listener
-		// especificado ser llamado una vez completada la configuracin.
-		mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
-			public void onIabSetupFinished(IabResult result) {
-
-				if (!result.isSuccess()) {
-					// Oh, no, hay un problema.
-					return;
-				}
-
-				// Entretanto Hemos sido eliminados? Si es as, deje de
-				// hacerlo.
-				if (mHelper == null)
-					return;
-
-				// IAB est totalmente configurado. Ahora, vamos a obtener un
-				// inventario de las cosas que poseemos.
-				mHelper.queryInventoryAsync(mGotInventoryListener);
-			}
-		});
 
 		db = getActivity().openOrCreateDatabase(BD_NOMBRE, 1, null);
 
@@ -579,7 +543,7 @@ public class IconosCategoriaPremiumFragment extends Fragment {/*
 					getResources().getString(R.string.comprar),
 					new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
-							onUpgradeAppButtonClicked(SKU_CATEGORIAS_PREMIUM);
+							//onUpgradeAppButtonClicked(SKU_CATEGORIAS_PREMIUM);
 						}
 					}).setNegativeButton(
 					getResources().getString(R.string.masTarde),
@@ -595,63 +559,7 @@ public class IconosCategoriaPremiumFragment extends Fragment {/*
 		return null;
 	}
 
-	// --------------------- artculo NO consumible -------------------------
-	public void onUpgradeAppButtonClicked(String producto) {
-		Log.d("info", "Comprar artculo NO consumible.");
 
-		mHelper.launchPurchaseFlow(getActivity(), producto, RC_REQUEST,
-				mPurchaseFinishedListener, null);
-
-		// mHelper.launchPurchaseFlow(getActivity(), "android.test.purchased",
-		// RC_REQUEST, mPurchaseFinishedListener, null);
-
-		SharedPreferences prefs = getActivity().getSharedPreferences(
-				"ficheroConf", Context.MODE_PRIVATE);
-		Editor editor = prefs.edit();
-		editor.putBoolean("isCompra", true);
-		editor.commit();
-
-	}
-
-	// Callback para cuando se termina una compra
-	IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
-		public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
-
-			if (mHelper == null)
-				return;
-
-			if (result.isFailure()) {
-				switch (result.getResponse()) {
-				case IabHelper.IABHELPER_USER_CANCELLED:
-					break;
-				case IabHelper.BILLING_RESPONSE_RESULT_ITEM_ALREADY_OWNED:
-					error(getActivity().getResources().getString(
-							R.string.productoComprado));
-					break;
-				default:
-					error(getResources().getString(R.string.errorCompra));
-					break;
-				}
-				return;
-			}
-			if (!verifyDeveloperPayload(purchase)) {
-				error(getResources().getString(R.string.errorVeri));
-				return;
-			}
-
-			// TODO: Si se compra un artculo consumible
-			// cambiar
-			if (purchase.getSku().equals(SKU_CATEGORIAS_PREMIUM)) {
-				isPremium = true;
-				actualizaPremium(getResources().getString(R.string.gracias));
-			}
-		}
-	};
-
-	*//** Verifica la "developer payload" de una compra *//*
-	boolean verifyDeveloperPayload(Purchase p) {
-		return true;
-	}
 
 	void error(String message) {
 		alert(message);
@@ -671,42 +579,10 @@ public class IconosCategoriaPremiumFragment extends Fragment {/*
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
 						Intent intent = new Intent(getActivity(),
-								ControlGastosActivity.class);
+								FinanfyActivity.class);
 						startActivity(intent);
 					}
 				});
 		bld.create().show();
 	}
-
-	// Listener, se llama cuando terminamos de consultar los artculos y las
-	// suscripciones que poseemos.
-	IabHelper.QueryInventoryFinishedListener mGotInventoryListener = new IabHelper.QueryInventoryFinishedListener() {
-		public void onQueryInventoryFinished(IabResult result,
-				Inventory inventory) {
-			// Entretanto Hemos sido eliminados? Si es as, deje de hacerlo.
-			if (mHelper == null)
-				return;
-
-			// Es un error?
-			if (result.isFailure()) {
-				return;
-			}
-
-			// eliminar
-			// if (inventory.hasPurchase("android.test.purchased")) {
-			// mHelper.consumeAsync(
-			// inventory.getPurchase("android.test.purchased"), null);
-			// }
-
-			*//*
-			 * Compruebe que artculos poseemos. Ntese que por cada compra,
-			 * comprobamos el "developer payload" para ver si es correcta! Ver
-			 * verifyDeveloperPayload ().
-			 *//*
-
-			if (inventory.hasPurchase(SKU_CATEGORIAS_PREMIUM)) {
-				isPremium = true;
-			}
-		}
-	};*/
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Controllo dei costi</string>
+    <string name="app_name">Finanfy</string>
     <string name="tipoMovimientos">Scegliere un tipo di</string>
     <string name="textoNominas">selezionare un libro paga</string>
     <string name="textoAnios">Selezionare un anno</string>
@@ -393,6 +393,11 @@ trovare un errore, inviare una mail al seguente indirizzo: </string>
     <string name="noDatos">Nessun dato trovato</string>
 
     <string-array name="modoPago">
+        <item>Es_Metático</item>
+        <item>Es_Tarjeta</item>
+    </string-array>
+
+    <string-array name="modoPagoFiltro">
         <item>Es_Todo</item>
         <item>Es_Metático</item>
         <item>Es_Tarjeta</item>
@@ -401,6 +406,11 @@ trovare un errore, inviare una mail al seguente indirizzo: </string>
     <string-array name="fechas">
         <item>Es_Mensual </item>
         <item>Es_Intervalo de fechas</item>
+    </string-array>
+
+    <string-array name="tipoTarjeta">
+        <item>ES_Crédito</item>
+        <item>ES_Débito</item>
     </string-array>
 
     <string name="otros">Es_Otros</string>

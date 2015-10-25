@@ -70,23 +70,23 @@
                 android:textColor="@color/txtAzul"
                 android:textSize="15dp" />
 
-        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layoutTarjeta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical"
+                android:visibility="gone">
 
-        <LinearLayout
-            android:id="@+id/layoutTarjeta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="5dp"
-            android:orientation="vertical"
-            android:visibility="gone">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="right"
+                    android:background="@drawable/tarjetas"
+                    android:gravity="right" />
+            </LinearLayout>
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="right"
-                android:background="@drawable/tarjetas"
-                android:gravity="right" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

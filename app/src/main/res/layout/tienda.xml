@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#eeeeee"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/layoutNoPubli"
@@ -11,8 +11,8 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/fondo_cuadros"
-        android:orientation="horizontal" >
+        android:background="@drawable/rounded_layout"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -22,7 +22,7 @@
             android:layout_marginTop="15dp"
             android:layout_weight="3"
             android:background="#FFFFFF"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textTituloNoPubli"
@@ -31,8 +31,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="@string/deleteAds"
                 android:textColor="#000000"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/textNoPubli"
@@ -41,7 +40,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/txtDeleteAds"
-                android:textColor="#000000"
+                android:textColor="@color/txtGris"
                 android:textSize="16dp" />
         </LinearLayout>
 
@@ -51,7 +50,7 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:background="#FFFFFF"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/imagenNoPubli"
@@ -66,21 +65,21 @@
         android:id="@+id/layoutMoreCat"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"        
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:background="@drawable/fondo_cuadros"
-        android:orientation="horizontal" >
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_layout"
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="0dp"            
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_marginBottom="15dp"
             android:layout_marginTop="15dp"
-            android:layout_gravity="center_vertical"
             android:layout_weight="3"
             android:background="#FFFFFF"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textTituloMoreCat"
@@ -89,8 +88,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="@string/moreCat"
                 android:textColor="#000000"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/textMoreCat"
@@ -99,7 +97,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/txtMoreCat"
-                android:textColor="#000000"
+                android:textColor="@color/txtGris"
                 android:textSize="16dp" />
         </LinearLayout>
 
@@ -109,7 +107,7 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:background="#FFFFFF"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/imagenMoreCat"
@@ -124,21 +122,21 @@
         android:id="@+id/layoutPremium"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:background="@drawable/fondo_cuadros"
-        android:orientation="horizontal" >
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_layout"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_marginBottom="15dp"
             android:layout_marginTop="15dp"
-            android:layout_gravity="center_vertical"
             android:layout_weight="3"
             android:background="#FFFFFF"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textTituloPremium"
@@ -147,8 +145,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="@string/tituloPremium"
                 android:textColor="#000000"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/textPremium"
@@ -157,7 +154,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/txtAllPremium"
-                android:textColor="#000000"
+                android:textColor="@color/txtGris"
                 android:textSize="16dp" />
         </LinearLayout>
 
@@ -167,7 +164,7 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:background="#FFFFFF"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/imagenPremium"

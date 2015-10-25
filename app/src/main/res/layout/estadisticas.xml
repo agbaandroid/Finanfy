@@ -13,7 +13,7 @@
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
         android:layout_weight="1"
-        android:background="@drawable/fondo_cuadros"
+        android:background="@drawable/rounded_layout"
         android:orientation="vertical" >
 
         <TextView
@@ -26,76 +26,76 @@
             android:text="@string/infoGlobal"
             android:textColor="#000000"
             android:textSize="16dp"
-            android:textStyle="bold" />
+             />
 
         <TextView
             android:id="@+id/ingresosTotales"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/informacionGlobal"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:gravity="left"
             android:text="@string/totalIngresos"
-            android:textColor="#000000" />
+            android:textColor="@color/txtGris" />
 
         <TextView
             android:id="@+id/valorIngresosTotales"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/informacionGlobal"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="20dp"
             android:layout_toRightOf="@+id/ingresosTotales"
             android:gravity="right"
             android:text="0"
-            android:textColor="#000000" />
+            android:textColor="@color/txtGris" />
 
         <TextView
             android:id="@+id/gastosTotales"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ingresosTotales"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:gravity="left"
             android:text="@string/totalGastos"
-            android:textColor="#000000" />
+            android:textColor="@color/txtGris" />
 
         <TextView
             android:id="@+id/valorGastosTotales"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ingresosTotales"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/gastosTotales"
             android:gravity="right"
             android:text="0"
-            android:textColor="#000000" />
+            android:textColor="@color/txtGris" />
 
         <TextView
             android:id="@+id/balanceTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/gastosTotales"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:gravity="left"
             android:text="@string/balance"
-            android:textColor="#000000" />
+            android:textColor="@color/txtGris" />
 
         <TextView
             android:id="@+id/valorBalanceTotal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/gastosTotales"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/balanceTotal"
             android:gravity="right"
             android:text="0"
-            android:textColor="#000000" />
+            android:textColor="@color/txtGris" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -106,7 +106,7 @@
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
         android:layout_weight="1"
-        android:background="@drawable/fondo_cuadros"
+        android:background="@drawable/rounded_layout"
         android:orientation="vertical" >
 
         <TextView
@@ -118,77 +118,76 @@
             android:orientation="vertical"
             android:text="@string/infoRegistros"
             android:textColor="#000000"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/numeroRegistros"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/informacionRegistros"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:gravity="left"
             android:text="@string/nRegistros"
-            android:textColor="#000000" />
+            android:textColor="@color/txtGris" />
 
         <TextView
             android:id="@+id/valorNumeroRegistros"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/informacionRegistros"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="20dp"
             android:layout_toRightOf="@+id/numeroRegistros"
             android:gravity="right"
             android:text="0"
-            android:textColor="#000000" />
+            android:textColor="@color/txtGris" />
 
         <TextView
             android:id="@+id/numeroIngresos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/numeroRegistros"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:gravity="left"
             android:text="@string/nIngresos"
-            android:textColor="#000000" />
+            android:textColor="@color/txtGris" />
 
         <TextView
             android:id="@+id/valorNumeroIngresos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/valorNumeroRegistros"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/numeroIngresos"
             android:gravity="right"
             android:text="0"
-            android:textColor="#000000" />
+            android:textColor="@color/txtGris" />
 
         <TextView
             android:id="@+id/numeroGastos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/numeroIngresos"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:gravity="left"
             android:text="@string/nGastos"
-            android:textColor="#000000" />
+            android:textColor="@color/txtGris" />
 
         <TextView
             android:id="@+id/valorNumeroGastos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/valorNumeroIngresos"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/numeroGastos"
             android:gravity="right"
             android:text="0"
-            android:textColor="#000000" />
+            android:textColor="@color/txtGris" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -200,7 +199,7 @@
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
         android:layout_weight="1"
-        android:background="@drawable/fondo_cuadros"
+        android:background="@drawable/rounded_layout"
         android:orientation="vertical" >
 
         <TextView
@@ -212,77 +211,76 @@
             android:orientation="vertical"
             android:text="@string/infoCategorias"
             android:textColor="#000000"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/numeroTotalCategorias"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/informacionCategorias"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:gravity="left"
             android:text="@string/nTotalCategorias"
-            android:textColor="#000000" />
+            android:textColor="@color/txtGris" />
 
         <TextView
             android:id="@+id/valorNumeroTotalCategorias"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/informacionCategorias"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="20dp"
             android:layout_toRightOf="@+id/numeroTotalCategorias"
             android:gravity="right"
             android:text="0"
-            android:textColor="#000000" />
+            android:textColor="@color/txtGris" />
 
         <TextView
             android:id="@+id/numeroCategorias"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/numeroTotalCategorias"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:gravity="left"
             android:text="@string/nCategorias"
-            android:textColor="#000000" />
+            android:textColor="@color/txtGris" />
 
         <TextView
             android:id="@+id/valorNumeroCategorias"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/valorNumeroTotalCategorias"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/numeroCategorias"
             android:gravity="right"
             android:text="0"
-            android:textColor="#000000" />
+            android:textColor="@color/txtGris" />
 
         <TextView
             android:id="@+id/numeroSubcategorias"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/numeroCategorias"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:gravity="left"
             android:text="@string/nSubcategorias"
-            android:textColor="#000000" />
+            android:textColor="@color/txtGris" />
 
         <TextView
             android:id="@+id/valorNumeroSubcategorias"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/valorNumeroCategorias"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/numeroSubcategorias"
             android:gravity="right"
             android:text="0"
-            android:textColor="#000000" />
+            android:textColor="@color/txtGris" />
     </RelativeLayout>
 
 </LinearLayout>

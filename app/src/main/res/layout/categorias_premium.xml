@@ -36,23 +36,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat48"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/baby_boy" />
 
                 <ImageView
                     android:id="@+id/imagenCat49"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/baby_girl" />
 
                 <ImageView
                     android:id="@+id/imagenCat50"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/circo" />
@@ -69,23 +69,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat51"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/compris" />
 
                 <ImageView
                     android:id="@+id/imagenCat52"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/concierto" />
 
                 <ImageView
                     android:id="@+id/imagenCat53"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/cosmo" />
@@ -102,23 +102,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat54"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/empleado" />
 
                 <ImageView
                     android:id="@+id/imagenCat55"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/entretenimiento" />
 
                 <ImageView
                     android:id="@+id/imagenCat56"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/gasss" />
@@ -135,23 +135,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat57"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/hairdresser" />
 
                 <ImageView
                     android:id="@+id/imagenCat58"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/holidays" />
 
                 <ImageView
                     android:id="@+id/imagenCat59"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/moto" />
@@ -168,23 +168,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat60"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/music" />
 
                 <ImageView
                     android:id="@+id/imagenCat61"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/pipa" />
 
                 <ImageView
                     android:id="@+id/imagenCat62"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/poker" />
@@ -201,23 +201,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat63"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/regalis" />
 
                 <ImageView
                     android:id="@+id/imagenCat64"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/servicio_domestico" />
 
                 <ImageView
                     android:id="@+id/imagenCat65"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/tabaco" />
@@ -235,23 +235,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat66"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/tattoo" />
 
                 <ImageView
                     android:id="@+id/imagenCat67"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/wedding" />
 
                 <ImageView
                     android:id="@+id/imagenCatAux3"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp" />
             </LinearLayout>

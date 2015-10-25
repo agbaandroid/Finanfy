@@ -1,8 +1,5 @@
 package com.agudoApp.salaryApp.graficos;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
@@ -25,8 +22,10 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.agudoApp.salaryApp.model.Categoria;
-import com.agudoApp.salaryApp.model.Movimiento;
 import com.agudoApp.salaryApp.util.Util;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class PieChartView extends View {
 
@@ -320,7 +319,8 @@ public class PieChartView extends View {
 		int statusBarHeight = rectangle.top;
 		int contentViewTop = window.findViewById(Window.ID_ANDROID_CONTENT)
 				.getTop();
-		int titleBarHeight = contentViewTop - statusBarHeight;
+		int titleBarHeight = contentViewTop;
+		//int titleBarHeight = contentViewTop - statusBarHeight;
 
 		Point size = new Point();
 
@@ -331,23 +331,23 @@ public class PieChartView extends View {
 			disp.getSize(size);
 			if (divide1) {
 				startXWhite = size.x / 2;
-				startYWhite = 75;
+				startYWhite = 0;
 			} else if (divide15) {
 				startXWhite = disp.getWidth() / 2;
-				startYWhite = (((size.y - statusBarHeight - titleBarHeight) / 3) / 2) + 10;
+				startYWhite = (((size.y ) / 3) / 2) + 10;
 			} else {
 				startXWhite = size.x / 2;
-				startYWhite = (((size.y - statusBarHeight - titleBarHeight) / 2) / 2) - 5;
+				startYWhite = (((size.y  ) / 2) / 2) - 5;
 			}
 		} else {
 			// Esto es deprecated, pero es necesario para
 			// versiones anteriores
 			if (divide1) {
 				startXWhite = disp.getWidth() / 2;
-				startYWhite = 75;
+				startYWhite = 0;
 			} else if (divide15) {
 				startXWhite = disp.getWidth() / 2;
-				startYWhite = 50;
+				startYWhite = 0;
 			} else {
 				startXWhite = disp.getWidth() / 2;
 				startYWhite = disp.getHeight() / 2;

@@ -20,8 +20,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.DatePicker;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -29,7 +31,7 @@ import android.widget.TextView;
 
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.activities.NuevoActivity;
-import com.agudoApp.salaryApp.adapters.ListAdapter;
+import com.agudoApp.salaryApp.activities.NuevoEditMovimientosActivity;
 import com.agudoApp.salaryApp.adapters.ListAdapterSpinner;
 import com.agudoApp.salaryApp.adapters.ListaAdapterResumenExpandibleAdapter;
 import com.agudoApp.salaryApp.adapters.ListaAdapterResumenExpandibleSubAdapter;
@@ -37,6 +39,7 @@ import com.agudoApp.salaryApp.database.GestionBBDD;
 import com.agudoApp.salaryApp.model.Categoria;
 import com.agudoApp.salaryApp.model.Movimiento;
 import com.agudoApp.salaryApp.model.Tarjeta;
+import com.agudoApp.salaryApp.util.Util;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -45,6 +48,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.Locale;
 
 public class NuevoResumenFragment extends Fragment {
     private static final String KEY_CONTENT = "NuevoResumenFragment:Content";
@@ -58,6 +62,7 @@ public class NuevoResumenFragment extends Fragment {
     private SQLiteDatabase db;
 
     private final int RESUMEN = 1;
+    private final int EDIT_DELETE = 2;
 
     protected ListView listMovView;
     protected ExpandableListView listMovCatView;
@@ -213,7 +218,7 @@ public class NuevoResumenFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (mMonth == 0) {
-                    mMonth = 12;
+                    mMonth = 11;
                     mYear = mYear - 1;
                     txtAnioActual.setText(String.valueOf(mYear));
                 } else {
@@ -282,7 +287,7 @@ public class NuevoResumenFragment extends Fragment {
                                                public void onItemSelected(AdapterView<?> parent,
                                                                           View view, int position, long id) {
                                                    // TODO Auto-generated method stub
-                                                       tipoFiltro = position;
+                                                   tipoFiltro = position;
                                                }
 
                                                @Override
@@ -621,7 +626,7 @@ public class NuevoResumenFragment extends Fragment {
     // Rellena el spinner modo pago
     public void obtenerModoPago() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                getActivity(), R.array.modoPago,
+                getActivity(), R.array.modoPagoFiltro,
                 android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(R.layout.spinner);
         spinnerTipoModoPago.setAdapter(adapter);
@@ -812,9 +817,9 @@ public class NuevoResumenFragment extends Fragment {
         protected Void doInBackground(Integer... params) {
             // Recuperamos las prendas
             rellenarLista();
-            if(tipoFiltro == 1){
+            if (tipoFiltro == 1) {
                 rellenarListaExpansibleCategorias();
-            }else if (tipoFiltro == 2){
+            } else if (tipoFiltro == 2) {
                 rellenarListaExpansibleSubcategorias();
             }
             calcularTotal();
@@ -824,12 +829,12 @@ public class NuevoResumenFragment extends Fragment {
         // Once complete, see if ImageView is still around and set bitmap.
         @Override
         protected void onPostExecute(Void result) {
-            if (tipoFiltro == 0){
+            if (tipoFiltro == 0) {
                 listMovView.setAdapter(new ListAdapter(getActivity(), listMov));
                 listMovView.setVisibility(View.VISIBLE);
                 listMovCatView.setVisibility(View.GONE);
 
-            }else if(tipoFiltro == 1){
+            } else if (tipoFiltro == 1) {
                 listMovCatView.setGroupIndicator(null);
                 listMovCatView.setClickable(true);
                 listMovCatView.setDividerHeight(2);
@@ -839,7 +844,7 @@ public class NuevoResumenFragment extends Fragment {
                 listMovCatView.setAdapter(listAdapterCategorias);
                 listMovView.setVisibility(View.GONE);
                 listMovCatView.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 listMovCatView.setGroupIndicator(null);
                 listMovCatView.setClickable(true);
                 listMovCatView.setDividerHeight(2);
@@ -861,6 +866,130 @@ public class NuevoResumenFragment extends Fragment {
             }
             progDailog.dismiss();
         }
+    }
+
+    public class ListAdapter extends BaseAdapter {
+        private LayoutInflater mInflater;
+        private ArrayList<Movimiento> listaMov = new ArrayList<Movimiento>();
+        Locale locale = Locale.getDefault();
+        String languaje = locale.getLanguage();
+        Context context;
+        Movimiento mov;
+
+        public ListAdapter(Context context, ArrayList<Movimiento> lista) {
+            listaMov = lista;
+            mInflater = LayoutInflater.from(context);
+            this.context = context;
+        }
+
+        @Override
+        public int getCount() {
+            // TODO Auto-generated method stub
+            return listaMov.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            // TODO Auto-generated method stub
+            return listaMov.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            // TODO Auto-generated method stub
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            TextView txtFecha;
+            TextView txtCategoria;
+            TextView txtDescripcion;
+            TextView txtCant;
+            ImageView imgView;
+            ImageView imgTarjeta;
+            LinearLayout layoutTarjeta;
+            LinearLayout layoutMovimiento;
+
+            if (convertView == null) {
+                convertView = mInflater.inflate(R.layout.lista_movimientos, null);
+            }
+
+            txtFecha = (TextView) convertView.findViewById(R.id.txtFecha);
+            txtCategoria = (TextView) convertView.findViewById(R.id.txtCategoria);
+            txtDescripcion = (TextView) convertView.findViewById(R.id.txtDescripcion);
+            txtCant = (TextView) convertView.findViewById(R.id.txtCant);
+            imgView = (ImageView) convertView.findViewById(R.id.iconCategoria);
+            layoutTarjeta = (LinearLayout) convertView.findViewById(R.id.layoutTarjeta);
+            imgTarjeta = (ImageView) convertView.findViewById(R.id.imgTarjeta);
+            layoutMovimiento = (LinearLayout) convertView.findViewById(R.id.layoutMovimiento);
+
+            if (!listaMov.get(position).toString().equals("")) {
+                txtDescripcion.setText(listaMov.get(position).toString());
+            } else {
+                txtDescripcion.setVisibility(View.GONE);
+            }
+            txtCant.setText(listaMov.get(position).getCantidadAux());
+            txtFecha.setText(listaMov.get(position).getFecha().toString());
+            imgView.setBackgroundResource(Util.obtenerIconoCategoria(listaMov.get(position).getIdIconCat()));
+
+            if (listaMov.get(position).getCantidadAux().substring(0, 1).equals("-")) {
+                txtCant.setTextColor(Color.RED);
+            } else {
+                txtCant.setTextColor(context.getResources().getColor(R.color.txtAzul));
+            }
+
+            // rellenamos el campo de las categorias
+            if (!listaMov.get(position).getDescCategoria().equals("-")) {
+                txtCategoria.setText(listaMov.get(position).getDescCategoria());
+            } else {
+                txtCategoria.setText(context.getResources().getString(R.string.otros));
+            }
+
+            if (listaMov.get(position).isTarjeta()) {
+                layoutTarjeta.setVisibility(View.VISIBLE);
+
+                Tarjeta tar = new Tarjeta();
+                db = getActivity().openOrCreateDatabase(BD_NOMBRE, 1, null);
+                if (db != null) {
+                    tar = gestion.getTarjetaId(db, Integer.parseInt(listaMov.get(position).getIdTarjeta()));
+                }
+                db.close();
+
+                imgTarjeta.setBackgroundResource(Util.obtenerIconoTarjeta(tar.getIdIcon()));
+            } else {
+                layoutTarjeta.setVisibility(View.GONE);
+            }
+
+            layoutMovimiento.setTag(position);
+
+            layoutMovimiento.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    int posiSel = (int) v.getTag();
+                    mov = listaMov.get(posiSel);
+                    // TODO Auto-generated method stub
+                    Intent intent = new Intent(context, NuevoEditMovimientosActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("idMovimiento", mov.getId());
+                    bundle.putString("cantidad", mov.getCantidad());
+                    bundle.putString("tipoMovimiento", mov.getTipo());
+                    bundle.putString("idCategoria", mov.getIdCategoria());
+                    bundle.putString("idSubcategoria", mov.getIdSubcategoria());
+                    bundle.putBoolean("tipoPago", mov.isTarjeta());
+                    bundle.putString("idTarjeta", mov.getIdTarjeta());
+                    bundle.putString("fecha", mov.getFecha().toString());
+                    bundle.putString("notas", mov.toString());
+                    intent.putExtras(bundle);
+                    startActivityForResult(intent, EDIT_DELETE);
+                }
+            });
+
+
+            return convertView;
+        }
+
     }
 
 }

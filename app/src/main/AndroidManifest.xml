@@ -45,7 +45,7 @@
 
         <!-- Pestañas -->
         <activity
-            android:name=".general.ControlGastosActivity"
+            android:name=".general.FinanfyActivity"
             android:icon="@drawable/icon_app"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
@@ -130,20 +130,24 @@
         <!-- Configuración -->
         <activity
             android:name=".activities.SeguridadIntroducir"
-            android:label="@string/nuevaPass"
-            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme"
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified"/>
         <activity
             android:name=".activities.SeguridadRepetir"
-            android:label="@string/repetirPass"
-            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme"
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified"/>
         <activity
             android:name=".activities.SeguridadAntigua"
-            android:label="@string/antiguaPass"
-            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme"
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified"/>
         <activity
-            android:name=".activities.SeguridadComprobar"
-            android:label="@string/introducirPass"
-            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        android:name=".activities.SeguridadComprobar"
+        android:screenOrientation="portrait"
+        android:theme="@style/CustomActionBarTheme"
+        android:windowSoftInputMode="stateUnchanged|adjustUnspecified"/>
         <activity
             android:name=".activities.AddTarjeta"
             android:label="@string/addCard"
@@ -215,6 +219,27 @@
             android:theme="@style/CustomActionBarTheme"
             android:windowSoftInputMode="stateUnchanged|adjustUnspecified"/>
 
+        <activity
+            android:name=".activities.NuevoAddTarjetaActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme"
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified"/>
+
+        <activity
+            android:name=".activities.NuevoAddCategoriaActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme"
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified"/>
+        <activity
+            android:name=".activities.NuevoEditMovimientosActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme"
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified"/>
+        <activity
+            android:name=".activities.NuevoEditCategoriaActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme"
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified"/>
     </application>
 
 </manifest>

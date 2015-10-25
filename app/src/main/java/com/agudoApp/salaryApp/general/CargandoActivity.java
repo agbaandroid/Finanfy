@@ -1,9 +1,5 @@
 package com.agudoApp.salaryApp.general;
 
-import java.util.ArrayList;
-
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
@@ -20,6 +16,8 @@ import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.database.GestionBBDD;
 import com.android.vending.billing.IInAppBillingService;
 
+import java.util.ArrayList;
+
 public class CargandoActivity extends Activity {
 	private final String BD_NOMBRE = "BDGestionGastos";
 	final GestionBBDD gestion = new GestionBBDD();
@@ -27,6 +25,7 @@ public class CargandoActivity extends Activity {
 	boolean tablasTarjetaCreadas = false;
 	boolean tablasCuentasCreadas = false;
 	boolean comprobarVersion30 = false;
+	boolean comprobarVersion40 = false;
 	private SQLiteDatabase db;
 
 	// Podructos integrados
@@ -81,6 +80,9 @@ public class CargandoActivity extends Activity {
 			// Comprobamos si tiene los cambios de la nueva version de la BD
 			comprobarVersion30 = gestion.comprobarVersion30(db);
 
+			// Comprobamos si tiene los cambios de la nueva version de la BD
+			comprobarVersion40 = gestion.comprobarVersion40(db);
+
 			if (!tablasCreadas) {
 				gestion.createTables(db);
 			} else if (tablasCreadas && !tablasCuentasCreadas) {
@@ -88,6 +90,9 @@ public class CargandoActivity extends Activity {
 			}
 			if (tablasCreadas && !comprobarVersion30) {
 				gestion.actualizarVersion30(db);
+			}
+			if (tablasCreadas && !comprobarVersion40) {
+				gestion.actualizarVersion40(db);
 			}
 		}
 		db.close();
@@ -191,7 +196,7 @@ public class CargandoActivity extends Activity {
 		@Override
 		protected void onPostExecute(Void result) {
 			Intent intent = new Intent(CargandoActivity.this,
-					ControlGastosActivity.class);
+					FinanfyActivity.class);
 			intent.putExtra("isPremium", isPremium);
 			intent.putExtra("isSinPublicidad", isSinPublicidad);
 			intent.putExtra("isCategoriaPremium", isCategoriaPremium);

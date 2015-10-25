@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
+        android:background="@drawable/fondo_listas"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -94,10 +95,11 @@
                 android:visibility="gone">
 
                 <ImageView
-                    android:layout_width="20dp"
+                    android:id="@+id/imgTarjeta"
+                    android:layout_width="30dp"
                     android:layout_height="20dp"
                     android:layout_gravity="right"
-                    android:background="@drawable/tarjetas"
+                    android:background="@drawable/visa"
                     android:gravity="right" />
             </LinearLayout>
         </LinearLayout>

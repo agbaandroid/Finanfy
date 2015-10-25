@@ -1,19 +1,14 @@
 package com.agudoApp.salaryApp.fragments;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.activities.SeguridadAntigua;
@@ -24,9 +19,9 @@ import com.agudoApp.salaryApp.database.GestionBBDD;
 public class SeguridadFragment extends Fragment {
 	private static final String KEY_CONTENT = "SeguridadFragment:Content";
 	final GestionBBDD gestion = new GestionBBDD();
-	private Button botonActivarPass;
-	private Button botonDesactivarPass;
-	private Button botonModificarPass;
+	private LinearLayout layoutActivar;
+	private LinearLayout layoutDesactivar;
+	private LinearLayout layoutModificar;
 	boolean seguridadAct;
 
 	SharedPreferences prefs;
@@ -81,24 +76,24 @@ public class SeguridadFragment extends Fragment {
 
 		seguridadAct = prefs.getBoolean("seguridadActivada", false);
 
-		botonActivarPass = (Button) getView().findViewById(
-				R.id.botonActivarPass);
-		botonDesactivarPass = (Button) getView().findViewById(
-				R.id.botonDesactivarPass);
-		botonModificarPass = (Button) getView().findViewById(
-				R.id.botonModificarPass);
+		layoutActivar = (LinearLayout) getView().findViewById(
+				R.id.layoutActivar);
+		layoutDesactivar = (LinearLayout) getView().findViewById(
+				R.id.layoutDesactivar);
+		layoutModificar = (LinearLayout) getView().findViewById(
+				R.id.layoutModificar);
 
 		if (seguridadAct) {
-			botonActivarPass.setVisibility(8);
-			botonDesactivarPass.setVisibility(0);
-			botonModificarPass.setVisibility(0);
+			layoutActivar.setVisibility(View.GONE);
+			layoutDesactivar.setVisibility(View.VISIBLE);
+			layoutModificar.setVisibility(View.VISIBLE);
 		} else {
-			botonActivarPass.setVisibility(0);
-			botonDesactivarPass.setVisibility(8);
-			botonModificarPass.setVisibility(8);
+			layoutActivar.setVisibility(View.VISIBLE);
+			layoutDesactivar.setVisibility(View.GONE);
+			layoutModificar.setVisibility(View.GONE);
 		}
 
-		botonActivarPass.setOnClickListener(new View.OnClickListener() {
+		layoutActivar.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(getActivity(),
 						SeguridadIntroducir.class);
@@ -106,7 +101,7 @@ public class SeguridadFragment extends Fragment {
 			}
 		});
 
-		botonDesactivarPass.setOnClickListener(new View.OnClickListener() {
+		layoutDesactivar.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(getActivity(),
 						SeguridadComprobar.class);
@@ -115,68 +110,13 @@ public class SeguridadFragment extends Fragment {
 			}
 		});
 
-		botonModificarPass.setOnClickListener(new View.OnClickListener() {
+		layoutModificar.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(getActivity(),
 						SeguridadAntigua.class);
 				startActivity(intent);
 			}
 		});
-	}
-
-	// Aadiendo las opciones de men
-	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		inflater.inflate(R.menu.menu_setting, menu);
-	}
-
-	// Aadiendo funcionalidad a las opciones de men
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		/*LayoutInflater li = LayoutInflater.from(this);
-		View view = null;
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		AlertDialog alert;
-		switch (item.getItemId()) {
-		case R.id.btInfo:
-			view = li.inflate(R.layout.info, null);
-			builder.setView(view);
-			builder.setTitle(getResources().getString(R.string.informacion));
-			builder.setIcon(R.drawable.ic_info_azul);
-			builder.setCancelable(false);
-			builder.setPositiveButton(getResources()
-					.getString(R.string.aceptar),
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							dialog.cancel();
-						}
-					});
-			alert = builder.create();
-			alert.show();
-			return true;
-		case R.id.btAcerca:
-			view = li.inflate(R.layout.acerca, null);
-			builder.setView(view);
-			builder.setTitle(getResources().getString(R.string.app_name));
-			builder.setIcon(R.drawable.icon_app);
-			builder.setCancelable(false);
-			builder.setPositiveButton(getResources()
-					.getString(R.string.aceptar),
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							dialog.cancel();
-						}
-					});
-			alert = builder.create();
-			alert.show();
-			return true;
-		case android.R.id.home:
-			finish();
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}*/
-		return true;
 	}
 
 	@Override
@@ -191,13 +131,13 @@ public class SeguridadFragment extends Fragment {
 		seguridadAct = prefs.getBoolean("seguridadActivada", false);
 
 		if (seguridadAct) {
-			botonActivarPass.setVisibility(8);
-			botonDesactivarPass.setVisibility(0);
-			botonModificarPass.setVisibility(0);
+			layoutActivar.setVisibility(View.GONE);
+			layoutDesactivar.setVisibility(View.VISIBLE);
+			layoutModificar.setVisibility(View.VISIBLE);
 		} else {
-			botonActivarPass.setVisibility(0);
-			botonDesactivarPass.setVisibility(8);
-			botonModificarPass.setVisibility(8);
+			layoutActivar.setVisibility(View.VISIBLE);
+			layoutDesactivar.setVisibility(View.GONE);
+			layoutModificar.setVisibility(View.GONE);
 		}
 	}
 }

@@ -51,7 +51,8 @@ public class GestionBBDD {
 
 	String sqlCreateTarjetas = "CREATE TABLE IF NOT EXISTS [Tarjetas] ( "
 			+ "[idTarjeta] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT, "
-			+ "[nombre] TEXT NOT NULL, " + "[limite] FLOAT NOT NULL)";
+			+ "[nombre] TEXT NOT NULL, [limite] FLOAT NOT NULL, "
+			+ "[tipo] INTEGER  NOT NULL, [idIcon] INTEGER  NOT NULL)";
 
 	String sqlCreateRecibos = "CREATE TABLE IF NOT EXISTS [Recibos] ( "
 			+ "[idRecibo] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT, "
@@ -156,6 +157,18 @@ public class GestionBBDD {
 
 			db.execSQL("UPDATE Categorias SET idIcon=0");
 			db.execSQL("UPDATE Tarjetas SET limite=0");
+		} catch (SQLException e) {
+			Log.d("ERROR", "Error al actualizar la BD");
+		}
+	}
+
+	public void actualizarVersion40(SQLiteDatabase db) {
+		try {
+			db.execSQL("ALTER TABLE Tarjetas ADD COLUMN tipo INTEGER NULL");
+			db.execSQL("ALTER TABLE Tarjetas ADD COLUMN idIcon INTEGER NULL");
+
+			db.execSQL("UPDATE Tarjetas SET tipo=0");
+			db.execSQL("UPDATE Tarjetas SET idIcon=0");
 		} catch (SQLException e) {
 			Log.d("ERROR", "Error al actualizar la BD");
 		}
@@ -341,19 +354,19 @@ public class GestionBBDD {
 					+ "tabla Tarjetas");
 			if (languaje.equals("es") || languaje.equals("es-rUS")
 					|| languaje.equals("ca")) {
-				db.execSQL("INSERT INTO Tarjetas VALUES(0, 'Tarjeta 1', 0)");
+				db.execSQL("INSERT INTO Tarjetas VALUES(0, 'Tarjeta 1', 2000, 0, 0)");
 			} else if (languaje.equals("fr")) {
-				db.execSQL("INSERT INTO Tarjetas VALUES(0, 'Carte de crédit 1', 0)");
+				db.execSQL("INSERT INTO Tarjetas VALUES(0, 'Carte de crédit 1', 2000, 0, 0)");
 			} else if (languaje.equals("de")) {
-				db.execSQL("INSERT INTO Tarjetas VALUES(0, 'Kreditkarte 1', 0)");
+				db.execSQL("INSERT INTO Tarjetas VALUES(0, 'Kreditkarte 1', 2000, 0, 0)");
 			} else if (languaje.equals("en")) {
-				db.execSQL("INSERT INTO Tarjetas VALUES(0, 'Credit card 1', 0)");
+				db.execSQL("INSERT INTO Tarjetas VALUES(0, 'Credit card 1', 2000, 0, 0)");
 			} else if (languaje.equals("it")) {
-				db.execSQL("INSERT INTO Tarjetas VALUES(0, 'Carta di credito 1', 0)");
+				db.execSQL("INSERT INTO Tarjetas VALUES(0, 'Carta di credito 1', 2000, 0, 0)");
 			} else if (languaje.equals("pt")) {
-				db.execSQL("INSERT INTO Tarjetas VALUES(0, 'Cartão de crédito 1', 0)");
+				db.execSQL("INSERT INTO Tarjetas VALUES(0, 'Cartão de crédito 1', 2000, 0, 0)");
 			} else {
-				db.execSQL("INSERT INTO Tarjetas VALUES(0, 'Credit card 1', 0)");
+				db.execSQL("INSERT INTO Tarjetas VALUES(0, 'Credit card 1', 2000, 0, 0)");
 			}
 
 			Log.d(INFO, "Los registros se han insertado correctamente");
@@ -451,6 +464,21 @@ public class GestionBBDD {
 		}
 	}
 
+	public boolean comprobarVersion40(SQLiteDatabase db) {
+		// consultamos si existe una nomina del mes actual
+		try {
+			Cursor cuentas = db.rawQuery(
+					"select * from Tarjetas where idIcon = 0", null);
+			if (cuentas.moveToFirst()) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
 	public List<Categoria> getCategorias(SQLiteDatabase db, String tabla,
 			String id, Context context) {
 		List<Categoria> listaCategorias = new ArrayList<Categoria>();
@@ -476,13 +504,16 @@ public class GestionBBDD {
 	public List<Tarjeta> getTarjetas(SQLiteDatabase db) {
 		List<Tarjeta> listaTarjetas = new ArrayList<Tarjeta>();
 		Cursor c1 = db.query("Tarjetas",
-				new String[] { "idTarjeta", "nombre" }, null, null, null, null,
+				new String[] { "idTarjeta", "nombre", "limite", "tipo", "idIcon" }, null, null, null, null,
 				"idTarjeta asc");
 		if (c1.moveToFirst()) {
 			do {
 				Tarjeta tarjeta = new Tarjeta();
 				tarjeta.setId(c1.getString(0));
 				tarjeta.setNombre(c1.getString(1));
+				tarjeta.setCantMax(c1.getFloat(2));
+				tarjeta.setTipo(c1.getInt(3));
+				tarjeta.setIdIcon(c1.getInt(4));
 				listaTarjetas.add(tarjeta);
 			} while (c1.moveToNext());
 		}
@@ -1314,7 +1345,7 @@ public class GestionBBDD {
 			values.put("descripcion", descripcion);
 			values.put("idIcon", idIcon);
 			db.update("Categorias", values, "idCategoria=?",
-					new String[] { id });
+					new String[]{id});
 
 			return true;
 		} catch (Exception e) {
@@ -1427,7 +1458,7 @@ public class GestionBBDD {
 	public boolean deleteCuenta(SQLiteDatabase db, String idCuenta) {
 		try {
 			db.delete("Cuentas", "idCuenta=?", new String[] { idCuenta });
-			db.delete("Movimientos", "idCuenta=?", new String[] { idCuenta });
+			db.delete("Movimientos", "idCuenta=?", new String[]{idCuenta});
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -1526,6 +1557,21 @@ public class GestionBBDD {
 			recibo.setIdTarjeta(c1.getString(8));
 		}
 		return recibo;
+	}
+
+	public Tarjeta getTarjetaId(SQLiteDatabase db, int idTarjeta) {
+		Cursor c1 = db.rawQuery("select * from Tarjetas where idTarjeta='"
+				+ idTarjeta + "'", null);
+
+		Tarjeta tarjeta = new Tarjeta();
+		if (c1.moveToFirst()) {
+			tarjeta.setId(c1.getString(0));
+			tarjeta.setNombre(c1.getString(1));
+			tarjeta.setCantMax(c1.getFloat(2));
+			tarjeta.setTipo(c1.getInt(3));
+			tarjeta.setIdIcon(c1.getInt(4));
+		}
+		return tarjeta;
 	}
 
 	public boolean editarMovimiento(SQLiteDatabase db, String id, int tipo,

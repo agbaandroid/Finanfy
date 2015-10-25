@@ -48,7 +48,7 @@ import com.agudoApp.salaryApp.activities.EditCat;
 import com.agudoApp.salaryApp.activities.EditSub;
 import com.agudoApp.salaryApp.adapters.ListAdapterSpinner;
 import com.agudoApp.salaryApp.database.GestionBBDD;
-import com.agudoApp.salaryApp.general.ControlGastosActivity;
+import com.agudoApp.salaryApp.general.FinanfyActivity;
 import com.agudoApp.salaryApp.model.Categoria;
 import com.agudoApp.salaryApp.model.Movimiento;
 import com.agudoApp.salaryApp.model.Tarjeta;
@@ -863,7 +863,7 @@ public final class MovimientosFragment extends Fragment {
 
 	// Inicializa los campos al crear un registro
 	public void inicializar() {
-		Intent intent = new Intent(getActivity(), ControlGastosActivity.class);
+		Intent intent = new Intent(getActivity(), FinanfyActivity.class);
 		getActivity().finish();
 		startActivity(intent);
 	}

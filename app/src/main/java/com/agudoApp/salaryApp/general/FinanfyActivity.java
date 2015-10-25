@@ -34,11 +34,11 @@ import com.agudoApp.salaryApp.fragments.CategoriasFragment;
 import com.agudoApp.salaryApp.fragments.CuentasFragment;
 import com.agudoApp.salaryApp.fragments.DatabaseFragment;
 import com.agudoApp.salaryApp.fragments.EstadisticasFragment;
-import com.agudoApp.salaryApp.fragments.InformesFragment;
+import com.agudoApp.salaryApp.fragments.GraficoFragment;
 import com.agudoApp.salaryApp.fragments.NuevoResumenFragment;
-import com.agudoApp.salaryApp.fragments.RecibosFragment;
+import com.agudoApp.salaryApp.fragments.NuevoTarjetasFragment;
+import com.agudoApp.salaryApp.fragments.RegistrosFijosFragment;
 import com.agudoApp.salaryApp.fragments.SeguridadFragment;
-import com.agudoApp.salaryApp.fragments.TarjetasFragment;
 import com.agudoApp.salaryApp.model.Cuenta;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -46,7 +46,7 @@ import com.google.android.gms.ads.InterstitialAd;
 
 import java.util.Calendar;
 
-public class ControlGastosActivity extends ActionBarActivity {
+public class FinanfyActivity extends ActionBarActivity {
 	// Menu navegacin
 	private String[] titlesMenu;
 	private String[] titlesMenuMayusculas;
@@ -261,15 +261,15 @@ public class ControlGastosActivity extends ActionBarActivity {
 					isCategoriaPremium);
 			break;
 		case 2:
-			fragment = new InformesFragment(isPremium, isSinPublicidad,
+			fragment = new GraficoFragment(isPremium, isSinPublicidad,
 					isCategoriaPremium);
 			break;
 		case 3:
-			fragment = new TarjetasFragment(isPremium, isSinPublicidad,
+			fragment = new NuevoTarjetasFragment(isPremium, isSinPublicidad,
 					isCategoriaPremium);
 			break;
 		case 4:
-			fragment = new RecibosFragment(isPremium, isSinPublicidad,
+			fragment = new RegistrosFijosFragment(isPremium, isSinPublicidad,
 					isCategoriaPremium);
 			break;
 		case 5:
@@ -389,8 +389,8 @@ public class ControlGastosActivity extends ActionBarActivity {
 		bld.setNeutralButton(getResources().getString(R.string.ok),
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
-						Intent intent = new Intent(ControlGastosActivity.this,
-								ControlGastosActivity.class);
+						Intent intent = new Intent(FinanfyActivity.this,
+								FinanfyActivity.class);
 						startActivity(intent);
 					}
 				});

@@ -1,7 +1,5 @@
 package com.agudoApp.salaryApp.fragments;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -113,54 +110,5 @@ public class TarjetasFragment extends Fragment {
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		inflater.inflate(R.menu.menu_setting, menu);
-	}
-
-	// Aadiendo funcionalidad a las opciones de men
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		/*LayoutInflater li = LayoutInflater.from(this);
-		View view = null;
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		AlertDialog alert;
-		switch (item.getItemId()) {
-		case R.id.btInfo:
-			view = li.inflate(R.layout.info, null);
-			builder.setView(view);
-			builder.setTitle(getResources().getString(R.string.informacion));
-			builder.setIcon(R.drawable.ic_info_azul);
-			builder.setCancelable(false);
-			builder.setPositiveButton(getResources()
-					.getString(R.string.aceptar),
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							dialog.cancel();
-						}
-					});
-			alert = builder.create();
-			alert.show();
-			return true;
-		case R.id.btAcerca:
-			view = li.inflate(R.layout.acerca, null);
-			builder.setView(view);
-			builder.setTitle(getResources().getString(R.string.app_name));
-			builder.setIcon(R.drawable.icon_app);
-			builder.setCancelable(false);
-			builder.setPositiveButton(getResources()
-					.getString(R.string.aceptar),
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							dialog.cancel();
-						}
-					});
-			alert = builder.create();
-			alert.show();
-			return true;
-		case android.R.id.home:
-			finish();
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}*/
-		return true;
 	}
 }

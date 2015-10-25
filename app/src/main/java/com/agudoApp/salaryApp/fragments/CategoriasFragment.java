@@ -1,5 +1,6 @@
 package com.agudoApp.salaryApp.fragments;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.agudoApp.salaryApp.R;
+import com.agudoApp.salaryApp.activities.NuevoAddCategoriaActivity;
 
 public class CategoriasFragment extends Fragment {
 
@@ -30,6 +32,8 @@ public class CategoriasFragment extends Fragment {
 	TextView textSubcat;
 	boolean isCategoria = false;
 	boolean isSubcategoria = false;
+
+	private final int CATEGORIA = 1;
 
 	private String mContent = "???";
 
@@ -116,7 +120,7 @@ public class CategoriasFragment extends Fragment {
 
 						isSubcategoria = true;
 						isCategoria = false;
-						
+
 						textSubcat.setTextColor(Color.BLACK);
 						textCat.setTextColor(Color.rgb(195, 195, 195));
 					}
@@ -127,7 +131,6 @@ public class CategoriasFragment extends Fragment {
 		return rootView;
 	}
 
-	// Aadiendo las opciones de men
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		inflater.inflate(R.menu.menu_setting, menu);
@@ -136,50 +139,17 @@ public class CategoriasFragment extends Fragment {
 	// Aadiendo funcionalidad a las opciones de men
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		/*LayoutInflater li = LayoutInflater.from(this);
-		View view = null;
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		AlertDialog alert;
 		switch (item.getItemId()) {
-		case R.id.btInfo:
-			view = li.inflate(R.layout.info, null);
-			builder.setView(view);
-			builder.setTitle(getResources().getString(R.string.informacion));
-			builder.setIcon(R.drawable.ic_info_azul);
-			builder.setCancelable(false);
-			builder.setPositiveButton(getResources()
-					.getString(R.string.aceptar),
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							dialog.cancel();
-						}
-					});
-			alert = builder.create();
-			alert.show();
-			return true;
-		case R.id.btAcerca:
-			view = li.inflate(R.layout.acerca, null);
-			builder.setView(view);
-			builder.setTitle(getResources().getString(R.string.app_name));
-			builder.setIcon(R.drawable.icon_app);
-			builder.setCancelable(false);
-			builder.setPositiveButton(getResources()
-					.getString(R.string.aceptar),
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							dialog.cancel();
-						}
-					});
-			alert = builder.create();
-			alert.show();
-			return true;
-		case android.R.id.home:
-			finish();
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}*/
-		return true;
+			case R.id.action_add:
+				Intent intent = new Intent(getActivity(), NuevoAddCategoriaActivity.class);
+				intent.putExtra("isCategoria", isCategoria);
+				startActivityForResult(intent, CATEGORIA);
+				return true;
+			case android.R.id.home:
+				getActivity().finish();
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
 	}
-
 }

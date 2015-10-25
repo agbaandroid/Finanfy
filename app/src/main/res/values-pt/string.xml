@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
 
-    <string name="app_name">Controle de despesas</string>
+    <string name="app_name">Finanfy</string>
     <string name="tipoMovimientos">Selecione um tipo de</string>
     <string name="textoNominas">Selecione uma relação</string>
     <string name="textoAnios">Escolha um ano</string>
@@ -366,8 +366,12 @@
     <string name="pulseDosVeces">Pressione voltar para sair</string>
     <string name="noDatos">Nenhum dado encontrado</string>
 
-
     <string-array name="modoPago">
+        <item>Es_Metático</item>
+        <item>Es_Tarjeta</item>
+    </string-array>
+
+    <string-array name="modoPagoFiltro">
         <item>Es_Todo</item>
         <item>Es_Metático</item>
         <item>Es_Tarjeta</item>
@@ -376,6 +380,11 @@
     <string-array name="fechas">
         <item>Es_Mensual </item>
         <item>Es_Intervalo de fechas</item>
+    </string-array>
+
+    <string-array name="tipoTarjeta">
+        <item>ES_Crédito</item>
+        <item>ES_Débito</item>
     </string-array>
 
     <string name="otros">Es_Otros</string>

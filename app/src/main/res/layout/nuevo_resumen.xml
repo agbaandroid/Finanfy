@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
@@ -36,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
         android:background="#FFFFFF"
         android:orientation="horizontal">
 
@@ -151,19 +153,21 @@
             <ExpandableListView
                 android:id="@+id/listaMovimientosCategoria"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="1dp"
                 android:layout_marginTop="1dp"
+                android:background="@drawable/fondo_listas"
                 android:groupIndicator="@null"
                  />
 
             <ListView
                 android:id="@+id/listaMovimientos"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 android:divider="#EEEEEE"
                 android:visibility="gone"
+                android:background="@drawable/fondo_listas"
                 android:dividerHeight="1px" />
         </LinearLayout>
 

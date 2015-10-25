@@ -1,31 +1,32 @@
 package com.agudoApp.salaryApp.activities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.agudoApp.salaryApp.R;
 
-public class SeguridadIntroducir extends Activity {
+public class SeguridadIntroducir extends AppCompatActivity {
 
-	ImageView uno;
-	ImageView dos;
-	ImageView tres;
-	ImageView cuatro;
-	ImageView cinco;
-	ImageView seis;
-	ImageView siete;
-	ImageView ocho;
-	ImageView nueve;
-	ImageView cero;
-	ImageView ok;
-	ImageView borrar;
+	TextView uno;
+	TextView dos;
+	TextView tres;
+	TextView cuatro;
+	TextView cinco;
+	TextView seis;
+	TextView siete;
+	TextView ocho;
+	TextView nueve;
+	TextView cero;
+	LinearLayout ok;
+	LinearLayout borrar;
 	EditText pass;
 	TextView textSeguridad;
 
@@ -39,22 +40,30 @@ public class SeguridadIntroducir extends Activity {
 		prefs = getSharedPreferences("ficheroConf", Context.MODE_PRIVATE);
 		editor = prefs.edit();
 
-		uno = (ImageView) findViewById(R.id.uno);
-		dos = (ImageView) findViewById(R.id.dos);
-		tres = (ImageView) findViewById(R.id.tres);
-		cuatro = (ImageView) findViewById(R.id.cuatro);
-		cinco = (ImageView) findViewById(R.id.cinco);
-		seis = (ImageView) findViewById(R.id.seis);
-		siete = (ImageView) findViewById(R.id.siete);
-		ocho = (ImageView) findViewById(R.id.ocho);
-		nueve = (ImageView) findViewById(R.id.nueve);
-		cero = (ImageView) findViewById(R.id.cero);
-		pass = (EditText) findViewById(R.id.pass);
-		ok = (ImageView) findViewById(R.id.ok);
-		borrar = (ImageView) findViewById(R.id.borrar);
-		textSeguridad = (TextView) findViewById(R.id.textSeguridad);
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		toolbar.setContentInsetsAbsolute(0, 0);
+		setSupportActionBar(toolbar);
 
-		textSeguridad.setText(getResources().getString(R.string.nuevaPass));
+		getSupportActionBar().setTitle(
+				getResources().getString(R.string.tituloSeguridad));
+
+
+		uno = (TextView) findViewById(R.id.uno);
+		dos = (TextView) findViewById(R.id.dos);
+		tres = (TextView) findViewById(R.id.tres);
+		cuatro = (TextView) findViewById(R.id.cuatro);
+		cinco = (TextView) findViewById(R.id.cinco);
+		seis = (TextView) findViewById(R.id.seis);
+		siete = (TextView) findViewById(R.id.siete);
+		ocho = (TextView) findViewById(R.id.ocho);
+		nueve = (TextView) findViewById(R.id.nueve);
+		cero = (TextView) findViewById(R.id.cero);
+		pass = (EditText) findViewById(R.id.pass);
+		ok = (LinearLayout) findViewById(R.id.ok);
+		borrar = (LinearLayout) findViewById(R.id.borrar);
+
+		pass.setHint(getResources().getString(R.string.nuevaPass));
+		//textSeguridad.setText(getResources().getString(R.string.nuevaPass));
 
 		uno.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {

@@ -36,23 +36,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat1"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/defecto" />
 
                 <ImageView
                     android:id="@+id/imagenCat2"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/amor" />
 
                 <ImageView
                     android:id="@+id/imagenCat3"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/animales" />
@@ -69,23 +69,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat4"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/azar" />
 
                 <ImageView
                     android:id="@+id/imagenCat5"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/baby" />
 
                 <ImageView
                     android:id="@+id/imagenCat6"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/baby_boyy" />
@@ -102,23 +102,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat7"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/baby_girll" />
 
                 <ImageView
                     android:id="@+id/imagenCat8"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/basket" />
 
                 <ImageView
                     android:id="@+id/imagenCat9"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/bday" />
@@ -135,23 +135,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat10"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/beer" />
 
                 <ImageView
                     android:id="@+id/imagenCat11"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/bike" />
 
                 <ImageView
                     android:id="@+id/imagenCat12"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/boat" />
@@ -168,23 +168,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat13"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/bus" />
 
                 <ImageView
                     android:id="@+id/imagenCat14"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/cinema" />
 
                 <ImageView
                     android:id="@+id/imagenCat15"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/coche" />
@@ -201,23 +201,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat16"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/coctel1" />
 
                 <ImageView
                     android:id="@+id/imagenCat17"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
-                    android:background="@drawable/compra_ropa" />
+                    android:background="@drawable/compris" />
 
                 <ImageView
                     android:id="@+id/imagenCat18"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/compra_super" />
@@ -234,23 +234,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat19"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/doctor" />
 
                 <ImageView
                     android:id="@+id/imagenCat20"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/family" />
 
                 <ImageView
                     android:id="@+id/imagenCat21"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/futbol" />
@@ -267,23 +267,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat22"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/gastos_colegio" />
 
                 <ImageView
                     android:id="@+id/imagenCat23"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/glasses" />
 
                 <ImageView
                     android:id="@+id/imagenCat24"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/graduacion" />
@@ -300,23 +300,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat25"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/gym" />
 
                 <ImageView
                     android:id="@+id/imagenCat26"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/homee" />
 
                 <ImageView
                     android:id="@+id/imagenCat27"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/hotel" />
@@ -333,23 +333,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat28"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/interesss" />
 
                 <ImageView
                     android:id="@+id/imagenCat29"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/invertir" />
 
                 <ImageView
                     android:id="@+id/imagenCat30"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/laptop" />
@@ -366,23 +366,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat31"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/maid" />
 
                 <ImageView
                     android:id="@+id/imagenCat32"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/movil" />
 
                 <ImageView
                     android:id="@+id/imagenCat33"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/navidad" />
@@ -399,23 +399,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat34"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/otras" />
 
                 <ImageView
                     android:id="@+id/imagenCat35"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/parq_atracciones" />
 
                 <ImageView
                     android:id="@+id/imagenCat36"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/premio" />
@@ -432,23 +432,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat37"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/prestamo" />
 
                 <ImageView
                     android:id="@+id/imagenCat38"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/restaurant" />
 
                 <ImageView
                     android:id="@+id/imagenCat39"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/restaurante" />
@@ -465,23 +465,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat40"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/salario" />
 
                 <ImageView
                     android:id="@+id/imagenCat41"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/school_bus" />
 
                 <ImageView
                     android:id="@+id/imagenCat42"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/taller" />
@@ -498,23 +498,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat43"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/taxi" />
 
                 <ImageView
                     android:id="@+id/imagenCat44"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/train" />
 
                 <ImageView
                     android:id="@+id/imagenCat45"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/venta" />
@@ -532,23 +532,23 @@
 
                 <ImageView
                     android:id="@+id/imagenCat46"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/viajee" />
 
                 <ImageView
                     android:id="@+id/imagenCat47"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/internet" />
 
                 <ImageView
                     android:id="@+id/imagenCatAux2"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp" />
             </LinearLayout>
