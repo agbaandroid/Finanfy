@@ -9,24 +9,23 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.database.GestionBBDD;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class DatabaseFragment extends Fragment {
     private static final String KEY_CONTENT = "DatabaseFragment:Content";
     private final String BD_NOMBRE = "BDGestionGastos";
     private SQLiteDatabase db;
     final GestionBBDD gestion = new GestionBBDD();
-    static final int MENSAJE_OK_DELETE = 5;
-    static final int MENSAJE_ERROR_DELETE = 4;
+
     static final int DATABASE_EXPORT = 1;
     static final int DATABASE_IMPORT = 2;
     static final int DATABASE_RESET = 3;
@@ -35,6 +34,7 @@ public class DatabaseFragment extends Fragment {
     private LinearLayout layoutExportar;
     private LinearLayout layoutImportar;
     private LinearLayout layoutReset;
+    private RelativeLayout layoutPubli;
 
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
@@ -88,6 +88,17 @@ public class DatabaseFragment extends Fragment {
         layoutImportar = (LinearLayout) getView().findViewById(R.id.layoutImport);
         layoutReset = (LinearLayout) getView().findViewById(R.id.layoutReset);
 
+        layoutPubli = (RelativeLayout) getView().findViewById(R.id.layoutPubli);
+
+        //Se carga la publicidad
+        AdView adView = (AdView) getView().findViewById(R.id.adView);
+        if (isPremium || isSinPublicidad) {
+            layoutPubli.setVisibility(View.GONE);
+        } else {
+            AdRequest adRequest = new AdRequest.Builder().build();
+            adView.loadAd(adRequest);
+        }
+
         layoutExportar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 onCreateDialog(DATABASE_EXPORT);
@@ -108,61 +119,6 @@ public class DatabaseFragment extends Fragment {
 
     }
 
-    // Aadiendo las opciones de men
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_setting, menu);
-    }
-
-    // Aadiendo funcionalidad a las opciones de men
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        /*LayoutInflater li = LayoutInflater.from(this);
-		View view = null;
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		AlertDialog alert;
-		switch (item.getItemId()) {
-		case R.id.btInfo:
-			view = li.inflate(R.layout.info, null);
-			builder.setView(view);
-			builder.setTitle(getResources().getString(R.string.informacion));
-			builder.setIcon(R.drawable.ic_info_azul);
-			builder.setCancelable(false);
-			builder.setPositiveButton(getResources()
-					.getString(R.string.aceptar),
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							dialog.cancel();
-						}
-					});
-			alert = builder.create();
-			alert.show();
-			return true;
-		case R.id.btAcerca:
-			view = li.inflate(R.layout.acerca, null);
-			builder.setView(view);
-			builder.setTitle(getResources().getString(R.string.app_name));
-			builder.setIcon(R.drawable.icon_app);
-			builder.setCancelable(false);
-			builder.setPositiveButton(getResources()
-					.getString(R.string.aceptar),
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							dialog.cancel();
-						}
-					});
-			alert = builder.create();
-			alert.show();
-			return true;
-		case android.R.id.home:
-			finish();
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}*/
-        return true;
-    }
-
     protected Dialog onCreateDialog(int id) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
@@ -174,7 +130,7 @@ public class DatabaseFragment extends Fragment {
                 view = li.inflate(R.layout.database_export, null);
                 builder.setView(view);
                 builder.setTitle(getResources().getString(R.string.exportar));
-                builder.setIcon(R.drawable.ic_database);
+                builder.setIcon(R.drawable.exportar);
                 builder.setCancelable(false);
                 builder.setPositiveButton(
                         getResources().getString(R.string.aceptar),
@@ -222,7 +178,7 @@ public class DatabaseFragment extends Fragment {
                 view = li.inflate(R.layout.database_import_pro, null);
                 builder.setView(view);
                 builder.setTitle(getResources().getString(R.string.botonImportPro));
-                builder.setIcon(R.drawable.ic_database);
+                builder.setIcon(R.drawable.importar);
                 builder.setCancelable(false);
                 builder.setPositiveButton(
                         getResources().getString(R.string.aceptar),
@@ -271,7 +227,7 @@ public class DatabaseFragment extends Fragment {
                 view = li.inflate(R.layout.database_import, null);
                 builder.setView(view);
                 builder.setTitle(getResources().getString(R.string.importar));
-                builder.setIcon(R.drawable.ic_database);
+                builder.setIcon(R.drawable.importar);
                 builder.setCancelable(false);
                 builder.setPositiveButton(
                         getResources().getString(R.string.aceptar),
@@ -320,7 +276,7 @@ public class DatabaseFragment extends Fragment {
                 view = li.inflate(R.layout.database, null);
                 builder.setView(view);
                 builder.setTitle(getResources().getString(R.string.reset));
-                builder.setIcon(R.drawable.ic_database);
+                builder.setIcon(R.drawable.restaurar);
                 builder.setCancelable(false);
                 builder.setPositiveButton(
                         getResources().getString(R.string.aceptar),

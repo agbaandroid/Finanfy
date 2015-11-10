@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.adapters.ListAdapterCatGrafico;
@@ -18,6 +19,8 @@ import com.agudoApp.salaryApp.database.GestionBBDD;
 import com.agudoApp.salaryApp.graficos.PieChartView;
 import com.agudoApp.salaryApp.model.Categoria;
 import com.agudoApp.salaryApp.model.Movimiento;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -34,6 +37,10 @@ public final class GraficoFragment extends Fragment {
     boolean isPremium = false;
     boolean isCategoriaPremium = false;
     boolean isSinPublicidad = false;
+
+    LinearLayout layoutSinRegistro;
+    LinearLayout layoutGrafico;
+    private RelativeLayout layoutPubli;
 
     private String mContent = "???";
 
@@ -83,18 +90,37 @@ public final class GraficoFragment extends Fragment {
 
         db = getActivity().openOrCreateDatabase(BD_NOMBRE, 1, null);
         if (db != null) {
-            listMov = gestion.getMovimientosExcelMes(db, mes, anio,
-                    idCuenta);
+            listMov = gestion.getMovimientosFiltros(db, mes, anio, idCuenta);
         }
         db.close();
 
+        layoutPubli = (RelativeLayout) getView().findViewById(R.id.layoutPubli);
+
+        //Se carga la publicidad
+        AdView adView = (AdView) getView().findViewById(R.id.adView);
+        if (isPremium || isSinPublicidad) {
+            layoutPubli.setVisibility(View.GONE);
+        } else {
+            AdRequest adRequest = new AdRequest.Builder().build();
+            adView.loadAd(adRequest);
+        }
+
         listMov = filtrarMovimientosGastos(listMov);
         LinearLayout layout = (LinearLayout) getView().findViewById(R.id.grafico);
+        layoutSinRegistro = (LinearLayout) getView().findViewById(R.id.layoutSinRegistro);
+        layoutGrafico = (LinearLayout) getView().findViewById(R.id.layoutGrafico);
         ArrayList<Categoria> listCat = obtenerListaCategorias(listMov);
         layout.addView(new PieChartView(getActivity(), null, listCat));
 
-        ListView listaCatGrafico = (ListView) getView().findViewById(R.id.listaCategoriasGrafico);
-        listaCatGrafico.setAdapter(new ListAdapterCatGrafico(getActivity(), listCat));
+        if(listMov.size()>0){
+            ListView listaCatGrafico = (ListView) getView().findViewById(R.id.listaCategoriasGrafico);
+            listaCatGrafico.setAdapter(new ListAdapterCatGrafico(getActivity(), listCat));
+            layoutSinRegistro.setVisibility(View.GONE);
+            layoutGrafico.setVisibility(View.VISIBLE);
+        }else{
+            layoutSinRegistro.setVisibility(View.VISIBLE);
+            layoutGrafico.setVisibility(View.GONE);
+        }
     }
 
     public int cuentaSeleccionada() {

@@ -51,7 +51,7 @@ public class AddTarjeta extends Activity implements OnClickListener {
 				boolean ok = false;
 				db = this.openOrCreateDatabase(BD_NOMBRE, 1, null);
 				if (db != null) {
-					ok = gestion.addTarjeta(db, text.trim(), 0);
+					//ok = gestion.addTarjeta(db, text.trim(), 0);
 				}
 				db.close();
 				if (ok) {

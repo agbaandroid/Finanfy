@@ -1,25 +1,24 @@
 package com.agudoApp.salaryApp.informes;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Locale;
+import android.os.Environment;
+
+import com.agudoApp.salaryApp.model.Movimiento;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFFont;
-import org.apache.poi.hssf.usermodel.HSSFPalette;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 
-import android.os.Environment;
-
-import com.agudoApp.salaryApp.model.Movimiento;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * Ejemplo sencillo de como crear una hoja Excel con POI
@@ -29,12 +28,7 @@ import com.agudoApp.salaryApp.model.Movimiento;
  */
 public class Informes {
 
-	/**
-	 * Crea una hoja Excel y la guarda.
-	 * 
-	 * @param args
-	 */
-	public static void CrearExcel(String nombre, ArrayList<Movimiento> listMov) {
+	public static File CrearExcel(String nombre, ArrayList<Movimiento> listMov) {
 		// Se crea el libro
 		HSSFWorkbook libro = new HSSFWorkbook();
 
@@ -80,7 +74,7 @@ public class Informes {
 		
 		if (languaje.equals("es") || languaje.equals("es-rUS")
 				|| languaje.equals("ca")) {
-			texto = new HSSFRichTextString("Control de Gastos");
+			texto = new HSSFRichTextString("Finanfy");
 			textoA3 = new HSSFRichTextString("  Id  ");
 			textoB3 = new HSSFRichTextString("  Fecha  ");
 			textoC3 = new HSSFRichTextString("  Concepto  ");
@@ -204,7 +198,7 @@ public class Informes {
 		try {
 			// Volcamos la informacin a un archivo.
 			File dbFile = new File(Environment.getExternalStorageDirectory(),
-					"/SalaryControl/excel");
+					"/Finanfy/excel");
 
 			if (!dbFile.exists()) {
 				dbFile.mkdirs();
@@ -229,8 +223,10 @@ public class Informes {
 			libro.write(archivoSalida);
 			archivoSalida.close();
 
+			return file;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
 	}
 

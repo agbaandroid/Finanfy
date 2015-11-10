@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -61,6 +62,8 @@ public class NuevoActivity extends AppCompatActivity {
     private Spinner spinnerSub;
     private Spinner spinnerTarjetas;
     private Spinner spinnerModoPago;
+
+    private RelativeLayout layoutPubli;
 
     private SQLiteDatabase db;
     final GestionBBDD gestion = new GestionBBDD();
@@ -187,7 +190,7 @@ public class NuevoActivity extends AppCompatActivity {
                         Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
                     }
-                }else{
+                } else {
                     Context context = getApplicationContext();
                     CharSequence text = "ES_Debe introducir una cantidad";
                     int duration = Toast.LENGTH_LONG;
@@ -234,11 +237,16 @@ public class NuevoActivity extends AppCompatActivity {
                 R.id.spinnerTarjetas);
         spinnerModoPago = (Spinner) findViewById(
                 R.id.spinnerTipoPago);
+        layoutPubli = (RelativeLayout) findViewById(R.id.layoutPubli);
 
         //Se carga la publicidad
         AdView adView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+        if (isPremium || isSinPublicidad) {
+            layoutPubli.setVisibility(View.GONE);
+        } else {
+            AdRequest adRequest = new AdRequest.Builder().build();
+            adView.loadAd(adRequest);
+        }
 
         updateDisplay();
 
@@ -334,9 +342,24 @@ public class NuevoActivity extends AppCompatActivity {
     }
 
     private void updateDisplay() {
+        String mes;
+        String dia;
+
+        if ((mMonth + 1) < 10) {
+            mes = "0" + String.valueOf(mMonth + 1);
+        } else {
+            mes = String.valueOf(mMonth + 1);
+        }
+
+        if (mDay < 10) {
+            dia = "0" + String.valueOf(mDay);
+        } else {
+            dia = String.valueOf(mDay);
+        }
+
         txtFecha.setText(new StringBuilder()
                 // Month is 0 based so add 1
-                .append(mDay).append("-").append(mMonth + 1).append("-")
+                .append(dia).append("-").append(mes).append("-")
                 .append(mYear).append(" "));
     }
 

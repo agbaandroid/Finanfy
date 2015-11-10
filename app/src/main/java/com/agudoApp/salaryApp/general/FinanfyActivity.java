@@ -7,31 +7,33 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.agudoApp.salaryApp.R;
-import com.agudoApp.salaryApp.activities.Preferences;
+import com.agudoApp.salaryApp.activities.CuentasActivity;
 import com.agudoApp.salaryApp.activities.SeguridadComprobar;
 import com.agudoApp.salaryApp.adapters.ListAdapterNavigator;
 import com.agudoApp.salaryApp.database.GestionBBDD;
 import com.agudoApp.salaryApp.fragments.CategoriasFragment;
-import com.agudoApp.salaryApp.fragments.CuentasFragment;
 import com.agudoApp.salaryApp.fragments.DatabaseFragment;
 import com.agudoApp.salaryApp.fragments.EstadisticasFragment;
 import com.agudoApp.salaryApp.fragments.GraficoFragment;
@@ -39,24 +41,29 @@ import com.agudoApp.salaryApp.fragments.NuevoResumenFragment;
 import com.agudoApp.salaryApp.fragments.NuevoTarjetasFragment;
 import com.agudoApp.salaryApp.fragments.RegistrosFijosFragment;
 import com.agudoApp.salaryApp.fragments.SeguridadFragment;
+import com.agudoApp.salaryApp.fragments.TiendaFragment;
 import com.agudoApp.salaryApp.model.Cuenta;
+import com.agudoApp.salaryApp.util.Util;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
-public class FinanfyActivity extends ActionBarActivity {
-	// Menu navegacin
+public class FinanfyActivity extends AppCompatActivity {
 	private String[] titlesMenu;
 	private String[] titlesMenuMayusculas;
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
-	private ListView navList;
-	private ListView filterList;
+	private ListView navList, left_cuentas;
+	private LinearLayout layoutCuentas, layoutGestionCuentas, layoutHeader, layoutHeader2;
+	private LinearLayout left_drawer_cuentas;
 	private DrawerLayout navDrawerLayout;
 	private ActionBarDrawerToggle actionBarDrawer;
 	private ListAdapterNavigator mAdapter;
+	private ListAdapterCuentasNavigator mAdapterCuentas;
 	private final String BD_NOMBRE = "BDGestionGastos";
 	private SQLiteDatabase db;
 	final GestionBBDD gestion = new GestionBBDD();
@@ -80,6 +87,9 @@ public class FinanfyActivity extends ActionBarActivity {
 	// Seguridad
 	boolean appIniciada;
 	boolean seguridadActivada;
+	boolean listaCuentas;
+
+	ArrayList<Cuenta> listCuentas;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -121,18 +131,27 @@ public class FinanfyActivity extends ActionBarActivity {
 		// comprobarProductos();
 
 		View header = getLayoutInflater().inflate(R.layout.header, null);
+		View headerCuentas = getLayoutInflater().inflate(R.layout.header_cuentas, null);
 		View footer = getLayoutInflater().inflate(R.layout.footer, null);
 
 
 		navDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		navList = (ListView) findViewById(R.id.left_drawer);
+		left_drawer_cuentas = (LinearLayout) findViewById(R.id.left_drawer_cuentas);
+		left_cuentas = (ListView) findViewById(R.id.left_cuentas);
+		layoutCuentas = (LinearLayout) findViewById(R.id.layoutCuentas);
+		layoutGestionCuentas = (LinearLayout) findViewById(R.id.layoutGestionCuentas);
+		layoutHeader = (LinearLayout) findViewById(R.id.layoutHeader);
+		layoutHeader2 = (LinearLayout) findViewById(R.id.layoutHeader2);
 
 		navList.addHeaderView(header);
 		navList.addFooterView(footer);
 
+		left_cuentas.addHeaderView(headerCuentas);
+
 		mTitle = mDrawerTitle = getTitle();
 
-
+		layoutCuentas.setVisibility(View.GONE);
 
 		actionBarDrawer = new ActionBarDrawerToggle(this, navDrawerLayout,
 				R.string.aceptar, R.string.cancelar) {
@@ -161,13 +180,16 @@ public class FinanfyActivity extends ActionBarActivity {
 		// Set previous array as adapter of the list
 		mAdapter = new ListAdapterNavigator(this, titlesMenuMayusculas);
 		navList.setAdapter(mAdapter);
-
-
-
 		navList.setOnItemClickListener(new DrawerItemClickListener());
+		left_cuentas.setOnItemClickListener(new DrawerItemClickListener());
+
+		listCuentas = new ArrayList<Cuenta>();
+		listCuentas = obtenerCuentas();
+
+		mAdapterCuentas = new ListAdapterCuentasNavigator(this, listCuentas);
+		left_cuentas.setAdapter(mAdapterCuentas);
 
 		ImageView closfyIcon = (ImageView) findViewById(R.id.closfyIcon);
-		ImageView daysCounter = (ImageView) findViewById(R.id.daysCounterIcon);
 		ImageView twitter = (ImageView) findViewById(R.id.twitterIcon);
 
 		interstitial.setAdListener(new AdListener() {
@@ -192,16 +214,6 @@ public class FinanfyActivity extends ActionBarActivity {
 				startActivity(intent1);
 			}
 		});
-		
-		daysCounter.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				Intent intent1 = null;
-				intent1 = new Intent(
-						"android.intent.action.VIEW",
-						Uri.parse("https://play.google.com/store/apps/details?id=com.agba.dayscounter"));
-				startActivity(intent1);
-			}
-		});
 
 		twitter.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -210,6 +222,21 @@ public class FinanfyActivity extends ActionBarActivity {
 				startActivity(browserIntent);
 			}
 		});
+
+		layoutGestionCuentas.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(FinanfyActivity.this, CuentasActivity.class);
+				startActivityForResult(intent, 1);
+
+				navList.setVisibility(View.VISIBLE);
+				layoutCuentas.setVisibility(View.GONE);
+
+				listaCuentas = false;
+
+				navDrawerLayout.closeDrawer(left_drawer_cuentas);
+			}
+		});
+
 	}
 
 	@Override
@@ -249,9 +276,18 @@ public class FinanfyActivity extends ActionBarActivity {
 		Fragment fragment = null;
 
 		switch (position - 1) {
-		case -1:
-			fragment = new CuentasFragment();
-			break;
+			case -1:
+				//fragment = new CuentasFragment();
+				if(listaCuentas){
+					listaCuentas = false;
+					navList.setVisibility(View.VISIBLE);
+					layoutCuentas.setVisibility(View.GONE);
+				}else {
+					listaCuentas = true;
+					navList.setVisibility(View.GONE);
+					layoutCuentas.setVisibility(View.VISIBLE);
+				}
+				break;
 		case 0:
 			fragment = new NuevoResumenFragment(isPremium, isSinPublicidad,
 					isCategoriaPremium);
@@ -284,21 +320,21 @@ public class FinanfyActivity extends ActionBarActivity {
 			fragment = new EstadisticasFragment(isPremium, isSinPublicidad,
 					isCategoriaPremium);
 			break;
+		//case 8:
+			//Intent intent = new Intent(this, Preferences.class);
+			//startActivity(intent);
+			//break;
 		case 8:
-			Intent intent = new Intent(this, Preferences.class);
-			startActivity(intent);
-			break;
-		case 9:
 			Intent intent1 = null;
 			intent1 = new Intent(
 					"android.intent.action.VIEW",
 					Uri.parse("https://play.google.com/store/apps/details?id=com.agudoApp.salaryApp"));
 			startActivity(intent1);
 			break;
-		case 10:
-			/*fragment = new TiendaFragment(isPremium, isSinPublicidad,
+		case 9:
+			fragment = new TiendaFragment(isPremium, isSinPublicidad,
 					isCategoriaPremium);
-			break;*/
+			break;
 		default:
 			break;
 		}
@@ -309,18 +345,16 @@ public class FinanfyActivity extends ActionBarActivity {
 					.replace(R.id.content_frame, fragment).commit();
 
 			navList.setItemChecked(position, true);
-			TextView textoHeader = (TextView) findViewById(R.id.txtHeader);
+			TextView textoHeader = (TextView) findViewById(R.id.nombreCuenta);
+
 
 			if (position != 0) {
 				setTitle(titlesMenu[position - 1]);
 				mAdapter.setSelectedItem(position - 1);
 				//textoHeader.setTextColor(Color.GRAY);
-			} else {
-				setTitle("Es_Cuentas");
-				mAdapter.setSelectedItem(99);
-				textoHeader.setTextColor(Color.argb(255, 0, 163, 232));
 			}
-			navDrawerLayout.closeDrawer(navList);
+
+			navDrawerLayout.closeDrawer(left_drawer_cuentas);
 		} else {
 			Log.e("MainActivity", "Error in creating fragment");
 		}
@@ -372,12 +406,20 @@ public class FinanfyActivity extends ActionBarActivity {
 	@Override
 	protected void onResume() {
 		prefs = getSharedPreferences("ficheroConf", Context.MODE_PRIVATE);
-		TextView textoHeader = (TextView) findViewById(R.id.txtHeader);
+		TextView textoHeader = (TextView) findViewById(R.id.nombreCuenta);
+		ImageView idIcon = (ImageView) findViewById(R.id.iconCuenta);
+
+		TextView textoHeader2 = (TextView) findViewById(R.id.nombreCuenta2);
+		ImageView idIcon2 = (ImageView) findViewById(R.id.iconCuenta2);
+
 		int cuen = cuentaSeleccionada();
 		db = openOrCreateDatabase(BD_NOMBRE, 1, null);
 		if (db != null) {
 			Cuenta cuenta = gestion.getCuentaSeleccionada(db, cuen);
 			textoHeader.setText(cuenta.getDescCuenta());
+			idIcon.setBackgroundResource(Util.obtenerIconoUser(cuenta.getIdIcon()));
+			textoHeader2.setText(cuenta.getDescCuenta());
+			idIcon2.setBackgroundResource(Util.obtenerIconoUser(cuenta.getIdIcon()));
 		}
 		db.close();
 		super.onResume();
@@ -400,6 +442,12 @@ public class FinanfyActivity extends ActionBarActivity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
+
+		listCuentas = obtenerCuentas();
+
+		mAdapterCuentas = new ListAdapterCuentasNavigator(this, listCuentas);
+		left_cuentas.setAdapter(mAdapterCuentas);
+
 		prefs = this.getSharedPreferences("ficheroConf", Context.MODE_PRIVATE);
 		boolean isCompra = prefs.getBoolean("isCompra", false);
 		if (isCompra && resultCode == -1) {
@@ -412,6 +460,8 @@ public class FinanfyActivity extends ActionBarActivity {
 			editor.putBoolean("isCompra", false);
 			editor.commit();
 		}
+
+
 	}
 
 	void alert(String message) {
@@ -420,24 +470,6 @@ public class FinanfyActivity extends ActionBarActivity {
 		bld.setNeutralButton(getResources().getString(R.string.ok), null);
 		bld.create().show();
 	}
-
-	/** Verifica la "developer payload" de una compra */
-	/*boolean verifyDeveloperPayload(Purchase p) {
-		return true;
-	}
-
-	void error(String message) {
-		alert(message);
-	}*/
-
-	// public boolean onKeyDown(int keyCode, KeyEvent event) {
-	// if (keyCode == KeyEvent.KEYCODE_BACK) {
-	// finish();
-	// } else if (keyCode == KeyEvent.KEYCODE_HOME) {
-	// finish();
-	// }
-	// return true;
-	// }
 
 	public int cuentaSeleccionada() {
 		prefs = getSharedPreferences("ficheroConf", Context.MODE_PRIVATE);
@@ -480,6 +512,127 @@ public class FinanfyActivity extends ActionBarActivity {
 			onBackPressedToast.cancel();
 			super.onBackPressed();
 		}
+	}
+
+	public ArrayList<Cuenta> obtenerCuentas(){
+		ArrayList<Cuenta> listCuentas = new ArrayList<Cuenta>();
+		db = openOrCreateDatabase(BD_NOMBRE, 1, null);
+		if (db != null) {
+			listCuentas = (ArrayList) gestion.getCuentas(db);
+		}
+		return listCuentas;
+	}
+
+	public class ListAdapterCuentasNavigator extends BaseAdapter {
+		private LayoutInflater mInflater;
+		private int mSelectedItem;
+		private ArrayList<Cuenta> lCuentas;
+		Locale locale = Locale.getDefault();
+
+		public ListAdapterCuentasNavigator(Context context, ArrayList<Cuenta> lista) {
+			lCuentas = lista;
+			mInflater = LayoutInflater.from(context);
+		}
+
+		@Override
+		public int getCount() {
+			// TODO Auto-generated method stub
+			return lCuentas.size();
+		}
+
+		@Override
+		public Object getItem(int position) {
+			// TODO Auto-generated method stub
+			return lCuentas.get(position);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			// TODO Auto-generated method stub
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			TextView text;
+			ImageView icon;
+			LinearLayout layoutNavigator;
+
+			if (convertView == null) {
+				convertView = mInflater.inflate(R.layout.lista_navigator_cuentas, null);
+			}
+
+			text = (TextView) convertView.findViewById(R.id.textNavigatorCuentas);
+			icon = (ImageView) convertView.findViewById(R.id.iconNavigatorCuentas);
+			layoutNavigator = (LinearLayout) convertView.findViewById(R.id.layoutNavigatorCuentas);
+			text.setText(lCuentas.get(position).getDescCuenta());
+
+			icon.setBackgroundResource(Util.obtenerIconoUser(lCuentas.get(position).getIdIcon()));
+
+			layoutNavigator.setTag(position);
+
+			layoutNavigator.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					int posiSel = (int) v.getTag();
+					Cuenta cuenta = listCuentas.get(posiSel);
+					seleccionarCuenta(cuenta.getIdCuenta());
+
+					Fragment fragment = new NuevoResumenFragment(isPremium, isSinPublicidad,
+							isCategoriaPremium);
+
+					FragmentManager fragmentManager = getSupportFragmentManager();
+					fragmentManager.beginTransaction()
+							.replace(R.id.content_frame, fragment).commit();
+
+					navList.setItemChecked(1, true);
+					setTitle(titlesMenu[0]);
+					mAdapter.setSelectedItem(0);
+
+					navList.setVisibility(View.VISIBLE);
+					layoutCuentas.setVisibility(View.GONE);
+
+					listaCuentas = false;
+
+					navDrawerLayout.closeDrawer(left_drawer_cuentas);
+				}
+			});
+
+			return convertView;
+		}
+
+		public int getSelectedItem() {
+			return mSelectedItem;
+		}
+
+		public void setSelectedItem(int selectedItem) {
+			mSelectedItem = selectedItem;
+		}
+
+	}
+
+	public void seleccionarCuenta(String idCuenta) {
+		prefs = getSharedPreferences("ficheroConf", Context.MODE_PRIVATE);
+		editor = prefs.edit();
+		editor.putInt("cuenta", Integer.parseInt(idCuenta));
+		editor.commit();
+
+		TextView textoHeader = (TextView) findViewById(R.id.nombreCuenta);
+		ImageView idIcon = (ImageView) findViewById(R.id.iconCuenta);
+
+		TextView textoHeader2 = (TextView) findViewById(R.id.nombreCuenta2);
+		ImageView idIcon2 = (ImageView) findViewById(R.id.iconCuenta2);
+
+		int cuen = cuentaSeleccionada();
+		db = openOrCreateDatabase(BD_NOMBRE, 1, null);
+		if (db != null) {
+			Cuenta cuenta = gestion.getCuentaSeleccionada(db, cuen);
+			textoHeader.setText(cuenta.getDescCuenta());
+			idIcon.setBackgroundResource(Util.obtenerIconoUser(cuenta.getIdIcon()));
+			textoHeader2.setText(cuenta.getDescCuenta());
+			idIcon2.setBackgroundResource(Util.obtenerIconoUser(cuenta.getIdIcon()));
+		}
+		db.close();
 	}
 
 }

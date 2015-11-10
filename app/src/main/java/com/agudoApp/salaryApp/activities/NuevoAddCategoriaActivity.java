@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.agudoApp.salaryApp.R;
@@ -33,6 +34,10 @@ public class NuevoAddCategoriaActivity extends AppCompatActivity {
     ImageView icon;
     LinearLayout layoutAddIcon;
     EditText descripcion;
+    private RelativeLayout layoutPubli;
+
+    boolean isPremium;
+    boolean isSinPublicidad;
     boolean isCategoria;
 
     int idIcon;
@@ -95,9 +100,9 @@ public class NuevoAddCategoriaActivity extends AppCompatActivity {
 
                     db = openOrCreateDatabase(BD_NOMBRE, 1, null);
                     if (db.isOpen()) {
-                        if(isCategoria) {
+                        if (isCategoria) {
                             ok = gestion.addCategoria(db, text.trim(), idIcon);
-                        }else{
+                        } else {
                             ok = gestion.addSubcategoria(db, text.trim(), idIcon);
                         }
                     }
@@ -143,10 +148,16 @@ public class NuevoAddCategoriaActivity extends AppCompatActivity {
         layoutParams.gravity = Gravity.CENTER_HORIZONTAL | Gravity.CENTER_HORIZONTAL;
         getSupportActionBar().setCustomView(actionBarButtons, layoutParams);
 
+        layoutPubli = (RelativeLayout) findViewById(R.id.layoutPubli);
+
         //Se carga la publicidad
         AdView adView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+        if (isPremium || isSinPublicidad) {
+            layoutPubli.setVisibility(View.GONE);
+        } else {
+            AdRequest adRequest = new AdRequest.Builder().build();
+            adView.loadAd(adRequest);
+        }
 
         layoutAddIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,15 +173,10 @@ public class NuevoAddCategoriaActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            switch (requestCode) {
-                case CATEGORIA_ICON:
-                    idIcon = getIconoId();
-                    icon.setBackgroundDrawable(getResources().getDrawable(
-                            Util.obtenerIconoCategoria(idIcon)));
-                    break;
-            }
-        }
+
+        idIcon = getIconoId();
+        icon.setBackgroundDrawable(getResources().getDrawable(
+                Util.obtenerIconoCategoria(idIcon)));
     }
 
     public int getIconoId() {

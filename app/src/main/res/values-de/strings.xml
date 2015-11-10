@@ -349,7 +349,7 @@
         <item>Sicherheit</item>
         <item>Datenbank</item>
         <item>Statistik</item>
-        <item>Konfiguration</item>
+        <!--<item>Konfiguration</item>-->
         <item>Bewerten Sie die App</item>
         <item>Geschäft</item>
     </string-array>
@@ -363,7 +363,7 @@
         <item>SICHERHEIT</item>
         <item>DATENBANK</item>
         <item>STATISTIK</item>
-        <item>KONFIGURATION</item>
+        <!--<item>KONFIGURATION</item>-->
         <item>BEWERTEN SIE DIE APP</item>
         <item>GESCHÄFT</item>
     </string-array>

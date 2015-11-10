@@ -195,9 +195,9 @@ public class EditRecTexto extends Activity {
 					db = openOrCreateDatabase(BD_NOMBRE, 1, null);
 					if (db != null) {
 						// Introducimos el movimiento en BBDD
-						ok = gestion.editarRecibo(db, id, cant, desc,
-								idCategoria, idSubcategoria, fechaIni,
-								fechaFin, tarjeta, idTarjeta);
+						//ok = gestion.editarRecibo(db, id, cant, desc,
+						//		idCategoria, idSubcategoria, fechaIni,
+						//		fechaFin, tarjeta, idTarjeta);
 					}
 					db.close();
 					if (ok) {

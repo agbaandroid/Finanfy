@@ -357,7 +357,7 @@
         <item>Sécurité</item>
         <item>Base de données</item>
         <item>Statistiques</item>
-        <item>Paramètres</item>
+        <!--<item>Paramètres</item>-->
         <item>Évaluer l’application</item>
         <item>Boutique</item>
     </string-array>
@@ -371,7 +371,7 @@
         <item>SÉCURITÉ</item>
         <item>BASE DE DONÉES</item>
         <item>STATISTIQUES</item>
-        <item>PARAMÈTRES</item>
+        <!--<item>PARAMÈTRES</item>-->
         <item>ÉVALUER L’APPLICATION</item>
         <item>BOUTIQUE</item>
     </string-array>

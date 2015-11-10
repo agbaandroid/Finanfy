@@ -63,7 +63,7 @@ public class EditTarTexto extends Activity implements OnClickListener {
 				boolean ok = false;
 				db = this.openOrCreateDatabase(BD_NOMBRE, 1, null);
 				if (db != null) {
-					ok = gestion.editTarjeta(db, text.trim(), id);
+					//ok = gestion.editTarjeta(db, text.trim(), id);
 				}
 				db.close();
 				if (ok) {

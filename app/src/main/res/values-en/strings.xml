@@ -321,7 +321,7 @@
         <item>Security</item>
         <item>Database</item>
         <item>Statistics</item>
-        <item>Settings</item>
+        <!--<item>Settings</item>-->
         <item>Rate the app</item>
         <item>Shop</item>
     </string-array>
@@ -335,7 +335,7 @@
         <item>SECURITY</item>
         <item>DATABASE</item>
         <item>STATISTICS</item>
-        <item>SETTINGS</item>
+        <!--<item>SETTINGS</item>-->
         <item>RATE THE APP</item>
         <item>SHOP</item>
     </string-array>

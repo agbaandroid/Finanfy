@@ -103,29 +103,6 @@ public class CargandoActivity extends Activity {
 		skuList.add(SKU_SIN_PUBLICIDAD);
 		Bundle querySkus = new Bundle();
 		querySkus.putStringArrayList("ITEM_ID_LIST", skuList);
-
-		//Consulta de detalles del producto integrado
-//		try {
-//			Bundle skuDetails = mService.getSkuDetails(3,
-//					   getPackageName(), "inapp", querySkus);
-//			
-//			int response = skuDetails.getInt("RESPONSE_CODE");
-//			if (response == 0) {
-//			   ArrayList<String> responseList
-//			      = skuDetails.getStringArrayList("DETAILS_LIST");
-//
-//			   for (String thisResponse : responseList) {
-//			      JSONObject object = new JSONObject(thisResponse);
-//			      String sku = object.getString("productId");
-//			      String price = object.getString("price");
-////			      if (sku.equals("premiumUpgrade")) mPremiumUpgradePrice = price;
-////			      else if (sku.equals("gas")) mGasPrice = price;
-//			   }
-//			}
-//		} catch (Exception e2) {
-//			// TODO Auto-generated catch block
-//			return;
-//		}
 		
 		Bundle ownedItems;
 		try {
@@ -137,18 +114,10 @@ public class CargandoActivity extends Activity {
 						.getStringArrayList("INAPP_PURCHASE_ITEM_LIST");
 				ArrayList<String> purchaseDataList = ownedItems
 						.getStringArrayList("INAPP_PURCHASE_DATA_LIST");
-				// ArrayList<String> signatureList = ownedItems
-				// .getStringArrayList("INAPP_DATA_SIGNATURE");
-				// String continuationToken = ownedItems
-				// .getString("INAPP_CONTINUATION_TOKEN");
 
 				for (int i = 0; i < purchaseDataList.size(); ++i) {
-					// String purchaseData = (String) purchaseDataList.get(i);
-					// String signature = (String) signatureList.get(i);
 					String sku = (String) ownedSkus.get(i);
 
-					// do something with this purchase information
-					// e.g. display the updated list of products owned by user
 					if (sku.equals(SKU_COMPRA_PREMIUM)) {
 						isPremium = true;
 					}
@@ -166,13 +135,12 @@ public class CargandoActivity extends Activity {
 		} catch (RemoteException e1) {
 			return;
 		}
-		// } catch (Exception e){
-		// return;
-		// }
-		// if continuationToken != null, call getPurchases again
-		// and pass in the token to retrieve more items
 
 		if (!isPremium && gestion.existeBDPro()) {
+			isPremium = true;
+		}
+
+		if(isSinPublicidad && isCategoriaPremium){
 			isPremium = true;
 		}
 

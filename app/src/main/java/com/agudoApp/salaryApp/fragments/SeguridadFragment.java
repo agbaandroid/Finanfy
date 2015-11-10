@@ -9,12 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.activities.SeguridadAntigua;
 import com.agudoApp.salaryApp.activities.SeguridadComprobar;
 import com.agudoApp.salaryApp.activities.SeguridadIntroducir;
 import com.agudoApp.salaryApp.database.GestionBBDD;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class SeguridadFragment extends Fragment {
 	private static final String KEY_CONTENT = "SeguridadFragment:Content";
@@ -26,6 +29,8 @@ public class SeguridadFragment extends Fragment {
 
 	SharedPreferences prefs;
 	SharedPreferences.Editor editor;
+
+	private RelativeLayout layoutPubli;
 
 	// Productos que posee el usuario
 	boolean isPremium = false;
@@ -82,6 +87,17 @@ public class SeguridadFragment extends Fragment {
 				R.id.layoutDesactivar);
 		layoutModificar = (LinearLayout) getView().findViewById(
 				R.id.layoutModificar);
+
+		layoutPubli = (RelativeLayout) getView().findViewById(R.id.layoutPubli);
+
+		//Se carga la publicidad
+		AdView adView = (AdView) getView().findViewById(R.id.adView);
+		if (isPremium || isSinPublicidad) {
+			layoutPubli.setVisibility(View.GONE);
+		} else {
+			AdRequest adRequest = new AdRequest.Builder().build();
+			adView.loadAd(adRequest);
+		}
 
 		if (seguridadAct) {
 			layoutActivar.setVisibility(View.GONE);

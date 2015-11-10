@@ -19,6 +19,8 @@ import com.agudoApp.salaryApp.database.GestionBBDD;
 import com.agudoApp.salaryApp.informes.DatosGrafico;
 import com.agudoApp.salaryApp.informes.DatosInforme;
 import com.agudoApp.salaryApp.informes.GraficoRoscoActivity;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public final class InformesFragment extends Fragment {
 	private static final String KEY_CONTENT = "InformesFragment:Content";
@@ -99,6 +101,11 @@ public final class InformesFragment extends Fragment {
 		prefs = getActivity().getSharedPreferences("ficheroConf",
 				Context.MODE_PRIVATE);
 		editor = prefs.edit();
+
+		//Se carga la publicidad
+		AdView adView = (AdView) this.getView().findViewById(R.id.adView);
+		AdRequest adRequest = new AdRequest.Builder().build();
+		adView.loadAd(adRequest);
 
 		excel.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {

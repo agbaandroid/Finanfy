@@ -319,7 +319,7 @@
         <item>Segurança</item>
         <item>Banco de dados</item>
         <item>Estatísticas</item>
-        <item>Configurações</item>
+        <!--<item>Configurações</item>-->
         <item>Taxa de Aplicação</item>
         <item>Loja</item>
     </string-array>
@@ -333,7 +333,7 @@
         <item>SEGURANÇA</item>
         <item>BANCO DE DADOS</item>
         <item>ESTATÍSTICAS</item>
-        <item>CONFIGURAÇÕES</item>
+        <!--<item>CONFIGURAÇÕES</item>-->
         <item>TAXA DE APLICAÇÃO</item>
         <item>LOJA</item>
     </string-array>

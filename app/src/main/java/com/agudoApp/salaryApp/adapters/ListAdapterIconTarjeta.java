@@ -9,17 +9,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.agudoApp.salaryApp.R;
-import com.agudoApp.salaryApp.model.IconTarjeta;
+import com.agudoApp.salaryApp.model.Icon;
 import com.agudoApp.salaryApp.util.Util;
 
 import java.util.ArrayList;
 
 public class ListAdapterIconTarjeta extends BaseAdapter {
     private LayoutInflater mInflater;
-    private ArrayList<IconTarjeta> listaIcon = new ArrayList<IconTarjeta>();
+    private ArrayList<Icon> listaIcon = new ArrayList<Icon>();
     private Context context;
 
-    public ListAdapterIconTarjeta(Context context, ArrayList<IconTarjeta> lista) {
+    public ListAdapterIconTarjeta(Context context, ArrayList<Icon> lista) {
         listaIcon = lista;
         mInflater = LayoutInflater.from(context);
         this.context = context;
@@ -40,7 +40,7 @@ public class ListAdapterIconTarjeta extends BaseAdapter {
     public int getPositionById(String id) {
         int posi = 0;
         for (int i = 0; i < listaIcon.size(); i++) {
-            IconTarjeta icon = listaIcon.get(i);
+            Icon icon = listaIcon.get(i);
             if (icon.getId() == Integer.parseInt(id)) {
                 posi = i;
                 break;

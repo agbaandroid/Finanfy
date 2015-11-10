@@ -81,6 +81,7 @@ public class RecibosFragment extends Fragment {
 		botonDeleteRecibo = (Button) getView().findViewById(
 				R.id.botonDeleteRecibo);
 
+
 		botonAddRecibo.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent in = new Intent(getActivity(), Recibos.class);

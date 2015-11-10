@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.agudoApp.salaryApp.R;
@@ -42,10 +43,15 @@ public class NuevoEditCategoriaActivity extends AppCompatActivity {
     EditText descripcion;
     String descripcionAntigua;
     String idCategoria;
-    boolean isCategoria;
     private int idIconAntiguo;
     private int idIcon;
     Categoria cat;
+
+    private RelativeLayout layoutPubli;
+
+    boolean isPremium;
+    boolean isSinPublicidad;
+    boolean isCategoria;
 
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
@@ -178,10 +184,16 @@ public class NuevoEditCategoriaActivity extends AppCompatActivity {
         layoutParams.gravity = Gravity.CENTER_HORIZONTAL | Gravity.CENTER_HORIZONTAL;
         getSupportActionBar().setCustomView(actionBarButtons, layoutParams);
 
+        layoutPubli = (RelativeLayout) findViewById(R.id.layoutPubli);
+
         //Se carga la publicidad
         AdView adView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+        if (isPremium || isSinPublicidad) {
+            layoutPubli.setVisibility(View.GONE);
+        } else {
+            AdRequest adRequest = new AdRequest.Builder().build();
+            adView.loadAd(adRequest);
+        }
 
         layoutAddIcon.setOnClickListener(new View.OnClickListener() {
             @Override

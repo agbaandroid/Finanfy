@@ -7,4 +7,5 @@
     <item name="txtGrisTitulo" type="color">#656565</item>
     <item name="txtNegro" type="color">#000000</item>
     <item name="txtAzul" type="color">#2a99bc</item>
+    <item name="txtAzulMes" type="color">#339db5</item>
 </resources>

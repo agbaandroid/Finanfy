@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <RelativeLayout xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/layoutPubli"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
@@ -60,12 +61,12 @@
 
                 <ImageView
                     android:id="@+id/prevMonth"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginRight="15dp"
                     android:gravity="right|center_vertical"
-                    android:src="@drawable/arrow_left"></ImageView>
+                    android:src="@drawable/arrow_leftb"></ImageView>
             </LinearLayout>
 
             <LinearLayout
@@ -82,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|center_horizontal"
                     android:gravity="center_vertical|center_horizontal"
-                    android:textColor="@color/txtAzul"
+                    android:textColor="@color/txtAzulMes"
                     android:textSize="18dp"></TextView>
 
                 <TextView
@@ -92,7 +93,7 @@
                     android:layout_gravity="center_vertical|center_horizontal"
                     android:gravity="center_vertical|center_horizontal"
                     android:layout_marginLeft="10dp"
-                    android:textColor="@color/txtAzul"
+                    android:textColor="@color/txtAzulMes"
                     android:textSize="18dp"></TextView>
             </LinearLayout>
 
@@ -105,12 +106,12 @@
 
                 <ImageView
                     android:id="@+id/nextMonth"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="15dp"
                     android:gravity="center_vertical"
-                    android:src="@drawable/arrow_right" />
+                    android:src="@drawable/arrow_rightb" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -136,7 +137,7 @@
             <LinearLayout
                 android:id="@+id/layoutSinRegistro"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:gravity="center_vertical|center_horizontal"
                 android:orientation="vertical"
@@ -145,8 +146,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="No hay registros"
-                    android:textColor="#000000"
+                    android:text="ES_No hay registros"
+                    android:textColor="@color/txtGris"
                     android:textSize="16dp" />
             </LinearLayout>
 

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,6 +27,7 @@ import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -36,14 +38,17 @@ import com.agudoApp.salaryApp.adapters.ListAdapterSpinner;
 import com.agudoApp.salaryApp.adapters.ListaAdapterResumenExpandibleAdapter;
 import com.agudoApp.salaryApp.adapters.ListaAdapterResumenExpandibleSubAdapter;
 import com.agudoApp.salaryApp.database.GestionBBDD;
+import com.agudoApp.salaryApp.informes.Informes;
 import com.agudoApp.salaryApp.model.Categoria;
 import com.agudoApp.salaryApp.model.Movimiento;
+import com.agudoApp.salaryApp.model.Recibo;
 import com.agudoApp.salaryApp.model.Tarjeta;
 import com.agudoApp.salaryApp.util.Util;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
-import java.text.DecimalFormat;
+import java.io.File;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -68,6 +73,7 @@ public class NuevoResumenFragment extends Fragment {
     protected ExpandableListView listMovCatView;
     ListaAdapterResumenExpandibleAdapter listAdapterCategorias;
     ListaAdapterResumenExpandibleSubAdapter listAdapterSubcategorias;
+    LinearLayout layoutSinRegistro;
 
     private DrawerLayout drawer;
 
@@ -94,6 +100,7 @@ public class NuevoResumenFragment extends Fragment {
     private LinearLayout btnFechaDesde;
     private LinearLayout btnFechaHasta;
     private LinearLayout layoutTarjetasFiltro;
+    private RelativeLayout layoutPubli;
 
     private LinearLayout filtros;
 
@@ -108,7 +115,9 @@ public class NuevoResumenFragment extends Fragment {
     private float total;
 
     SharedPreferences prefs;
+    SharedPreferences prefsFiltros;
     SharedPreferences.Editor editor;
+    SharedPreferences.Editor editorFiltros;
 
     private int mYear;
     private int mMonth;
@@ -120,9 +129,13 @@ public class NuevoResumenFragment extends Fragment {
     private int mMonthHasta;
     private int mDayHasta;
 
+    ArrayList<Categoria> listCategorias;
+    ArrayList<Categoria> listSubcategorias;
+    ArrayList<Tarjeta> listTarjetas;
+
     private int idCuenta;
-    private boolean gastoPulsado;
-    private boolean ingresoPulsado;
+    private boolean gastoPulsado = true;
+    private boolean ingresoPulsado = true;
     private int tipoFiltro;
 
     // Productos que posee el usuario
@@ -200,11 +213,17 @@ public class NuevoResumenFragment extends Fragment {
         mesSiguiente = (LinearLayout) getView().findViewById(R.id.layoutRight);
         txtGasto = (TextView) getActivity().findViewById(R.id.txtGasto);
         txtIngreso = (TextView) getActivity().findViewById(R.id.txtIngreso);
+        layoutSinRegistro = (LinearLayout) getView().findViewById(R.id.layoutSinRegistro);
+        layoutPubli = (RelativeLayout) getView().findViewById(R.id.layoutPubli);
 
         //Se carga la publicidad
         AdView adView = (AdView) getActivity().findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+        if(isPremium || isSinPublicidad){
+            layoutPubli.setVisibility(View.GONE);
+        }else{
+            AdRequest adRequest = new AdRequest.Builder().build();
+            adView.loadAd(adRequest);
+        }
 
         obternerFechaActual();
         idCuenta = cuentaSeleccionada();
@@ -212,6 +231,13 @@ public class NuevoResumenFragment extends Fragment {
         rellenarSpinners();
         configurarFiltros();
         obtenerTextoMes();
+
+        try{
+            insertarRecibos();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         new CargarMovimientosTask().execute();
 
         mesAnterior.setOnClickListener(new View.OnClickListener() {
@@ -268,10 +294,10 @@ public class NuevoResumenFragment extends Fragment {
                                                public void onItemSelected(AdapterView<?> parent,
                                                                           View view, int position, long id) {
                                                    // TODO Auto-generated method stub
-                                                   if (position == 1) {
-                                                       layoutTarjetasFiltro.setVisibility(View.GONE);
-                                                   } else {
+                                                   if (position == 2) {
                                                        layoutTarjetasFiltro.setVisibility(View.VISIBLE);
+                                                   } else {
+                                                       layoutTarjetasFiltro.setVisibility(View.GONE);
                                                    }
                                                }
 
@@ -358,13 +384,37 @@ public class NuevoResumenFragment extends Fragment {
         btnAceptarFiltros.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                prefsFiltros = getActivity().getSharedPreferences("ficheroConfFiltros", Context.MODE_PRIVATE);
+                editorFiltros = prefsFiltros.edit();
 
+                if(ingresoPulsado){
+                    editorFiltros.putBoolean("ingresoPulsado", ingresoPulsado);
+                }
+                if(gastoPulsado){
+                    editorFiltros.putBoolean("gastoPulsado", gastoPulsado);
+                }
+
+                editorFiltros.putInt("spinnerFechas", spinnerFechas.getSelectedItemPosition());
+                editorFiltros.putInt("tipoFiltro", tipoFiltro);
+
+                String idCat = listCategorias.get(spinnerCategorias.getSelectedItemPosition()).getId();
+                String idSub = listCategorias.get(spinnerSubcategorias.getSelectedItemPosition()).getId();
+
+                editorFiltros.putString("idCategoria", idCat);
+                editorFiltros.putString("idSubcategoria", idSub);
+
+                editorFiltros.putInt("spinnerTipoModoPago", spinnerTipoModoPago.getSelectedItemPosition());
+                editorFiltros.putString("idTarjeta", listTarjetas.get(spinnerTarjetas.getSelectedItemPosition()).getId());
+
+                editorFiltros.commit();
+                drawer.closeDrawer(filtros);
             }
         });
 
         btnCancelarFiltros.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                configurarFiltros();
                 drawer.closeDrawer(filtros);
             }
         });
@@ -385,6 +435,18 @@ public class NuevoResumenFragment extends Fragment {
                 return true;
             case R.id.action_filter:
                 drawer.openDrawer(filtros);
+                return true;
+            case R.id.action_excel:
+                File file = Informes.CrearExcel("", listMov);
+                if (file != null) {
+                    Uri uri = Uri.fromFile(file);
+                    Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                    emailIntent.setData(Uri.parse("mailto:"));
+                    emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
+                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Finanfy - XLS File");
+                    emailIntent.setType("message/rfc822");
+                    startActivity(Intent.createChooser(emailIntent, "Email "));
+                }
                 return true;
             case android.R.id.home:
                 getActivity().finish();
@@ -577,6 +639,171 @@ public class NuevoResumenFragment extends Fragment {
         }
     }
 
+    public void insertarRecibos() {
+        Calendar c = Calendar.getInstance();
+        int mYearAc = c.get(Calendar.YEAR);
+        int mMonthAc = c.get(Calendar.MONTH) + 1;
+        int mDayAc = c.get(Calendar.DAY_OF_MONTH);
+        Date fechaAc = new Date(mYearAc - 1900, mMonthAc - 1, mDayAc);
+        int idCuenta = cuentaSeleccionada();
+
+        ArrayList<Recibo> recibos = null;
+        db = getActivity().openOrCreateDatabase(BD_NOMBRE, 1, null);
+        if (db != null) {
+            recibos = (ArrayList<Recibo>) gestion.getRecibos(db, idCuenta);
+        }
+        db.close();
+        for (int i = 0; i < recibos.size(); i++) {
+            Recibo recibo = recibos.get(i);
+            int anioDesdeRecibo = Integer.parseInt(recibo.getFechaIni()
+                    .substring(0, 4));
+            int diaDesdeRecibo = Integer.parseInt(recibo.getFechaIni()
+                    .substring(8, 10));
+            int mesDesdeRecibo = Integer.parseInt(recibo.getFechaIni()
+                    .substring(5, 7));
+            Date fechaDesdeRecibo = new Date(anioDesdeRecibo - 1900,
+                    mesDesdeRecibo - 1, diaDesdeRecibo);
+
+            int anioHastaRecibo = Integer.parseInt(recibo.getFechaFin()
+                    .substring(0, 4));
+            int diaHastaRecibo = Integer.parseInt(recibo.getFechaFin()
+                    .substring(8, 10));
+            int mesHastaRecibo = Integer.parseInt(recibo.getFechaFin()
+                    .substring(5, 7));
+            Date fechaHastaRecibo = new Date(anioHastaRecibo - 1900,
+                    mesHastaRecibo - 1, diaHastaRecibo);
+
+            int idRecibo = Integer.parseInt(recibo.getId());
+
+            for (int j = anioDesdeRecibo; j <= mYearAc; j++) {
+                if (j < mYearAc) {
+                    int desdeMes = 0;
+                    if (j == anioDesdeRecibo) {
+                        desdeMes = mesDesdeRecibo;
+                    } else {
+                        desdeMes = 1;
+                    }
+                    for (int k = desdeMes; k <= 12; k++) {
+
+                        Date fechaIniMovimiento = new Date(j - 1900, k - 1, 1);
+                        Date fechaFinMovimiento = null;
+                        db = getActivity().openOrCreateDatabase(BD_NOMBRE, 1,
+                                null);
+                        if (db != null) {
+                            fechaFinMovimiento = gestion.getFinMes(k, j);
+                        }
+                        db.close();
+
+                        boolean isRegistrado = false;
+                        db = getActivity().openOrCreateDatabase(BD_NOMBRE, 1,
+                                null);
+                        if (db != null) {
+                            isRegistrado = gestion.getReciboId(db, idRecibo,
+                                    fechaIniMovimiento, fechaFinMovimiento);
+                        }
+                        if (!isRegistrado) {
+                            Date fechaRegistro = new Date(j - 1900, k - 1,
+                                    diaDesdeRecibo);
+                            if (fechaRegistro.before(fechaAc)
+                                    || fechaRegistro.equals(fechaAc)) {
+                                gestion.insertarMovimiento(
+                                        db,
+                                        3,
+                                        Float.parseFloat(recibo.getCantidad()),
+                                        recibo.getDescripcion(),
+                                        fechaRegistro,
+                                        Integer.parseInt(recibo
+                                                .getIdCategoria()),
+                                        Integer.parseInt(recibo
+                                                .getIdSubcategoria()),
+                                        true,
+                                        recibo.isTarjeta(),
+                                        k,
+                                        j,
+                                        Integer.parseInt(recibo.getIdTarjeta()),
+                                        Integer.parseInt(recibo.getId()),
+                                        idCuenta);
+                            }
+                        }
+                        db.close();
+                    }
+                } else {
+                    for (int k = 1; k <= mMonthAc; k++) {
+                        Date fechaIniMovimiento = new Date(mYearAc - 1900,
+                                k - 1, 1);
+                        Date fechaFinMovimiento = null;
+                        db = getActivity().openOrCreateDatabase(BD_NOMBRE, 1,
+                                null);
+                        if (db != null) {
+                            fechaFinMovimiento = gestion.getFinMes(k, mYearAc);
+                        }
+                        db.close();
+
+                        if (fechaDesdeRecibo.before(fechaIniMovimiento)
+                                && fechaHastaRecibo.after(fechaFinMovimiento)) {
+                            boolean isRegistrado = false;
+                            db = getActivity().openOrCreateDatabase(BD_NOMBRE,
+                                    1, null);
+                            if (db != null) {
+                                isRegistrado = gestion.getReciboId(db,
+                                        idRecibo, fechaIniMovimiento,
+                                        fechaFinMovimiento);
+                            }
+                            if (!isRegistrado) {
+                                Date fechaRegistro = new Date(j - 1900, k - 1,
+                                        diaDesdeRecibo);
+                                if (fechaRegistro.before(fechaAc)
+                                        || fechaRegistro.equals(fechaAc)) {
+                                    gestion.insertarMovimiento(db, 3, Float
+                                                    .parseFloat(recibo.getCantidad()),
+                                            recibo.getDescripcion(),
+                                            fechaRegistro, Integer
+                                                    .parseInt(recibo
+                                                            .getIdCategoria()),
+                                            Integer.parseInt(recibo
+                                                    .getIdSubcategoria()),
+                                            true, recibo.isTarjeta(), k, j,
+                                            Integer.parseInt(recibo
+                                                    .getIdTarjeta()), Integer
+                                                    .parseInt(recibo.getId()),
+                                            idCuenta);
+                                }
+                            }
+                            db.close();
+                        } else {
+                            if (mesDesdeRecibo == k) {
+                                if (fechaDesdeRecibo.before(fechaAc)) {
+                                    db = getActivity().openOrCreateDatabase(
+                                            BD_NOMBRE, 1, null);
+                                    if (db != null) {
+                                        Date fechaI = new Date(j - 1900,
+                                                mesDesdeRecibo - 1, 1);
+                                        Date fechaF = gestion.getFinMes(
+                                                mesDesdeRecibo, j);
+                                        boolean isRegistrado = gestion
+                                                .getReciboId(db, idRecibo,
+                                                        fechaI, fechaF);
+                                        if (!isRegistrado) {
+                                            Date fechaRegistro = new Date(j - 1900, k - 1,
+                                                    diaDesdeRecibo);
+                                            gestion.insertarMovimiento(db, 3,
+                                                    Float.parseFloat(recibo.getCantidad()), recibo.getDescripcion(), fechaRegistro,
+                                                    Integer.parseInt(recibo.getIdCategoria()),
+                                                    Integer.parseInt(recibo.getIdSubcategoria()), true, recibo.isTarjeta(),
+                                                    k, j,
+                                                    Integer.parseInt(recibo.getIdTarjeta()), Integer.parseInt(recibo.getId()), idCuenta);
+                                        }
+                                    }
+                                    db.close();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     public void obternerFechaActual() {
         final Calendar c = Calendar.getInstance();
         mYear = c.get(Calendar.YEAR);
@@ -590,7 +817,7 @@ public class NuevoResumenFragment extends Fragment {
     }
 
     public void obtenerCategorias() {
-        ArrayList<Categoria> listCategorias = new ArrayList<Categoria>();
+        listCategorias = new ArrayList<Categoria>();
         db = getActivity().openOrCreateDatabase(BD_NOMBRE, 1, null);
         if (db != null) {
             // Recuperamos el listado del spinner Categorias
@@ -608,7 +835,7 @@ public class NuevoResumenFragment extends Fragment {
     }
 
     public void obtenerSubcategorias() {
-        ArrayList<Categoria> listSubcategorias = new ArrayList<Categoria>();
+        listSubcategorias = new ArrayList<Categoria>();
         db = getActivity().openOrCreateDatabase(BD_NOMBRE, 1, null);
         if (db != null) {
             listSubcategorias = (ArrayList<Categoria>) gestion.getCategorias(
@@ -655,7 +882,7 @@ public class NuevoResumenFragment extends Fragment {
     }
 
     public void obtenerTarjetas() {
-        ArrayList<Tarjeta> listTarjetas = new ArrayList<Tarjeta>();
+        listTarjetas = new ArrayList<Tarjeta>();
         db = getActivity().openOrCreateDatabase(BD_NOMBRE, 1, null);
         if (db != null) {
             // Recuperamos el listado del spinner Categorias
@@ -695,25 +922,147 @@ public class NuevoResumenFragment extends Fragment {
     }
 
     public void configurarFiltros() {
-        layoutFechas.setVisibility(View.GONE);
-        btnGasto.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.rounded_layout_azul));
-        btnIngreso.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.rounded_layout_azul));
-        txtGasto.setTextColor(getActivity().getResources().getColor(R.color.blanco));
-        txtIngreso.setTextColor(getActivity().getResources().getColor(R.color.blanco));
-        layoutTarjetasFiltro.setVisibility(View.GONE);
+        prefsFiltros = getActivity().getSharedPreferences("ficheroConfFiltros", Context.MODE_PRIVATE);
+
+        ingresoPulsado = prefsFiltros.getBoolean("ingresoPulsado", true);
+        if(ingresoPulsado){
+            btnIngreso.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.rounded_layout_azul));
+            txtIngreso.setTextColor(getActivity().getResources().getColor(R.color.blanco));
+        }else{
+            btnIngreso.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.rounded_layout_gris));
+            txtIngreso.setTextColor(getActivity().getResources().getColor(R.color.txtGris));
+        }
+
+        gastoPulsado = prefsFiltros.getBoolean("gastoPulsado", true);
+        if(gastoPulsado){
+            btnGasto.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.rounded_layout_azul));
+            txtGasto.setTextColor(getActivity().getResources().getColor(R.color.blanco));
+        }else{
+            btnGasto.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.rounded_layout_gris));
+            txtGasto.setTextColor(getActivity().getResources().getColor(R.color.txtGris));
+        }
+
+        boolean fechaDesde = prefsFiltros.getBoolean("fechaDesde", false);
+        boolean fechaHasta = prefsFiltros.getBoolean("fechaHasta", false);
+
+        Calendar c = Calendar.getInstance();
+        if(fechaDesde){
+            mDayDesde = prefsFiltros.getInt("diaDesde", 0);
+            mMonthDesde = prefsFiltros.getInt("mesDesde", 0);
+            mYearDesde = prefsFiltros.getInt("anioDesde", 0);
+        }else{
+            mDayDesde = 1;
+            mMonthDesde = c.get(Calendar.MONTH);
+            mYearDesde= c.get(Calendar.YEAR);
+        }
+
+        if(fechaHasta){
+            mDayHasta = prefsFiltros.getInt("diaHasta", 0);
+            mMonthHasta = prefsFiltros.getInt("mesHasta", 0);
+            mYearHasta = prefsFiltros.getInt("anioHasta", 0);
+        }else{
+            Date fechaFin =  Util.getFinMes(mMonthDesde + 1, mYearDesde);
+            String fechaF = fechaFin.toString();
+            mYearHasta = Integer.parseInt(fechaF.substring(0, 4));
+            mMonthHasta = Integer.parseInt(fechaF.substring(5, 7)) - 1;
+            mDayHasta = Integer.parseInt(fechaF.substring(8, 10));
+        }
+
+        updateDisplayDesde();
+        updateDisplayHasta();
+
+        int posiFechas = prefsFiltros.getInt("spinnerFechas", 0);
+        spinnerFechas.setSelection(posiFechas);
+        if(posiFechas == 0){
+            layoutFechas.setVisibility(View.GONE);
+        }else{
+            layoutFechas.setVisibility(View.VISIBLE);
+        }
+
+        int posiTipo = prefsFiltros.getInt("tipoFiltro", 0);
+        spinnerTipoFiltroResumen.setSelection(posiTipo);
+        tipoFiltro = posiTipo;
+
+        String idCat = prefsFiltros.getString("idCategoria", "0");
+        int posiCat = 0;
+        for(int i=0; i<listCategorias.size(); i++){
+            if (listCategorias.get(i).getId().equals(idCat)){
+                posiCat = i;
+                break;
+            }
+        }
+        spinnerCategorias.setSelection(posiCat);
+
+        String idSub = prefsFiltros.getString("idSubcategoria", "0");
+        int posiSub = 0;
+        for(int i=0; i<listSubcategorias.size(); i++){
+            if (listSubcategorias.get(i).getId().equals(idSub)){
+                posiSub = i;
+                break;
+            }
+        }
+        spinnerSubcategorias.setSelection(posiSub);
+
+        int posiTipoModoPago = prefsFiltros.getInt("spinnerTipoModoPago", 0);
+        spinnerTipoModoPago.setSelection(posiTipoModoPago);
+        if(posiTipoModoPago == 2){
+            layoutTarjetasFiltro.setVisibility(View.VISIBLE);
+        }else{
+            layoutTarjetasFiltro.setVisibility(View.GONE);
+        }
+
+        String idTarjeta = prefsFiltros.getString("idTarjeta", "0");
+        int posiTar = 0;
+        for(int i=0; i<listTarjetas.size(); i++){
+            if (listTarjetas.get(i).getId().equals(idTarjeta)){
+                posiTar = i;
+                break;
+            }
+        }
+        spinnerTarjetas.setSelection(posiTar);
     }
 
     private void updateDisplayDesde() {
+        String mes;
+        String dia;
+
+        if((mMonthDesde +1) < 10){
+            mes = "0" + String.valueOf(mMonthDesde + 1);
+        }else{
+            mes = String.valueOf(mMonthDesde + 1);
+        }
+
+        if(mDayDesde < 10){
+            dia = "0" + String.valueOf(mDayDesde);
+        }else{
+            dia = String.valueOf(mDayDesde);
+        }
+
         txtFechaDesde.setText(new StringBuilder()
                 // Month is 0 based so add 1
-                .append(mDayDesde).append("-").append(mMonthDesde + 1).append("-")
+                .append(dia).append("-").append(mes).append("-")
                 .append(mYearDesde).append(" "));
     }
 
     private void updateDisplayHasta() {
+        String mes;
+        String dia;
+
+        if((mMonthHasta +1) < 10){
+            mes = "0" + String.valueOf(mMonthHasta + 1);
+        }else{
+            mes = String.valueOf(mMonthHasta + 1);
+        }
+
+        if(mDayHasta < 10){
+            dia = "0" + String.valueOf(mDayHasta);
+        }else{
+            dia = String.valueOf(mDayHasta);
+        }
+
         txtFechaHasta.setText(new StringBuilder()
                 // Month is 0 based so add 1
-                .append(mDayHasta).append("-").append(mMonthHasta + 1).append("-")
+                .append(dia).append("-").append(mes).append("-")
                 .append(mYearHasta).append(" "));
     }
 
@@ -831,9 +1180,15 @@ public class NuevoResumenFragment extends Fragment {
         protected void onPostExecute(Void result) {
             if (tipoFiltro == 0) {
                 listMovView.setAdapter(new ListAdapter(getActivity(), listMov));
-                listMovView.setVisibility(View.VISIBLE);
-                listMovCatView.setVisibility(View.GONE);
-
+                if (listMov.size() == 0) {
+                    layoutSinRegistro.setVisibility(View.VISIBLE);
+                    listMovView.setVisibility(View.GONE);
+                    listMovCatView.setVisibility(View.GONE);
+                } else {
+                    listMovView.setVisibility(View.VISIBLE);
+                    listMovCatView.setVisibility(View.GONE);
+                    layoutSinRegistro.setVisibility(View.GONE);
+                }
             } else if (tipoFiltro == 1) {
                 listMovCatView.setGroupIndicator(null);
                 listMovCatView.setClickable(true);
@@ -842,8 +1197,16 @@ public class NuevoResumenFragment extends Fragment {
                 listAdapterCategorias = new ListaAdapterResumenExpandibleAdapter(
                         getActivity(), categorias, listMovAux);
                 listMovCatView.setAdapter(listAdapterCategorias);
-                listMovView.setVisibility(View.GONE);
-                listMovCatView.setVisibility(View.VISIBLE);
+
+                if (listMov.size() == 0) {
+                    layoutSinRegistro.setVisibility(View.VISIBLE);
+                    listMovView.setVisibility(View.GONE);
+                    listMovCatView.setVisibility(View.GONE);
+                } else {
+                    layoutSinRegistro.setVisibility(View.GONE);
+                    listMovView.setVisibility(View.GONE);
+                    listMovCatView.setVisibility(View.VISIBLE);
+                }
             } else {
                 listMovCatView.setGroupIndicator(null);
                 listMovCatView.setClickable(true);
@@ -852,13 +1215,20 @@ public class NuevoResumenFragment extends Fragment {
                 listAdapterSubcategorias = new ListaAdapterResumenExpandibleSubAdapter(
                         getActivity(), categorias, listMovAux);
                 listMovCatView.setAdapter(listAdapterSubcategorias);
-                listMovView.setVisibility(View.GONE);
-                listMovCatView.setVisibility(View.VISIBLE);
+
+                if (listMov.size() == 0) {
+                    layoutSinRegistro.setVisibility(View.VISIBLE);
+                    listMovView.setVisibility(View.GONE);
+                    listMovCatView.setVisibility(View.GONE);
+                } else {
+                    layoutSinRegistro.setVisibility(View.GONE);
+                    listMovView.setVisibility(View.GONE);
+                    listMovCatView.setVisibility(View.VISIBLE);
+                }
             }
 
             // Rellenamos el dato con el total
-            DecimalFormat df = new DecimalFormat("0.00");
-            txtTotal.setText(df.format(total) + " €");
+            txtTotal.setText(Util.formatear(total, prefs));
             if (total > 0) {
                 txtTotal.setTextColor(getResources().getColor(R.color.txtAzul));
             } else {
@@ -933,6 +1303,7 @@ public class NuevoResumenFragment extends Fragment {
             txtFecha.setText(listaMov.get(position).getFecha().toString());
             imgView.setBackgroundResource(Util.obtenerIconoCategoria(listaMov.get(position).getIdIconCat()));
 
+            txtCant.setText(Util.formatear(Float.parseFloat(listaMov.get(position).getCantidad()), prefs));
             if (listaMov.get(position).getCantidadAux().substring(0, 1).equals("-")) {
                 txtCant.setTextColor(Color.RED);
             } else {

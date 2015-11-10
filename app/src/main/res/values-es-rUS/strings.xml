@@ -368,7 +368,7 @@ principal.</string>
         <item>Seguridad</item>
         <item>Base de datos</item>
         <item>Estadísticas</item>
-        <item>Ajustes</item>
+        <!--<item>Ajustes</item>-->
         <item>Valorar aplicación</item>
         <item>Tienda</item>
     </string-array>
@@ -382,7 +382,7 @@ principal.</string>
         <item>SEGURIDAD</item>
         <item>BASE DE DATOS</item>
         <item>ESTADÍSTICAS</item>
-        <item>AJUSTES</item>
+        <!--<item>AJUSTES</item>-->
         <item>VALORAR APLICACIÓN</item>
         <item>TIENDA</item>
     </string-array>

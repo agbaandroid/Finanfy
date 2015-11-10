@@ -20,6 +20,7 @@
             android:orientation="vertical">
 
             <RelativeLayout xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/layoutPubli"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -277,7 +278,6 @@
                         android:layout_marginTop="30dp"
                         android:background="@drawable/text_gris"
                         android:gravity="center_vertical"
-                        android:focusable="false"
                         android:hint="Introduzca aqui sus notas..."
                         android:orientation="vertical"
                         android:paddingLeft="5dp"

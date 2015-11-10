@@ -345,7 +345,7 @@ trovare un errore, inviare una mail al seguente indirizzo: </string>
         <item>Sicurezza</item>
         <item>Database</item>
         <item>Statistica</item>
-        <item>Configurazione</item>
+        <!--<item>Configurazione</item>-->
         <item>Valutare app</item>
         <item>Negozio</item>
     </string-array>
@@ -359,7 +359,7 @@ trovare un errore, inviare una mail al seguente indirizzo: </string>
         <item>SICUREZZA</item>
         <item>DATABASE</item>
         <item>STATISTICA</item>
-        <item>CONFIGURAZIONE</item>
+        <!--<item>CONFIGURAZIONE</item>-->
         <item>VALUTARE APP</item>
         <item>NEGOZIO</item>
     </string-array>

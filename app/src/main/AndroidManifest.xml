@@ -21,12 +21,14 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name="android.support.multidex.MultiDexApplication"
         android:icon="@drawable/icon_app"
         android:label="@string/app_name"
-        android:theme="@style/Theme.AppCompat.Light" 
-        android:name="android.support.multidex.MultiDexApplication">
+        android:theme="@style/Theme.AppCompat.Light" >
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -112,6 +114,10 @@
             android:name=".activities.CantidadActivity"
             android:label="@string/selecSubcategoria"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".activities.CantidadSinDecimalActivity"
+            android:label="@string/selecSubcategoria"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
 
         <!-- Editar movimiento -->
         <activity
@@ -132,22 +138,22 @@
             android:name=".activities.SeguridadIntroducir"
             android:screenOrientation="portrait"
             android:theme="@style/CustomActionBarTheme"
-            android:windowSoftInputMode="stateUnchanged|adjustUnspecified"/>
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified" />
         <activity
             android:name=".activities.SeguridadRepetir"
             android:screenOrientation="portrait"
             android:theme="@style/CustomActionBarTheme"
-            android:windowSoftInputMode="stateUnchanged|adjustUnspecified"/>
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified" />
         <activity
             android:name=".activities.SeguridadAntigua"
             android:screenOrientation="portrait"
             android:theme="@style/CustomActionBarTheme"
-            android:windowSoftInputMode="stateUnchanged|adjustUnspecified"/>
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified" />
         <activity
-        android:name=".activities.SeguridadComprobar"
-        android:screenOrientation="portrait"
-        android:theme="@style/CustomActionBarTheme"
-        android:windowSoftInputMode="stateUnchanged|adjustUnspecified"/>
+            android:name=".activities.SeguridadComprobar"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme"
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified" />
         <activity
             android:name=".activities.AddTarjeta"
             android:label="@string/addCard"
@@ -212,34 +218,64 @@
             android:label="@string/app_name"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar" />
-
         <activity
             android:name=".activities.NuevoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CustomActionBarTheme"
-            android:windowSoftInputMode="stateUnchanged|adjustUnspecified"/>
-
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified" />
         <activity
             android:name=".activities.NuevoAddTarjetaActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CustomActionBarTheme"
-            android:windowSoftInputMode="stateUnchanged|adjustUnspecified"/>
-
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified" />
         <activity
             android:name=".activities.NuevoAddCategoriaActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CustomActionBarTheme"
-            android:windowSoftInputMode="stateUnchanged|adjustUnspecified"/>
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified" />
         <activity
             android:name=".activities.NuevoEditMovimientosActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CustomActionBarTheme"
-            android:windowSoftInputMode="stateUnchanged|adjustUnspecified"/>
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified" />
         <activity
             android:name=".activities.NuevoEditCategoriaActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CustomActionBarTheme"
-            android:windowSoftInputMode="stateUnchanged|adjustUnspecified"/>
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified" />
+        <activity
+            android:name=".activities.NuevoEditTarjetaActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme"
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified" />
+        <activity
+            android:name=".activities.AddReciboActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme"
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified" />
+        <activity
+            android:name=".activities.NuevoEditRecibosActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme"
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified" />
+
+        <activity
+            android:name=".activities.CuentasActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme"
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified" />
+
+        <activity
+            android:name=".activities.AddCuentaActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme"
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified" />
+
+        <activity
+            android:name=".activities.NuevoEditCuentaActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme"
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified" />
     </application>
 
 </manifest>

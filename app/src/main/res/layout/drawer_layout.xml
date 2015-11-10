@@ -34,13 +34,13 @@
                 android:background="#FFFFFF" />
         </LinearLayout>
 
-        <ListView
-            android:id="@+id/left_drawer"
+
+        <include
+            android:id="@+id/left_drawer_cuentas"
+            layout="@layout/drawer_cuentas"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:choiceMode="singleChoice"
-            android:divider="#FFFFFF" />
+            android:layout_gravity="start" />
 
         <include
             android:id="@+id/right_drawer"

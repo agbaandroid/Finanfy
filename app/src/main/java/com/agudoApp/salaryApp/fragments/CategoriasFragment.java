@@ -12,10 +12,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.activities.NuevoAddCategoriaActivity;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class CategoriasFragment extends Fragment {
 
@@ -28,6 +31,7 @@ public class CategoriasFragment extends Fragment {
 	boolean isPremium = false;
 	LinearLayout layoutCat;
 	LinearLayout layoutSubcat;
+	private RelativeLayout layoutPubli;
 	TextView textCat;
 	TextView textSubcat;
 	boolean isCategoria = false;
@@ -42,10 +46,6 @@ public class CategoriasFragment extends Fragment {
 		isUserPremium = isPrem;
 		isCategoriaPremium = isUserCategoriaPremium;
 		isSinPublicidad = isUserSinpublicidad;
-
-		if (isUserPremium || isCategoriaPremium) {
-			isPremium = true;
-		}
 
 		// args.putBoolean("isPremium", isPremium);
 	}
@@ -73,6 +73,17 @@ public class CategoriasFragment extends Fragment {
 		
 		textCat = (TextView) rootView.findViewById(R.id.cat);
 		textSubcat = (TextView) rootView.findViewById(R.id.sub);
+
+		layoutPubli = (RelativeLayout) rootView.findViewById(R.id.layoutPubli);
+
+		//Se carga la publicidad
+		AdView adView = (AdView) rootView.findViewById(R.id.adView);
+		if (isPremium || isSinPublicidad) {
+			layoutPubli.setVisibility(View.GONE);
+		} else {
+			AdRequest adRequest = new AdRequest.Builder().build();
+			adView.loadAd(adRequest);
+		}
 
 		Fragment fragment = new PestanaCategoriaFragment(isPremium);
 		if (fragment != null) {
@@ -133,7 +144,7 @@ public class CategoriasFragment extends Fragment {
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		inflater.inflate(R.menu.menu_setting, menu);
+		inflater.inflate(R.menu.menu_setting_mas, menu);
 	}
 
 	// Aadiendo funcionalidad a las opciones de men

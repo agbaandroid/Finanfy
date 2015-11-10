@@ -1,11 +1,16 @@
 package com.agudoApp.salaryApp.util;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.agudoApp.salaryApp.R;
-import com.agudoApp.salaryApp.model.IconTarjeta;
+import com.agudoApp.salaryApp.model.Icon;
 
+import java.sql.Date;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Util {
 
@@ -265,16 +270,119 @@ public class Util {
 		return icon;
 	}
 
+	public static int obtenerIconoUser(int idIcon) {
+		int icon = 0;
 
-	public static ArrayList<IconTarjeta> obtenerIconosTarjetas(){
-		ArrayList<IconTarjeta> listIcon = new ArrayList<IconTarjeta>();
+		switch (idIcon) {
+			case 0:
+				icon = R.drawable.user1;
+				break;
+			case 1:
+				icon = R.drawable.user2;
+				break;
+			case 2:
+				icon = R.drawable.user3;
+				break;
+			case 3:
+				icon = R.drawable.user4;
+				break;
+			case 4:
+				icon = R.drawable.user5;
+				break;
+			default:
+				icon = R.drawable.user1;
+				break;
+		}
+		return icon;
+	}
+
+	public static ArrayList<Icon> obtenerIconosTarjetas(){
+		ArrayList<Icon> listIcon = new ArrayList<Icon>();
 
 		for(int i=0;i<10;i++){
-			IconTarjeta icon = new IconTarjeta();
+			Icon icon = new Icon();
 			icon.setId(i);
 			listIcon.add(icon);
 		}
 
 		return listIcon;
 	}
+
+	public static ArrayList<Icon> obtenerIconosCuenta(){
+		ArrayList<Icon> listIcon = new ArrayList<Icon>();
+
+		for(int i=0;i<5;i++){
+			Icon icon = new Icon();
+			icon.setId(i);
+			listIcon.add(icon);
+		}
+
+		return listIcon;
+	}
+
+	public static String formatear(float cant, SharedPreferences prefs){
+		String simboloDivisa = prefs.getString("divisa", "€");
+		DecimalFormat df = new DecimalFormat("0.00");
+		String cantidadFormateada = df.format(cant) + " " + simboloDivisa;
+
+		return cantidadFormateada;
+	}
+
+	public static float formatearFloat(String cant, SharedPreferences prefs){
+		String simboloDivisa = prefs.getString("divisa", "€");
+		cant = cant.replace(",", ".");
+
+		int posi = cant.indexOf(simboloDivisa);
+
+		if(posi != -1){
+			cant = cant.substring(0, posi - 1).trim();
+		}
+
+		return Float.parseFloat(cant);
+	}
+
+	public static Date obtenerFechaFin(Date fechaIni, int nMeses){
+		Date fechaFin;
+		Calendar c = Calendar.getInstance();
+		c.setTime(fechaIni);
+		c.add(Calendar.MONTH, nMeses);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String fechaFinAux = sdf.format(c.getTime());
+
+		int anio = Integer.parseInt(fechaFinAux.substring(0, 4));
+		int mes = Integer.parseInt(fechaFinAux.substring(5, 7));
+		int dia = Integer.parseInt(fechaFinAux.substring(8, 10));
+
+		fechaFin = new Date(anio - 1900, mes, dia);
+		return fechaFin;
+	}
+
+	public static Date getFinMes(int mes, int anio) {
+		Date fechaFin = null;
+		switch (mes) {
+			case 1:
+			case 3:
+			case 5:
+			case 7:
+			case 8:
+			case 10:
+			case 12:
+				fechaFin = new Date(anio - 1900, mes - 1, 31);
+				break;
+			case 4:
+			case 6:
+			case 9:
+			case 11:
+				fechaFin = new Date(anio - 1900, mes - 1, 30);
+				break;
+			case 2:
+				if (((anio % 4 == 0) && !(anio % 100 == 0)) || (anio % 400 == 0))
+					fechaFin = new Date(anio - 1900, mes - 1, 29);
+				else
+					fechaFin = new Date(anio - 1900, mes - 1, 28);
+				break;
+		}
+		return fechaFin;
+	}
+
 }

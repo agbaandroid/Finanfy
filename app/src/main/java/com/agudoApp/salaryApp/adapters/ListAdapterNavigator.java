@@ -82,7 +82,7 @@ public class ListAdapterNavigator extends BaseAdapter {
 			icon.setBackgroundResource(R.drawable.tarjetas);
 			break;
 		case 4:
-			icon.setBackgroundResource(R.drawable.recibo);
+			icon.setBackgroundResource(R.drawable.recibos);
 			break;
 		case 5:
 			icon.setBackgroundResource(R.drawable.seguridad);
@@ -93,14 +93,14 @@ public class ListAdapterNavigator extends BaseAdapter {
 		case 7:
 			icon.setBackgroundResource(R.drawable.estadisticas);
 			break;
+		//case 8:
+			//icon.setBackgroundResource(R.drawable.ajustes);
+			//break;
 		case 8:
-			icon.setBackgroundResource(R.drawable.ajustes);
-			break;
-		case 9:
 			icon.setBackgroundResource(R.drawable.valorar);
 			break;
-		case 10:
-			icon.setBackgroundResource(R.drawable.home);
+		case 9:
+			icon.setBackgroundResource(R.drawable.tienda);
 			break;
 		}		
 		return convertView;

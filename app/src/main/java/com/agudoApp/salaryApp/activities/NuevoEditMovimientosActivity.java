@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,8 @@ import com.agudoApp.salaryApp.database.GestionBBDD;
 import com.agudoApp.salaryApp.model.Categoria;
 import com.agudoApp.salaryApp.model.Movimiento;
 import com.agudoApp.salaryApp.model.Tarjeta;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.sql.Date;
 import java.text.DecimalFormat;
@@ -59,6 +62,7 @@ public final class NuevoEditMovimientosActivity extends AppCompatActivity {
     private LinearLayout btnIngreso;
     private TextView txtGasto;
     private TextView txtIngreso;
+    private TextView nVeces;
     int tipoRegistro = 0;
 
 
@@ -76,9 +80,8 @@ public final class NuevoEditMovimientosActivity extends AppCompatActivity {
     private Spinner spinnerCat;
     private Spinner spinnerSub;
     private Spinner spinnerTarjetas;
-
     private Spinner spinnerTipoPago;
-
+    private RelativeLayout layoutPubli;
 
     private SQLiteDatabase db;
 
@@ -116,6 +119,7 @@ public final class NuevoEditMovimientosActivity extends AppCompatActivity {
         btnIngreso = (LinearLayout) findViewById(R.id.btnIngreso);
         txtGasto = (TextView) findViewById(R.id.txtGasto);
         txtIngreso = (TextView) findViewById(R.id.txtIngreso);
+        nVeces = (TextView) findViewById(R.id.nVeces);
         descripcion = (EditText) findViewById(R.id.descripcion);
 
         layoutFecha = (LinearLayout) findViewById(R.id.layoutFecha);
@@ -129,6 +133,17 @@ public final class NuevoEditMovimientosActivity extends AppCompatActivity {
                 R.id.spinnerTarjetas);
         spinnerTipoPago = (Spinner) findViewById(
                 R.id.spinnerTipoPago);
+
+        layoutPubli = (RelativeLayout) findViewById(R.id.layoutPubli);
+
+        //Se carga la publicidad
+        AdView adView = (AdView) findViewById(R.id.adView);
+        if (isPremium || isSinPublicidad) {
+            layoutPubli.setVisibility(View.GONE);
+        } else {
+            AdRequest adRequest = new AdRequest.Builder().build();
+            adView.loadAd(adRequest);
+        }
 
         updateDisplay();
 
@@ -392,18 +407,21 @@ public final class NuevoEditMovimientosActivity extends AppCompatActivity {
         posCat = 0;
         posSub = 0;
         posTar = 0;
+        ArrayList<Categoria> listCategorias = new ArrayList<Categoria>();
+        ArrayList<Categoria> listSubcategorias = new ArrayList<Categoria>();
+        ArrayList<Tarjeta> listTarjetas = new ArrayList<Tarjeta>();
+
         String cant = "";
         db = this.openOrCreateDatabase(BD_NOMBRE, 1, null);
         if (db.isOpen()) {
             // Recuperamos el listado del spinner Categorias
-            ArrayList<Categoria> listCategorias = (ArrayList<Categoria>) gestion
+            listCategorias = (ArrayList<Categoria>) gestion
                     .getCategorias(db, "Categorias", "idCategoria", this);
             // Recuperamos el listado del spinner Subategorias
-            ArrayList<Categoria> listSubcategorias = (ArrayList<Categoria>) gestion
+            listSubcategorias = (ArrayList<Categoria>) gestion
                     .getCategorias(db, "Subcategorias", "idSubcategoria", this);
             // Recuperamos el listado del spinner Tarjetas
-            ArrayList<Tarjeta> listTarjetas = (ArrayList<Tarjeta>) gestion
-                    .getTarjetas(db);
+            listTarjetas = (ArrayList<Tarjeta>) gestion.getTarjetas(db);
 
             for (int i = 0; i < listCategorias.size(); i++) {
                 Categoria cat = listCategorias.get(i);
@@ -458,16 +476,40 @@ public final class NuevoEditMovimientosActivity extends AppCompatActivity {
         updateDisplay();
 
         if (isTarjetaSel) {
-            spinnerTipoPago.setSelection(0);
+            spinnerTipoPago.setSelection(1);
+            for(int i =0; i< listTarjetas.size(); i++){
+                if(listTarjetas.get(i).getId().equals(idTarjetaSel)){
+                    spinnerTarjetas.setSelection(i);
+                    break;
+                }
+            }
+            spinnerTarjetas.setVisibility(View.VISIBLE);
+        }else{
+            spinnerTarjetas.setVisibility(View.GONE);
         }
 
         descripcion.setText(notasSel);
     }
 
     private void updateDisplay() {
+        String mes;
+        String dia;
+
+        if((mMonth) < 10){
+            mes = "0" + String.valueOf(mMonth);
+        }else{
+            mes = String.valueOf(mMonth);
+        }
+
+        if(mDay < 10){
+            dia = "0" + String.valueOf(mDay);
+        }else{
+            dia = String.valueOf(mDay);
+        }
+
         txtFecha.setText(new StringBuilder()
                 // Month is 0 based so add 1
-                .append(mDay).append("-").append(mMonth).append("-")
+                .append(dia).append("-").append(mes).append("-")
                 .append(mYear).append(" "));
     }
 

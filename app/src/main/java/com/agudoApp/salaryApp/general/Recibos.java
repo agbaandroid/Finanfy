@@ -215,9 +215,10 @@ public class Recibos extends Activity {
 					boolean tarjeta = checkTarjeta.isChecked();
 
 					// Introducimos el movimiento en BBDD
-					boolean ok = gestion.insertarRecibo(db, cant, desc, fechaD,
-							fechaH, idCategoria, idSubcategoria, tarjeta,
-							idTarjeta, idCuenta);
+					boolean ok = false;
+					//boolean ok = gestion.insertarRecibo(db, cant, desc, fechaD,
+					//		fechaH, idCategoria, idSubcategoria, tarjeta,
+					//		idTarjeta, idCuenta);
 					if (ok) {
 						Context context = getApplicationContext();
 						CharSequence textMsg = getResources().getString(

@@ -1,7 +1,5 @@
 package com.agudoApp.salaryApp.activities;
 
-import java.util.Locale;
-
 import android.app.Activity;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,6 +11,8 @@ import android.widget.Toast;
 
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.database.GestionBBDD;
+
+import java.util.Locale;
 
 public class AddCuenta extends Activity implements OnClickListener {
 
@@ -55,7 +55,7 @@ public class AddCuenta extends Activity implements OnClickListener {
 				boolean ok = false;
 				db = this.openOrCreateDatabase(BD_NOMBRE, 1, null);
 				if (db != null) {
-					ok = gestion.addCuenta(db, text.trim());
+					//ok = gestion.addCuenta(db, text.trim());
 				}
 				db.close();
 				if (ok) {
