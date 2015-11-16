@@ -24,6 +24,7 @@ import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.activities.AddReciboActivity;
 import com.agudoApp.salaryApp.activities.NuevoEditRecibosActivity;
 import com.agudoApp.salaryApp.database.GestionBBDD;
+import com.agudoApp.salaryApp.general.FinanfyActivity;
 import com.agudoApp.salaryApp.model.Recibo;
 import com.agudoApp.salaryApp.util.Util;
 import com.google.android.gms.ads.AdRequest;
@@ -94,6 +95,8 @@ public class RegistrosFijosFragment extends Fragment {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 
+		((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
+
 		layoutRecibos = (LinearLayout) getView().findViewById(R.id.layoutRecibos);
 		layoutSinRegistro = (LinearLayout) getView().findViewById(R.id.layoutSinRegistro);
 		listaRecibos = (ListView) getView().findViewById(R.id.listaRecibos);
@@ -144,6 +147,8 @@ public class RegistrosFijosFragment extends Fragment {
 		switch (item.getItemId()) {
 			case R.id.action_add:
 				Intent intent = new Intent(getActivity(), AddReciboActivity.class);
+				intent.putExtra("isPremium", isPremium);
+				intent.putExtra("isSinPublicidad", isSinPublicidad);
 				startActivityForResult(intent, RECIBOS);
 				return true;
 			case android.R.id.home:
@@ -265,6 +270,8 @@ public class RegistrosFijosFragment extends Fragment {
 					Bundle bundle = new Bundle();
 					bundle.putString("idRecibo", rec.getId());
 					intent.putExtras(bundle);
+					intent.putExtra("isPremium", isPremium);
+					intent.putExtra("isSinPublicidad", isSinPublicidad);
 					startActivityForResult(intent, RECIBOS);
 				}
 			});
@@ -276,6 +283,13 @@ public class RegistrosFijosFragment extends Fragment {
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode == getActivity().RESULT_OK) {
+			switch (requestCode) {
+				case RECIBOS :
+					((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
+					break;
+			}
+		}
 		obtenerRecibos();
 	}
 

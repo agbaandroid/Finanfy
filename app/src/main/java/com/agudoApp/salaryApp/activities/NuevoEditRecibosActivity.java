@@ -24,6 +24,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,8 @@ import com.agudoApp.salaryApp.model.Categoria;
 import com.agudoApp.salaryApp.model.Recibo;
 import com.agudoApp.salaryApp.model.Tarjeta;
 import com.agudoApp.salaryApp.util.Util;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.sql.Date;
 import java.text.DecimalFormat;
@@ -67,6 +70,7 @@ public final class NuevoEditRecibosActivity extends AppCompatActivity {
 
 
     private LinearLayout layoutFecha;
+    private RelativeLayout layoutPubli;
     private TextView txtFecha;
     private TextView txtCant;
     private EditText descripcion;
@@ -105,6 +109,12 @@ public final class NuevoEditRecibosActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setContentInsetsAbsolute(0, 0);
         setSupportActionBar(toolbar);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            isPremium = extras.getBoolean("isPremium", false);
+            isSinPublicidad = extras.getBoolean("isSinPublicidad", false);
+        }
 
         txtCant = (TextView) findViewById(R.id.txtCant);
         btnGasto = (LinearLayout) findViewById(R.id.btnGasto);
@@ -238,6 +248,7 @@ public final class NuevoEditRecibosActivity extends AppCompatActivity {
                         int duration = Toast.LENGTH_LONG;
                         Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
+                        setResult(RESULT_OK, getIntent());
                         finish();
                     } else {
                         Context context = getApplicationContext();
@@ -265,6 +276,17 @@ public final class NuevoEditRecibosActivity extends AppCompatActivity {
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
+
+        layoutPubli = (RelativeLayout) findViewById(R.id.layoutPubli);
+
+        //Se carga la publicidad
+        AdView adView = (AdView) findViewById(R.id.adView);
+        if (isPremium || isSinPublicidad) {
+            layoutPubli.setVisibility(View.GONE);
+        } else {
+            AdRequest adRequest = new AdRequest.Builder().build();
+            adView.loadAd(adRequest);
+        }
 
         // Set the custom view and allow the bar to show it
         layoutParams.gravity = Gravity.CENTER_HORIZONTAL | Gravity.CENTER_HORIZONTAL;
@@ -617,6 +639,7 @@ public final class NuevoEditRecibosActivity extends AppCompatActivity {
                                     int duration = Toast.LENGTH_SHORT;
                                     Toast toast = Toast.makeText(context, text, duration);
                                     toast.show();
+                                    setResult(RESULT_OK, getIntent());
                                 } else {
                                     Context context = getApplicationContext();
                                     CharSequence text = getResources().getString(

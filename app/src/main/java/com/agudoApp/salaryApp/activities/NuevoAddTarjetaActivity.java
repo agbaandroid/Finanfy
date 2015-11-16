@@ -60,6 +60,12 @@ public class NuevoAddTarjetaActivity extends AppCompatActivity {
         toolbar.setContentInsetsAbsolute(0, 0);
         setSupportActionBar(toolbar);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            isPremium = extras.getBoolean("isPremium", false);
+            isSinPublicidad = extras.getBoolean("isSinPublicidad", false);
+        }
+
         descripcion = (EditText) findViewById(R.id.descripcion);
         spinnerTipo = (Spinner) findViewById(R.id.spinnerTipo);
         spinnerIconTarjeta = (Spinner) findViewById(R.id.spinnerIconTarjeta);
@@ -115,7 +121,7 @@ public class NuevoAddTarjetaActivity extends AppCompatActivity {
                         int duration = Toast.LENGTH_SHORT;
                         Toast toast = Toast.makeText(context, textMsg, duration);
                         toast.show();
-
+                        setResult(RESULT_OK, getIntent());
                         finish();
                     } else {
                         Context context = getApplicationContext();

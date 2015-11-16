@@ -38,6 +38,7 @@ import com.agudoApp.salaryApp.adapters.ListAdapterSpinner;
 import com.agudoApp.salaryApp.adapters.ListaAdapterResumenExpandibleAdapter;
 import com.agudoApp.salaryApp.adapters.ListaAdapterResumenExpandibleSubAdapter;
 import com.agudoApp.salaryApp.database.GestionBBDD;
+import com.agudoApp.salaryApp.general.FinanfyActivity;
 import com.agudoApp.salaryApp.informes.Informes;
 import com.agudoApp.salaryApp.model.Categoria;
 import com.agudoApp.salaryApp.model.Movimiento;
@@ -101,6 +102,8 @@ public class NuevoResumenFragment extends Fragment {
     private LinearLayout btnFechaHasta;
     private LinearLayout layoutTarjetasFiltro;
     private RelativeLayout layoutPubli;
+    private LinearLayout layoutIntervaloFecha;
+    private LinearLayout layoutMeses;
 
     private LinearLayout filtros;
 
@@ -110,6 +113,7 @@ public class NuevoResumenFragment extends Fragment {
     private TextView txtIngreso;
     private TextView txtFechaDesde;
     private TextView txtFechaHasta;
+    private TextView txtIntevaloFechas;
 
     private TextView txtTotal;
     private float total;
@@ -129,14 +133,15 @@ public class NuevoResumenFragment extends Fragment {
     private int mMonthHasta;
     private int mDayHasta;
 
-    ArrayList<Categoria> listCategorias;
-    ArrayList<Categoria> listSubcategorias;
+    ArrayList<Categoria> listCategoriasFiltros;
+    ArrayList<Categoria> listSubcategoriasFiltros;
     ArrayList<Tarjeta> listTarjetas;
 
     private int idCuenta;
     private boolean gastoPulsado = true;
     private boolean ingresoPulsado = true;
     private int tipoFiltro;
+    private int tipoFecha;
 
     // Productos que posee el usuario
     boolean isPremium = false;
@@ -180,6 +185,8 @@ public class NuevoResumenFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        ((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
+
         listMovView = (ListView) this.getView().findViewById(
                 R.id.listaMovimientos);
         listMovCatView = (ExpandableListView) this.getView().findViewById(
@@ -203,6 +210,8 @@ public class NuevoResumenFragment extends Fragment {
         txtFechaHasta = (TextView) getActivity().findViewById(R.id.txtFechaHasta);
         layoutFechas = (LinearLayout) getActivity().findViewById(R.id.layoutFechas);
         layoutTarjetasFiltro = (LinearLayout) getActivity().findViewById(R.id.layoutTarjetasFiltro);
+        layoutIntervaloFecha = (LinearLayout) getActivity().findViewById(R.id.layoutIntervaloFecha);
+        layoutMeses = (LinearLayout) getActivity().findViewById(R.id.layoutMeses);
         spinnerFechas = (Spinner) getActivity().findViewById(R.id.spinnerFecha);
         spinnerTipoFiltroResumen = (Spinner) getActivity().findViewById(R.id.spinnerTipoLista);
         spinnerCategorias = (Spinner) getActivity().findViewById(R.id.spinnerCategoriasFiltro);
@@ -213,14 +222,15 @@ public class NuevoResumenFragment extends Fragment {
         mesSiguiente = (LinearLayout) getView().findViewById(R.id.layoutRight);
         txtGasto = (TextView) getActivity().findViewById(R.id.txtGasto);
         txtIngreso = (TextView) getActivity().findViewById(R.id.txtIngreso);
+        txtIntevaloFechas = (TextView) getActivity().findViewById(R.id.intervaloFecha);
         layoutSinRegistro = (LinearLayout) getView().findViewById(R.id.layoutSinRegistro);
         layoutPubli = (RelativeLayout) getView().findViewById(R.id.layoutPubli);
 
         //Se carga la publicidad
         AdView adView = (AdView) getActivity().findViewById(R.id.adView);
-        if(isPremium || isSinPublicidad){
+        if (isPremium || isSinPublicidad) {
             layoutPubli.setVisibility(View.GONE);
-        }else{
+        } else {
             AdRequest adRequest = new AdRequest.Builder().build();
             adView.loadAd(adRequest);
         }
@@ -232,9 +242,9 @@ public class NuevoResumenFragment extends Fragment {
         configurarFiltros();
         obtenerTextoMes();
 
-        try{
+        try {
             insertarRecibos();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -277,8 +287,10 @@ public class NuevoResumenFragment extends Fragment {
                                                    // TODO Auto-generated method stub
                                                    if (position == 0) {
                                                        layoutFechas.setVisibility(View.GONE);
+                                                       tipoFecha = 0;
                                                    } else {
                                                        layoutFechas.setVisibility(View.VISIBLE);
+                                                       tipoFecha = 1;
                                                    }
                                                }
 
@@ -314,6 +326,25 @@ public class NuevoResumenFragment extends Fragment {
                                                                           View view, int position, long id) {
                                                    // TODO Auto-generated method stub
                                                    tipoFiltro = position;
+                                               }
+
+                                               @Override
+                                               public void onNothingSelected(AdapterView<?> parent) {
+
+                                               }
+                                           }
+                );
+
+        spinnerCategorias
+                .setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                               public void onItemSelected(AdapterView<?> parent,
+                                                                          View view, int position, long id) {
+                                                   // TODO Auto-generated method stub
+                                                   if (listCategoriasFiltros.get(position).getIdIcon() == -1) {
+
+                                                   } else {
+
+                                                   }
                                                }
 
                                                @Override
@@ -387,18 +418,70 @@ public class NuevoResumenFragment extends Fragment {
                 prefsFiltros = getActivity().getSharedPreferences("ficheroConfFiltros", Context.MODE_PRIVATE);
                 editorFiltros = prefsFiltros.edit();
 
-                if(ingresoPulsado){
-                    editorFiltros.putBoolean("ingresoPulsado", ingresoPulsado);
-                }
-                if(gastoPulsado){
-                    editorFiltros.putBoolean("gastoPulsado", gastoPulsado);
-                }
+                editorFiltros.putBoolean("ingresoPulsado", ingresoPulsado);
+                editorFiltros.putBoolean("gastoPulsado", gastoPulsado);
 
                 editorFiltros.putInt("spinnerFechas", spinnerFechas.getSelectedItemPosition());
+
+                if (spinnerFechas.getSelectedItemPosition() == 0) {
+                    editorFiltros.putBoolean("fechaDesde", false);
+                    editorFiltros.putBoolean("fechaHasta", false);
+
+                    Calendar c = Calendar.getInstance();
+                    mDayDesde = 1;
+                    mMonthDesde = c.get(Calendar.MONTH);
+                    mYearDesde = c.get(Calendar.YEAR);
+
+                    Date fechaFin = Util.getFinMes(mMonthDesde + 1, mYearDesde);
+                    String fechaF = fechaFin.toString();
+                    mYearHasta = Integer.parseInt(fechaF.substring(0, 4));
+                    mMonthHasta = Integer.parseInt(fechaF.substring(5, 7)) - 1;
+                    mDayHasta = Integer.parseInt(fechaF.substring(8, 10));
+                } else {
+                    editorFiltros.putBoolean("fechaDesde", true);
+                    editorFiltros.putBoolean("fechaHasta", true);
+                }
+
+                String mesDesde;
+                String diaDesde;
+                String mesHasta;
+                String diaHasta;
+
+                if ((mMonthDesde) < 10) {
+                    mesDesde = "0" + String.valueOf(mMonthDesde);
+                } else {
+                    mesDesde = String.valueOf(mMonthDesde);
+                }
+
+                if (mDayDesde < 10) {
+                    diaDesde = "0" + String.valueOf(mDayDesde);
+                } else {
+                    diaDesde = String.valueOf(mDayDesde);
+                }
+
+                if ((mMonthHasta) < 10) {
+                    mesHasta = "0" + String.valueOf(mMonthHasta);
+                } else {
+                    mesHasta = String.valueOf(mMonthHasta);
+                }
+
+                if (mDayHasta < 10) {
+                    diaHasta = "0" + String.valueOf(mDayHasta);
+                } else {
+                    diaHasta = String.valueOf(mDayHasta);
+                }
+
+                editorFiltros.putInt("diaDesde", Integer.parseInt(diaDesde));
+                editorFiltros.putInt("diaHasta", Integer.parseInt(diaHasta));
+                editorFiltros.putInt("mesDesde", Integer.parseInt(mesDesde));
+                editorFiltros.putInt("mesHasta", Integer.parseInt(mesHasta));
+                editorFiltros.putInt("anioDesde", mYearDesde);
+                editorFiltros.putInt("anioHasta", mYearHasta);
+
                 editorFiltros.putInt("tipoFiltro", tipoFiltro);
 
-                String idCat = listCategorias.get(spinnerCategorias.getSelectedItemPosition()).getId();
-                String idSub = listCategorias.get(spinnerSubcategorias.getSelectedItemPosition()).getId();
+                String idCat = listCategoriasFiltros.get(spinnerCategorias.getSelectedItemPosition()).getId();
+                String idSub = listCategoriasFiltros.get(spinnerSubcategorias.getSelectedItemPosition()).getId();
 
                 editorFiltros.putString("idCategoria", idCat);
                 editorFiltros.putString("idSubcategoria", idSub);
@@ -408,6 +491,7 @@ public class NuevoResumenFragment extends Fragment {
 
                 editorFiltros.commit();
                 drawer.closeDrawer(filtros);
+                new CargarMovimientosTask().execute();
             }
         });
 
@@ -418,6 +502,7 @@ public class NuevoResumenFragment extends Fragment {
                 drawer.closeDrawer(filtros);
             }
         });
+
     }
 
     @Override
@@ -431,6 +516,8 @@ public class NuevoResumenFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.action_add:
                 Intent intent = new Intent(getActivity(), NuevoActivity.class);
+                intent.putExtra("isPremium", isPremium);
+                intent.putExtra("isSinPublicidad", isSinPublicidad);
                 startActivityForResult(intent, RESUMEN);
                 return true;
             case R.id.action_filter:
@@ -459,7 +546,16 @@ public class NuevoResumenFragment extends Fragment {
     public void rellenarLista() {
         db = getActivity().openOrCreateDatabase(BD_NOMBRE, 1, null);
         if (db != null) {
-            listMov = gestion.getMovimientosFiltros(db, mMonth, mYear, idCuenta);
+            //listMov = gestion.getMovimientosFiltros(db, mMonth, mYear, idCuenta);
+            int tipoFecha = spinnerFechas.getSelectedItemPosition();
+            String idCategoria = listCategoriasFiltros.get(spinnerCategorias.getSelectedItemPosition()).getId();
+            String idSubcategoria = listSubcategoriasFiltros.get(spinnerSubcategorias.getSelectedItemPosition()).getId();
+            int tipoPago = spinnerTipoModoPago.getSelectedItemPosition();
+            String idTarjeta = listTarjetas.get(spinnerTarjetas.getSelectedItemPosition()).getId();
+
+            listMov = gestion.getMovimientosFiltros(db, gastoPulsado, ingresoPulsado, tipoFecha, tipoFiltro,
+                    idCategoria, idSubcategoria, tipoPago, idTarjeta, mMonth, mYear, mDayDesde, mMonthDesde, mYearDesde,
+                    mDayHasta, mMonthHasta, mYearHasta, idCuenta);
         }
         db.close();
     }
@@ -817,11 +913,14 @@ public class NuevoResumenFragment extends Fragment {
     }
 
     public void obtenerCategorias() {
-        listCategorias = new ArrayList<Categoria>();
+        //listCategorias = new ArrayList<Categoria>();
+        listCategoriasFiltros = new ArrayList<Categoria>();
         db = getActivity().openOrCreateDatabase(BD_NOMBRE, 1, null);
         if (db != null) {
             // Recuperamos el listado del spinner Categorias
-            listCategorias = (ArrayList<Categoria>) gestion.getCategorias(db,
+            //listCategorias = (ArrayList<Categoria>) gestion.getCategorias(db,
+            //        "Categorias", "idCategoria", getActivity());
+            listCategoriasFiltros = (ArrayList<Categoria>) gestion.getCategoriasFiltros(db,
                     "Categorias", "idCategoria", getActivity());
         }
         db.close();
@@ -829,16 +928,16 @@ public class NuevoResumenFragment extends Fragment {
         // Creamos el adaptador
         ListAdapterSpinner spinner_adapterCat = new ListAdapterSpinner(
                 getActivity(), R.layout.spinner_iconos,
-                listCategorias);
+                listCategoriasFiltros);
 
         spinnerCategorias.setAdapter(spinner_adapterCat);
     }
 
     public void obtenerSubcategorias() {
-        listSubcategorias = new ArrayList<Categoria>();
+        listSubcategoriasFiltros = new ArrayList<Categoria>();
         db = getActivity().openOrCreateDatabase(BD_NOMBRE, 1, null);
         if (db != null) {
-            listSubcategorias = (ArrayList<Categoria>) gestion.getCategorias(
+            listSubcategoriasFiltros = (ArrayList<Categoria>) gestion.getCategoriasFiltros(
                     db, "Subcategorias", "idSubcategoria", getActivity());
         }
         db.close();
@@ -846,7 +945,7 @@ public class NuevoResumenFragment extends Fragment {
         // Creamos el adaptador
         ListAdapterSpinner spinner_adapterSubcat = new ListAdapterSpinner(
                 getActivity(), R.layout.spinner_iconos,
-                listSubcategorias);
+                listSubcategoriasFiltros);
         spinnerSubcategorias.setAdapter(spinner_adapterSubcat);
     }
 
@@ -886,7 +985,7 @@ public class NuevoResumenFragment extends Fragment {
         db = getActivity().openOrCreateDatabase(BD_NOMBRE, 1, null);
         if (db != null) {
             // Recuperamos el listado del spinner Categorias
-            listTarjetas = (ArrayList<Tarjeta>) gestion.getTarjetas(db);
+            listTarjetas = (ArrayList<Tarjeta>) gestion.getTarjetasFiltro(db);
         }
         db.close();
         // Creamos la lista
@@ -925,19 +1024,19 @@ public class NuevoResumenFragment extends Fragment {
         prefsFiltros = getActivity().getSharedPreferences("ficheroConfFiltros", Context.MODE_PRIVATE);
 
         ingresoPulsado = prefsFiltros.getBoolean("ingresoPulsado", true);
-        if(ingresoPulsado){
+        if (ingresoPulsado) {
             btnIngreso.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.rounded_layout_azul));
             txtIngreso.setTextColor(getActivity().getResources().getColor(R.color.blanco));
-        }else{
+        } else {
             btnIngreso.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.rounded_layout_gris));
             txtIngreso.setTextColor(getActivity().getResources().getColor(R.color.txtGris));
         }
 
         gastoPulsado = prefsFiltros.getBoolean("gastoPulsado", true);
-        if(gastoPulsado){
+        if (gastoPulsado) {
             btnGasto.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.rounded_layout_azul));
             txtGasto.setTextColor(getActivity().getResources().getColor(R.color.blanco));
-        }else{
+        } else {
             btnGasto.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.rounded_layout_gris));
             txtGasto.setTextColor(getActivity().getResources().getColor(R.color.txtGris));
         }
@@ -946,22 +1045,22 @@ public class NuevoResumenFragment extends Fragment {
         boolean fechaHasta = prefsFiltros.getBoolean("fechaHasta", false);
 
         Calendar c = Calendar.getInstance();
-        if(fechaDesde){
+        if (fechaDesde) {
             mDayDesde = prefsFiltros.getInt("diaDesde", 0);
             mMonthDesde = prefsFiltros.getInt("mesDesde", 0);
             mYearDesde = prefsFiltros.getInt("anioDesde", 0);
-        }else{
+        } else {
             mDayDesde = 1;
             mMonthDesde = c.get(Calendar.MONTH);
-            mYearDesde= c.get(Calendar.YEAR);
+            mYearDesde = c.get(Calendar.YEAR);
         }
 
-        if(fechaHasta){
+        if (fechaHasta) {
             mDayHasta = prefsFiltros.getInt("diaHasta", 0);
             mMonthHasta = prefsFiltros.getInt("mesHasta", 0);
             mYearHasta = prefsFiltros.getInt("anioHasta", 0);
-        }else{
-            Date fechaFin =  Util.getFinMes(mMonthDesde + 1, mYearDesde);
+        } else {
+            Date fechaFin = Util.getFinMes(mMonthDesde + 1, mYearDesde);
             String fechaF = fechaFin.toString();
             mYearHasta = Integer.parseInt(fechaF.substring(0, 4));
             mMonthHasta = Integer.parseInt(fechaF.substring(5, 7)) - 1;
@@ -973,30 +1072,32 @@ public class NuevoResumenFragment extends Fragment {
 
         int posiFechas = prefsFiltros.getInt("spinnerFechas", 0);
         spinnerFechas.setSelection(posiFechas);
-        if(posiFechas == 0){
+        if (posiFechas == 0) {
             layoutFechas.setVisibility(View.GONE);
-        }else{
+            tipoFecha = 0;
+        } else {
             layoutFechas.setVisibility(View.VISIBLE);
+            tipoFecha = 1;
         }
 
         int posiTipo = prefsFiltros.getInt("tipoFiltro", 0);
         spinnerTipoFiltroResumen.setSelection(posiTipo);
         tipoFiltro = posiTipo;
 
-        String idCat = prefsFiltros.getString("idCategoria", "0");
+        String idCat = prefsFiltros.getString("idCategoria", "-1");
         int posiCat = 0;
-        for(int i=0; i<listCategorias.size(); i++){
-            if (listCategorias.get(i).getId().equals(idCat)){
+        for (int i = 0; i < listCategoriasFiltros.size(); i++) {
+            if (listCategoriasFiltros.get(i).getId().equals(idCat)) {
                 posiCat = i;
                 break;
             }
         }
         spinnerCategorias.setSelection(posiCat);
 
-        String idSub = prefsFiltros.getString("idSubcategoria", "0");
+        String idSub = prefsFiltros.getString("idSubcategoria", "-1");
         int posiSub = 0;
-        for(int i=0; i<listSubcategorias.size(); i++){
-            if (listSubcategorias.get(i).getId().equals(idSub)){
+        for (int i = 0; i < listSubcategoriasFiltros.size(); i++) {
+            if (listSubcategoriasFiltros.get(i).getId().equals(idSub)) {
                 posiSub = i;
                 break;
             }
@@ -1005,16 +1106,16 @@ public class NuevoResumenFragment extends Fragment {
 
         int posiTipoModoPago = prefsFiltros.getInt("spinnerTipoModoPago", 0);
         spinnerTipoModoPago.setSelection(posiTipoModoPago);
-        if(posiTipoModoPago == 2){
+        if (posiTipoModoPago == 2) {
             layoutTarjetasFiltro.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             layoutTarjetasFiltro.setVisibility(View.GONE);
         }
 
         String idTarjeta = prefsFiltros.getString("idTarjeta", "0");
         int posiTar = 0;
-        for(int i=0; i<listTarjetas.size(); i++){
-            if (listTarjetas.get(i).getId().equals(idTarjeta)){
+        for (int i = 0; i < listTarjetas.size(); i++) {
+            if (listTarjetas.get(i).getId().equals(idTarjeta)) {
                 posiTar = i;
                 break;
             }
@@ -1026,37 +1127,37 @@ public class NuevoResumenFragment extends Fragment {
         String mes;
         String dia;
 
-        if((mMonthDesde +1) < 10){
+        if ((mMonthDesde + 1) < 10) {
             mes = "0" + String.valueOf(mMonthDesde + 1);
-        }else{
+        } else {
             mes = String.valueOf(mMonthDesde + 1);
         }
 
-        if(mDayDesde < 10){
+        if (mDayDesde < 10) {
             dia = "0" + String.valueOf(mDayDesde);
-        }else{
+        } else {
             dia = String.valueOf(mDayDesde);
         }
 
         txtFechaDesde.setText(new StringBuilder()
                 // Month is 0 based so add 1
                 .append(dia).append("-").append(mes).append("-")
-                .append(mYearDesde).append(" "));
+                .append(mYearDesde));
     }
 
     private void updateDisplayHasta() {
         String mes;
         String dia;
 
-        if((mMonthHasta +1) < 10){
+        if ((mMonthHasta + 1) < 10) {
             mes = "0" + String.valueOf(mMonthHasta + 1);
-        }else{
+        } else {
             mes = String.valueOf(mMonthHasta + 1);
         }
 
-        if(mDayHasta < 10){
+        if (mDayHasta < 10) {
             dia = "0" + String.valueOf(mDayHasta);
-        }else{
+        } else {
             dia = String.valueOf(mDayHasta);
         }
 
@@ -1145,6 +1246,16 @@ public class NuevoResumenFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == getActivity().RESULT_OK) {
+            switch (requestCode) {
+                case RESUMEN :
+                    ((FinanfyActivity)getActivity()).mostrarPublicidad(false, true);
+                    break;
+                case EDIT_DELETE :
+                    ((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
+                    break;
+            }
+        }
         new CargarMovimientosTask().execute();
     }
 
@@ -1171,6 +1282,7 @@ public class NuevoResumenFragment extends Fragment {
             } else if (tipoFiltro == 2) {
                 rellenarListaExpansibleSubcategorias();
             }
+
             calcularTotal();
             return null;
         }
@@ -1234,6 +1346,16 @@ public class NuevoResumenFragment extends Fragment {
             } else {
                 txtTotal.setTextColor(Color.RED);
             }
+
+            if (tipoFecha == 0) {
+                layoutMeses.setVisibility(View.VISIBLE);
+                layoutIntervaloFecha.setVisibility(View.GONE);
+            } else {
+                txtIntevaloFechas.setText(txtFechaDesde.getText().toString().trim() + " - " + txtFechaHasta.getText().toString().trim());
+                layoutIntervaloFecha.setVisibility(View.VISIBLE);
+                layoutMeses.setVisibility(View.GONE);
+            }
+
             progDailog.dismiss();
         }
     }
@@ -1352,6 +1474,8 @@ public class NuevoResumenFragment extends Fragment {
                     bundle.putString("idTarjeta", mov.getIdTarjeta());
                     bundle.putString("fecha", mov.getFecha().toString());
                     bundle.putString("notas", mov.toString());
+                    intent.putExtra("isPremium", isPremium);
+                    intent.putExtra("isSinPublicidad", isSinPublicidad);
                     intent.putExtras(bundle);
                     startActivityForResult(intent, EDIT_DELETE);
                 }

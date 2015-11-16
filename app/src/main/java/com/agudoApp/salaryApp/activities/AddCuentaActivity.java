@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -33,6 +34,10 @@ public class AddCuentaActivity extends AppCompatActivity {
     EditText nombre;
     Spinner spinnerIconUser;
 
+    boolean isPremium;
+    boolean isSinPublicidad;
+    private RelativeLayout layoutPubli;
+
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
 
@@ -46,6 +51,12 @@ public class AddCuentaActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setContentInsetsAbsolute(0, 0);
         setSupportActionBar(toolbar);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            isPremium = extras.getBoolean("isPremium", false);
+            isSinPublicidad = extras.getBoolean("isSinPublicidad", false);
+        }
 
         nombre = (EditText) findViewById(R.id.nombre);
         spinnerIconUser = (Spinner) findViewById(R.id.spinnerIconCuenta);
@@ -131,10 +142,16 @@ public class AddCuentaActivity extends AppCompatActivity {
         layoutParams.gravity = Gravity.CENTER_HORIZONTAL | Gravity.CENTER_HORIZONTAL;
         getSupportActionBar().setCustomView(actionBarButtons, layoutParams);
 
+        layoutPubli = (RelativeLayout) findViewById(R.id.layoutPubli);
+
         //Se carga la publicidad
         AdView adView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+        if (isPremium || isSinPublicidad) {
+            layoutPubli.setVisibility(View.GONE);
+        } else {
+            AdRequest adRequest = new AdRequest.Builder().build();
+            adView.loadAd(adRequest);
+        }
 
     }
 

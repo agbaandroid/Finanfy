@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.database.GestionBBDD;
+import com.agudoApp.salaryApp.general.FinanfyActivity;
 import com.agudoApp.salaryApp.util.Util;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -81,6 +82,8 @@ public class EstadisticasFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onActivityCreated(savedInstanceState);
+
+        ((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
 
         prefs = getActivity().getSharedPreferences("ficheroConf", Context.MODE_PRIVATE);
         db = getActivity().openOrCreateDatabase(BD_NOMBRE, 1, null);

@@ -148,7 +148,7 @@
     <string name="reset">Reiniciar</string>
     <string name="msgExportar">A base de dados é armazenada no seguinte caminho:</string>
     <string name="msgImportar">Lembre-se que para executar corretamente a importação, o banco de dados deve estar no seguinte caminho:</string>
-    <string name="ruta">/ Sdcard / SalaryControl /</string>
+    <string name="ruta">/Sdcard/Finanfy/</string>
     <string name="tituloMenuBD">Opções de banco de dados</string>
     <string name="importarOK">Banco de Dados importada corretamente</string>
     <string name="importarError">Erro de banco de dados de importação</string>

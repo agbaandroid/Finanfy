@@ -1,12 +1,16 @@
 package com.agudoApp.salaryApp.fragments;
 
 import android.app.Dialog;
+import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -17,6 +21,9 @@ import android.widget.ImageView;
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.database.GestionBBDD;
 import com.agudoApp.salaryApp.general.FinanfyActivity;
+import com.android.vending.billing.IInAppBillingService;
+
+import org.json.JSONObject;
 
 public class IconosCategoriaPremiumFragment extends Fragment {
 	private static final String KEY_CONTENT = "PestanaCategoriaFragment:Content";
@@ -27,6 +34,7 @@ public class IconosCategoriaPremiumFragment extends Fragment {
 	SharedPreferences prefs;
 	SharedPreferences.Editor editor;
 	private boolean isPremium = false;
+	private boolean isCategoriaPremium = false;
 
 	// arbitrario) cdigo de solicitud para el flujo de compra
 	static final int RC_REQUEST = 10001;
@@ -60,6 +68,8 @@ public class IconosCategoriaPremiumFragment extends Fragment {
 	String tipo;
 	String flujo;
 
+	IInAppBillingService mService;
+
 	private String mContent = "???";
 
 	@Override
@@ -75,7 +85,7 @@ public class IconosCategoriaPremiumFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+							 Bundle savedInstanceState) {
 
 		return inflater.inflate(R.layout.categorias_premium, container, false);
 	}
@@ -87,12 +97,35 @@ public class IconosCategoriaPremiumFragment extends Fragment {
 	}
 
 	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == 1001) {
+			int responseCode = data.getIntExtra("RESPONSE_CODE", 0);
+			String purchaseData = data.getStringExtra("INAPP_PURCHASE_DATA");
+
+			if (resultCode == 0) {//RESULT_OK
+				try {
+					JSONObject o = new JSONObject(purchaseData);
+					isPremium = true;
+
+					alert(getResources().getString(R.string.gracias));
+				} catch (Exception e) {
+					alert(getResources().getString(R.string.errorCompra));
+				}
+			}
+		}
+	}
+
+	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 
 		Bundle bundle = getArguments();
-		//isPremium = bundle.getBoolean("isPremium", false);
+
+		Intent serviceIntent = new Intent(
+				"com.android.vending.billing.InAppBillingService.BIND");
+		serviceIntent.setPackage("com.android.vending");
+		getActivity().bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
 
 		Bundle extras = getActivity().getIntent().getExtras();
 		if (extras != null) {
@@ -101,6 +134,11 @@ public class IconosCategoriaPremiumFragment extends Fragment {
 			tipo = extras.getString("tipo");
 			flujo = extras.getString("flujo");
 			isPremium = extras.getBoolean("isPremium", false);
+			isCategoriaPremium = extras.getBoolean("isCategoriaPremium", false);
+		}
+
+		if (isPremium || isCategoriaPremium) {
+			isPremium = true;
 		}
 
 		if (id == null) {
@@ -521,6 +559,18 @@ public class IconosCategoriaPremiumFragment extends Fragment {
 
 	}
 
+	ServiceConnection mServiceConn = new ServiceConnection() {
+		@Override
+		public void onServiceDisconnected(ComponentName name) {
+			mService = null;
+		}
+
+		@Override
+		public void onServiceConnected(ComponentName name, IBinder service) {
+			mService = IInAppBillingService.Stub.asInterface(service);
+		}
+	};
+
 	public void guardarIdIcon(int idIcon) {
 		prefs = getActivity().getSharedPreferences("ficheroConf",
 				Context.MODE_PRIVATE);
@@ -535,31 +585,51 @@ public class IconosCategoriaPremiumFragment extends Fragment {
 		LayoutInflater li = LayoutInflater.from(getActivity());
 		View view = null;
 		switch (id) {
-		case MSG_MORE_CAT:
-			view = li.inflate(R.layout.comprar_more_cat, null);
-			builder.setView(view);
-			builder.setCancelable(true);
-			builder.setPositiveButton(
-					getResources().getString(R.string.comprar),
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							//onUpgradeAppButtonClicked(SKU_CATEGORIAS_PREMIUM);
-						}
-					}).setNegativeButton(
-					getResources().getString(R.string.masTarde),
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							dialog.cancel();
-						}
-					});
-			alert = builder.create();
-			alert.show();
-			break;
+			case MSG_MORE_CAT:
+				view = li.inflate(R.layout.comprar_more_cat, null);
+				builder.setView(view);
+				builder.setCancelable(true);
+				builder.setPositiveButton(
+						getResources().getString(R.string.comprar),
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+								comprarProducto(SKU_CATEGORIAS_PREMIUM);
+							}
+						}).setNegativeButton(
+						getResources().getString(R.string.masTarde),
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+								dialog.cancel();
+							}
+						});
+				alert = builder.create();
+				alert.show();
+				break;
 		}
 		return null;
 	}
 
+	public void comprarProducto(String sku) {
+		try {
+			Bundle buyIntentBundle = mService.getBuyIntent(3, getActivity().getPackageName(),
+					sku, "inapp", "");
 
+			int response = buyIntentBundle.getInt("RESPONSE_CODE", 0);
+			if (response == 0) {
+				PendingIntent pendingIntent = buyIntentBundle
+						.getParcelable("BUY_INTENT");
+
+				getActivity().startIntentSenderForResult(pendingIntent.getIntentSender(),
+						1001, new Intent(), Integer.valueOf(0),
+						Integer.valueOf(0), Integer.valueOf(0));
+			} else if (response == 7) {
+				alert(getResources().getString(R.string.productoComprado));
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	void error(String message) {
 		alert(message);
@@ -584,5 +654,14 @@ public class IconosCategoriaPremiumFragment extends Fragment {
 					}
 				});
 		bld.create().show();
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		if (mServiceConn != null) {
+			getActivity().unbindService(mServiceConn);
+
+		}
 	}
 }

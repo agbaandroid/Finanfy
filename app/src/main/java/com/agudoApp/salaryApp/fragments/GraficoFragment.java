@@ -16,12 +16,15 @@ import android.widget.RelativeLayout;
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.adapters.ListAdapterCatGrafico;
 import com.agudoApp.salaryApp.database.GestionBBDD;
+import com.agudoApp.salaryApp.general.FinanfyActivity;
 import com.agudoApp.salaryApp.graficos.PieChartView;
 import com.agudoApp.salaryApp.model.Categoria;
 import com.agudoApp.salaryApp.model.Movimiento;
+import com.agudoApp.salaryApp.util.Util;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
@@ -32,6 +35,7 @@ public final class GraficoFragment extends Fragment {
     private final String BD_NOMBRE = "BDGestionGastos";
     private GestionBBDD gestion = new GestionBBDD();
     SharedPreferences prefs;
+    SharedPreferences prefsFiltros;
 
     // Productos que posee el usuario
     boolean isPremium = false;
@@ -41,6 +45,27 @@ public final class GraficoFragment extends Fragment {
     LinearLayout layoutSinRegistro;
     LinearLayout layoutGrafico;
     private RelativeLayout layoutPubli;
+
+    int mDayDesde;
+    int mMonthDesde;
+    int mYearDesde;
+
+    int mDayHasta;
+    int mMonthHasta;
+    int mYearHasta;
+
+    boolean ingresoPulsado = false;
+    boolean gastoPulsado = false;
+
+    boolean fechaDesde = false;
+    boolean fechaHasta = false;
+
+    int posiFechas;
+    int posiTipo;
+    String idCat;
+    String idSub;
+    int posiTipoModoPago;
+    String idTarjeta;
 
     private String mContent = "???";
 
@@ -80,6 +105,8 @@ public final class GraficoFragment extends Fragment {
         // TODO Auto-generated method stub
         super.onActivityCreated(savedInstanceState);
 
+        ((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
+
         Cursor movimientos = null;
         ArrayList<Movimiento> listMov = new ArrayList<Movimiento>();
         int idCuenta = cuentaSeleccionada();
@@ -88,9 +115,13 @@ public final class GraficoFragment extends Fragment {
         int anio = c.get(Calendar.YEAR);
         int mes = c.get(Calendar.MONTH);
 
+        configurarFiltros();
+
         db = getActivity().openOrCreateDatabase(BD_NOMBRE, 1, null);
         if (db != null) {
-            listMov = gestion.getMovimientosFiltros(db, mes, anio, idCuenta);
+            listMov = gestion.getMovimientosFiltros(db, gastoPulsado, ingresoPulsado, posiFechas, posiTipo,
+                    idCat, idSub, posiTipoModoPago, idTarjeta, mes, anio, mDayDesde, mMonthDesde, mYearDesde,
+                    mDayHasta, mMonthHasta, mYearHasta, idCuenta);
         }
         db.close();
 
@@ -219,5 +250,48 @@ public final class GraficoFragment extends Fragment {
             }
         }
         return contiene;
+    }
+
+    public void configurarFiltros() {
+        prefsFiltros = getActivity().getSharedPreferences("ficheroConfFiltros", Context.MODE_PRIVATE);
+
+        ingresoPulsado = prefsFiltros.getBoolean("ingresoPulsado", true);
+        gastoPulsado = prefsFiltros.getBoolean("gastoPulsado", true);
+
+        fechaDesde = prefsFiltros.getBoolean("fechaDesde", false);
+        fechaHasta = prefsFiltros.getBoolean("fechaHasta", false);
+
+        Calendar c = Calendar.getInstance();
+        if (fechaDesde) {
+            mDayDesde = prefsFiltros.getInt("diaDesde", 0);
+            mMonthDesde = prefsFiltros.getInt("mesDesde", 0);
+            mYearDesde = prefsFiltros.getInt("anioDesde", 0);
+        } else {
+            mDayDesde = 1;
+            mMonthDesde = c.get(Calendar.MONTH);
+            mYearDesde = c.get(Calendar.YEAR);
+        }
+
+        if (fechaHasta) {
+            mDayHasta = prefsFiltros.getInt("diaHasta", 0);
+            mMonthHasta = prefsFiltros.getInt("mesHasta", 0);
+            mYearHasta = prefsFiltros.getInt("anioHasta", 0);
+        } else {
+            Date fechaFin = Util.getFinMes(mMonthDesde + 1, mYearDesde);
+            String fechaF = fechaFin.toString();
+            mYearHasta = Integer.parseInt(fechaF.substring(0, 4));
+            mMonthHasta = Integer.parseInt(fechaF.substring(5, 7)) - 1;
+            mDayHasta = Integer.parseInt(fechaF.substring(8, 10));
+        }
+
+        posiFechas = prefsFiltros.getInt("spinnerFechas", 0);
+        posiTipo = prefsFiltros.getInt("tipoFiltro", 0);
+
+        idCat = prefsFiltros.getString("idCategoria", "0");
+        idSub = prefsFiltros.getString("idSubcategoria", "0");
+
+        posiTipoModoPago = prefsFiltros.getInt("spinnerTipoModoPago", 0);
+
+        idTarjeta = prefsFiltros.getString("idTarjeta", "0");
     }
 }

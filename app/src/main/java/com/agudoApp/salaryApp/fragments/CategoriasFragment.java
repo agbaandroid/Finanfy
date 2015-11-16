@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.activities.NuevoAddCategoriaActivity;
+import com.agudoApp.salaryApp.general.FinanfyActivity;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -65,6 +66,8 @@ public class CategoriasFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
+		((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
+
 		View rootView = inflater.inflate(
 				R.layout.tabs_categorias_personalizadas, container, false);
 
@@ -85,7 +88,7 @@ public class CategoriasFragment extends Fragment {
 			adView.loadAd(adRequest);
 		}
 
-		Fragment fragment = new PestanaCategoriaFragment(isPremium);
+		Fragment fragment = new PestanaCategoriaFragment(isPremium, isCategoriaPremium, isSinPublicidad);
 		if (fragment != null) {
 			FragmentManager fragmentManager = getActivity()
 					.getSupportFragmentManager();
@@ -99,7 +102,7 @@ public class CategoriasFragment extends Fragment {
 		layoutCat.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				if (!isCategoria) {
-					Fragment fragment = new PestanaCategoriaFragment(isPremium);
+					Fragment fragment = new PestanaCategoriaFragment(isPremium, isCategoriaPremium, isSinPublicidad);
 					if (fragment != null) {
 						FragmentManager fragmentManager = getActivity()
 								.getSupportFragmentManager();
@@ -121,7 +124,7 @@ public class CategoriasFragment extends Fragment {
 			public void onClick(View v) {
 				if (!isSubcategoria) {
 					Fragment fragment = new PestanaSubcategoriaFragment(
-							isPremium);
+							isPremium, isCategoriaPremium, isSinPublicidad);
 					if (fragment != null) {
 						FragmentManager fragmentManager = getActivity()
 								.getSupportFragmentManager();
@@ -154,6 +157,9 @@ public class CategoriasFragment extends Fragment {
 			case R.id.action_add:
 				Intent intent = new Intent(getActivity(), NuevoAddCategoriaActivity.class);
 				intent.putExtra("isCategoria", isCategoria);
+				intent.putExtra("isPremium", isPremium);
+				intent.putExtra("isSinPublicidad", isSinPublicidad);
+				intent.putExtra("isCategoriaPremium", isCategoriaPremium);
 				startActivityForResult(intent, CATEGORIA);
 				return true;
 			case android.R.id.home:
@@ -161,6 +167,17 @@ public class CategoriasFragment extends Fragment {
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
+		}
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode == getActivity().RESULT_OK) {
+			switch (requestCode) {
+				case CATEGORIA :
+					((FinanfyActivity)getActivity()).mostrarPublicidad(false, true);
+					break;
+			}
 		}
 	}
 }

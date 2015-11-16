@@ -155,7 +155,7 @@
     <string name="msgExportar">La base de datos se guardará en la siguiente ruta:</string>
     <string name="msgImportar">Recuerde que para realizar correctamente la
 		importación, la base de datos debe estar en la siguiente ruta:</string>
-    <string name="ruta">/sdcard/SalaryControl/</string>
+    <string name="ruta">/sdcard/Finanfy/</string>
     <string name="tituloMenuBD">Opciones de base de datos</string>
     <string name="importarOK">Base de datos importada correctamente</string>
     <string name="importarError">Error importando base de datos</string>

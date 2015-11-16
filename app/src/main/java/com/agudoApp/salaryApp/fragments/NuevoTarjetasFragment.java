@@ -23,6 +23,7 @@ import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.activities.NuevoAddTarjetaActivity;
 import com.agudoApp.salaryApp.activities.NuevoEditTarjetaActivity;
 import com.agudoApp.salaryApp.database.GestionBBDD;
+import com.agudoApp.salaryApp.general.FinanfyActivity;
 import com.agudoApp.salaryApp.model.Tarjeta;
 import com.agudoApp.salaryApp.util.Util;
 import com.google.android.gms.ads.AdRequest;
@@ -89,6 +90,8 @@ public class NuevoTarjetasFragment extends Fragment {
         // TODO Auto-generated method stub
         super.onActivityCreated(savedInstanceState);
 
+        ((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
+
         prefs = getActivity().getSharedPreferences("ficheroConf",
                 Context.MODE_PRIVATE);
 
@@ -132,6 +135,8 @@ public class NuevoTarjetasFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.action_add:
                 Intent intent = new Intent(getActivity(), NuevoAddTarjetaActivity.class);
+                intent.putExtra("isPremium", isPremium);
+                intent.putExtra("isSinPublicidad", isSinPublicidad);
                 startActivityForResult(intent, TARJETAS);
                 return true;
             case android.R.id.home:
@@ -217,6 +222,8 @@ public class NuevoTarjetasFragment extends Fragment {
                     Bundle bundle = new Bundle();
                     bundle.putString("idTarjeta", tar.getId());
                     intent.putExtras(bundle);
+                    intent.putExtra("isPremium", isPremium);
+                    intent.putExtra("isSinPublicidad", isSinPublicidad);
                     startActivityForResult(intent, TARJETAS);
                 }
             });

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.activities.NuevoEditCategoriaActivity;
 import com.agudoApp.salaryApp.database.GestionBBDD;
+import com.agudoApp.salaryApp.general.FinanfyActivity;
 import com.agudoApp.salaryApp.model.Categoria;
 import com.agudoApp.salaryApp.util.Util;
 
@@ -29,11 +30,16 @@ public class PestanaSubcategoriaFragment extends Fragment {
 	private SQLiteDatabase db;
 	protected ListView listCatView;
 	private boolean isPremium = false;
+	private boolean isSinPublicidad = false;
+	private boolean isCategoriaPremium = false;
+	private final int CATEGORIA = 1;
 
 	private String mContent = "???";
 	
-	public PestanaSubcategoriaFragment(boolean isUserPremium) {
+	public PestanaSubcategoriaFragment(boolean isUserPremium, boolean isCatPrem, boolean isSinPubli) {
 		isPremium = isUserPremium;
+		isCategoriaPremium = isCatPrem;
+		isSinPublicidad = isSinPubli;
 	}
 
 	@Override
@@ -68,9 +74,6 @@ public class PestanaSubcategoriaFragment extends Fragment {
 		listCatView = (ListView) this.getView().findViewById(
 				R.id.listaPestanaCategoria);
 
-		// Bundle bundle = getArguments();
-		// isPremium = bundle.getBoolean("isPremium", false);
-
 		rellenarListaExpansibleCategorias();
 	}
 
@@ -84,7 +87,7 @@ public class PestanaSubcategoriaFragment extends Fragment {
 		listCatView.setClickable(true);
 
 		boolean isCatPremium = false;
-		if(isPremium || isCatPremium){
+		if(isPremium || isCategoriaPremium){
 			isCatPremium = true;
 		}
 		ListAdapterCategorias listAdapter = new ListAdapterCategorias(
@@ -184,13 +187,27 @@ public class PestanaSubcategoriaFragment extends Fragment {
 					Bundle bundle = new Bundle();
 					bundle.putBoolean("isCategoria", false);
 					bundle.putString("idCategoria", cat.getId());
+					intent.putExtra("isPremium", isPremium);
+					intent.putExtra("isSinPublicidad", isSinPublicidad);
+					intent.putExtra("isCategoriaPremium", isCategoriaPremium);
 					intent.putExtras(bundle);
-					startActivity(intent);
+					startActivityForResult(intent, CATEGORIA);
 				}
 			});
 
 			return convertView;
 		}
 
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode == getActivity().RESULT_OK) {
+			switch (requestCode) {
+				case CATEGORIA :
+					((FinanfyActivity)getActivity()).mostrarPublicidad(false, true);
+					break;
+			}
+		}
 	}
 }

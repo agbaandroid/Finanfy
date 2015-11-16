@@ -24,7 +24,6 @@ import java.sql.Date;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -487,6 +486,33 @@ public class GestionBBDD {
         }
     }
 
+    public List<Categoria> getCategoriasFiltros(SQLiteDatabase db, String tabla,
+                                                String id, Context context) {
+        List<Categoria> listaCategorias = new ArrayList<Categoria>();
+        Cursor c1 = db.query(tabla,
+                new String[]{id, "descripcion", "idIcon"}, null, null, null,
+                null, null);
+        Categoria categoriaTodas = new Categoria();
+        categoriaTodas.setId("-1");
+        categoriaTodas.setDescripcion("ES_Todas");
+        categoriaTodas.setIdIcon(-1);
+        listaCategorias.add(categoriaTodas);
+        if (c1.moveToFirst()) {
+            do {
+                Categoria categoria = new Categoria();
+                categoria.setId(c1.getString(0));
+                if (categoria.getId().equals("0")) {
+                    categoria.setDescripcion(context.getResources().getString(R.string.otros));
+                } else {
+                    categoria.setDescripcion(c1.getString(1));
+                }
+                categoria.setIdIcon(c1.getInt(2));
+                listaCategorias.add(categoria);
+            } while (c1.moveToNext());
+        }
+        return listaCategorias;
+    }
+
     public List<Categoria> getCategorias(SQLiteDatabase db, String tabla,
                                          String id, Context context) {
         List<Categoria> listaCategorias = new ArrayList<Categoria>();
@@ -514,6 +540,29 @@ public class GestionBBDD {
         Cursor c1 = db.query("Tarjetas",
                 new String[]{"idTarjeta", "nombre", "limite", "tipo", "idIcon"}, null, null, null, null,
                 "idTarjeta asc");
+        if (c1.moveToFirst()) {
+            do {
+                Tarjeta tarjeta = new Tarjeta();
+                tarjeta.setId(c1.getString(0));
+                tarjeta.setNombre(c1.getString(1));
+                tarjeta.setCantMax(c1.getFloat(2));
+                tarjeta.setTipo(c1.getInt(3));
+                tarjeta.setIdIcon(c1.getInt(4));
+                listaTarjetas.add(tarjeta);
+            } while (c1.moveToNext());
+        }
+        return listaTarjetas;
+    }
+
+    public List<Tarjeta> getTarjetasFiltro(SQLiteDatabase db) {
+        List<Tarjeta> listaTarjetas = new ArrayList<Tarjeta>();
+        Cursor c1 = db.query("Tarjetas",
+                new String[]{"idTarjeta", "nombre", "limite", "tipo", "idIcon"}, null, null, null, null,
+                "idTarjeta asc");
+        Tarjeta tarjetaAux = new Tarjeta();
+        tarjetaAux.setId("-1");
+        tarjetaAux.setNombre("ES_Todas");
+        listaTarjetas.add(tarjetaAux);
         if (c1.moveToFirst()) {
             do {
                 Tarjeta tarjeta = new Tarjeta();
@@ -570,7 +619,7 @@ public class GestionBBDD {
                     listaRecibos.add(recibo);
                 } while (c1.moveToNext());
             }
-        }catch(Exception exception){
+        } catch (Exception exception) {
             exception.printStackTrace();
         }
         return listaRecibos;
@@ -718,253 +767,27 @@ public class GestionBBDD {
     }
 
     // Metodo que obtiene listado de movimientos al iniciar la actividad
-    public ArrayList<Movimiento> getMovimientosInicioNominas(SQLiteDatabase db,
-                                                             int idCuenta) {
-        ArrayList<Movimiento> listaMovimientos = new ArrayList<Movimiento>();
-
-        // obtenemos la fecha actual
-        final Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
-        Date fechaInicio = new Date(year - 1900, month, 1);
-        Date fechaActual = new Date(year - 1900, month, day);
-        // consultamos si existe una nomina del mes actual
-        Cursor nominaMesActual = getNominaPorMes(db, month + 1, year, idCuenta);
-        if (nominaMesActual.moveToFirst()) {
-            Movimiento mov = new Movimiento();
-            mov.setFecha(getFecha(nominaMesActual.getString(6)));
-            if ((mov.getFecha().before(fechaActual))
-                    || mov.getFecha().equals(fechaActual)) {
-                fechaInicio = getFecha(nominaMesActual.getString(6));
-            } else {
-                Cursor nominaMesAnterior = getNominaPorMes(db, month, year,
-                        idCuenta);
-                if (nominaMesAnterior.moveToFirst()) {
-                    fechaInicio = getFecha(nominaMesAnterior.getString(6));
-                }
-            }
-        } else {
-            Cursor nominaMesAnterior = getNominaPorMes(db, month, year,
-                    idCuenta);
-            if (nominaMesAnterior.moveToFirst()) {
-                fechaInicio = getFecha(nominaMesAnterior.getString(6));
-            } else {
-                fechaInicio = new Date(year - 1900, month, 1);
-            }
-        }
-        if (fechaInicio != null && fechaActual != null) {
-            Cursor movimientos = consultarMovimientos(db, fechaInicio,
-                    fechaActual, idCuenta);
-            listaMovimientos = obtenerDatosMovimientos(movimientos);
-        }
-        return listaMovimientos;
-    }
-
-    // Metodo que obtiene listado de movimientos al iniciar la actividad
-    public ArrayList<Movimiento> getMovimientosFiltros(SQLiteDatabase db,
-                                                       int month, int year, int idCuenta) {
+    public ArrayList<Movimiento> getMovimientosFiltros(SQLiteDatabase db, boolean gasto, boolean ingreso, int tipoFecha,
+                                                       int tipoFiltro, String idCategoria, String idSubcategoria, int tipoPago, String idTarjeta,
+                                                       int month, int year, int diaDesde, int mesDesde, int anioDesde,
+                                                       int diaHasta, int mesHasta, int anioHasta, int idCuenta) {
         ArrayList<Movimiento> listaMovimientos = new ArrayList<Movimiento>();
 
         Date fechaInicio = null;
         Date fechaFin = null;
+        Date fechaDesde = null;
+        Date fechaHasta = null;
 
         fechaInicio = new Date(year - 1900, month, 1);
         fechaFin = getFinMes(month + 1, year);
+        fechaDesde = new Date(anioDesde - 1900, mesDesde, diaDesde);
+        fechaHasta = new Date(anioHasta - 1900, mesHasta, diaHasta);
 
         // Obtenemos los movimientos del mes entero
-        if (fechaInicio != null && fechaFin != null) {
-            Cursor movimientos = consultarMovimientos(db, fechaInicio,
-                    fechaFin, idCuenta);
-            listaMovimientos = obtenerDatosMovimientos(movimientos);
-        }
-        return listaMovimientos;
-    }
+        Cursor movimientos = consultarMovimientos(db, gasto, ingreso, tipoFecha, idCategoria, idSubcategoria,
+                tipoPago, idTarjeta, fechaInicio, fechaFin, fechaDesde, fechaHasta, idCuenta);
+        listaMovimientos = obtenerDatosMovimientos(movimientos);
 
-    // Metodo que obtiene listado de movimientos al iniciar la actividad
-    public ArrayList<Movimiento> getMovimientosInicioMes(SQLiteDatabase db,
-                                                         int month, int year, int idCuenta) {
-        ArrayList<Movimiento> listaMovimientos = new ArrayList<Movimiento>();
-
-        Date fechaInicio = null;
-        Date fechaFin = null;
-
-        if (month != 0) {
-            fechaInicio = new Date(year - 1900, month - 1, 1);
-            fechaFin = getFinMes(month, year);
-        } else {
-            fechaInicio = new Date(year - 1900, 0, 1);
-            fechaFin = new Date(year - 1900, 11, 31);
-        }
-
-        // Obtenemos los movimientos del mes entero
-        if (fechaInicio != null && fechaFin != null) {
-            Cursor movimientos = consultarMovimientos(db, fechaInicio,
-                    fechaFin, idCuenta);
-            listaMovimientos = obtenerDatosMovimientos(movimientos);
-        }
-        return listaMovimientos;
-    }
-
-    // Metodo que obtiene listado de movimientos al iniciar la actividad
-    // resumenTarjetas
-    public ArrayList<Movimiento> getMovimientosTarjetaInicio(SQLiteDatabase db,
-                                                             int idTarjeta, int month, int year, int idCuenta) {
-        ArrayList<Movimiento> listaMovimientos = new ArrayList<Movimiento>();
-
-        Date fechaInicio = null;
-        Date fechaFin = null;
-
-        if (month != 0) {
-            fechaInicio = new Date(year - 1900, month - 1, 1);
-            fechaFin = getFinMes(month, year);
-        } else {
-            fechaInicio = new Date(year - 1900, 0, 1);
-            fechaFin = new Date(year - 1900, 11, 31);
-        }
-
-        if (fechaInicio != null && fechaFin != null) {
-            Cursor movimientos = consultarMovimientosTarjeta(db, fechaInicio,
-                    fechaFin, idTarjeta, idCuenta);
-            listaMovimientos = obtenerDatosMovimientos(movimientos);
-        }
-        return listaMovimientos;
-    }
-
-    // Metodo encargado de obtener el listado de movimientos al cambiar los
-    // spinners
-    public ArrayList<Movimiento> getMovimientos(SQLiteDatabase db, int mes,
-                                                int anio, int idCuenta) {
-        ArrayList<Movimiento> listaMovimientos = new ArrayList<Movimiento>();
-        Date fechaInicio = null;
-        Date fechaFin = null;
-
-        if (mes != 0) {
-            // consultamos si existe una nomina del mes actual
-            Cursor nominaMesActual = getNominaPorMes(db, mes, anio, idCuenta);
-            Cursor nominaMesSiguiente;
-            if (mes == 12) {
-                nominaMesSiguiente = getNominaPorMes(db, 1, anio + 1, idCuenta);
-            } else {
-                nominaMesSiguiente = getNominaPorMes(db, mes + 1, anio,
-                        idCuenta);
-            }
-            fechaFin = getFinMes(mes, anio);
-            boolean incluirFechaFin = false;
-
-            if (nominaMesActual.moveToFirst()) {
-                Movimiento mov = new Movimiento();
-                mov.setFecha(getFecha(nominaMesActual.getString(6)));
-                fechaInicio = mov.getFecha();
-                if (nominaMesSiguiente.moveToFirst()) {
-                    Movimiento mov2 = new Movimiento();
-                    mov2.setFecha(getFecha(nominaMesSiguiente.getString(6)));
-                    fechaFin = mov2.getFecha();
-                } else {
-                    incluirFechaFin = true;
-                    if (mes == 12) {
-                        fechaFin = getFinMes(1, anio + 1);
-                    } else {
-                        fechaFin = getFinMes(mes + 1, anio);
-                    }
-                }
-            } else {
-                fechaInicio = new Date(anio - 1900, mes - 1, 1);
-                if (nominaMesSiguiente.moveToFirst()) {
-                    Movimiento mov = new Movimiento();
-                    mov.setFecha(getFecha(nominaMesSiguiente.getString(6)));
-                    fechaFin = mov.getFecha();
-                } else {
-                    incluirFechaFin = true;
-                    fechaFin = getFinMes(mes, anio);
-                }
-            }
-
-            if (fechaInicio != null && fechaFin != null) {
-                Cursor movimientos;
-                if (incluirFechaFin) {
-                    movimientos = consultarMovimientos(db, fechaInicio,
-                            fechaFin, idCuenta);
-                } else {
-                    movimientos = consultarMovimientosDosNominas(db,
-                            fechaInicio, fechaFin, idCuenta);
-                }
-                listaMovimientos = obtenerDatosMovimientos(movimientos);
-            }
-        } else {
-            fechaInicio = new Date(anio - 1900, 0, 1);
-            fechaFin = new Date(anio - 1900, 11, 31);
-
-            if (fechaInicio != null && fechaFin != null) {
-                Cursor movimientos = consultarMovimientos(db, fechaInicio,
-                        fechaFin, idCuenta);
-                listaMovimientos = obtenerDatosMovimientos(movimientos);
-            }
-        }
-        return listaMovimientos;
-    }
-
-    // Metodo encargado de obtener el listado de movimientos al cambiar los
-    // spinners de resumenTarjeta
-    public ArrayList<Movimiento> getMovimientosTarjeta(SQLiteDatabase db,
-                                                       int mes, int anio, int idTarjeta, int idCuenta) {
-        ArrayList<Movimiento> listaMovimientos = new ArrayList<Movimiento>();
-        Date fechaInicio = null;
-        Date fechaFin = null;
-
-        if (mes != 0) {
-            // consultamos si existe una nomina del mes actual
-            Cursor nominaMesActual = getNominaPorMes(db, mes, anio, idCuenta);
-            Cursor nominaMesSiguiente;
-            if (mes == 12) {
-                nominaMesSiguiente = getNominaPorMes(db, 1, anio + 1, idCuenta);
-            } else {
-                nominaMesSiguiente = getNominaPorMes(db, mes + 1, anio,
-                        idCuenta);
-            }
-            fechaFin = getFinMes(mes, anio);
-
-            if (nominaMesActual.moveToFirst()) {
-                Movimiento mov = new Movimiento();
-                mov.setFecha(getFecha(nominaMesActual.getString(6)));
-                fechaInicio = mov.getFecha();
-                if (nominaMesSiguiente.moveToFirst()) {
-                    Movimiento mov2 = new Movimiento();
-                    mov2.setFecha(getFecha(nominaMesSiguiente.getString(6)));
-                    fechaFin = mov2.getFecha();
-                } else {
-                    if (mes == 12) {
-                        fechaFin = getFinMes(1, anio + 1);
-                    } else {
-                        fechaFin = getFinMes(mes + 1, anio);
-                    }
-                }
-            } else {
-                fechaInicio = new Date(anio - 1900, mes - 1, 1);
-                if (nominaMesSiguiente.moveToFirst()) {
-                    Movimiento mov = new Movimiento();
-                    mov.setFecha(getFecha(nominaMesSiguiente.getString(6)));
-                    fechaFin = mov.getFecha();
-                } else {
-                    fechaFin = getFinMes(mes, anio);
-                }
-            }
-
-            if (fechaInicio != null && fechaFin != null) {
-                Cursor movimientos = consultarMovimientosDosNominasTarjetas(db,
-                        fechaInicio, fechaFin, idTarjeta, idCuenta);
-                listaMovimientos = obtenerDatosMovimientos(movimientos);
-            }
-        } else {
-            fechaInicio = new Date(anio - 1900, 0, 1);
-            fechaFin = new Date(anio - 1900, 11, 31);
-
-            if (fechaInicio != null && fechaFin != null) {
-                Cursor movimientos = consultarMovimientosTarjeta(db,
-                        fechaInicio, fechaFin, idTarjeta, idCuenta);
-                listaMovimientos = obtenerDatosMovimientos(movimientos);
-            }
-        }
         return listaMovimientos;
     }
 
@@ -1078,20 +901,59 @@ public class GestionBBDD {
         return fecha2;
     }
 
-    public Cursor consultarMovimientos(SQLiteDatabase db, Date fechaInicio,
-                                       Date fechaFin, int idCuenta) {
-        Cursor nomina = db
-                .rawQuery(
-                        "select * from Movimientos m, Categorias c, Subcategorias s where m.fecha>='"
-                                + fechaInicio
-                                + "' and m.fecha<='"
-                                + fechaFin
-                                + "' and m.idCuenta='"
-                                + idCuenta
-                                + "' and m.idCategoria = c.idCategoria and m.idSubcategoria = s.idSubcategoria order by m.fecha asc, m.tipo desc",
-                        null);
+    public Cursor consultarMovimientos(SQLiteDatabase db, boolean gasto, boolean ingreso, int tipoFecha,
+                                       String idCategoria, String idSubcategoria, int tipoPago, String idTarjeta,
+                                       Date fechaInicio, Date fechaFin, Date fechaDesde, Date fechaHasta, int idCuenta) {
 
-        return nomina;
+        Cursor c1 = null;
+        try {
+            StringBuffer sql = new StringBuffer(
+                    "select * from Movimientos m, Categorias c, Subcategorias s where idCuenta = '" + idCuenta + "'");
+
+            if(!(gasto && ingreso)){
+                if (gasto) {
+                    sql.append(" and m.cantidad < 0");
+                }
+                if (ingreso) {
+                    sql.append(" and m.cantidad > 0");
+                }
+            }
+
+            if (tipoFecha == 0) {
+                sql.append(" and m.fecha>='" + fechaInicio + "' and m.fecha<='" + fechaFin + "'");
+            } else {
+                sql.append(" and m.fecha>='" + fechaDesde + "' and m.fecha<='" + fechaHasta + "'");
+            }
+
+            if (idCategoria.equals("-1")) {
+                sql.append(" and m.idCategoria = c.idCategoria");
+            } else {
+                sql.append(" and m.idCategoria = c.idCategoria and c.idCategoria = '" + idCategoria + "'");
+            }
+
+            if (idSubcategoria.equals("-1")) {
+                sql.append(" and m.idSubcategoria = s.idSubcategoria");
+            } else {
+                sql.append(" and m.idSubcategoria = s.idSubcategoria and s.idSubcategoria = '" + idSubcategoria + "'");
+            }
+
+            if (tipoPago == 1) {
+                sql.append((" and m.tarjeta='false'"));
+            } else if (tipoPago == 2) {
+                sql.append(" and m.tarjeta='true'");
+            }
+
+            if(!idTarjeta.equals("-1")){
+                sql.append(" and m.idTarjeta='" + idTarjeta + "'");
+            }
+
+            sql.append(" order by m.fecha desc, m.idMovimiento desc");
+
+            c1 = db.rawQuery(sql.toString(), null);
+        } catch (Exception e) {
+            return c1;
+        }
+        return c1;
     }
 
     public Cursor consultarMovimientosExcel(SQLiteDatabase db,

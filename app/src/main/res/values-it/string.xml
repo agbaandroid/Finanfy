@@ -156,7 +156,7 @@ un minuto.
 importazione , il database deve essere nel seguente percorso:
 
 </string>
-    <string name="ruta">/sdcard/SalaryControl/</string>
+    <string name="ruta">/sdcard/Finanfy/</string>
     <string name="tituloMenuBD">Opzioni del database</string>
     <string name="importarOK">Database importato correttamente</string>
     <string name="importarError">Errore durante la importazione di database</string>

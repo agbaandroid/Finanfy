@@ -13,10 +13,13 @@
 
 package com.agudoApp.salaryApp.Utilidades;
 
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Locale;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+
+import com.agudoApp.salaryApp.database.GestionBBDD;
+import com.agudoApp.salaryApp.model.Movimiento;
 
 import org.afree.chart.AFreeChart;
 import org.afree.chart.ChartFactory;
@@ -31,13 +34,10 @@ import org.afree.data.category.DefaultCategoryDataset;
 import org.afree.graphics.GradientColor;
 import org.afree.graphics.SolidColor;
 
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
-
-import com.agudoApp.salaryApp.database.GestionBBDD;
-import com.agudoApp.salaryApp.model.Movimiento;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class GraficoBarras extends GraficoView {
 
@@ -244,8 +244,9 @@ public class GraficoBarras extends GraficoView {
 						Date fechaIni = new Date(i - 1900, j - 1, 1);
 						Date fechaFin = getFinMes(j, i);
 
-						Cursor movimientos = gestion.consultarMovimientos(db,
-								fechaIni, fechaFin, idCuenta);
+						Cursor movimientos = null;
+						//Cursor movimientos = gestion.consultarMovimientos(db,
+						//		fechaIni, fechaFin, idCuenta);
 						ArrayList<Movimiento> listaMovimientos = GestionBBDD
 								.obtenerDatosMovimientos(movimientos);
 
@@ -281,8 +282,7 @@ public class GraficoBarras extends GraficoView {
 					Date fechaIni = new Date(i - 1900, 0, 1);
 					Date fechaFin = new Date(i - 1900, 11, 31);
 
-					Cursor movimientos = gestion.consultarMovimientos(db,
-							fechaIni, fechaFin, idCuenta);
+					Cursor movimientos = null;
 					ArrayList<Movimiento> listaMovimientos = GestionBBDD
 							.obtenerDatosMovimientos(movimientos);
 

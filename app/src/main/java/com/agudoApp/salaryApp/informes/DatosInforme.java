@@ -431,7 +431,7 @@ public class DatosInforme extends Activity {
 
 		db = this.openOrCreateDatabase(BD_NOMBRE, 1, null);
 		if (db != null) {
-			listMov = gestion.getMovimientosInicioNominas(db, idCuenta);
+			//listMov = gestion.getMovimientosInicioNominas(db, idCuenta);
 		}
 		db.close();
 		// Seleccionamos el mes correcto

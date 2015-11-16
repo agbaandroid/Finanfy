@@ -154,7 +154,7 @@
     <string name="msgExportar">Die Datenbank wird werden sparen in diesem Pfad :</string>
     <string name="msgImportar">Denken Sie daran, die Einfuhr richtig tun,
 		Datenbank muss sich im Pfad:</string>
-    <string name="ruta">/sdcard/SalaryControl/</string>
+    <string name="ruta">/sdcard/Finanfy/</string>
     <string name="tituloMenuBD">Datenbank Optionen</string>
     <string name="importarOK">Datenbank Import korrekt</string>
     <string name="importarError">Ein Fehler hatte geschah während des Imports.</string>

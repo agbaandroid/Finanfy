@@ -86,6 +86,12 @@ public class NuevoActivity extends AppCompatActivity {
         toolbar.setContentInsetsAbsolute(0, 0);
         setSupportActionBar(toolbar);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            isPremium = extras.getBoolean("isPremium", false);
+            isSinPublicidad = extras.getBoolean("isSinPublicidad", false);
+        }
+
         // Inflate the custom view and add click handlers for the buttons
         View actionBarButtons = getLayoutInflater().inflate(R.layout.accept_cancel_actionbar,
                 new LinearLayout(this), false);
@@ -181,6 +187,7 @@ public class NuevoActivity extends AppCompatActivity {
                         int duration = Toast.LENGTH_LONG;
                         Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
+                        setResult(RESULT_OK, getIntent());
                         finish();
                     } else {
                         Context context = getApplicationContext();

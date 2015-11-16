@@ -16,6 +16,7 @@ import com.agudoApp.salaryApp.activities.SeguridadAntigua;
 import com.agudoApp.salaryApp.activities.SeguridadComprobar;
 import com.agudoApp.salaryApp.activities.SeguridadIntroducir;
 import com.agudoApp.salaryApp.database.GestionBBDD;
+import com.agudoApp.salaryApp.general.FinanfyActivity;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -75,6 +76,8 @@ public class SeguridadFragment extends Fragment {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 
+		((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
+
 		prefs = getActivity().getSharedPreferences("ficheroConf",
 				Context.MODE_PRIVATE);
 		editor = prefs.edit();
@@ -113,6 +116,8 @@ public class SeguridadFragment extends Fragment {
 			public void onClick(View v) {
 				Intent intent = new Intent(getActivity(),
 						SeguridadIntroducir.class);
+				intent.putExtra("isPremium", isPremium);
+				intent.putExtra("isSinPublicidad", isSinPublicidad);
 				startActivity(intent);
 			}
 		});
@@ -122,6 +127,8 @@ public class SeguridadFragment extends Fragment {
 				Intent intent = new Intent(getActivity(),
 						SeguridadComprobar.class);
 				intent.putExtra("funcionalidad", "desactivar");
+				intent.putExtra("isPremium", isPremium);
+				intent.putExtra("isSinPublicidad", isSinPublicidad);
 				startActivity(intent);
 			}
 		});
@@ -130,6 +137,8 @@ public class SeguridadFragment extends Fragment {
 			public void onClick(View v) {
 				Intent intent = new Intent(getActivity(),
 						SeguridadAntigua.class);
+				intent.putExtra("isPremium", isPremium);
+				intent.putExtra("isSinPublicidad", isSinPublicidad);
 				startActivity(intent);
 			}
 		});

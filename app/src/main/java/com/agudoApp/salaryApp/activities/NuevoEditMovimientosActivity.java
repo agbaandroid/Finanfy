@@ -114,6 +114,12 @@ public final class NuevoEditMovimientosActivity extends AppCompatActivity {
         toolbar.setContentInsetsAbsolute(0, 0);
         setSupportActionBar(toolbar);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            isPremium = extras.getBoolean("isPremium", false);
+            isSinPublicidad = extras.getBoolean("isSinPublicidad", false);
+        }
+
         txtCant = (TextView) findViewById(R.id.txtCant);
         btnGasto = (LinearLayout) findViewById(R.id.btnGasto);
         btnIngreso = (LinearLayout) findViewById(R.id.btnIngreso);
@@ -244,6 +250,7 @@ public final class NuevoEditMovimientosActivity extends AppCompatActivity {
                         int duration = Toast.LENGTH_LONG;
                         Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
+                        setResult(RESULT_OK, getIntent());
                         finish();
                     } else {
                         Context context = getApplicationContext();
@@ -611,6 +618,7 @@ public final class NuevoEditMovimientosActivity extends AppCompatActivity {
                                     int duration = Toast.LENGTH_SHORT;
                                     Toast toast = Toast.makeText(context, text, duration);
                                     toast.show();
+                                    setResult(RESULT_OK, getIntent());
                                 } else {
                                     Context context = getApplicationContext();
                                     CharSequence text = getResources().getString(

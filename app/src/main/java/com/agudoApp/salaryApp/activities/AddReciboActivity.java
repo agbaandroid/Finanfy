@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +46,7 @@ public class AddReciboActivity extends AppCompatActivity {
 
     private LinearLayout btnGasto;
     private LinearLayout btnIngreso;
+    private RelativeLayout layoutPubli;
     private TextView txtGasto;
     private TextView txtIngreso;
     private TextView nVeces;
@@ -88,6 +90,12 @@ public class AddReciboActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setContentInsetsAbsolute(0, 0);
         setSupportActionBar(toolbar);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            isPremium = extras.getBoolean("isPremium", false);
+            isSinPublicidad = extras.getBoolean("isSinPublicidad", false);
+        }
 
         // Inflate the custom view and add click handlers for the buttons
         View actionBarButtons = getLayoutInflater().inflate(R.layout.accept_cancel_actionbar,
@@ -191,6 +199,7 @@ public class AddReciboActivity extends AppCompatActivity {
                         int duration = Toast.LENGTH_LONG;
                         Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
+                        setResult(RESULT_OK, getIntent());
                         finish();
                     } else {
                         Context context = getApplicationContext();
@@ -249,10 +258,16 @@ public class AddReciboActivity extends AppCompatActivity {
         spinnerModoPago = (Spinner) findViewById(
                 R.id.spinnerTipoPago);
 
+        layoutPubli = (RelativeLayout) findViewById(R.id.layoutPubli);
+
         //Se carga la publicidad
         AdView adView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+        if (isPremium || isSinPublicidad) {
+            layoutPubli.setVisibility(View.GONE);
+        } else {
+            AdRequest adRequest = new AdRequest.Builder().build();
+            adView.loadAd(adRequest);
+        }
 
         updateDisplay();
 

@@ -149,7 +149,7 @@
     <string name="reset">Reset</string>
     <string name="msgExportar">The data base will be saved in this route: </string>
     <string name="msgImportar">For a correctly import, the database must be in this route.</string>
-    <string name="ruta">/sdcard/SalaryControl/</string>
+    <string name="ruta">/sdcard/Finanfy/</string>
     <string name="tituloMenuBD">Data base options</string>
     <string name="importarOK">Database imported correctly </string>
     <string name="importarError">An error ocurred during the import of the database.</string>

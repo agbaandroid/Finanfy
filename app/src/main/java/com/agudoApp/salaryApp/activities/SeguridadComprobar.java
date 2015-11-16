@@ -11,10 +11,13 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.agudoApp.salaryApp.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class SeguridadComprobar extends AppCompatActivity {
 
@@ -33,8 +36,12 @@ public class SeguridadComprobar extends AppCompatActivity {
     EditText pass;
     String contrasenia;
     String funcionalidad = "";
+    private RelativeLayout layoutPubli;
     TextView textSeguridad;
     boolean salir = false;
+
+    boolean isPremium = false;
+    boolean isSinPublicidad = false;
 
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
@@ -50,6 +57,8 @@ public class SeguridadComprobar extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             funcionalidad = extras.getString("funcionalidad");
+            isPremium = extras.getBoolean("isPremium", false);
+            isSinPublicidad = extras.getBoolean("isSinPublicidad", false);
         }
 
         prefs = getSharedPreferences("ficheroConf", Context.MODE_PRIVATE);
@@ -76,6 +85,17 @@ public class SeguridadComprobar extends AppCompatActivity {
         pass = (EditText) findViewById(R.id.pass);
         ok = (LinearLayout) findViewById(R.id.ok);
         borrar = (LinearLayout) findViewById(R.id.borrar);
+
+        layoutPubli = (RelativeLayout) findViewById(R.id.layoutPubli);
+
+        //Se carga la publicidad
+        AdView adView = (AdView) findViewById(R.id.adView);
+        if (isPremium || isSinPublicidad) {
+            layoutPubli.setVisibility(View.GONE);
+        } else {
+            AdRequest adRequest = new AdRequest.Builder().build();
+            adView.loadAd(adRequest);
+        }
 
         pass.setHint(getResources().getString(R.string.introducirPass));
         //textSeguridad.setText(getResources().getString(R.string.introducirPass));
@@ -152,6 +172,8 @@ public class SeguridadComprobar extends AppCompatActivity {
                             Intent in = new Intent(SeguridadComprobar.this,
                                     SeguridadComprobar.class);
                             in.putExtra("funcionalidad", "comprobar");
+                            in.putExtra("isPremium", isPremium);
+                            in.putExtra("isSinPublicidad", isSinPublicidad);
                             finish();
                             startActivity(in);
                         }
@@ -172,6 +194,8 @@ public class SeguridadComprobar extends AppCompatActivity {
                             Intent in = new Intent(SeguridadComprobar.this,
                                     SeguridadComprobar.class);
                             in.putExtra("funcionalidad", "desactivar");
+                            in.putExtra("isPremium", isPremium);
+                            in.putExtra("isSinPublicidad", isSinPublicidad);
                             finish();
                             startActivity(in);
                         }

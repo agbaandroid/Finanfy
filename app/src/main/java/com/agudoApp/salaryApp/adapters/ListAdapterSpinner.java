@@ -49,6 +49,12 @@ public class ListAdapterSpinner extends ArrayAdapter<Categoria> {
 		icono.setBackgroundDrawable(contexto.getResources().getDrawable(
 				Util.obtenerIconoCategoria(cat.getIdIcon())));
 
+		if(cat.getIdIcon() == -1){
+			icono.setVisibility(View.GONE);
+		}else{
+			icono.setVisibility(View.VISIBLE);
+		}
+
 		return fila;
 	}
 

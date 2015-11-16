@@ -17,6 +17,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.agudoApp.salaryApp.R;
@@ -40,13 +41,13 @@ public class CuentasActivity extends AppCompatActivity {
     private final int CUENTAS = 1;
 
     ListView listaCuentas;
+    private RelativeLayout layoutPubli;
 
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
 
     // Productos que posee el usuario
     boolean isPremium = false;
-    boolean isCategoriaPremium = false;
     boolean isSinPublicidad = false;
 
     @Override
@@ -61,7 +62,11 @@ public class CuentasActivity extends AppCompatActivity {
         toolbar.setContentInsetsAbsolute(0, 0);
         setSupportActionBar(toolbar);
 
-        setSupportActionBar(toolbar);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            isPremium = extras.getBoolean("isPremium", false);
+            isSinPublicidad = extras.getBoolean("isSinPublicidad", false);
+        }
 
         getSupportActionBar().setTitle(
                 getResources().getString(R.string.cuentasList));
@@ -69,11 +74,16 @@ public class CuentasActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        layoutPubli = (RelativeLayout) findViewById(R.id.layoutPubli);
 
         //Se carga la publicidad
         AdView adView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+        if (isPremium || isSinPublicidad) {
+            layoutPubli.setVisibility(View.GONE);
+        } else {
+            AdRequest adRequest = new AdRequest.Builder().build();
+            adView.loadAd(adRequest);
+        }
 
         listaCuentas = (ListView) findViewById(R.id.listaCuentas);
         obtenerCuentas();
@@ -105,6 +115,8 @@ public class CuentasActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_add:
                 Intent intent = new Intent(CuentasActivity.this, AddCuentaActivity.class);
+                intent.putExtra("isPremium", isPremium);
+                intent.putExtra("isSinPublicidad", isSinPublicidad);
                 startActivityForResult(intent, CUENTAS);
                 return true;
             case android.R.id.home:
@@ -176,6 +188,8 @@ public class CuentasActivity extends AppCompatActivity {
                     Bundle bundle = new Bundle();
                     bundle.putString("idCuenta", cuenta.getIdCuenta());
                     intent.putExtras(bundle);
+                    intent.putExtra("isPremium", isPremium);
+                    intent.putExtra("isSinPublicidad", isSinPublicidad);
                     startActivityForResult(intent, CUENTAS);
                 }
             });

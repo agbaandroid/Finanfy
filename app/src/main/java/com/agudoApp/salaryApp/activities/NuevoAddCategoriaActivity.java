@@ -39,6 +39,7 @@ public class NuevoAddCategoriaActivity extends AppCompatActivity {
     boolean isPremium;
     boolean isSinPublicidad;
     boolean isCategoria;
+    boolean isCategoriaPremium;
 
     int idIcon;
 
@@ -60,6 +61,9 @@ public class NuevoAddCategoriaActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             isCategoria = extras.getBoolean("isCategoria");
+            isPremium = extras.getBoolean("isPremium", false);
+            isSinPublicidad = extras.getBoolean("isSinPublicidad", false);
+            isCategoriaPremium = extras.getBoolean("isCategoriaPremium", false);
         }
 
         // Inflate the custom view and add click handlers for the buttons
@@ -117,7 +121,7 @@ public class NuevoAddCategoriaActivity extends AppCompatActivity {
                         int duration = Toast.LENGTH_SHORT;
                         Toast toast = Toast.makeText(context, textMsg, duration);
                         toast.show();
-
+                        setResult(RESULT_OK, getIntent());
                         finish();
                     } else {
                         resetIconoId();

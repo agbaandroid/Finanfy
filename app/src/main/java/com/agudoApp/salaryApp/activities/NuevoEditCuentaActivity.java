@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -41,9 +42,14 @@ public class NuevoEditCuentaActivity extends AppCompatActivity {
 
     EditText nombre;
     Spinner spinnerIconUser;
+    private RelativeLayout layoutPubli;
 
     String idCuenta;
     Cuenta cuenta = new Cuenta();
+
+    // Productos que posee el usuario
+    boolean isPremium = false;
+    boolean isSinPublicidad = false;
 
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
@@ -67,6 +73,8 @@ public class NuevoEditCuentaActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             idCuenta = extras.getString("idCuenta");
+            isPremium = extras.getBoolean("isPremium", false);
+            isSinPublicidad = extras.getBoolean("isSinPublicidad", false);
         }
 
         db = openOrCreateDatabase(BD_NOMBRE, 1, null);
@@ -158,10 +166,16 @@ public class NuevoEditCuentaActivity extends AppCompatActivity {
         layoutParams.gravity = Gravity.CENTER_HORIZONTAL | Gravity.CENTER_HORIZONTAL;
         getSupportActionBar().setCustomView(actionBarButtons, layoutParams);
 
+        layoutPubli = (RelativeLayout) findViewById(R.id.layoutPubli);
+
         //Se carga la publicidad
         AdView adView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+        if (isPremium || isSinPublicidad) {
+            layoutPubli.setVisibility(View.GONE);
+        } else {
+            AdRequest adRequest = new AdRequest.Builder().build();
+            adView.loadAd(adRequest);
+        }
     }
 
     @Override

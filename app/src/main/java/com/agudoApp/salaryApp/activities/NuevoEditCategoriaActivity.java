@@ -51,6 +51,7 @@ public class NuevoEditCategoriaActivity extends AppCompatActivity {
 
     boolean isPremium;
     boolean isSinPublicidad;
+    boolean isCategoriaPremium;
     boolean isCategoria;
 
     SharedPreferences prefs;
@@ -72,6 +73,9 @@ public class NuevoEditCategoriaActivity extends AppCompatActivity {
         if (extras != null) {
             isCategoria = extras.getBoolean("isCategoria");
             idCategoria = extras.getString("idCategoria");
+            isPremium = extras.getBoolean("isPremium", false);
+            isSinPublicidad = extras.getBoolean("isSinPublicidad", false);
+            isCategoriaPremium = extras.getBoolean("isCategoriaPremium", false);
         }
 
         db = openOrCreateDatabase(BD_NOMBRE, 1, null);
@@ -153,6 +157,7 @@ public class NuevoEditCategoriaActivity extends AppCompatActivity {
                         int duration = Toast.LENGTH_SHORT;
                         Toast toast = Toast.makeText(context, textMsg, duration);
                         toast.show();
+                        setResult(RESULT_OK, getIntent());
                         finish();
                     } else {
                         CharSequence textMsg;
@@ -258,6 +263,7 @@ public class NuevoEditCategoriaActivity extends AppCompatActivity {
                                     int duration = Toast.LENGTH_SHORT;
                                     Toast toast = Toast.makeText(context, textMsg, duration);
                                     toast.show();
+                                    setResult(RESULT_OK, getIntent());
                                     finish();
                                 } else {
                                     Context context = getApplicationContext();
@@ -305,6 +311,7 @@ public class NuevoEditCategoriaActivity extends AppCompatActivity {
                                     int duration = Toast.LENGTH_SHORT;
                                     Toast toast = Toast.makeText(context, textMsg, duration);
                                     toast.show();
+                                    setResult(RESULT_OK, getIntent());
                                     finish();
                                 } else {
                                     Context context = getApplicationContext();

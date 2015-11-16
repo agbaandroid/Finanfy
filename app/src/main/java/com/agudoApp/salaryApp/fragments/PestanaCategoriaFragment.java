@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.activities.NuevoEditCategoriaActivity;
 import com.agudoApp.salaryApp.database.GestionBBDD;
+import com.agudoApp.salaryApp.general.FinanfyActivity;
 import com.agudoApp.salaryApp.model.Categoria;
 import com.agudoApp.salaryApp.util.Util;
 
@@ -29,11 +30,16 @@ public class PestanaCategoriaFragment extends Fragment {
 	private SQLiteDatabase db;
 	protected ListView listCatView;
 	private boolean isPremium = false;
+	private boolean isSinPublicidad = false;
+	private boolean isCategoriaPremium = false;
+	private final int CATEGORIA = 1;
 
 	private String mContent = "???";
 	
-	public PestanaCategoriaFragment(boolean isUserPremium) {
+	public PestanaCategoriaFragment(boolean isUserPremium, boolean isCatPrem, boolean isSinPubli) {
 		isPremium = isUserPremium;
+		isCategoriaPremium = isCatPrem;
+		isSinPublicidad = isSinPubli;
 	}
 
 	@Override
@@ -67,9 +73,6 @@ public class PestanaCategoriaFragment extends Fragment {
 
 		listCatView = (ListView) this.getView().findViewById(
 				R.id.listaPestanaCategoria);
-
-//		Bundle bundle = getArguments();
-//		isPremium = bundle.getBoolean("isPremium", false);
 
 		rellenarListaCategorias();
 	}
@@ -182,12 +185,26 @@ public class PestanaCategoriaFragment extends Fragment {
 					bundle.putBoolean("isCategoria", true);
 					bundle.putString("idCategoria", cat.getId());
 					intent.putExtras(bundle);
-					startActivity(intent);
+					intent.putExtra("isPremium", isPremium);
+					intent.putExtra("isSinPublicidad", isSinPublicidad);
+					intent.putExtra("isCategoriaPremium", isCategoriaPremium);
+					startActivityForResult(intent, CATEGORIA);
 				}
 			});
 
 			return convertView;
 		}
 
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode == getActivity().RESULT_OK) {
+			switch (requestCode) {
+				case CATEGORIA :
+					((FinanfyActivity)getActivity()).mostrarPublicidad(false, true);
+					break;
+			}
+		}
 	}
 }

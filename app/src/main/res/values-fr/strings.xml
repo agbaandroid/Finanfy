@@ -155,7 +155,7 @@
 </string>
     <string name="msgImportar">N’oubliez pas de faire correctement l’importation,
 		la base de données doit être dans ce chemin :</string>
-    <string name="ruta">/sdcard/SalaryControl/</string>
+    <string name="ruta">/sdcard/Finanfy/</string>
     <string name="tituloMenuBD">Options de la base de données</string>
     <string name="importarOK">l’importation de la base de données a été faite
 		correctement</string>

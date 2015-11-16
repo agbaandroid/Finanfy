@@ -222,7 +222,7 @@ public class Util {
 			icon = R.drawable.wedding;
 			break;
 		default:
-			icon = R.drawable.defecto;
+			icon = android.R.color.transparent;
 			break;
 		}
 		return icon;
