@@ -222,7 +222,7 @@ public final class NuevoEditRecibosActivity extends AppCompatActivity {
                         tarjeta = true;
                     }
 
-                    if (!txtNVeces.getText().toString().equals("ES_Sin Límite")) {
+                    if (!txtNVeces.getText().toString().equals(getResources().getString(R.string.sinLimite))) {
                         nVeces = Integer.parseInt(txtNVeces.getText().toString());
                         fechaFin = Util.obtenerFechaFin(fecha, nVeces);
                     }else{
@@ -260,7 +260,7 @@ public final class NuevoEditRecibosActivity extends AppCompatActivity {
                     }
                 } else {
                     Context context = getApplicationContext();
-                    CharSequence text = "ES_Debe introducir una cantidad";
+                    CharSequence text = getResources().getString(R.string.introducirCant);
                     int duration = Toast.LENGTH_LONG;
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
@@ -344,7 +344,7 @@ public final class NuevoEditRecibosActivity extends AppCompatActivity {
                     startActivityForResult(intent, NVECES);
                 } else {
                     sinLimite = true;
-                    txtNVeces.setText("ES_Sin Límite");
+                    txtNVeces.setText(getResources().getString(R.string.sinLimite));
                 }
             }
         });
@@ -532,7 +532,7 @@ public final class NuevoEditRecibosActivity extends AppCompatActivity {
             sinLimite = false;
         } else {
             sinLimite = true;
-            txtNVeces.setText("ES_Sin límite");
+            txtNVeces.setText(getResources().getString(R.string.sinLimite));
         }
     }
 

@@ -101,7 +101,7 @@ public class FinanfyActivity extends AppCompatActivity {
         setContentView(R.layout.drawer_layout);
 
         interstitial = new InterstitialAd(this);
-        interstitial.setAdUnitId("ca-app-pub-2303483383476811/4287719686");
+        interstitial.setAdUnitId("ca-app-pub-2303483383476811/8788233284");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -339,6 +339,27 @@ public class FinanfyActivity extends AppCompatActivity {
             case 9:
                 fragment = new TiendaFragment(isPremium, isSinPublicidad,
                         isCategoriaPremium);
+                break;
+            case 10:
+                LayoutInflater li = LayoutInflater.from(this);
+		        View view = null;
+		        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		        AlertDialog alert;
+                view = li.inflate(R.layout.acerca, null);
+                builder.setView(view);
+                builder.setTitle(getResources().getString(R.string.app_name));
+                builder.setIcon(R.drawable.icon_app);
+                builder.setCancelable(false);
+                builder.setPositiveButton(getResources()
+                                .getString(R.string.aceptar),
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                alert = builder.create();
+                alert.show();
+                navDrawerLayout.closeDrawer(left_drawer_cuentas);
                 break;
             default:
                 break;

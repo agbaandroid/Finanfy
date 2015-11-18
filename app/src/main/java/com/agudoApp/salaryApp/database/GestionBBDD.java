@@ -494,7 +494,7 @@ public class GestionBBDD {
                 null, null);
         Categoria categoriaTodas = new Categoria();
         categoriaTodas.setId("-1");
-        categoriaTodas.setDescripcion("ES_Todas");
+        categoriaTodas.setDescripcion(context.getResources().getString(R.string.todas));
         categoriaTodas.setIdIcon(-1);
         listaCategorias.add(categoriaTodas);
         if (c1.moveToFirst()) {
@@ -554,14 +554,15 @@ public class GestionBBDD {
         return listaTarjetas;
     }
 
-    public List<Tarjeta> getTarjetasFiltro(SQLiteDatabase db) {
+    public List<Tarjeta> getTarjetasFiltro(SQLiteDatabase db, Context context) {
         List<Tarjeta> listaTarjetas = new ArrayList<Tarjeta>();
         Cursor c1 = db.query("Tarjetas",
                 new String[]{"idTarjeta", "nombre", "limite", "tipo", "idIcon"}, null, null, null, null,
                 "idTarjeta asc");
         Tarjeta tarjetaAux = new Tarjeta();
         tarjetaAux.setId("-1");
-        tarjetaAux.setNombre("ES_Todas");
+
+        tarjetaAux.setNombre(context.getResources().getString(R.string.todas));
         listaTarjetas.add(tarjetaAux);
         if (c1.moveToFirst()) {
             do {

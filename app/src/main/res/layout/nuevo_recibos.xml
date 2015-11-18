@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="PUBLICIDAD"
+            android:text="@string/publicidad"
             android:textColor="@color/txtGris"
             android:textSize="14dp" />
 
@@ -58,7 +58,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ES_No hay registros"
+            android:text="@string/noRegistros"
             android:textColor="@color/txtGris"
             android:textSize="16dp" />
     </LinearLayout>

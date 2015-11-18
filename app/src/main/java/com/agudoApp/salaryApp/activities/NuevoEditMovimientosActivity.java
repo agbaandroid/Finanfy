@@ -262,7 +262,7 @@ public final class NuevoEditMovimientosActivity extends AppCompatActivity {
                     }
                 } else {
                     Context context = getApplicationContext();
-                    CharSequence text = "ES_Debe introducir una cantidad";
+                    CharSequence text = getResources().getString(R.string.introducirCant);
                     int duration = Toast.LENGTH_LONG;
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();

@@ -33,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="PUBLICIDAD"
+                    android:text="@string/publicidad"
                     android:textColor="@color/txtGris"
                     android:textSize="14dp" />
 
@@ -67,7 +67,7 @@
                     android:layout_marginTop="30dp"
                     android:background="@drawable/text_gris"
                     android:gravity="center_vertical"
-                    android:hint="ES_Nombre"
+                    android:hint="@string/nombre"
                     android:orientation="vertical"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
@@ -91,7 +91,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1.5"
                     android:gravity="center_vertical"
-                    android:text="ES_Icono"
+                    android:text="@string/icono"
                     android:textColor="@color/txtGris"
                     android:textSize="16dp" />
 

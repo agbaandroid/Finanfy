@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="PUBLICIDAD"
+            android:text="@string/publicidad"
             android:textColor="@color/txtGris"
             android:textSize="14dp" />
 
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:text="ES_Establece una contraseña"
+                android:text="@string/establecePass"
                 android:textColor="@color/txtGris"
                 android:textSize="14dp" />
         </LinearLayout>
@@ -118,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:text="ES_Desactiva la contraseña"
+                android:text="@string/desactivaPass"
                 android:textColor="@color/txtGris"
                 android:textSize="14dp" />
         </LinearLayout>
@@ -174,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:text="ES_Modifica la contraseña"
+                android:text="@string/modificaPass"
                 android:textColor="@color/txtGris"
                 android:textSize="14dp" />
         </LinearLayout>

@@ -172,7 +172,7 @@ public class AddReciboActivity extends AppCompatActivity {
                     }
 
                     int numVeces = 0;
-                    if (!nVeces.getText().toString().equals("ES_Sin Límite")) {
+                    if (!nVeces.getText().toString().equals(getResources().getString(R.string.sinLimite))) {
                         numVeces = Integer.parseInt(nVeces.getText().toString());
                         fechaFin = Util.obtenerFechaFin(fecha, numVeces);
                     }else{
@@ -211,7 +211,7 @@ public class AddReciboActivity extends AppCompatActivity {
                     }
                 } else {
                     Context context = getApplicationContext();
-                    CharSequence text = "ES_Debe introducir una cantidad";
+                    CharSequence text = getResources().getString(R.string.introducirCant);
                     int duration = Toast.LENGTH_LONG;
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
@@ -325,7 +325,7 @@ public class AddReciboActivity extends AppCompatActivity {
                     startActivityForResult(intent, NVECES);
                 } else {
                     sinLimite = true;
-                    nVeces.setText("ES_Sin Limite");
+                    nVeces.setText(getResources().getString(R.string.sinLimite));
                 }
             }
         });

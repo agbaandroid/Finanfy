@@ -67,9 +67,9 @@ public class NuevoListAdapterTarjetas extends BaseAdapter {
 		Tarjeta tar = listaTar.get(position);
 
 		if(tar.getTipo() == 0){
-			txtTipo.setText("ES_Crédito");
+			txtTipo.setText(context.getResources().getString(R.string.credito));
 		}else{
-			txtTipo.setText("ES_Débito");
+			txtTipo.setText(context.getResources().getString(R.string.debito));
 		}
 
 		txtMaximo.setText(String.valueOf(tar.getCantMax()));

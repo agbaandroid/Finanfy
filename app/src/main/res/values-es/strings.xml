@@ -239,7 +239,7 @@
 		Android Apps.</string>
     <string name="msnIncidencias">Si tiene algún problema utilizando la aplicación o
 		encuentra algun error, envíe un correo a la siguiente dirección:</string>
-    <string name="msnEmail">agba.androidapps@gmail.com</string>
+    <string name="msnEmail">info@finanfy.com</string>
     <string name="msnSugerencias">Por favor, envíenos sus sugerencias para seguir
 		mejorando la aplicación. Muchas gracias.</string>
 
@@ -347,6 +347,7 @@ principal.</string>
         <!--<item>Ajustes</item>-->
         <item>Valorar app</item>
         <item>Tienda</item>
+        <item>Acerca</item>
     </string-array>
 
     <string-array name="titlesMayusculas">
@@ -361,6 +362,7 @@ principal.</string>
         <!--<item>AJUSTES</item>-->
         <item>VALORAR APLICACIÓN</item>
         <item>TIENDA</item>
+        <item>ACERCA</item>
     </string-array>
 
     <string name="nuevo">Nuevo</string>

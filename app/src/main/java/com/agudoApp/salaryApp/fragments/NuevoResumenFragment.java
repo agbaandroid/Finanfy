@@ -985,7 +985,7 @@ public class NuevoResumenFragment extends Fragment {
         db = getActivity().openOrCreateDatabase(BD_NOMBRE, 1, null);
         if (db != null) {
             // Recuperamos el listado del spinner Categorias
-            listTarjetas = (ArrayList<Tarjeta>) gestion.getTarjetasFiltro(db);
+            listTarjetas = (ArrayList<Tarjeta>) gestion.getTarjetasFiltro(db, getActivity());
         }
         db.close();
         // Creamos la lista

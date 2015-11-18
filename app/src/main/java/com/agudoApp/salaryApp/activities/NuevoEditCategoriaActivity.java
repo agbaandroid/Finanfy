@@ -209,7 +209,8 @@ public class NuevoEditCategoriaActivity extends AppCompatActivity {
                 if (isCategoria) {
                     intent.putExtra("tipo", "categoria");
                 }
-                intent.putExtra("isPremium", false);
+                intent.putExtra("isPremium", isPremium);
+                intent.putExtra("isCategoriaPremium", isCategoriaPremium);
                 startActivityForResult(intent, CATEGORIA_ICON);
             }
         });

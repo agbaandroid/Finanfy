@@ -22,6 +22,7 @@ public class Categorias extends FragmentActivity {
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     boolean isPremium = false;
+    boolean isCategoriaPremium = false;
 
     LinearLayout layoutLite;
     LinearLayout layoutPremium;
@@ -41,6 +42,7 @@ public class Categorias extends FragmentActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             isPremium = extras.getBoolean("isPremium", false);
+            isCategoriaPremium = extras.getBoolean("isCategoriaPremium", false);
         }
 
         Bundle args = new Bundle();

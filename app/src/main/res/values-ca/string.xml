@@ -263,7 +263,7 @@
     <string name="msnIncidencias">Si tiene algún problema utilizando la aplicación o
 		encuentra algun error, envíe un correo a la siguiente dirección:
 </string>
-    <string name="msnEmail">agba.androidapps@gmail.com</string>
+    <string name="msnEmail">info@finanfy.com</string>
     <string name="msnSugerencias">Por favor, envíenos sus sugerencias para seguir
 		mejorando la aplicación. Muchas gracias.</string>
 
@@ -437,4 +437,26 @@ principal.</string>
     </string-array>
 
     <string name="otros">Es_Otros</string>
+    <string name="sinLimite">ES_Sin Límite</string>
+    <string name="introducirCant">ES_Debe introducir una cantidad</string>
+    <string name="credito">Es_Crédito</string>
+    <string name="debito">Es_Débito</string>
+    <string name="gestionarCuentas">Es_Gestionar cuentas</string>
+    <string name="publicidad">Es_PUBLICIDAD</string>
+    <string name="nombre">Es_Nombre</string>
+    <string name="icono">Es_Icono</string>
+    <string name="tipoTarjeta">Es_Tipo de tarjeta</string>
+    <string name="maxMensual">Es_Máximo mensual</string>
+    <string name="cantMeses">Es_¿Cuántos meses?</string>
+    <string name="noRegistros">Es_No hay registros</string>
+    <string name="notas">Es_Introduzca aquí sus notas...</string>
+    <string name="establecePass">ES_Establece una contraseña</string>
+    <string name="desactivaPass">ES_Desactiva la contraseña</string>
+    <string name="modificaPass">ES_Modifica la contraseña</string>
+    <string name="saldoTotal">Es_Saldo total</string>
+    <string name="gasto">Es_Gasto</string>
+    <string name="ingreso">Es_Ingreso</string>
+    <string name="creaCopiaSeguridad">ES_Crea una copia de seguridad</string>
+    <string name="importarCopiaSeguridad">ES_Restaura una copia de seguridad</string>
+    <string name="restaurarDatabase">ES_Elimina todos los datos</string>
 </resources>

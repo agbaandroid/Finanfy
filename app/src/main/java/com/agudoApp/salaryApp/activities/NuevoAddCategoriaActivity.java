@@ -168,7 +168,8 @@ public class NuevoAddCategoriaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(NuevoAddCategoriaActivity.this, Categorias.class);
                 intent.putExtra("flujo", "add");
-                intent.putExtra("isPremium", false);
+                intent.putExtra("isPremium", isPremium);
+                intent.putExtra("isCategoriaPremium", isCategoriaPremium);
                 startActivityForResult(intent, CATEGORIA_ICON);
             }
         });

@@ -218,7 +218,7 @@
     <string name="msnDBError">An error ocurred during the reset of the database.</string>
     <string name="msnDesarrollador">This app has been created by AGBA Android Apps.</string>
     <string name="msnIncidencias">If you have any problem with the app or find a mistake, please send us an email:</string>
-    <string name="msnEmail">agba.androidapps@gmail.com</string>
+    <string name="msnEmail">info@finanfy.com</string>
     <string name="msnSugerencias">Please, send us your suggestions, thank you very much. </string>
 
     <color name="titlebackgroundcolor">#3232CD</color>

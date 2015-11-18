@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="PUBLICIDAD"
+            android:text="@string/publicidad"
             android:textColor="@color/txtGris"
             android:textSize="14dp" />
 
@@ -177,7 +177,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ES_No hay registros"
+                    android:text="@string/noRegistros"
                     android:textColor="@color/txtGris"
                     android:textSize="16dp" />
             </LinearLayout>
@@ -188,7 +188,6 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dp"
                 android:layout_marginTop="1dp"
-                android:background="@drawable/fondo_listas"
                 android:groupIndicator="@null" />
 
             <ListView
@@ -198,7 +197,6 @@
                 android:layout_marginTop="10dp"
                 android:divider="#EEEEEE"
                 android:visibility="gone"
-                android:background="@drawable/fondo_listas"
                 android:dividerHeight="1px" />
         </LinearLayout>
 
@@ -217,7 +215,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:text="Saldo total"
+                android:text="@string/saldoTotal"
                 android:textColor="@color/txtAzul"
                 android:textSize="16dp" />
 

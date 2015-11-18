@@ -201,9 +201,9 @@ public class NuevoTarjetasFragment extends Fragment {
             Tarjeta tar = listaTar.get(position);
 
             if (tar.getTipo() == 0) {
-                txtTipo.setText("ES_Crédito");
+                txtTipo.setText(getResources().getString(R.string.credito));
             } else {
-                txtTipo.setText("ES_Débito");
+                txtTipo.setText(getResources().getString(R.string.debito));
             }
 
             txtMaximo.setText(Util.formatear(tar.getCantMax(), prefs));

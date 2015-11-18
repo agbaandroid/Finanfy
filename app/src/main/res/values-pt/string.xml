@@ -217,7 +217,7 @@
     <string name="msnDBError">Houve um erro ao redefinir o banco de dados</string>
     <string name="msnDesarrollador">Esta aplicação foi desenvolvida pela AGBA Apps Android.</string>
     <string name="msnIncidencias">Se você tiver problemas usando o aplicativo ou qualquer erro, envie um e-mail para o seguinte endereço:</string>
-    <string name="msnEmail">agba.androidapps\@gmail.com</string>
+    <string name="msnEmail">info@finanfy.com</string>
     <string name="msnSugerencias">Por favor, envie suas sugestões para melhorar ainda mais a aplicação. Muito obrigado.</string>
 
     <color name="titlebackgroundcolor">#3232CD</color>

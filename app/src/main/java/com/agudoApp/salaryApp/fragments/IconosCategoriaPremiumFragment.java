@@ -62,6 +62,15 @@ public class IconosCategoriaPremiumFragment extends Fragment {
 	private ImageView imagenCat65;
 	private ImageView imagenCat66;
 	private ImageView imagenCat67;
+	private ImageView imagenCat68;
+	private ImageView imagenCat69;
+	private ImageView imagenCat70;
+	private ImageView imagenCat71;
+	private ImageView imagenCat72;
+	private ImageView imagenCat73;
+	private ImageView imagenCat74;
+	private ImageView imagenCat75;
+
 
 	String id;
 	String textEdit;
@@ -120,8 +129,6 @@ public class IconosCategoriaPremiumFragment extends Fragment {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 
-		Bundle bundle = getArguments();
-
 		Intent serviceIntent = new Intent(
 				"com.android.vending.billing.InAppBillingService.BIND");
 		serviceIntent.setPackage("com.android.vending");
@@ -176,6 +183,15 @@ public class IconosCategoriaPremiumFragment extends Fragment {
 		imagenCat65 = (ImageView) getView().findViewById(R.id.imagenCat65);
 		imagenCat66 = (ImageView) getView().findViewById(R.id.imagenCat66);
 		imagenCat67 = (ImageView) getView().findViewById(R.id.imagenCat67);
+		imagenCat68 = (ImageView) getView().findViewById(R.id.imagenCat68);
+		imagenCat69 = (ImageView) getView().findViewById(R.id.imagenCat69);
+		imagenCat70 = (ImageView) getView().findViewById(R.id.imagenCat70);
+		imagenCat71 = (ImageView) getView().findViewById(R.id.imagenCat71);
+		imagenCat72 = (ImageView) getView().findViewById(R.id.imagenCat72);
+		imagenCat73 = (ImageView) getView().findViewById(R.id.imagenCat73);
+		imagenCat74 = (ImageView) getView().findViewById(R.id.imagenCat74);
+		imagenCat75 = (ImageView) getView().findViewById(R.id.imagenCat75);
+
 
 		imagenCat48.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -548,6 +564,158 @@ public class IconosCategoriaPremiumFragment extends Fragment {
 							gestion.editCategoria(db, textEdit, id, 66);
 						} else {
 							gestion.editSubcategoria(db, textEdit, id, 66);
+						}
+					}
+					getActivity().finish();
+				} else {
+					onCreateDialog(MSG_MORE_CAT);
+				}
+			}
+		});
+
+		imagenCat68.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				if (isPremium) {
+					if (flujo.equals("add")) {
+						guardarIdIcon(67);
+					} else {
+						if (tipo.equals("categoria")) {
+							gestion.editCategoria(db, textEdit, id, 67);
+						} else {
+							gestion.editSubcategoria(db, textEdit, id, 67);
+						}
+					}
+					getActivity().finish();
+				} else {
+					onCreateDialog(MSG_MORE_CAT);
+				}
+			}
+		});
+
+		imagenCat69.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				if (isPremium) {
+					if (flujo.equals("add")) {
+						guardarIdIcon(68);
+					} else {
+						if (tipo.equals("categoria")) {
+							gestion.editCategoria(db, textEdit, id, 68);
+						} else {
+							gestion.editSubcategoria(db, textEdit, id, 68);
+						}
+					}
+					getActivity().finish();
+				} else {
+					onCreateDialog(MSG_MORE_CAT);
+				}
+			}
+		});
+
+		imagenCat70.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				if (isPremium) {
+					if (flujo.equals("add")) {
+						guardarIdIcon(69);
+					} else {
+						if (tipo.equals("categoria")) {
+							gestion.editCategoria(db, textEdit, id, 69);
+						} else {
+							gestion.editSubcategoria(db, textEdit, id, 69);
+						}
+					}
+					getActivity().finish();
+				} else {
+					onCreateDialog(MSG_MORE_CAT);
+				}
+			}
+		});
+
+		imagenCat71.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				if (isPremium) {
+					if (flujo.equals("add")) {
+						guardarIdIcon(70);
+					} else {
+						if (tipo.equals("categoria")) {
+							gestion.editCategoria(db, textEdit, id, 70);
+						} else {
+							gestion.editSubcategoria(db, textEdit, id, 70);
+						}
+					}
+					getActivity().finish();
+				} else {
+					onCreateDialog(MSG_MORE_CAT);
+				}
+			}
+		});
+
+		imagenCat72.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				if (isPremium) {
+					if (flujo.equals("add")) {
+						guardarIdIcon(71);
+					} else {
+						if (tipo.equals("categoria")) {
+							gestion.editCategoria(db, textEdit, id, 71);
+						} else {
+							gestion.editSubcategoria(db, textEdit, id, 71);
+						}
+					}
+					getActivity().finish();
+				} else {
+					onCreateDialog(MSG_MORE_CAT);
+				}
+			}
+		});
+
+		imagenCat73.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				if (isPremium) {
+					if (flujo.equals("add")) {
+						guardarIdIcon(72);
+					} else {
+						if (tipo.equals("categoria")) {
+							gestion.editCategoria(db, textEdit, id, 72);
+						} else {
+							gestion.editSubcategoria(db, textEdit, id, 72);
+						}
+					}
+					getActivity().finish();
+				} else {
+					onCreateDialog(MSG_MORE_CAT);
+				}
+			}
+		});
+
+		imagenCat74.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				if (isPremium) {
+					if (flujo.equals("add")) {
+						guardarIdIcon(73);
+					} else {
+						if (tipo.equals("categoria")) {
+							gestion.editCategoria(db, textEdit, id, 73);
+						} else {
+							gestion.editSubcategoria(db, textEdit, id, 73);
+						}
+					}
+					getActivity().finish();
+				} else {
+					onCreateDialog(MSG_MORE_CAT);
+				}
+			}
+		});
+
+		imagenCat75.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				if (isPremium) {
+					if (flujo.equals("add")) {
+						guardarIdIcon(74);
+					} else {
+						if (tipo.equals("categoria")) {
+							gestion.editCategoria(db, textEdit, id, 74);
+						} else {
+							gestion.editSubcategoria(db, textEdit, id, 74);
 						}
 					}
 					getActivity().finish();
