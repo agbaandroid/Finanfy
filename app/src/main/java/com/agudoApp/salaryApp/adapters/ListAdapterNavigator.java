@@ -102,6 +102,9 @@ public class ListAdapterNavigator extends BaseAdapter {
 		case 9:
 			icon.setBackgroundResource(R.drawable.tienda);
 			break;
+		case 10:
+				icon.setBackgroundResource(R.drawable.acerca);
+				break;
 		}		
 		return convertView;
 	}

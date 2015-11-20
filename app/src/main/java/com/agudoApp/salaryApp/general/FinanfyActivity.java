@@ -81,7 +81,8 @@ public class FinanfyActivity extends AppCompatActivity {
     private int mDay;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
-    private InterstitialAd interstitial;
+    private InterstitialAd interstitialIteracion;
+    private InterstitialAd interstitialRegistro;
 
     // Productos que posee el usuario
     boolean isPremium = false;
@@ -100,8 +101,11 @@ public class FinanfyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_layout);
 
-        interstitial = new InterstitialAd(this);
-        interstitial.setAdUnitId("ca-app-pub-2303483383476811/8788233284");
+        interstitialIteracion = new InterstitialAd(this);
+        interstitialIteracion.setAdUnitId("ca-app-pub-2303483383476811/8788233284");
+
+        interstitialRegistro = new InterstitialAd(this);
+        interstitialRegistro.setAdUnitId("ca-app-pub-2303483383476811/2598438883");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -194,10 +198,18 @@ public class FinanfyActivity extends AppCompatActivity {
         ImageView closfyIcon = (ImageView) findViewById(R.id.closfyIcon);
         ImageView twitter = (ImageView) findViewById(R.id.twitterIcon);
 
-        interstitial.setAdListener(new AdListener() {
+        interstitialIteracion.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
-                displayInterstitial();
+                displayInterstitialIteracion();
+                super.onAdLoaded();
+            }
+        });
+
+        interstitialRegistro.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                displayInterstitialRegistro();
                 super.onAdLoaded();
             }
         });
@@ -392,32 +404,6 @@ public class FinanfyActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(mTitle);
     }
 
-    // Comprobamos si debemos mostrar el anuncio completo o no
-    public boolean mostrarAnuncioCompleto() {
-        boolean mostrarAnuncio = true;
-
-        final Calendar c = Calendar.getInstance();
-        mYear = c.get(Calendar.YEAR);
-        mMonth = c.get(Calendar.MONTH);
-        mDay = c.get(Calendar.DAY_OF_MONTH);
-
-        prefs = getSharedPreferences("ficheroConf", Context.MODE_PRIVATE);
-        String fechaAct = mDay + "/" + (mMonth + 1) + "/" + mYear;
-        String fechaAnuncio = prefs.getString("fechaAnuncio", "");
-
-        if (fechaAnuncio.equals(fechaAct)) {
-            mostrarAnuncio = false;
-        } else {
-            editor = prefs.edit();
-            editor.putString("fechaAnuncio", fechaAct);
-            editor.putInt("contadorPubli", 0);
-            editor.putInt("ultimoNumPubli", 0);
-            editor.commit();
-        }
-
-        return mostrarAnuncio;
-    }
-
     // Estamos siendo destruidos. Es importante eliminar el helper aqu!
     @Override
     public void onDestroy() {
@@ -517,9 +503,16 @@ public class FinanfyActivity extends AppCompatActivity {
     }
 
     // Comprobamos si debemos mostrar la publicidad o no
-    public void displayInterstitial() {
-        if (interstitial != null && interstitial.isLoaded()) {
-            interstitial.show();
+    public void displayInterstitialIteracion() {
+        if (interstitialIteracion != null && interstitialIteracion.isLoaded()) {
+            interstitialIteracion.show();
+        }
+    }
+
+    // Comprobamos si debemos mostrar la publicidad o no
+    public void displayInterstitialRegistro() {
+        if (interstitialRegistro != null && interstitialRegistro.isLoaded()) {
+            interstitialRegistro.show();
         }
     }
 
@@ -707,9 +700,15 @@ public class FinanfyActivity extends AppCompatActivity {
             }
 
             if (mostrarAnuncio) {
-                // Anuncio Inicial
-                AdRequest adRequestCompleto = new AdRequest.Builder().build();
-                interstitial.loadAd(adRequestCompleto);
+                if(isInteraccion) {
+                    // Anuncio Inicial
+                    AdRequest adRequestCompleto = new AdRequest.Builder().build();
+                    interstitialIteracion.loadAd(adRequestCompleto);
+                }else if(isRegistro){
+                    // Anuncio Inicial
+                    AdRequest adRequestCompleto = new AdRequest.Builder().build();
+                    interstitialRegistro.loadAd(adRequestCompleto);
+                }
             }
         }
     }

@@ -229,9 +229,18 @@ public class RegistrosFijosFragment extends Fragment {
 			}
 			txtCant.setText(Util.formatear(cant, prefs));
 			txtFechaDesde.setText("Desde: " + listaRecibo.get(position).getFechaIni().toString());
-			txtFechaHasta.setText("Hasta: " + listaRecibo.get(position).getFechaFin().toString());
+
+			if(listaRecibo.get(position).getnVeces() == 0){
+				txtFechaHasta.setText("Hasta: " + getResources().getString(R.string.sinLimite));
+				nVeces.setText("Meses: " + String.valueOf(listaRecibo.get(position).getnVeces()));
+				nVeces.setVisibility(View.GONE);
+			}else{
+				txtFechaHasta.setText("Hasta: " + listaRecibo.get(position).getFechaFin().toString());
+				nVeces.setText("Meses: " + String.valueOf(listaRecibo.get(position).getnVeces()));
+				nVeces.setVisibility(View.VISIBLE);
+			}
+
 			imgView.setBackgroundResource(Util.obtenerIconoCategoria(listaRecibo.get(position).getIdIcon()));
-			nVeces.setText("Meses: " + String.valueOf(listaRecibo.get(position).getnVeces()));
 
 			if (cant < 0) {
 				txtCant.setTextColor(Color.RED);

@@ -367,25 +367,47 @@
     <string name="noDatos">Nenhum dado encontrado</string>
 
     <string-array name="modoPago">
-        <item>Es_Metático</item>
-        <item>Es_Tarjeta</item>
+        <item>IN_Metático</item>
+        <item>IN_Tarjeta</item>
     </string-array>
 
     <string-array name="modoPagoFiltro">
-        <item>Es_Todo</item>
-        <item>Es_Metático</item>
-        <item>Es_Tarjeta</item>
+        <item>IN_Todo</item>
+        <item>IN_Metático</item>
+        <item>IN_Tarjeta</item>
     </string-array>
 
     <string-array name="fechas">
-        <item>Es_Mensual </item>
-        <item>Es_Intervalo de fechas</item>
+        <item>IN_Mensual </item>
+        <item>IN_Intervalo de fechas</item>
     </string-array>
 
     <string-array name="tipoTarjeta">
-        <item>ES_Crédito</item>
-        <item>ES_Débito</item>
+        <item>IN_Crédito</item>
+        <item>IN_Débito</item>
     </string-array>
 
-    <string name="otros">Es_Otros</string>
+    <string name="otros">IN_Otros</string>
+    <string name="sinLimite">IN_Sin Límite</string>
+    <string name="introducirCant">IN_Debe introducir una cantidad</string>
+    <string name="credito">IN_Crédito</string>
+    <string name="debito">IN_Débito</string>
+    <string name="gestionarCuentas">IN_Gestionar cuentas</string>
+    <string name="publicidad">IN_PUBLICIDAD</string>
+    <string name="nombre">IN_Nombre</string>
+    <string name="icono">IN_Icono</string>
+    <string name="tipoTarjeta">IN_Tipo de tarjeta</string>
+    <string name="maxMensual">IN_Máximo mensual</string>
+    <string name="cantMeses">IN_¿Cuántos meses?</string>
+    <string name="noRegistros">IN_No hay registros</string>
+    <string name="notas">IN_Introduzca aquí sus notas...</string>
+    <string name="establecePass">IN_Establece una contraseña</string>
+    <string name="desactivaPass">IN_Desactiva la contraseña</string>
+    <string name="modificaPass">IN_Modifica la contraseña</string>
+    <string name="saldoTotal">IN_Saldo total</string>
+    <string name="gasto">IN_Gasto</string>
+    <string name="ingreso">IN_Ingreso</string>
+    <string name="creaCopiaSeguridad">IN_Crea una copia de seguridad</string>
+    <string name="importarCopiaSeguridad">IN_Restaura una copia de seguridad</string>
+    <string name="restaurarDatabase">IN_Elimina todos los datos</string>
 </resources>

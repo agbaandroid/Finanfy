@@ -407,9 +407,9 @@
     <string name="desactivaPass">IN_Desactiva la contraseña</string>
     <string name="modificaPass">IN_Modifica la contraseña</string>
     <string name="saldoTotal">IN_Saldo total</string>
-    <string name="gasto">Es_Gasto</string>
-    <string name="ingreso">Es_Ingreso</string>
-    <string name="creaCopiaSeguridad">ES_Crea una copia de seguridad</string>
-    <string name="importarCopiaSeguridad">ES_Restaura una copia de seguridad</string>
-    <string name="restaurarDatabase">ES_Elimina todos los datos</string>
+    <string name="gasto">IN_Gasto</string>
+    <string name="ingreso">IN_Ingreso</string>
+    <string name="creaCopiaSeguridad">IN_Crea una copia de seguridad</string>
+    <string name="importarCopiaSeguridad">IN_Restaura una copia de seguridad</string>
+    <string name="restaurarDatabase">IN_Elimina todos los datos</string>
 </resources>

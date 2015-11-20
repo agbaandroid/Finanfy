@@ -345,6 +345,7 @@ public final class NuevoEditRecibosActivity extends AppCompatActivity {
                 } else {
                     sinLimite = true;
                     txtNVeces.setText(getResources().getString(R.string.sinLimite));
+                    nVeces = 0;
                 }
             }
         });
