@@ -380,8 +380,8 @@ public class AddReciboActivity extends AppCompatActivity {
     private void updateDisplay() {
         txtFecha.setText(new StringBuilder()
                 // Month is 0 based so add 1
-                .append(mDay).append("-").append(mMonth + 1).append("-")
-                .append(mYear).append(" "));
+                .append(mDay).append("/").append(mMonth + 1).append("/")
+                .append(mYear));
     }
 
     public void obtenerTarjetas() {

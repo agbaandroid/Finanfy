@@ -377,7 +377,7 @@ public class Util {
         int mes = Integer.parseInt(fechaFinAux.substring(5, 7));
         int dia = Integer.parseInt(fechaFinAux.substring(8, 10));
 
-        fechaFin = new Date(anio - 1900, mes, dia);
+        fechaFin = new Date(anio - 1900, mes -1, dia);
         return fechaFin;
     }
 

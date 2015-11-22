@@ -44,7 +44,7 @@ public class CategoriasFragment extends Fragment {
 
 	public CategoriasFragment(boolean isPrem, boolean isUserSinpublicidad,
 			boolean isUserCategoriaPremium) {
-		isUserPremium = isPrem;
+		isPremium = isPrem;
 		isCategoriaPremium = isUserCategoriaPremium;
 		isSinPublicidad = isUserSinpublicidad;
 

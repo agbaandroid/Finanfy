@@ -540,8 +540,8 @@ public final class NuevoEditRecibosActivity extends AppCompatActivity {
     private void updateDisplay() {
         txtFecha.setText(new StringBuilder()
                 // Month is 0 based so add 1
-                .append(mDay).append("-").append(mMonth).append("-")
-                .append(mYear).append(" "));
+                .append(mDay).append("/").append(mMonth).append("/")
+                .append(mYear));
     }
 
     public void obtenerTarjetas() {

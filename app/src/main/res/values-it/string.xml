@@ -348,6 +348,7 @@ trovare un errore, inviare una mail al seguente indirizzo: </string>
         <!--<item>Configurazione</item>-->
         <item>Valutare app</item>
         <item>Negozio</item>
+        <item>Circa</item>
     </string-array>
 
     <string-array name="titlesMayusculas">
@@ -362,6 +363,7 @@ trovare un errore, inviare una mail al seguente indirizzo: </string>
         <!--<item>CONFIGURAZIONE</item>-->
         <item>VALUTARE APP</item>
         <item>NEGOZIO</item>
+        <item>CIRCA</item>
     </string-array>
 
     <string name="nuevo">Nuovo</string>
@@ -393,47 +395,47 @@ trovare un errore, inviare una mail al seguente indirizzo: </string>
     <string name="noDatos">Nessun dato trovato</string>
 
     <string-array name="modoPago">
-        <item>IN_Metático</item>
-        <item>IN_Tarjeta</item>
+        <item>Contanti</item>
+        <item>Carta</item>
     </string-array>
 
     <string-array name="modoPagoFiltro">
-        <item>IN_Todo</item>
-        <item>IN_Metático</item>
-        <item>IN_Tarjeta</item>
+        <item>Tutto</item>
+        <item>Contanti</item>
+        <item>Carta</item>
     </string-array>
 
     <string-array name="fechas">
-        <item>IN_Mensual </item>
-        <item>IN_Intervalo de fechas</item>
+        <item>Mensile</item>
+        <item>Intervallo date</item>
     </string-array>
 
     <string-array name="tipoTarjeta">
-        <item>IN_Crédito</item>
-        <item>IN_Débito</item>
+        <item>Credito</item>
+        <item>Debito</item>
     </string-array>
 
-    <string name="otros">IN_Otros</string>
-    <string name="sinLimite">IN_Sin Límite</string>
-    <string name="introducirCant">IN_Debe introducir una cantidad</string>
-    <string name="credito">IN_Crédito</string>
-    <string name="debito">IN_Débito</string>
-    <string name="gestionarCuentas">IN_Gestionar cuentas</string>
-    <string name="publicidad">IN_PUBLICIDAD</string>
-    <string name="nombre">IN_Nombre</string>
-    <string name="icono">IN_Icono</string>
-    <string name="tipoTarjeta">IN_Tipo de tarjeta</string>
-    <string name="maxMensual">IN_Máximo mensual</string>
-    <string name="cantMeses">IN_¿Cuántos meses?</string>
-    <string name="noRegistros">IN_No hay registros</string>
-    <string name="notas">IN_Introduzca aquí sus notas...</string>
-    <string name="establecePass">IN_Establece una contraseña</string>
-    <string name="desactivaPass">IN_Desactiva la contraseña</string>
-    <string name="modificaPass">IN_Modifica la contraseña</string>
-    <string name="saldoTotal">IN_Saldo total</string>
-    <string name="gasto">IN_Gasto</string>
-    <string name="ingreso">IN_Ingreso</string>
-    <string name="creaCopiaSeguridad">IN_Crea una copia de seguridad</string>
-    <string name="importarCopiaSeguridad">IN_Restaura una copia de seguridad</string>
-    <string name="restaurarDatabase">IN_Elimina todos los datos</string>
+    <string name="otros">Altrui</string>
+    <string name="sinLimite">Illimitato</string>
+    <string name="introducirCant">È necessario immettere un importo</string>
+    <string name="credito">Credito</string>
+    <string name="debito">Debito</string>
+    <string name="gestionarCuentas">Gestisci account</string>
+    <string name="publicidad">PUBLICITÀ</string>
+    <string name="nombre">Nome</string>
+    <string name="icono">Icona</string>
+    <string name="tipoTarjeta">Tipo di carta</string>
+    <string name="maxMensual">Massimo mensile</string>
+    <string name="cantMeses">Quanti mesi?</string>
+    <string name="noRegistros">Nessun dato</string>
+    <string name="notas">Inserisci qui eventuali note...</string>
+    <string name="establecePass">Imposta la password</string>
+    <string name="desactivaPass">Disabilita la password</string>
+    <string name="modificaPass">Modificare la password</string>
+    <string name="saldoTotal">Bilancio totale</string>
+    <string name="gasto">Spesa</string>
+    <string name="ingreso">Ingresso</string>
+    <string name="creaCopiaSeguridad">Creare un backup</string>
+    <string name="importarCopiaSeguridad">Ripristinare un backup</string>
+    <string name="restaurarDatabase">Elimina tutti i dati</string>
 </resources> 

@@ -322,6 +322,7 @@
         <!--<item>Configurações</item>-->
         <item>Taxa de Aplicação</item>
         <item>Loja</item>
+        <item>Sobre</item>
     </string-array>
 
     <string-array name="titlesMayusculas">
@@ -336,6 +337,7 @@
         <!--<item>CONFIGURAÇÕES</item>-->
         <item>TAXA DE APLICAÇÃO</item>
         <item>LOJA</item>
+        <item>SOBRE</item>
     </string-array>
 
     <string name="nuevo">Novo</string>
@@ -367,47 +369,47 @@
     <string name="noDatos">Nenhum dado encontrado</string>
 
     <string-array name="modoPago">
-        <item>IN_Metático</item>
-        <item>IN_Tarjeta</item>
+        <item>Metático</item>
+        <item>Cartão</item>
     </string-array>
 
     <string-array name="modoPagoFiltro">
-        <item>IN_Todo</item>
-        <item>IN_Metático</item>
-        <item>IN_Tarjeta</item>
+        <item>Tudo</item>
+        <item>Metático</item>
+        <item>Cartão</item>
     </string-array>
 
     <string-array name="fechas">
-        <item>IN_Mensual </item>
-        <item>IN_Intervalo de fechas</item>
+        <item>Mensal</item>
+        <item>Intervalo de datas</item>
     </string-array>
 
     <string-array name="tipoTarjeta">
-        <item>IN_Crédito</item>
-        <item>IN_Débito</item>
+        <item>Crédito</item>
+        <item>Débito</item>
     </string-array>
 
-    <string name="otros">IN_Otros</string>
-    <string name="sinLimite">IN_Sin Límite</string>
-    <string name="introducirCant">IN_Debe introducir una cantidad</string>
-    <string name="credito">IN_Crédito</string>
-    <string name="debito">IN_Débito</string>
-    <string name="gestionarCuentas">IN_Gestionar cuentas</string>
-    <string name="publicidad">IN_PUBLICIDAD</string>
-    <string name="nombre">IN_Nombre</string>
-    <string name="icono">IN_Icono</string>
-    <string name="tipoTarjeta">IN_Tipo de tarjeta</string>
-    <string name="maxMensual">IN_Máximo mensual</string>
-    <string name="cantMeses">IN_¿Cuántos meses?</string>
-    <string name="noRegistros">IN_No hay registros</string>
-    <string name="notas">IN_Introduzca aquí sus notas...</string>
-    <string name="establecePass">IN_Establece una contraseña</string>
-    <string name="desactivaPass">IN_Desactiva la contraseña</string>
-    <string name="modificaPass">IN_Modifica la contraseña</string>
-    <string name="saldoTotal">IN_Saldo total</string>
-    <string name="gasto">IN_Gasto</string>
-    <string name="ingreso">IN_Ingreso</string>
-    <string name="creaCopiaSeguridad">IN_Crea una copia de seguridad</string>
-    <string name="importarCopiaSeguridad">IN_Restaura una copia de seguridad</string>
-    <string name="restaurarDatabase">IN_Elimina todos los datos</string>
+    <string name="otros">Outros</string>
+    <string name="sinLimite">Sem limite</string>
+    <string name="introducirCant">Você deve digitar uma quantidade</string>
+    <string name="credito">Crédito</string>
+    <string name="debito">Débito</string>
+    <string name="gestionarCuentas">Gerenciar Contas</string>
+    <string name="publicidad">PUBLICIDADE</string>
+    <string name="nombre">Nome</string>
+    <string name="icono">Ícone</string>
+    <string name="tipoTarjeta">Tipo de cartão</string>
+    <string name="maxMensual">máxima Mensal</string>
+    <string name="cantMeses">Quantos meses?</string>
+    <string name="noRegistros">Não há dados</string>
+    <string name="notas">Introduza aqui as suas notas...</string>
+    <string name="establecePass">Define a senha</string>
+    <string name="desactivaPass">Disables senha</string>
+    <string name="modificaPass">Modifique sua senha</string>
+    <string name="saldoTotal">Saldo total</string>
+    <string name="gasto">Despesa</string>
+    <string name="ingreso">Entrada</string>
+    <string name="creaCopiaSeguridad">Criar um backup</string>
+    <string name="importarCopiaSeguridad">Restaurar um backup</string>
+    <string name="restaurarDatabase">Elimina todos os dados</string>
 </resources>

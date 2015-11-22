@@ -72,7 +72,8 @@ public class ListaAdapterResumenExpandibleSubAdapter extends
 		}
 
 		text2.setText(mov.getCantidadAux());
-		text4.setText(mov.getFecha().toString());
+		String fecha = mov.getFecha().toString().replace("-", "/");
+		text4.setText(fecha);
 
 		if (mov.getCantidadAux().substring(0, 1).equals("-")) {
 			text2.setTextColor(Color.RED);

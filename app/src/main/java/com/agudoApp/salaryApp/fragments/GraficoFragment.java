@@ -287,11 +287,11 @@ public final class GraficoFragment extends Fragment {
         posiFechas = prefsFiltros.getInt("spinnerFechas", 0);
         posiTipo = prefsFiltros.getInt("tipoFiltro", 0);
 
-        idCat = prefsFiltros.getString("idCategoria", "0");
-        idSub = prefsFiltros.getString("idSubcategoria", "0");
+        idCat = prefsFiltros.getString("idCategoria", "-1");
+        idSub = prefsFiltros.getString("idSubcategoria", "-1");
 
         posiTipoModoPago = prefsFiltros.getInt("spinnerTipoModoPago", 0);
 
-        idTarjeta = prefsFiltros.getString("idTarjeta", "0");
+        idTarjeta = prefsFiltros.getString("idTarjeta", "-1");
     }
 }

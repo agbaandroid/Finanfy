@@ -366,8 +366,8 @@ public class NuevoActivity extends AppCompatActivity {
 
         txtFecha.setText(new StringBuilder()
                 // Month is 0 based so add 1
-                .append(dia).append("-").append(mes).append("-")
-                .append(mYear).append(" "));
+                .append(dia).append("/").append(mes).append("/")
+                .append(mYear));
     }
 
     public void obtenerTarjetas() {

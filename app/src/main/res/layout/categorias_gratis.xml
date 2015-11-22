@@ -171,7 +171,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
-                    android:background="@drawable/bus" />
+                    android:background="@drawable/bus2" />
 
                 <ImageView
                     android:id="@+id/imagenCat14"
@@ -476,7 +476,7 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
-                    android:background="@drawable/school_bus" />
+                    android:background="@drawable/bus" />
 
                 <ImageView
                     android:id="@+id/imagenCat42"

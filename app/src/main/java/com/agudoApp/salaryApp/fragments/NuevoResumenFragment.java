@@ -868,7 +868,7 @@ public class NuevoResumenFragment extends Fragment {
                             db.close();
                         } else {
                             if (mesDesdeRecibo == k) {
-                                if (fechaDesdeRecibo.before(fechaAc)) {
+                                if (fechaDesdeRecibo.before(fechaAc) || fechaDesdeRecibo.equals(fechaAc)) {
                                     db = getActivity().openOrCreateDatabase(
                                             BD_NOMBRE, 1, null);
                                     if (db != null) {
@@ -1112,7 +1112,7 @@ public class NuevoResumenFragment extends Fragment {
             layoutTarjetasFiltro.setVisibility(View.GONE);
         }
 
-        String idTarjeta = prefsFiltros.getString("idTarjeta", "0");
+        String idTarjeta = prefsFiltros.getString("idTarjeta", "-1");
         int posiTar = 0;
         for (int i = 0; i < listTarjetas.size(); i++) {
             if (listTarjetas.get(i).getId().equals(idTarjeta)) {
@@ -1141,7 +1141,7 @@ public class NuevoResumenFragment extends Fragment {
 
         txtFechaDesde.setText(new StringBuilder()
                 // Month is 0 based so add 1
-                .append(dia).append("-").append(mes).append("-")
+                .append(dia).append("/").append(mes).append("/")
                 .append(mYearDesde));
     }
 
@@ -1163,8 +1163,8 @@ public class NuevoResumenFragment extends Fragment {
 
         txtFechaHasta.setText(new StringBuilder()
                 // Month is 0 based so add 1
-                .append(dia).append("-").append(mes).append("-")
-                .append(mYearHasta).append(" "));
+                .append(dia).append("/").append(mes).append("/")
+                .append(mYearHasta));
     }
 
     private DatePickerDialog.OnDateSetListener mDateSetListenerDesde = new DatePickerDialog.OnDateSetListener() {
@@ -1422,7 +1422,8 @@ public class NuevoResumenFragment extends Fragment {
                 txtDescripcion.setVisibility(View.GONE);
             }
             txtCant.setText(listaMov.get(position).getCantidadAux());
-            txtFecha.setText(listaMov.get(position).getFecha().toString());
+            String fecha = listaMov.get(position).getFecha().toString().replace("-", "/");
+            txtFecha.setText(fecha);
             imgView.setBackgroundResource(Util.obtenerIconoCategoria(listaMov.get(position).getIdIconCat()));
 
             txtCant.setText(Util.formatear(Float.parseFloat(listaMov.get(position).getCantidad()), prefs));

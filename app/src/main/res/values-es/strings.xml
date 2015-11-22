@@ -405,7 +405,7 @@ principal.</string>
     </string-array>
 
     <string-array name="fechas">
-        <item>Mensual </item>
+        <item>Mensual</item>
         <item>Intervalo de fechas</item>
     </string-array>
 
@@ -426,7 +426,7 @@ principal.</string>
     <string name="tipoTarjeta">Tipo de tarjeta</string>
     <string name="maxMensual">Máximo mensual</string>
     <string name="cantMeses">¿Cuántos meses?</string>
-    <string name="noRegistros">No hay registros</string>
+    <string name="noRegistros">No hay datos</string>
     <string name="notas">Introduzca aquí sus notas...</string>
     <string name="establecePass">Establece una contraseña</string>
     <string name="desactivaPass">Desactiva la contraseña</string>

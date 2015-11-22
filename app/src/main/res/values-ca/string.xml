@@ -371,6 +371,7 @@ principal.</string>
         <!--<item>Ajustes</item>-->
         <item>Valorar aplicación</item>
         <item>Tienda</item>
+        <item>Acerca</item>
     </string-array>
 
     <string-array name="titlesMayusculas">
@@ -385,6 +386,7 @@ principal.</string>
         <!--<item>AJUSTES</item>-->
         <item>VALORAR APLICACIÓN</item>
         <item>TIENDA</item>
+        <item>ACERCA</item>
     </string-array>
 
     <string name="nuevo">Nuevo</string>
@@ -416,47 +418,47 @@ principal.</string>
     <string name="noDatos">No se han encontrado registros</string>
 
     <string-array name="modoPago">
-        <item>Es_Metático</item>
-        <item>Es_Tarjeta</item>
+        <item>Metático</item>
+        <item>Tarjeta</item>
     </string-array>
 
     <string-array name="modoPagoFiltro">
-        <item>Es_Todo</item>
-        <item>Es_Metático</item>
-        <item>Es_Tarjeta</item>
+        <item>Todo</item>
+        <item>Metático</item>
+        <item>Tarjeta</item>
     </string-array>
 
     <string-array name="fechas">
-        <item>Es_Mensual </item>
-        <item>Es_Intervalo de fechas</item>
+        <item>Mensual</item>
+        <item>Intervalo de fechas</item>
     </string-array>
 
     <string-array name="tipoTarjeta">
-        <item>ES_Crédito</item>
-        <item>ES_Débito</item>
+        <item>Crédito</item>
+        <item>Débito</item>
     </string-array>
 
-    <string name="otros">Es_Otros</string>
-    <string name="sinLimite">ES_Sin Límite</string>
-    <string name="introducirCant">ES_Debe introducir una cantidad</string>
-    <string name="credito">Es_Crédito</string>
-    <string name="debito">Es_Débito</string>
-    <string name="gestionarCuentas">Es_Gestionar cuentas</string>
-    <string name="publicidad">Es_PUBLICIDAD</string>
-    <string name="nombre">Es_Nombre</string>
-    <string name="icono">Es_Icono</string>
-    <string name="tipoTarjeta">Es_Tipo de tarjeta</string>
-    <string name="maxMensual">Es_Máximo mensual</string>
-    <string name="cantMeses">Es_¿Cuántos meses?</string>
-    <string name="noRegistros">Es_No hay registros</string>
-    <string name="notas">Es_Introduzca aquí sus notas...</string>
-    <string name="establecePass">ES_Establece una contraseña</string>
-    <string name="desactivaPass">ES_Desactiva la contraseña</string>
-    <string name="modificaPass">ES_Modifica la contraseña</string>
-    <string name="saldoTotal">Es_Saldo total</string>
-    <string name="gasto">Es_Gasto</string>
-    <string name="ingreso">Es_Ingreso</string>
-    <string name="creaCopiaSeguridad">ES_Crea una copia de seguridad</string>
-    <string name="importarCopiaSeguridad">ES_Restaura una copia de seguridad</string>
-    <string name="restaurarDatabase">ES_Elimina todos los datos</string>
+    <string name="otros">Otros</string>
+    <string name="sinLimite">Sin Límite</string>
+    <string name="introducirCant">Debe introducir una cantidad</string>
+    <string name="credito">Crédito</string>
+    <string name="debito">Débito</string>
+    <string name="gestionarCuentas">Gestionar cuentas</string>
+    <string name="publicidad">PUBLICIDAD</string>
+    <string name="nombre">Nombre</string>
+    <string name="icono">Icono</string>
+    <string name="tipoTarjeta">Tipo de tarjeta</string>
+    <string name="maxMensual">Máximo mensual</string>
+    <string name="cantMeses">¿Cuántos meses?</string>
+    <string name="noRegistros">No hay datos</string>
+    <string name="notas">Introduzca aquí sus notas...</string>
+    <string name="establecePass">Establece una contraseña</string>
+    <string name="desactivaPass">Desactiva la contraseña</string>
+    <string name="modificaPass">Modifica la contraseña</string>
+    <string name="saldoTotal">Saldo total</string>
+    <string name="gasto">Gasto</string>
+    <string name="ingreso">Ingreso</string>
+    <string name="creaCopiaSeguridad">Crea una copia de seguridad</string>
+    <string name="importarCopiaSeguridad">Restaura una copia de seguridad</string>
+    <string name="restaurarDatabase">Elimina todos los datos</string>
 </resources>
