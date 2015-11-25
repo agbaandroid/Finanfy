@@ -232,7 +232,7 @@ public class FinanfyActivity extends AppCompatActivity {
         twitter.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri
-                        .parse("https://twitter.com/#!/AGBAAndroidApps"));
+                        .parse("https://twitter.com/Finanfy"));
                 startActivity(browserIntent);
             }
         });
