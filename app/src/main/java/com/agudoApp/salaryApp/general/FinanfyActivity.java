@@ -672,14 +672,14 @@ public class FinanfyActivity extends AppCompatActivity {
             if (fechaAnuncio.equals(fechaAct)) {
                 if (isInteraccion) {
                     contadorPubli = contadorPubli + 1;
-                    if (contadorPubli % 15 == 0 && !isPubliMostrada) {
+                    if (contadorPubli % 10 == 0 && !isPubliMostrada) {
                         mostrarAnuncio = true;
                         isPubliMostrada = true;
                     }
                 }
                 if (isRegistro) {
                     nRegistros = nRegistros + 1;
-                    if (nRegistros == 3) {
+                    if (nRegistros == 2) {
                         mostrarAnuncio = true;
                     }
                 }

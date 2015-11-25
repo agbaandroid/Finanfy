@@ -1,5 +1,6 @@
 package com.agudoApp.salaryApp.fragments;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -22,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.BaseExpandableListAdapter;
 import android.widget.DatePicker;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
@@ -35,8 +37,6 @@ import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.activities.NuevoActivity;
 import com.agudoApp.salaryApp.activities.NuevoEditMovimientosActivity;
 import com.agudoApp.salaryApp.adapters.ListAdapterSpinner;
-import com.agudoApp.salaryApp.adapters.ListaAdapterResumenExpandibleAdapter;
-import com.agudoApp.salaryApp.adapters.ListaAdapterResumenExpandibleSubAdapter;
 import com.agudoApp.salaryApp.database.GestionBBDD;
 import com.agudoApp.salaryApp.general.FinanfyActivity;
 import com.agudoApp.salaryApp.informes.Informes;
@@ -50,6 +50,7 @@ import com.google.android.gms.ads.AdView;
 
 import java.io.File;
 import java.sql.Date;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -1486,6 +1487,440 @@ public class NuevoResumenFragment extends Fragment {
             return convertView;
         }
 
+    }
+
+    public class ListaAdapterResumenExpandibleAdapter extends
+            BaseExpandableListAdapter {
+
+        private Context _context;
+        private Activity activity;
+        private ArrayList<Object> childtems;
+        private LayoutInflater inflater;
+        private ArrayList<Categoria> parentItems;
+        private ArrayList<Movimiento> child;
+        private Movimiento mov;
+
+        public ListaAdapterResumenExpandibleAdapter(Context context,
+                                                    ArrayList<Categoria> parents, ArrayList<Object> childern) {
+            _context = context;
+            this.parentItems = parents;
+            this.childtems = childern;
+        }
+
+        public void setInflater(LayoutInflater inflater, Activity activity) {
+            this.inflater = inflater;
+            this.activity = activity;
+        }
+
+        @Override
+        public View getChildView(int groupPosition, final int childPosition,
+                                 boolean isLastChild, View convertView, ViewGroup parent) {
+            TextView text;
+            TextView text2;
+            TextView text3;
+            TextView text4;
+            LinearLayout layoutTarjeta;
+            LinearLayout layoutMovimiento;
+            ImageView imgTarjeta;
+
+            child = (ArrayList<Movimiento>) childtems.get(groupPosition);
+            mov = child.get(childPosition);
+
+            if (convertView == null) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.lista, null);
+            }
+
+            text = (TextView) convertView.findViewById(R.id.txtDescripcion);
+            text2 = (TextView) convertView.findViewById(R.id.txtCant);
+            text3 = (TextView) convertView.findViewById(R.id.txtCategoria);
+            text4 = (TextView) convertView.findViewById(R.id.txtFecha);
+            layoutTarjeta = (LinearLayout) convertView.findViewById(R.id.layoutTarjeta);
+            imgTarjeta = (ImageView) convertView.findViewById(R.id.imgTarjeta);
+            layoutMovimiento = (LinearLayout) convertView.findViewById(R.id.layoutMovimiento);
+
+            text.setText(mov.toString());
+            if(mov.toString().equals("")){
+                text.setVisibility(View.GONE);
+            }
+
+            text2.setText(mov.getCantidadAux());
+            String fecha = mov.getFecha().toString().replace("-", "/");
+            text4.setText(fecha);
+
+            if (mov.getCantidadAux().substring(0, 1).equals("-")) {
+                text2.setTextColor(Color.RED);
+            } else {
+                text2.setTextColor(_context.getResources().getColor(R.color.txtAzul));
+            }
+
+            if (!mov.getDescSubcategoria().equals("-")) {
+                text3.setText(mov.getDescSubcategoria());
+            } else {
+                text3.setText(_context.getResources().getString(R.string.otros));
+            }
+
+            if (mov.isTarjeta()) {
+                layoutTarjeta.setVisibility(View.VISIBLE);
+
+                Tarjeta tar = new Tarjeta();
+                db = getActivity().openOrCreateDatabase(BD_NOMBRE, 1, null);
+                if (db != null) {
+                    tar = gestion.getTarjetaId(db, Integer.parseInt(mov.getIdTarjeta()));
+                }
+                db.close();
+
+                imgTarjeta.setBackgroundResource(Util.obtenerIconoTarjeta(tar.getIdIcon()));
+            }else{
+                layoutTarjeta.setVisibility(View.GONE);
+            }
+
+            layoutMovimiento.setTag(childPosition);
+
+            layoutMovimiento.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    int posiSel = (int) v.getTag();
+                    mov = child.get(posiSel);
+                    // TODO Auto-generated method stub
+                    Intent intent = new Intent(_context, NuevoEditMovimientosActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("idMovimiento", mov.getId());
+                    bundle.putString("cantidad", mov.getCantidad());
+                    bundle.putString("tipoMovimiento", mov.getTipo());
+                    bundle.putString("idCategoria", mov.getIdCategoria());
+                    bundle.putString("idSubcategoria", mov.getIdSubcategoria());
+                    bundle.putBoolean("tipoPago", mov.isTarjeta());
+                    bundle.putString("idTarjeta", mov.getIdTarjeta());
+                    bundle.putString("fecha", mov.getFecha().toString());
+                    bundle.putString("notas", mov.toString());
+                    intent.putExtra("isPremium", isPremium);
+                    intent.putExtra("isSinPublicidad", isSinPublicidad);
+                    intent.putExtras(bundle);
+                    startActivityForResult(intent, EDIT_DELETE);
+                }
+            });
+
+            return convertView;
+        }
+
+        @Override
+        public View getGroupView(int groupPosition, boolean isExpanded,
+                                 View convertView, ViewGroup parent) {
+            float total = 0;
+
+            Categoria cat = parentItems.get(groupPosition);
+            ArrayList<Movimiento> listaMov = cat.getListaMovimientos();
+
+            for (int i = 0; i < listaMov.size(); i++) {
+                Movimiento mov = listaMov.get(i);
+                if (mov.getIdCategoria().equals(cat.getId())) {
+                    total = total + Float.parseFloat(mov.getCantidad());
+                }
+            }
+
+            DecimalFormat df = new DecimalFormat("0.00");
+
+            String headerTitle = cat.toString();
+            if (convertView == null) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater
+                        .inflate(R.layout.lista_categorias, null);
+            }
+
+            TextView lblListHeader = (TextView) convertView
+                    .findViewById(R.id.txtCategoria);
+            lblListHeader.setText(headerTitle);
+
+            TextView lblListCant = (TextView) convertView
+                    .findViewById(R.id.txtCant);
+
+            lblListCant.setText(String.valueOf(df.format(total)));
+
+            ImageView categoriaIcon = (ImageView) convertView
+                    .findViewById(R.id.iconCategoria);
+
+            categoriaIcon.setBackgroundDrawable(_context.getResources()
+                    .getDrawable(Util.obtenerIconoCategoria(cat.getIdIcon())));
+
+            if (total < 0) {
+                lblListCant.setTextColor(Color.RED);
+            } else {
+                lblListCant.setTextColor(_context.getResources().getColor(R.color.txtAzul));
+            }
+
+            return convertView;
+        }
+
+        @Override
+        public Object getChild(int groupPosition, int childPosition) {
+            return null;
+        }
+
+        @Override
+        public long getChildId(int groupPosition, int childPosition) {
+            return 0;
+        }
+
+        @Override
+        public int getChildrenCount(int groupPosition) {
+            return ((ArrayList<Movimiento>) childtems.get(groupPosition)).size();
+        }
+
+        @Override
+        public Object getGroup(int groupPosition) {
+            return null;
+        }
+
+        @Override
+        public int getGroupCount() {
+            return parentItems.size();
+        }
+
+        @Override
+        public void onGroupCollapsed(int groupPosition) {
+            super.onGroupCollapsed(groupPosition);
+        }
+
+        @Override
+        public void onGroupExpanded(int groupPosition) {
+            super.onGroupExpanded(groupPosition);
+        }
+
+        @Override
+        public long getGroupId(int groupPosition) {
+            return 0;
+        }
+
+        @Override
+        public boolean hasStableIds() {
+            return false;
+        }
+
+        @Override
+        public boolean isChildSelectable(int groupPosition, int childPosition) {
+            return true;
+        }
+    }
+
+    public class ListaAdapterResumenExpandibleSubAdapter extends
+            BaseExpandableListAdapter {
+
+        private Context _context;
+        private Activity activity;
+        private ArrayList<Object> childtems;
+        private LayoutInflater inflater;
+        private ArrayList<Categoria> parentItems;
+        private ArrayList<Movimiento> child;
+        private Movimiento mov;
+
+        public ListaAdapterResumenExpandibleSubAdapter(Context context,
+                                                       ArrayList<Categoria> parents, ArrayList<Object> childern) {
+            _context = context;
+            this.parentItems = parents;
+            this.childtems = childern;
+        }
+
+        public void setInflater(LayoutInflater inflater, Activity activity) {
+            this.inflater = inflater;
+            this.activity = activity;
+        }
+
+        @Override
+        public View getChildView(int groupPosition, final int childPosition,
+                                 boolean isLastChild, View convertView, ViewGroup parent) {
+            TextView text;
+            TextView text2;
+            TextView text3;
+            TextView text4;
+            LinearLayout layoutTarjeta;
+            LinearLayout layoutMovimiento;
+            ImageView imgTarjeta;
+
+            child = (ArrayList<Movimiento>) childtems.get(groupPosition);
+            mov = child.get(childPosition);
+
+            if (convertView == null) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.lista, null);
+            }
+
+            layoutTarjeta = (LinearLayout) convertView.findViewById(R.id.layoutTarjeta);
+            layoutMovimiento = (LinearLayout) convertView.findViewById(R.id.layoutMovimiento);
+            text = (TextView) convertView.findViewById(R.id.txtDescripcion);
+            text2 = (TextView) convertView.findViewById(R.id.txtCant);
+            text3 = (TextView) convertView.findViewById(R.id.txtCategoria);
+            text4 = (TextView) convertView.findViewById(R.id.txtFecha);
+            imgTarjeta = (ImageView) convertView.findViewById(R.id.imgTarjeta);
+
+            text.setText(mov.toString());
+            if(mov.toString().equals("")) {
+                text.setVisibility(View.GONE);
+            }
+
+            text2.setText(mov.getCantidadAux());
+            String fecha = mov.getFecha().toString().replace("-", "/");
+            text4.setText(fecha);
+
+            if (mov.getCantidadAux().substring(0, 1).equals("-")) {
+                text2.setTextColor(Color.RED);
+            } else {
+                text2.setTextColor(_context.getResources().getColor(R.color.txtAzul));
+            }
+
+            if (!mov.getDescCategoria().equals("-")) {
+                text3.setText(mov.getDescCategoria());
+            } else {
+                text3.setText(_context.getResources().getString(R.string.otros));
+            }
+
+            if (mov.isTarjeta()) {
+                layoutTarjeta.setVisibility(View.VISIBLE);
+
+                Tarjeta tar = new Tarjeta();
+                db = getActivity().openOrCreateDatabase(BD_NOMBRE, 1, null);
+                if (db != null) {
+                    tar = gestion.getTarjetaId(db, Integer.parseInt(mov.getIdTarjeta()));
+                }
+                db.close();
+
+                imgTarjeta.setBackgroundResource(Util.obtenerIconoTarjeta(tar.getIdIcon()));
+            }else{
+                layoutTarjeta.setVisibility(View.GONE);
+            }
+
+            layoutMovimiento.setTag(childPosition);
+
+            layoutMovimiento.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    int posiSel = (int) v.getTag();
+                    mov = child.get(posiSel);
+                    // TODO Auto-generated method stub
+                    Intent intent = new Intent(_context, NuevoEditMovimientosActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("idMovimiento", mov.getId());
+                    bundle.putString("cantidad", mov.getCantidad());
+                    bundle.putString("tipoMovimiento", mov.getTipo());
+                    bundle.putString("idCategoria", mov.getIdCategoria());
+                    bundle.putString("idSubcategoria", mov.getIdSubcategoria());
+                    bundle.putBoolean("tipoPago", mov.isTarjeta());
+                    bundle.putString("idTarjeta", mov.getIdTarjeta());
+                    bundle.putString("fecha", mov.getFecha().toString());
+                    bundle.putString("notas", mov.toString());
+                    intent.putExtra("isPremium", isPremium);
+                    intent.putExtra("isSinPublicidad", isSinPublicidad);
+                    intent.putExtras(bundle);
+                    startActivityForResult(intent, EDIT_DELETE);
+                }
+            });
+
+            return convertView;
+        }
+
+        @Override
+        public View getGroupView(int groupPosition, boolean isExpanded,
+                                 View convertView, ViewGroup parent) {
+            float total = 0;
+
+            Categoria cat = parentItems.get(groupPosition);
+            ArrayList<Movimiento> listaMov = cat.getListaMovimientos();
+
+            for (int i = 0; i < listaMov.size(); i++) {
+                Movimiento mov = listaMov.get(i);
+                if (mov.getIdSubcategoria().equals(cat.getId())) {
+                    total = total + Float.parseFloat(mov.getCantidad());
+                }
+            }
+
+            DecimalFormat df = new DecimalFormat("0.00");
+
+            String headerTitle = cat.toString();
+            if (convertView == null) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater
+                        .inflate(R.layout.lista_categorias, null);
+            }
+
+            TextView lblListHeader = (TextView) convertView
+                    .findViewById(R.id.txtCategoria);
+            lblListHeader.setText(headerTitle);
+
+            TextView lblListCant = (TextView) convertView
+                    .findViewById(R.id.txtCant);
+
+            lblListCant.setText(String.valueOf(df.format(total)));
+
+            ImageView categoriaIcon = (ImageView) convertView
+                    .findViewById(R.id.iconCategoria);
+
+            categoriaIcon.setBackgroundDrawable(_context.getResources()
+                    .getDrawable(Util.obtenerIconoCategoria(cat.getIdIcon())));
+
+            if (total < 0) {
+                lblListCant.setTextColor(Color.RED);
+            } else {
+                lblListCant.setTextColor(_context.getResources().getColor(R.color.txtAzul));
+            }
+
+            return convertView;
+        }
+
+        @Override
+        public Object getChild(int groupPosition, int childPosition) {
+            return null;
+        }
+
+        @Override
+        public long getChildId(int groupPosition, int childPosition) {
+            return 0;
+        }
+
+        @Override
+        public int getChildrenCount(int groupPosition) {
+            return ((ArrayList<Movimiento>) childtems.get(groupPosition)).size();
+        }
+
+        @Override
+        public Object getGroup(int groupPosition) {
+            return null;
+        }
+
+        @Override
+        public int getGroupCount() {
+            return parentItems.size();
+        }
+
+        @Override
+        public void onGroupCollapsed(int groupPosition) {
+            super.onGroupCollapsed(groupPosition);
+        }
+
+        @Override
+        public void onGroupExpanded(int groupPosition) {
+            super.onGroupExpanded(groupPosition);
+        }
+
+        @Override
+        public long getGroupId(int groupPosition) {
+            return 0;
+        }
+
+        @Override
+        public boolean hasStableIds() {
+            return false;
+        }
+
+        @Override
+        public boolean isChildSelectable(int groupPosition, int childPosition) {
+            return true;
+        }
     }
 
 }
