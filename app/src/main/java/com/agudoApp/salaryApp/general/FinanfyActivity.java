@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.activities.CuentasActivity;
+import com.agudoApp.salaryApp.activities.PreferencesActivity;
 import com.agudoApp.salaryApp.activities.SeguridadComprobar;
 import com.agudoApp.salaryApp.adapters.ListAdapterNavigator;
 import com.agudoApp.salaryApp.database.GestionBBDD;
@@ -336,10 +337,6 @@ public class FinanfyActivity extends AppCompatActivity {
                 fragment = new EstadisticasFragment(isPremium, isSinPublicidad,
                         isCategoriaPremium);
                 break;
-            //case 8:
-            //Intent intent = new Intent(this, Preferences.class);
-            //startActivity(intent);
-            //break;
             case 8:
                 Intent intent1 = null;
                 intent1 = new Intent(
@@ -374,6 +371,11 @@ public class FinanfyActivity extends AppCompatActivity {
                 navDrawerLayout.closeDrawer(left_drawer_cuentas);
                 break;
             default:
+                break;
+            case 11:
+                Intent intent = new Intent(this, PreferencesActivity.class);
+                startActivity(intent);
+                navDrawerLayout.closeDrawer(left_drawer_cuentas);
                 break;
         }
 

@@ -349,10 +349,10 @@
         <item>Sicherheit</item>
         <item>Datenbank</item>
         <item>Statistik</item>
-        <!--<item>Konfiguration</item>-->
         <item>Bewerten Sie die App</item>
         <item>Geschäft</item>
         <item>Über</item>
+        <item>Konfiguration</item>
     </string-array>
 
     <string-array name="titlesMayusculas">
@@ -364,10 +364,10 @@
         <item>SICHERHEIT</item>
         <item>DATENBANK</item>
         <item>STATISTIK</item>
-        <!--<item>KONFIGURATION</item>-->
         <item>BEWERTEN SIE DIE APP</item>
         <item>GESCHÄFT</item>
         <item>ÜBER</item>
+        <item>KONFIGURATION</item>
     </string-array>
 
     <string name="nuevo">Neu</string>
@@ -443,4 +443,13 @@
     <string name="creaCopiaSeguridad">Erstellen Sie eine Sicherungs</string>
     <string name="importarCopiaSeguridad">Wiederherstellen einer Sicherungs</string>
     <string name="restaurarDatabase">Alle Daten löschen</string>
+
+    <string name="preferencias">Einstellungen</string>
+    <string name="divisa">Währung</string>
+    <string name="cambiarDivisa">Währung ändern</string>
+    <string name="defecto">Standard</string>
+    <string name="personalizado">Kundenspezifische</string>
+    <string name="izquierda">Links</string>
+    <string name="derecha">Recht</string>
+    <string name="introduceDivisa">Fügen Währungssymbol oder Code</string>
 </resources>

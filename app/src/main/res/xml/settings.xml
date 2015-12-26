@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <PreferenceCategory android:title="@string/textoConfPrincipal" >
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="mostrarNominas"
-            android:summary="@string/textoConfNominas"
-            android:title="@string/nomina" >
-        </CheckBoxPreference>
-        
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="mostrarPorCategorias"
-            android:summary="@string/textoConfCategorias"
-            android:title="@string/categorias" >
-        </CheckBoxPreference>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/preferencias">
+
+        <PreferenceScreen
+            android:summary="@string/cambiarDivisa"
+            android:title="@string/divisa"
+            android:key="divisa">
+
+        </PreferenceScreen>
     </PreferenceCategory>
 
 </PreferenceScreen>

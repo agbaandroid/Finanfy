@@ -319,10 +319,10 @@
         <item>Segurança</item>
         <item>Banco de dados</item>
         <item>Estatísticas</item>
-        <!--<item>Configurações</item>-->
         <item>Taxa de Aplicação</item>
         <item>Loja</item>
         <item>Sobre</item>
+        <item>Configurações</item>
     </string-array>
 
     <string-array name="titlesMayusculas">
@@ -334,10 +334,10 @@
         <item>SEGURANÇA</item>
         <item>BANCO DE DADOS</item>
         <item>ESTATÍSTICAS</item>
-        <!--<item>CONFIGURAÇÕES</item>-->
         <item>TAXA DE APLICAÇÃO</item>
         <item>LOJA</item>
         <item>SOBRE</item>
+        <item>CONFIGURAÇÕES</item>
     </string-array>
 
     <string name="nuevo">Novo</string>
@@ -412,4 +412,13 @@
     <string name="creaCopiaSeguridad">Criar um backup</string>
     <string name="importarCopiaSeguridad">Restaurar um backup</string>
     <string name="restaurarDatabase">Elimina todos os dados</string>
+
+    <string name="preferencias">Preferências</string>
+    <string name="divisa">Moeda</string>
+    <string name="cambiarDivisa">Alterar moeda</string>
+    <string name="defecto">Por padrão</string>
+    <string name="personalizado">Personalizado</string>
+    <string name="izquierda">Esquerda</string>
+    <string name="derecha">Direito</string>
+    <string name="introduceDivisa">Adicionar símbolo de moeda ou código</string>
 </resources>

@@ -45,6 +45,7 @@ public final class GraficoFragment extends Fragment {
     LinearLayout layoutSinRegistro;
     LinearLayout layoutGrafico;
     private RelativeLayout layoutPubli;
+    ListAdapterCatGrafico adapterGrafico;
 
     int mDayDesde;
     int mMonthDesde;
@@ -145,7 +146,8 @@ public final class GraficoFragment extends Fragment {
 
         if(listMov.size()>0){
             ListView listaCatGrafico = (ListView) getView().findViewById(R.id.listaCategoriasGrafico);
-            listaCatGrafico.setAdapter(new ListAdapterCatGrafico(getActivity(), listCat));
+            adapterGrafico = new ListAdapterCatGrafico(getActivity(), listCat);
+            listaCatGrafico.setAdapter(adapterGrafico);
             layoutSinRegistro.setVisibility(View.GONE);
             layoutGrafico.setVisibility(View.VISIBLE);
         }else{
@@ -293,5 +295,13 @@ public final class GraficoFragment extends Fragment {
         posiTipoModoPago = prefsFiltros.getInt("spinnerTipoModoPago", 0);
 
         idTarjeta = prefsFiltros.getString("idTarjeta", "-1");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(adapterGrafico != null) {
+            adapterGrafico.notifyDataSetChanged();
+        }
     }
 }

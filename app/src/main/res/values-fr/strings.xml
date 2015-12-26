@@ -357,10 +357,10 @@
         <item>Sécurité</item>
         <item>Base de données</item>
         <item>Statistiques</item>
-        <!--<item>Paramètres</item>-->
         <item>Évaluer l’application</item>
         <item>Boutique</item>
         <item>A propos de</item>
+        <item>Paramètres</item>
     </string-array>
 
     <string-array name="titlesMayusculas">
@@ -372,10 +372,10 @@
         <item>SÉCURITÉ</item>
         <item>BASE DE DONÉES</item>
         <item>STATISTIQUES</item>
-        <!--<item>PARAMÈTRES</item>-->
         <item>ÉVALUER L’APPLICATION</item>
         <item>BOUTIQUE</item>
         <item>A PROPOS DE</item>
+        <item>PARAMÈTRES</item>
     </string-array>
 
     <string name="nuevo">Nouveau</string>
@@ -450,4 +450,13 @@
     <string name="creaCopiaSeguridad">Créez une sauvegarde</string>
     <string name="importarCopiaSeguridad">Restaurer une sauvegarde</string>
     <string name="restaurarDatabase">Supprimer toutes les données</string>
+
+    <string name="preferencias">Préférences</string>
+    <string name="divisa">Currency</string>
+    <string name="cambiarDivisa">Monnaie</string>
+    <string name="defecto">Défaut</string>
+    <string name="personalizado">Personnalisé</string>
+    <string name="izquierda">Gauche</string>
+    <string name="derecha">Droite</string>
+    <string name="introduceDivisa">Ajouter symbole de la monnaie ou un code</string>
 </resources>

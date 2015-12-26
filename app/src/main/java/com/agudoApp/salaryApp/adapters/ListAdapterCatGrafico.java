@@ -102,15 +102,15 @@ public class ListAdapterCatGrafico extends BaseAdapter {
         String porcentaje;
         String cantidad;
         String texto;
-        String simboloDivisa = prefs.getString("divisa", "€");
 
         DecimalFormat df = new DecimalFormat("0.00");
         por = (cant * 100) / total;
         porcentaje = df.format(por);
-        cantidad = df.format(cant);
+        cantidad = Util.formatear(cant, prefs);
 
-        texto = porcentaje + "% (" + cantidad + " " + simboloDivisa + ")";
+        texto = porcentaje + "% (" + cantidad + ")";
         return texto;
     }
+
 
 }

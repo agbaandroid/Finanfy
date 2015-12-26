@@ -43,6 +43,7 @@ public class NuevoTarjetasFragment extends Fragment {
 
     ListView listaTarjetas;
     private RelativeLayout layoutPubli;
+    NuevoListAdapterTarjetas adapterTarjetas;
 
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
@@ -120,8 +121,8 @@ public class NuevoTarjetasFragment extends Fragment {
         }
         db.close();
 
-        listaTarjetas.setAdapter(new NuevoListAdapterTarjetas(getActivity(), listTarjetas));
-
+        adapterTarjetas = new NuevoListAdapterTarjetas(getActivity(), listTarjetas);
+        listaTarjetas.setAdapter(adapterTarjetas);
     }
 
     @Override
@@ -231,6 +232,14 @@ public class NuevoTarjetasFragment extends Fragment {
             return convertView;
         }
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(adapterTarjetas != null) {
+            adapterTarjetas.notifyDataSetChanged();
+        }
     }
 
     @Override

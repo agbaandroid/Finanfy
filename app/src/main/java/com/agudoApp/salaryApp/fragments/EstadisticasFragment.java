@@ -171,4 +171,10 @@ public class EstadisticasFragment extends Fragment {
         int idCuenta = prefs.getInt("cuenta", 0);
         return idCuenta;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        cargarDatos();
+    }
 }

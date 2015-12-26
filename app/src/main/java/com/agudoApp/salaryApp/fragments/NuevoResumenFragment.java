@@ -73,6 +73,7 @@ public class NuevoResumenFragment extends Fragment {
 
     protected ListView listMovView;
     protected ExpandableListView listMovCatView;
+    ListAdapter listAdapter;
     ListaAdapterResumenExpandibleAdapter listAdapterCategorias;
     ListaAdapterResumenExpandibleSubAdapter listAdapterSubcategorias;
     LinearLayout layoutSinRegistro;
@@ -156,6 +157,9 @@ public class NuevoResumenFragment extends Fragment {
         isPremium = isUserPremium;
         isCategoriaPremium = isUserCategoriaPremium;
         isSinPublicidad = isUserSinpublicidad;
+    }
+
+    public NuevoResumenFragment() {
     }
 
     @Override
@@ -1292,7 +1296,8 @@ public class NuevoResumenFragment extends Fragment {
         @Override
         protected void onPostExecute(Void result) {
             if (tipoFiltro == 0) {
-                listMovView.setAdapter(new ListAdapter(getActivity(), listMov));
+                listAdapter = new ListAdapter(getActivity(), listMov);
+                listMovView.setAdapter(listAdapter);
                 if (listMov.size() == 0) {
                     layoutSinRegistro.setVisibility(View.VISIBLE);
                     listMovView.setVisibility(View.GONE);
@@ -1545,7 +1550,9 @@ public class NuevoResumenFragment extends Fragment {
                 text.setVisibility(View.GONE);
             }
 
-            text2.setText(mov.getCantidadAux());
+            String cant = mov.getCantidadAux().replace(",", ".");
+            text2.setText(Util.formatear(Float.parseFloat(cant), prefs));
+
             String fecha = mov.getFecha().toString().replace("-", "/");
             text4.setText(fecha);
 
@@ -1638,7 +1645,10 @@ public class NuevoResumenFragment extends Fragment {
             TextView lblListCant = (TextView) convertView
                     .findViewById(R.id.txtCant);
 
-            lblListCant.setText(String.valueOf(df.format(total)));
+            String cant = df.format(total);
+            cant = cant.replace(",", ".");
+
+            lblListCant.setText(Util.formatear(Float.parseFloat(cant), prefs));
 
             ImageView categoriaIcon = (ImageView) convertView
                     .findViewById(R.id.iconCategoria);
@@ -1762,7 +1772,9 @@ public class NuevoResumenFragment extends Fragment {
                 text.setVisibility(View.GONE);
             }
 
-            text2.setText(mov.getCantidadAux());
+            String cant = mov.getCantidadAux().replace(",", ".");
+            text2.setText(Util.formatear(Float.parseFloat(cant), prefs));
+
             String fecha = mov.getFecha().toString().replace("-", "/");
             text4.setText(fecha);
 
@@ -1855,7 +1867,10 @@ public class NuevoResumenFragment extends Fragment {
             TextView lblListCant = (TextView) convertView
                     .findViewById(R.id.txtCant);
 
-            lblListCant.setText(String.valueOf(df.format(total)));
+            String cant = df.format(total);
+            cant = cant.replace(",", ".");
+
+            lblListCant.setText(Util.formatear(Float.parseFloat(cant), prefs));
 
             ImageView categoriaIcon = (ImageView) convertView
                     .findViewById(R.id.iconCategoria);
@@ -1923,4 +1938,17 @@ public class NuevoResumenFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(listAdapter != null) {
+            listAdapter.notifyDataSetChanged();
+        }
+        if(listAdapterCategorias != null){
+            listAdapterCategorias.notifyDataSetChanged();
+        }
+        if(listAdapterSubcategorias != null){
+            listAdapterSubcategorias.notifyDataSetChanged();
+        }
+    }
 }

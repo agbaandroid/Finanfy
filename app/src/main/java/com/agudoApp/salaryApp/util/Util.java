@@ -345,9 +345,24 @@ public class Util {
     }
 
     public static String formatear(float cant, SharedPreferences prefs) {
-        String simboloDivisa = prefs.getString("divisa", "€");
+        boolean defecto = prefs.getBoolean("defecto", false);
+        boolean der = prefs.getBoolean("derecha", true);
+        String simboloPer = prefs.getString("simboloPer", "");
+
+        String simboloDivisa;
         DecimalFormat df = new DecimalFormat("0.00");
-        String cantidadFormateada = df.format(cant) + " " + simboloDivisa;
+        String cantidadFormateada;
+
+        if(defecto){
+            simboloDivisa = "€";
+            cantidadFormateada = df.format(cant) + " " + simboloDivisa;
+        }else{
+            if(der){
+                cantidadFormateada = df.format(cant) + " " + simboloPer;
+            }else{
+                cantidadFormateada = simboloPer + " " + df.format(cant);
+            }
+        }
 
         return cantidadFormateada;
     }

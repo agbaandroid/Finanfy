@@ -321,10 +321,10 @@
         <item>Security</item>
         <item>Database</item>
         <item>Statistics</item>
-        <!--<item>Settings</item>-->
         <item>Rate the app</item>
         <item>Shop</item>
         <item>About</item>
+        <item>Settings</item>
     </string-array>
 
     <string-array name="titlesMayusculas">
@@ -336,10 +336,10 @@
         <item>SECURITY</item>
         <item>DATABASE</item>
         <item>STATISTICS</item>
-        <!--<item>SETTINGS</item>-->
         <item>RATE THE APP</item>
         <item>SHOP</item>
         <item>ABOUT</item>
+        <item>SETTINGS</item>
     </string-array>
 
     <string name="nuevo">New</string>
@@ -414,4 +414,13 @@
     <string name="creaCopiaSeguridad">Create a backup</string>
     <string name="importarCopiaSeguridad">Restore a backup</string>
     <string name="restaurarDatabase">Delete all data</string>
+
+    <string name="preferencias">Preferences</string>
+    <string name="divisa">Currency</string>
+    <string name="cambiarDivisa">Change currency</string>
+    <string name="defecto">Default</string>
+    <string name="personalizado">Customized</string>
+    <string name="izquierda">Left</string>
+    <string name="derecha">Right</string>
+    <string name="introduceDivisa">Add currency symbol or code</string>
 </resources>

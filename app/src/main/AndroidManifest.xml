@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.agudoApp.salaryApp"
-    android:versionCode="60"
-    android:versionName="4.2.1" >
+    android:versionCode="62"
+    android:versionName="4.2.3" >
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -273,6 +273,18 @@
 
         <activity
             android:name=".activities.NuevoEditCuentaActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme"
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified" />
+
+        <activity
+            android:name=".activities.PreferencesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme"
+            android:windowSoftInputMode="stateUnchanged|adjustUnspecified" />
+
+        <activity
+            android:name=".activities.DivisaActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CustomActionBarTheme"
             android:windowSoftInputMode="stateUnchanged|adjustUnspecified" />

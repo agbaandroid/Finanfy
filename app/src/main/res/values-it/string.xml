@@ -345,10 +345,10 @@ trovare un errore, inviare una mail al seguente indirizzo: </string>
         <item>Sicurezza</item>
         <item>Database</item>
         <item>Statistica</item>
-        <!--<item>Configurazione</item>-->
         <item>Valutare app</item>
         <item>Negozio</item>
         <item>Circa</item>
+        <item>Configurazione</item>
     </string-array>
 
     <string-array name="titlesMayusculas">
@@ -360,10 +360,10 @@ trovare un errore, inviare una mail al seguente indirizzo: </string>
         <item>SICUREZZA</item>
         <item>DATABASE</item>
         <item>STATISTICA</item>
-        <!--<item>CONFIGURAZIONE</item>-->
         <item>VALUTARE APP</item>
         <item>NEGOZIO</item>
         <item>CIRCA</item>
+        <item>CONFIGURAZIONE</item>
     </string-array>
 
     <string name="nuevo">Nuovo</string>
@@ -438,4 +438,13 @@ trovare un errore, inviare una mail al seguente indirizzo: </string>
     <string name="creaCopiaSeguridad">Creare un backup</string>
     <string name="importarCopiaSeguridad">Ripristinare un backup</string>
     <string name="restaurarDatabase">Elimina tutti i dati</string>
+
+    <string name="preferencias">Preferenze</string>
+    <string name="divisa">Valuta</string>
+    <string name="cambiarDivisa">Cambio valuta</string>
+    <string name="defecto">Predefinito</string>
+    <string name="personalizado">Personalizzato</string>
+    <string name="izquierda">Sinistra</string>
+    <string name="derecha">Destra</string>
+    <string name="introduceDivisa">Aggiungere simbolo di valuta o il codice</string>
 </resources> 

@@ -46,6 +46,7 @@ public class RegistrosFijosFragment extends Fragment {
 	LinearLayout layoutSinRegistro;
 	LinearLayout layoutRecibos;
 	private RelativeLayout layoutPubli;
+	ListAdapterRecibos adapterRecibos;
 
 	private int idCuenta;
 
@@ -126,7 +127,9 @@ public class RegistrosFijosFragment extends Fragment {
 		db.close();
 
 		if(listRecibos.size()>0){
-			listaRecibos.setAdapter(new ListAdapterRecibos(getActivity(), listRecibos));
+			adapterRecibos = new ListAdapterRecibos(getActivity(), listRecibos);
+
+			listaRecibos.setAdapter(adapterRecibos);
 			layoutSinRegistro.setVisibility(View.GONE);
 			layoutRecibos.setVisibility(View.VISIBLE);
 		}else{
@@ -310,6 +313,14 @@ public class RegistrosFijosFragment extends Fragment {
 
 		int idCuenta = prefs.getInt("cuenta", 0);
 		return idCuenta;
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		if(adapterRecibos != null) {
+			adapterRecibos.notifyDataSetChanged();
+		}
 	}
 
 }
