@@ -420,6 +420,7 @@
     <string-array name="fechas">
         <item>Mensuel</item>
         <item>Date de gamme</item>
+        <item>Annuel</item>
     </string-array>
 
     <string-array name="tipoTarjeta">

@@ -407,6 +407,7 @@ principal.</string>
     <string-array name="fechas">
         <item>Mensual</item>
         <item>Intervalo de fechas</item>
+        <item>Anual</item>
     </string-array>
 
     <string-array name="tipoTarjeta">

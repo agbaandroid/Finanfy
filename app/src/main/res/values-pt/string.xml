@@ -382,6 +382,7 @@
     <string-array name="fechas">
         <item>Mensal</item>
         <item>Intervalo de datas</item>
+        <item>Anual</item>
     </string-array>
 
     <string-array name="tipoTarjeta">

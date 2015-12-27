@@ -408,6 +408,7 @@ trovare un errore, inviare una mail al seguente indirizzo: </string>
     <string-array name="fechas">
         <item>Mensile</item>
         <item>Intervallo date</item>
+        <item>Annuo</item>
     </string-array>
 
     <string-array name="tipoTarjeta">

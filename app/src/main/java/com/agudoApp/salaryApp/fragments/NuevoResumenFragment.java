@@ -93,6 +93,9 @@ public class NuevoResumenFragment extends Fragment {
     private Spinner spinnerTipoModoPago;
     private Spinner spinnerTarjetas;
 
+    private LinearLayout mes;
+    private LinearLayout anio;
+    private TextView anioSelec;
     private LinearLayout mesAnterior;
     private LinearLayout mesSiguiente;
     private LinearLayout btnAceptarFiltros;
@@ -126,6 +129,7 @@ public class NuevoResumenFragment extends Fragment {
     SharedPreferences.Editor editorFiltros;
 
     private int mYear;
+    private int mYearFiltro;
     private int mMonth;
 
     private int mYearDesde;
@@ -190,7 +194,7 @@ public class NuevoResumenFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        ((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
+        ((FinanfyActivity) getActivity()).mostrarPublicidad(true, false);
 
         listMovView = (ListView) this.getView().findViewById(
                 R.id.listaMovimientos);
@@ -225,6 +229,9 @@ public class NuevoResumenFragment extends Fragment {
         spinnerTarjetas = (Spinner) getActivity().findViewById(R.id.spinnerTarjetasFiltro);
         mesAnterior = (LinearLayout) getView().findViewById(R.id.layoutLeft);
         mesSiguiente = (LinearLayout) getView().findViewById(R.id.layoutRight);
+        mes = (LinearLayout) getView().findViewById(R.id.mes);
+        anio = (LinearLayout) getView().findViewById(R.id.anio);
+        anioSelec = (TextView) getView().findViewById(R.id.anioSelec);
         txtGasto = (TextView) getActivity().findViewById(R.id.txtGasto);
         txtIngreso = (TextView) getActivity().findViewById(R.id.txtIngreso);
         txtIntevaloFechas = (TextView) getActivity().findViewById(R.id.intervaloFecha);
@@ -245,7 +252,7 @@ public class NuevoResumenFragment extends Fragment {
         txtAnioActual.setText(String.valueOf(mYear));
         rellenarSpinners();
         configurarFiltros();
-        obtenerTextoMes();
+        obtenerTexto();
 
         try {
             insertarRecibos();
@@ -258,14 +265,18 @@ public class NuevoResumenFragment extends Fragment {
         mesAnterior.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mMonth == 0) {
-                    mMonth = 11;
-                    mYear = mYear - 1;
-                    txtAnioActual.setText(String.valueOf(mYear));
-                } else {
-                    mMonth = mMonth - 1;
+                if (tipoFecha == 0) {
+                    if (mMonth == 0) {
+                        mMonth = 11;
+                        mYear = mYear - 1;
+                        txtAnioActual.setText(String.valueOf(mYear));
+                    } else {
+                        mMonth = mMonth - 1;
+                    }
+                } else if (tipoFecha == 2) {
+                    mYearFiltro = mYearFiltro - 1;
                 }
-                obtenerTextoMes();
+                obtenerTexto();
                 new CargarMovimientosTask().execute();
             }
         });
@@ -273,14 +284,18 @@ public class NuevoResumenFragment extends Fragment {
         mesSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mMonth == 11) {
-                    mMonth = 0;
-                    mYear = mYear + 1;
-                    txtAnioActual.setText(String.valueOf(mYear));
-                } else {
-                    mMonth = mMonth + 1;
+                if(tipoFecha == 0){
+                    if (mMonth == 11) {
+                        mMonth = 0;
+                        mYear = mYear + 1;
+                        txtAnioActual.setText(String.valueOf(mYear));
+                    } else {
+                        mMonth = mMonth + 1;
+                    }
+                }else if (tipoFecha == 2) {
+                    mYearFiltro = mYearFiltro + 1;
                 }
-                obtenerTextoMes();
+                obtenerTexto();
                 new CargarMovimientosTask().execute();
             }
         });
@@ -293,9 +308,12 @@ public class NuevoResumenFragment extends Fragment {
                                                    if (position == 0) {
                                                        layoutFechas.setVisibility(View.GONE);
                                                        tipoFecha = 0;
-                                                   } else {
+                                                   } else if (position == 1) {
                                                        layoutFechas.setVisibility(View.VISIBLE);
                                                        tipoFecha = 1;
+                                                   } else if (position == 2) {
+                                                       layoutFechas.setVisibility(View.GONE);
+                                                       tipoFecha = 2;
                                                    }
                                                }
 
@@ -558,7 +576,7 @@ public class NuevoResumenFragment extends Fragment {
             int tipoPago = spinnerTipoModoPago.getSelectedItemPosition();
             String idTarjeta = listTarjetas.get(spinnerTarjetas.getSelectedItemPosition()).getId();
 
-            listMov = gestion.getMovimientosFiltros(db, gastoPulsado, ingresoPulsado, tipoFecha, tipoFiltro,
+            listMov = gestion.getMovimientosFiltros(db, gastoPulsado, ingresoPulsado, tipoFecha, mYearFiltro, tipoFiltro,
                     idCategoria, idSubcategoria, tipoPago, idTarjeta, mMonth, mYear, mDayDesde, mMonthDesde, mYearDesde,
                     mDayHasta, mMonthHasta, mYearHasta, idCuenta);
         }
@@ -915,6 +933,8 @@ public class NuevoResumenFragment extends Fragment {
         mYearDesde = c.get(Calendar.YEAR);
         mMonthDesde = c.get(Calendar.MONTH);
         mDayDesde = c.get(Calendar.DAY_OF_MONTH);
+
+        mYearFiltro = c.get(Calendar.YEAR);
     }
 
     public void obtenerCategorias() {
@@ -1077,12 +1097,16 @@ public class NuevoResumenFragment extends Fragment {
 
         int posiFechas = prefsFiltros.getInt("spinnerFechas", 0);
         spinnerFechas.setSelection(posiFechas);
+
         if (posiFechas == 0) {
             layoutFechas.setVisibility(View.GONE);
             tipoFecha = 0;
-        } else {
+        } else if (posiFechas == 1) {
             layoutFechas.setVisibility(View.VISIBLE);
             tipoFecha = 1;
+        } else if (posiFechas == 2) {
+            layoutFechas.setVisibility(View.GONE);
+            tipoFecha = 2;
         }
 
         int posiTipo = prefsFiltros.getInt("tipoFiltro", 0);
@@ -1208,44 +1232,48 @@ public class NuevoResumenFragment extends Fragment {
         return null;
     }
 
-    public void obtenerTextoMes() {
-        switch (mMonth + 1) {
-            case 1:
-                txtMesActual.setText(getResources().getString(R.string.enero));
-                break;
-            case 2:
-                txtMesActual.setText(getResources().getString(R.string.febrero));
-                break;
-            case 3:
-                txtMesActual.setText(getResources().getString(R.string.marzo));
-                break;
-            case 4:
-                txtMesActual.setText(getResources().getString(R.string.abril));
-                break;
-            case 5:
-                txtMesActual.setText(getResources().getString(R.string.mayo));
-                break;
-            case 6:
-                txtMesActual.setText(getResources().getString(R.string.junio));
-                break;
-            case 7:
-                txtMesActual.setText(getResources().getString(R.string.julio));
-                break;
-            case 8:
-                txtMesActual.setText(getResources().getString(R.string.agosto));
-                break;
-            case 9:
-                txtMesActual.setText(getResources().getString(R.string.septiembre));
-                break;
-            case 10:
-                txtMesActual.setText(getResources().getString(R.string.octubre));
-                break;
-            case 11:
-                txtMesActual.setText(getResources().getString(R.string.noviembre));
-                break;
-            case 12:
-                txtMesActual.setText(getResources().getString(R.string.diciembre));
-                break;
+    public void obtenerTexto() {
+        if (tipoFecha == 0) {
+            switch (mMonth + 1) {
+                case 1:
+                    txtMesActual.setText(getResources().getString(R.string.enero));
+                    break;
+                case 2:
+                    txtMesActual.setText(getResources().getString(R.string.febrero));
+                    break;
+                case 3:
+                    txtMesActual.setText(getResources().getString(R.string.marzo));
+                    break;
+                case 4:
+                    txtMesActual.setText(getResources().getString(R.string.abril));
+                    break;
+                case 5:
+                    txtMesActual.setText(getResources().getString(R.string.mayo));
+                    break;
+                case 6:
+                    txtMesActual.setText(getResources().getString(R.string.junio));
+                    break;
+                case 7:
+                    txtMesActual.setText(getResources().getString(R.string.julio));
+                    break;
+                case 8:
+                    txtMesActual.setText(getResources().getString(R.string.agosto));
+                    break;
+                case 9:
+                    txtMesActual.setText(getResources().getString(R.string.septiembre));
+                    break;
+                case 10:
+                    txtMesActual.setText(getResources().getString(R.string.octubre));
+                    break;
+                case 11:
+                    txtMesActual.setText(getResources().getString(R.string.noviembre));
+                    break;
+                case 12:
+                    txtMesActual.setText(getResources().getString(R.string.diciembre));
+                    break;
+            }
+        } else if (tipoFecha == 2) {
+            anioSelec.setText(String.valueOf(mYearFiltro));
         }
     }
 
@@ -1253,11 +1281,11 @@ public class NuevoResumenFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == getActivity().RESULT_OK) {
             switch (requestCode) {
-                case RESUMEN :
-                    ((FinanfyActivity)getActivity()).mostrarPublicidad(false, true);
+                case RESUMEN:
+                    ((FinanfyActivity) getActivity()).mostrarPublicidad(false, true);
                     break;
-                case EDIT_DELETE :
-                    ((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
+                case EDIT_DELETE:
+                    ((FinanfyActivity) getActivity()).mostrarPublicidad(true, false);
                     break;
             }
         }
@@ -1356,11 +1384,22 @@ public class NuevoResumenFragment extends Fragment {
             if (tipoFecha == 0) {
                 layoutMeses.setVisibility(View.VISIBLE);
                 layoutIntervaloFecha.setVisibility(View.GONE);
-            } else {
+                mes.setVisibility(View.VISIBLE);
+                anio.setVisibility(View.GONE);
+            } else if (tipoFecha == 1) {
                 txtIntevaloFechas.setText(txtFechaDesde.getText().toString().trim() + " - " + txtFechaHasta.getText().toString().trim());
                 layoutIntervaloFecha.setVisibility(View.VISIBLE);
                 layoutMeses.setVisibility(View.GONE);
+                mes.setVisibility(View.GONE);
+                anio.setVisibility(View.GONE);
+            } else if (tipoFecha == 2) {
+                layoutMeses.setVisibility(View.VISIBLE);
+                layoutIntervaloFecha.setVisibility(View.GONE);
+                mes.setVisibility(View.GONE);
+                anio.setVisibility(View.VISIBLE);
             }
+
+            obtenerTexto();
 
             progDailog.dismiss();
         }
@@ -1546,7 +1585,7 @@ public class NuevoResumenFragment extends Fragment {
             layoutMovimiento = (LinearLayout) convertView.findViewById(R.id.layoutMovimiento);
 
             text.setText(mov.toString());
-            if(mov.toString().equals("")){
+            if (mov.toString().equals("")) {
                 text.setVisibility(View.GONE);
             }
 
@@ -1579,7 +1618,7 @@ public class NuevoResumenFragment extends Fragment {
                 db.close();
 
                 imgTarjeta.setBackgroundResource(Util.obtenerIconoTarjeta(tar.getIdIcon()));
-            }else{
+            } else {
                 layoutTarjeta.setVisibility(View.GONE);
             }
 
@@ -1768,7 +1807,7 @@ public class NuevoResumenFragment extends Fragment {
             imgTarjeta = (ImageView) convertView.findViewById(R.id.imgTarjeta);
 
             text.setText(mov.toString());
-            if(mov.toString().equals("")) {
+            if (mov.toString().equals("")) {
                 text.setVisibility(View.GONE);
             }
 
@@ -1801,7 +1840,7 @@ public class NuevoResumenFragment extends Fragment {
                 db.close();
 
                 imgTarjeta.setBackgroundResource(Util.obtenerIconoTarjeta(tar.getIdIcon()));
-            }else{
+            } else {
                 layoutTarjeta.setVisibility(View.GONE);
             }
 
@@ -1941,13 +1980,13 @@ public class NuevoResumenFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(listAdapter != null) {
+        if (listAdapter != null) {
             listAdapter.notifyDataSetChanged();
         }
-        if(listAdapterCategorias != null){
+        if (listAdapterCategorias != null) {
             listAdapterCategorias.notifyDataSetChanged();
         }
-        if(listAdapterSubcategorias != null){
+        if (listAdapterSubcategorias != null) {
             listAdapterSubcategorias.notifyDataSetChanged();
         }
     }

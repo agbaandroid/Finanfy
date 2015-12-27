@@ -120,7 +120,7 @@ public final class GraficoFragment extends Fragment {
 
         db = getActivity().openOrCreateDatabase(BD_NOMBRE, 1, null);
         if (db != null) {
-            listMov = gestion.getMovimientosFiltros(db, gastoPulsado, ingresoPulsado, posiFechas, posiTipo,
+            listMov = gestion.getMovimientosFiltros(db, gastoPulsado, ingresoPulsado, posiFechas, posiTipo, anio,
                     idCat, idSub, posiTipoModoPago, idTarjeta, mes, anio, mDayDesde, mMonthDesde, mYearDesde,
                     mDayHasta, mMonthHasta, mYearHasta, idCuenta);
         }

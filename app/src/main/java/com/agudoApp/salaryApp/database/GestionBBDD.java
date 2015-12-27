@@ -768,7 +768,7 @@ public class GestionBBDD {
     }
 
     // Metodo que obtiene listado de movimientos al iniciar la actividad
-    public ArrayList<Movimiento> getMovimientosFiltros(SQLiteDatabase db, boolean gasto, boolean ingreso, int tipoFecha,
+    public ArrayList<Movimiento> getMovimientosFiltros(SQLiteDatabase db, boolean gasto, boolean ingreso, int tipoFecha, int yearFiltro,
                                                        int tipoFiltro, String idCategoria, String idSubcategoria, int tipoPago, String idTarjeta,
                                                        int month, int year, int diaDesde, int mesDesde, int anioDesde,
                                                        int diaHasta, int mesHasta, int anioHasta, int idCuenta) {
@@ -783,6 +783,11 @@ public class GestionBBDD {
         fechaFin = getFinMes(month + 1, year);
         fechaDesde = new Date(anioDesde - 1900, mesDesde, diaDesde);
         fechaHasta = new Date(anioHasta - 1900, mesHasta, diaHasta);
+
+        if(tipoFecha == 2){
+            fechaDesde = new Date(yearFiltro - 1900, 0, 1);
+            fechaHasta = new Date(yearFiltro - 1900, 11, 31);
+        }
 
         // Obtenemos los movimientos del mes entero
         Cursor movimientos = consultarMovimientos(db, gasto, ingreso, tipoFecha, idCategoria, idSubcategoria,
@@ -909,7 +914,7 @@ public class GestionBBDD {
         Cursor c1 = null;
         try {
             StringBuffer sql = new StringBuffer(
-                    "select * from Movimientos m, Categorias c, Subcategorias s where idCuenta = '" + idCuenta + "'");
+                    "select * from Movimientos m, Categorias c, Subcategorias s, Tarjetas t where idCuenta = '" + idCuenta + "'");
 
             if(!(gasto && ingreso)){
                 if (gasto) {
@@ -1086,6 +1091,7 @@ public class GestionBBDD {
                 mov.setRecibo(Boolean.parseBoolean(c.getString(9)));
                 mov.setTarjeta(Boolean.parseBoolean(c.getString(10)));
                 mov.setIdTarjeta(c.getString(11));
+                mov.setDescTarjeta(c.getString(21));
                 mov.setIdCuenta(c.getString(13));
                 mov.setDescCategoria(c.getString(15));
                 mov.setIdIconCat(c.getInt(16));

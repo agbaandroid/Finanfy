@@ -413,6 +413,7 @@
     <string-array name="fechas">
         <item>Monatlich</item>
         <item>Datumsbereich</item>
+        <item>Jährlich</item>
     </string-array>
 
     <string-array name="tipoTarjeta">

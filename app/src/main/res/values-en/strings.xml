@@ -384,6 +384,7 @@
     <string-array name="fechas">
         <item>Monthly</item>
         <item>Date range</item>
+        <item>Annual</item>
     </string-array>
 
     <string-array name="tipoTarjeta">
