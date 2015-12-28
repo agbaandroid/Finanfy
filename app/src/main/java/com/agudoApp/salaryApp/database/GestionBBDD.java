@@ -949,8 +949,10 @@ public class GestionBBDD {
                 sql.append(" and m.tarjeta='true'");
             }
 
-            if(!idTarjeta.equals("-1")){
-                sql.append(" and m.idTarjeta='" + idTarjeta + "'");
+            if(idTarjeta.equals("-1")){
+                sql.append(" and m.idTarjeta = t.idTarjeta");
+            }else{
+                sql.append(" and m.idTarjeta = t.idTarjeta and t.idTarjeta = '" + idTarjeta + "'");
             }
 
             sql.append(" order by m.fecha desc, m.idMovimiento desc");
