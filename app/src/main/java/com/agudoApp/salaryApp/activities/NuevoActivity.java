@@ -351,6 +351,9 @@ public class NuevoActivity extends AppCompatActivity {
     private void updateDisplay() {
         String mes;
         String dia;
+        prefs = getSharedPreferences("ficheroConf",
+                Context.MODE_PRIVATE);
+        int formato = prefs.getInt("formatoFecha", 1);
 
         if ((mMonth + 1) < 10) {
             mes = "0" + String.valueOf(mMonth + 1);
@@ -364,10 +367,18 @@ public class NuevoActivity extends AppCompatActivity {
             dia = String.valueOf(mDay);
         }
 
-        txtFecha.setText(new StringBuilder()
-                // Month is 0 based so add 1
-                .append(dia).append("/").append(mes).append("/")
-                .append(mYear));
+        if (formato == 1) {
+            txtFecha.setText(new StringBuilder()
+                    // Month is 0 based so add 1
+                    .append(dia).append("/").append(mes).append("/")
+                    .append(mYear));
+        } else if (formato == 2) {
+            txtFecha.setText(new StringBuilder()
+                    // Month is 0 based so add 1
+                    .append(mYear).append("/").append(mes).append("/")
+                    .append(dia));
+        }
+
     }
 
     public void obtenerTarjetas() {

@@ -448,4 +448,8 @@ trovare un errore, inviare una mail al seguente indirizzo: </string>
     <string name="izquierda">Sinistra</string>
     <string name="derecha">Destra</string>
     <string name="introduceDivisa">Aggiungere simbolo di valuta o il codice</string>
+
+    <string name="formatoFecha">Formato data</string>
+    <string name="cambiarFormato">Modificare il formato della data</string>
+    <string name="seleccionarFormato">Selezionare un formato</string>
 </resources> 

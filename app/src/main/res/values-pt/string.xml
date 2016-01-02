@@ -422,4 +422,8 @@
     <string name="izquierda">Esquerda</string>
     <string name="derecha">Direito</string>
     <string name="introduceDivisa">Adicionar símbolo de moeda ou código</string>
+
+    <string name="formatoFecha">Formato de data</string>
+    <string name="cambiarFormato">Alterar o formato da data</string>
+    <string name="seleccionarFormato">Escolha um formato</string>
 </resources>

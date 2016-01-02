@@ -31,7 +31,6 @@ public class DivisaActivity extends AppCompatActivity {
     private TextView txtCant;
 
     private EditText simbolo;
-    boolean cambiarTexto = true;
 
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
@@ -42,7 +41,7 @@ public class DivisaActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setContentInsetsAbsolute(0, 0);
-        toolbar.setTitle("Divisa");
+        toolbar.setTitle(getResources().getString(R.string.divisa));
         setSupportActionBar(toolbar);
 
         // Hide the icon, title and home/up button

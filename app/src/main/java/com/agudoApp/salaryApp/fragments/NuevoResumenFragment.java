@@ -1155,6 +1155,7 @@ public class NuevoResumenFragment extends Fragment {
     private void updateDisplayDesde() {
         String mes;
         String dia;
+        int formato = prefs.getInt("formatoFecha", 1);
 
         if ((mMonthDesde + 1) < 10) {
             mes = "0" + String.valueOf(mMonthDesde + 1);
@@ -1168,15 +1169,24 @@ public class NuevoResumenFragment extends Fragment {
             dia = String.valueOf(mDayDesde);
         }
 
-        txtFechaDesde.setText(new StringBuilder()
-                // Month is 0 based so add 1
-                .append(dia).append("/").append(mes).append("/")
-                .append(mYearDesde));
+        if(formato == 1){
+            txtFechaDesde.setText(new StringBuilder()
+                    // Month is 0 based so add 1
+                    .append(dia).append("/").append(mes).append("/")
+                    .append(mYearDesde));
+        }else if (formato == 2){
+            txtFechaDesde.setText(new StringBuilder()
+                    // Month is 0 based so add 1
+                    .append(mYearDesde).append("/").append(mes).append("/")
+                    .append(dia));
+        }
+
     }
 
     private void updateDisplayHasta() {
         String mes;
         String dia;
+        int formato = prefs.getInt("formatoFecha", 1);
 
         if ((mMonthHasta + 1) < 10) {
             mes = "0" + String.valueOf(mMonthHasta + 1);
@@ -1190,10 +1200,17 @@ public class NuevoResumenFragment extends Fragment {
             dia = String.valueOf(mDayHasta);
         }
 
-        txtFechaHasta.setText(new StringBuilder()
-                // Month is 0 based so add 1
-                .append(dia).append("/").append(mes).append("/")
-                .append(mYearHasta));
+        if(formato == 1){
+            txtFechaHasta.setText(new StringBuilder()
+                    // Month is 0 based so add 1
+                    .append(dia).append("/").append(mes).append("/")
+                    .append(mYearHasta));
+        }else if (formato == 2){
+            txtFechaHasta.setText(new StringBuilder()
+                    // Month is 0 based so add 1
+                    .append(mYearHasta).append("/").append(mes).append("/")
+                    .append(dia));
+        }
     }
 
     private DatePickerDialog.OnDateSetListener mDateSetListenerDesde = new DatePickerDialog.OnDateSetListener() {
@@ -1467,7 +1484,7 @@ public class NuevoResumenFragment extends Fragment {
                 txtDescripcion.setVisibility(View.GONE);
             }
             txtCant.setText(listaMov.get(position).getCantidadAux());
-            String fecha = listaMov.get(position).getFecha().toString().replace("-", "/");
+            String fecha = Util.formatearFecha(listaMov.get(position).getFecha().toString(), prefs);
             txtFecha.setText(fecha);
             imgView.setBackgroundResource(Util.obtenerIconoCategoria(listaMov.get(position).getIdIconCat()));
 
@@ -1592,7 +1609,7 @@ public class NuevoResumenFragment extends Fragment {
             String cant = mov.getCantidadAux().replace(",", ".");
             text2.setText(Util.formatear(Float.parseFloat(cant), prefs));
 
-            String fecha = mov.getFecha().toString().replace("-", "/");
+            String fecha = Util.formatearFecha(mov.getFecha().toString(), prefs);
             text4.setText(fecha);
 
             if (mov.getCantidadAux().substring(0, 1).equals("-")) {
@@ -1814,7 +1831,7 @@ public class NuevoResumenFragment extends Fragment {
             String cant = mov.getCantidadAux().replace(",", ".");
             text2.setText(Util.formatear(Float.parseFloat(cant), prefs));
 
-            String fecha = mov.getFecha().toString().replace("-", "/");
+            String fecha = Util.formatearFecha(mov.getFecha().toString(), prefs);
             text4.setText(fecha);
 
             if (mov.getCantidadAux().substring(0, 1).equals("-")) {

@@ -460,4 +460,8 @@
     <string name="izquierda">Gauche</string>
     <string name="derecha">Droite</string>
     <string name="introduceDivisa">Ajouter symbole de la monnaie ou un code</string>
+
+    <string name="formatoFecha">Format de date</string>
+    <string name="cambiarFormato">Changer le format de date</string>
+    <string name="seleccionarFormato">Sélectionnez un format</string>
 </resources>

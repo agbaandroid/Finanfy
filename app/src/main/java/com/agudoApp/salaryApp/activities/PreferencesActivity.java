@@ -31,19 +31,30 @@ public class PreferencesActivity extends AppCompatActivity {
     public static class SettingFragment extends PreferenceFragment {
 
         private final int DIVISA = 1;
+        private final int FORMATO_FECHA = 2;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings);
 
-            Preference fooBarPref = findPreference("divisa");
+            Preference fooBarPrefDivisa = findPreference("divisa");
+            Preference fooBarPrefFormatoFecha = findPreference("formatoFecha");
 
-            fooBarPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            fooBarPrefDivisa.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     Intent intent = new Intent(getActivity(), DivisaActivity.class);
                     startActivityForResult(intent, DIVISA);
+                    return false;
+                }
+            });
+
+            fooBarPrefFormatoFecha.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent intent = new Intent(getActivity(), FormatoFechaActivity.class);
+                    startActivityForResult(intent, FORMATO_FECHA);
                     return false;
                 }
             });

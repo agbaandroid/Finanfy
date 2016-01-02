@@ -10,6 +10,14 @@
             android:key="divisa">
 
         </PreferenceScreen>
+
+        <PreferenceScreen
+            android:summary="@string/cambiarFormato"
+            android:title="@string/formatoFecha"
+            android:key="formatoFecha">
+
+        </PreferenceScreen>
     </PreferenceCategory>
+
 
 </PreferenceScreen>

@@ -447,4 +447,8 @@ principal.</string>
     <string name="izquierda">Izquierda</string>
     <string name="derecha">Derecha</string>
     <string name="introduceDivisa">Introduce símbolo o código</string>
+
+    <string name="formatoFecha">Formato de fechas</string>
+    <string name="cambiarFormato">Cambia el formato de la fecha</string>
+    <string name="seleccionarFormato">Seleccione un formato</string>
 </resources>

@@ -424,4 +424,8 @@
     <string name="izquierda">Left</string>
     <string name="derecha">Right</string>
     <string name="introduceDivisa">Add currency symbol or code</string>
+
+    <string name="formatoFecha">Date format</string>
+    <string name="cambiarFormato">Change the date format</string>
+    <string name="seleccionarFormato">Select a format</string>
 </resources>

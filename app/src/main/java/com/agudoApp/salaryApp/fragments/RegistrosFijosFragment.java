@@ -231,7 +231,8 @@ public class RegistrosFijosFragment extends Fragment {
 				txtDescripcion.setVisibility(View.GONE);
 			}
 			txtCant.setText(Util.formatear(cant, prefs));
-			String fechaDesde = listaRecibo.get(position).getFechaIni().toString().replace("-", "/");
+			String fechaDesde = Util.formatearFecha(listaRecibo.get(position).getFechaIni().toString(), prefs);
+
 			txtFechaDesde.setText("Desde: " + fechaDesde);
 
 			if(listaRecibo.get(position).getnVeces() == 0){
@@ -239,7 +240,7 @@ public class RegistrosFijosFragment extends Fragment {
 				nVeces.setText("Meses: " + String.valueOf(listaRecibo.get(position).getnVeces()));
 				nVeces.setVisibility(View.GONE);
 			}else{
-				String fechaHasta = listaRecibo.get(position).getFechaFin().toString().replace("-", "/");
+				String fechaHasta = Util.formatearFecha(listaRecibo.get(position).getFechaFin().toString(), prefs);
 				txtFechaHasta.setText("Hasta: " + fechaHasta);
 				nVeces.setText("Meses: " + String.valueOf(listaRecibo.get(position).getnVeces()));
 				nVeces.setVisibility(View.VISIBLE);

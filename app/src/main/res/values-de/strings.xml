@@ -453,4 +453,8 @@
     <string name="izquierda">Links</string>
     <string name="derecha">Recht</string>
     <string name="introduceDivisa">Fügen Währungssymbol oder Code</string>
+
+    <string name="formatoFecha">Datumsformat</string>
+    <string name="cambiarFormato">Ändern Sie das Datumsformat</string>
+    <string name="seleccionarFormato">Wählen Sie ein Format</string>
 </resources>

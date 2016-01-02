@@ -424,4 +424,21 @@ public class Util {
         return fechaFin;
     }
 
+    public static String formatearFecha(String fecha, SharedPreferences prefs){
+        String fechaFormateada = fecha;
+        String dia = fecha.substring(8,10);
+        String mes = fecha.substring(5,7);
+        String anio = fecha.substring(0,4);
+
+        int formato = prefs.getInt("formatoFecha", 1);
+
+        if(formato == 1){
+            fechaFormateada = dia + "/"+ mes + "/" + anio;
+        }else if(formato == 2){
+            fechaFormateada = anio + "/"+ mes + "/" + dia;
+        }
+
+        return fechaFormateada;
+    }
+
 }

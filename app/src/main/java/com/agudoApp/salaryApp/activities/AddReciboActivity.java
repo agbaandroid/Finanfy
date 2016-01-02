@@ -175,7 +175,7 @@ public class AddReciboActivity extends AppCompatActivity {
                     if (!nVeces.getText().toString().equals(getResources().getString(R.string.sinLimite))) {
                         numVeces = Integer.parseInt(nVeces.getText().toString());
                         fechaFin = Util.obtenerFechaFin(fecha, numVeces);
-                    }else{
+                    } else {
                         fechaFin = new Date(9999 - 1900, 12 - 1, 31);
                     }
 
@@ -378,10 +378,21 @@ public class AddReciboActivity extends AppCompatActivity {
     }
 
     private void updateDisplay() {
-        txtFecha.setText(new StringBuilder()
-                // Month is 0 based so add 1
-                .append(mDay).append("/").append(mMonth + 1).append("/")
-                .append(mYear));
+        prefs = getSharedPreferences("ficheroConf",
+                Context.MODE_PRIVATE);
+        int formato = prefs.getInt("formatoFecha", 1);
+
+        if (formato == 1) {
+            txtFecha.setText(new StringBuilder()
+                    // Month is 0 based so add 1
+                    .append(mDay).append("/").append(mMonth + 1).append("/")
+                    .append(mYear));
+        } else if (formato == 2) {
+            txtFecha.setText(new StringBuilder()
+                    // Month is 0 based so add 1
+                    .append(mYear).append("/").append(mMonth + 1).append("/")
+                    .append(mDay));
+        }
     }
 
     public void obtenerTarjetas() {
