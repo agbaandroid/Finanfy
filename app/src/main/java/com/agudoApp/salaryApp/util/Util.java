@@ -368,13 +368,31 @@ public class Util {
     }
 
     public static float formatearFloat(String cant, SharedPreferences prefs) {
-        String simboloDivisa = prefs.getString("divisa", "€");
+        boolean defecto = prefs.getBoolean("defecto", false);
+        boolean der = prefs.getBoolean("derecha", true);
+        String simboloPer = prefs.getString("simboloPer", "");
+        String simboloDivisa;
+
+        if(defecto){
+            simboloDivisa = "€";
+        }else{
+            simboloDivisa = simboloPer;
+        }
+
         cant = cant.replace(",", ".");
 
         int posi = cant.indexOf(simboloDivisa);
 
         if (posi != -1) {
-            cant = cant.substring(0, posi - 1).trim();
+            if(defecto){
+                cant = cant.substring(0, posi - 1).trim();
+            }else{
+                if(der){
+                    cant = cant.substring(0, posi - 1).trim();
+                }else{
+                    cant = cant.substring(posi + 1, cant.length()).trim();
+                }
+            }
         }
 
         return Float.parseFloat(cant);
