@@ -71,6 +71,20 @@ public class NuevoAddTarjetaActivity extends AppCompatActivity {
         spinnerIconTarjeta = (Spinner) findViewById(R.id.spinnerIconTarjeta);
         cantMax = (TextView) findViewById(R.id.cantMax);
 
+        boolean defecto = prefs.getBoolean("defecto", true);
+        boolean der = prefs.getBoolean("derecha", true);
+        String simboloPers = prefs.getString("simboloPer", "€");
+
+        if(defecto){
+            cantMax.setText("0 €");
+        }else{
+            if(der){
+                cantMax.setText("0 " + simboloPers);
+            }else{
+                cantMax.setText(simboloPers + " 0");
+            }
+        }
+
         cargarSpinners();
 
         // Inflate the custom view and add click handlers for the buttons
