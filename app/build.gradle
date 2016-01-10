@@ -8,8 +8,8 @@ android {
         applicationId "com.agudoApp.salaryApp"
         minSdkVersion 11
         targetSdkVersion 20
-        versionCode 67
-        versionName "4.2.8"
+        versionCode 68
+        versionName "4.2.9"
         multiDexEnabled true
     }
     buildTypes {

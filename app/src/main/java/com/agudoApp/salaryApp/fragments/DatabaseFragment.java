@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.database.GestionBBDD;
-import com.agudoApp.salaryApp.general.FinanfyActivity;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -44,6 +43,9 @@ public class DatabaseFragment extends Fragment {
     boolean isPremium = false;
     boolean isCategoriaPremium = false;
     boolean isSinPublicidad = false;
+
+    public DatabaseFragment() {
+    }
 
     public DatabaseFragment(boolean isUserPremium, boolean isUserSinpublicidad,
                             boolean isUserCategoriaPremium) {
@@ -84,7 +86,7 @@ public class DatabaseFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         // gestion.importarBBDDLite(db);
-        ((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
+        //((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
 
         layoutExportar = (LinearLayout) getView().findViewById(R.id.layoutExport);
         layoutImportar = (LinearLayout) getView().findViewById(R.id.layoutImport);

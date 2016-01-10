@@ -16,7 +16,6 @@ import android.widget.RelativeLayout;
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.adapters.ListAdapterCatGrafico;
 import com.agudoApp.salaryApp.database.GestionBBDD;
-import com.agudoApp.salaryApp.general.FinanfyActivity;
 import com.agudoApp.salaryApp.graficos.PieChartView;
 import com.agudoApp.salaryApp.model.Categoria;
 import com.agudoApp.salaryApp.model.Movimiento;
@@ -106,7 +105,7 @@ public final class GraficoFragment extends Fragment {
         // TODO Auto-generated method stub
         super.onActivityCreated(savedInstanceState);
 
-        ((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
+        //((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
 
         Cursor movimientos = null;
         ArrayList<Movimiento> listMov = new ArrayList<Movimiento>();

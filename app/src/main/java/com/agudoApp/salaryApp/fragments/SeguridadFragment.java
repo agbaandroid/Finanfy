@@ -16,7 +16,6 @@ import com.agudoApp.salaryApp.activities.SeguridadAntigua;
 import com.agudoApp.salaryApp.activities.SeguridadComprobar;
 import com.agudoApp.salaryApp.activities.SeguridadIntroducir;
 import com.agudoApp.salaryApp.database.GestionBBDD;
-import com.agudoApp.salaryApp.general.FinanfyActivity;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -37,6 +36,9 @@ public class SeguridadFragment extends Fragment {
 	boolean isPremium = false;
 	boolean isCategoriaPremium = false;
 	boolean isSinPublicidad = false;
+
+	public SeguridadFragment() {
+	}
 
 	public SeguridadFragment(boolean isUserPremium,
 			boolean isUserSinpublicidad, boolean isUserCategoriaPremium) {
@@ -76,7 +78,7 @@ public class SeguridadFragment extends Fragment {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 
-		((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
+		//((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
 
 		prefs = getActivity().getSharedPreferences("ficheroConf",
 				Context.MODE_PRIVATE);

@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.activities.NuevoEditCategoriaActivity;
 import com.agudoApp.salaryApp.database.GestionBBDD;
-import com.agudoApp.salaryApp.general.FinanfyActivity;
 import com.agudoApp.salaryApp.model.Categoria;
 import com.agudoApp.salaryApp.util.Util;
 
@@ -35,6 +34,9 @@ public class PestanaCategoriaFragment extends Fragment {
 	private final int CATEGORIA = 1;
 
 	private String mContent = "???";
+
+	public PestanaCategoriaFragment() {
+	}
 	
 	public PestanaCategoriaFragment(boolean isUserPremium, boolean isCatPrem, boolean isSinPubli) {
 		isPremium = isUserPremium;
@@ -202,7 +204,7 @@ public class PestanaCategoriaFragment extends Fragment {
 		if (resultCode == getActivity().RESULT_OK) {
 			switch (requestCode) {
 				case CATEGORIA :
-					((FinanfyActivity)getActivity()).mostrarPublicidad(false, true);
+					//((FinanfyActivity)getActivity()).mostrarPublicidad(false, true);
 					break;
 			}
 		}

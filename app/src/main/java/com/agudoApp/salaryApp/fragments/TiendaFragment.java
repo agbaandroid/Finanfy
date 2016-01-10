@@ -19,7 +19,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.agudoApp.salaryApp.R;
-import com.agudoApp.salaryApp.general.FinanfyActivity;
 import com.android.vending.billing.IInAppBillingService;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -67,6 +66,9 @@ public class TiendaFragment extends Fragment {
         }
     }
 
+    public TiendaFragment() {
+    }
+
     public TiendaFragment(boolean isUserPremium, boolean isUserSinpublicidad,
                           boolean isUserCategoriaPremium) {
         isPremium = isUserPremium;
@@ -92,7 +94,7 @@ public class TiendaFragment extends Fragment {
         // TODO Auto-generated method stub
         super.onActivityCreated(savedInstanceState);
 
-        ((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
+        //((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
 
         Intent serviceIntent = new Intent(
                 "com.android.vending.billing.InAppBillingService.BIND");

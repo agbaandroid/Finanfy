@@ -24,7 +24,6 @@ import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.activities.AddReciboActivity;
 import com.agudoApp.salaryApp.activities.NuevoEditRecibosActivity;
 import com.agudoApp.salaryApp.database.GestionBBDD;
-import com.agudoApp.salaryApp.general.FinanfyActivity;
 import com.agudoApp.salaryApp.model.Recibo;
 import com.agudoApp.salaryApp.util.Util;
 import com.google.android.gms.ads.AdRequest;
@@ -57,6 +56,9 @@ public class RegistrosFijosFragment extends Fragment {
 	boolean isPremium = false;
 	boolean isCategoriaPremium = false;
 	boolean isSinPublicidad = false;
+
+	public RegistrosFijosFragment() {
+	}
 
 	public RegistrosFijosFragment(boolean isUserPremium, boolean isUserSinpublicidad,
 								  boolean isUserCategoriaPremium) {
@@ -96,7 +98,7 @@ public class RegistrosFijosFragment extends Fragment {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 
-		((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
+		//((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
 
 		layoutRecibos = (LinearLayout) getView().findViewById(R.id.layoutRecibos);
 		layoutSinRegistro = (LinearLayout) getView().findViewById(R.id.layoutSinRegistro);
@@ -301,7 +303,7 @@ public class RegistrosFijosFragment extends Fragment {
 		if (resultCode == getActivity().RESULT_OK) {
 			switch (requestCode) {
 				case RECIBOS :
-					((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
+					//((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
 					break;
 			}
 		}

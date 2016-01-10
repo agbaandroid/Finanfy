@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.activities.NuevoAddCategoriaActivity;
-import com.agudoApp.salaryApp.general.FinanfyActivity;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -41,6 +40,9 @@ public class CategoriasFragment extends Fragment {
 	private final int CATEGORIA = 1;
 
 	private String mContent = "???";
+
+	public CategoriasFragment() {
+	}
 
 	public CategoriasFragment(boolean isPrem, boolean isUserSinpublicidad,
 			boolean isUserCategoriaPremium) {
@@ -66,7 +68,7 @@ public class CategoriasFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
+		//((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
 
 		View rootView = inflater.inflate(
 				R.layout.tabs_categorias_personalizadas, container, false);
@@ -175,7 +177,7 @@ public class CategoriasFragment extends Fragment {
 		if (resultCode == getActivity().RESULT_OK) {
 			switch (requestCode) {
 				case CATEGORIA :
-					((FinanfyActivity)getActivity()).mostrarPublicidad(false, true);
+					//((FinanfyActivity)getActivity()).mostrarPublicidad(false, true);
 					break;
 			}
 		}

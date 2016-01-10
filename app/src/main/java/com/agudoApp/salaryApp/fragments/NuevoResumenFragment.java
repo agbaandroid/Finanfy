@@ -38,7 +38,6 @@ import com.agudoApp.salaryApp.activities.NuevoActivity;
 import com.agudoApp.salaryApp.activities.NuevoEditMovimientosActivity;
 import com.agudoApp.salaryApp.adapters.ListAdapterSpinner;
 import com.agudoApp.salaryApp.database.GestionBBDD;
-import com.agudoApp.salaryApp.general.FinanfyActivity;
 import com.agudoApp.salaryApp.informes.Informes;
 import com.agudoApp.salaryApp.model.Categoria;
 import com.agudoApp.salaryApp.model.Movimiento;
@@ -194,7 +193,7 @@ public class NuevoResumenFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        ((FinanfyActivity) getActivity()).mostrarPublicidad(true, false);
+        //((FinanfyActivity) getActivity()).mostrarPublicidad(true, false);
 
         listMovView = (ListView) this.getView().findViewById(
                 R.id.listaMovimientos);
@@ -1299,10 +1298,10 @@ public class NuevoResumenFragment extends Fragment {
         if (resultCode == getActivity().RESULT_OK) {
             switch (requestCode) {
                 case RESUMEN:
-                    ((FinanfyActivity) getActivity()).mostrarPublicidad(false, true);
+                   // ((FinanfyActivity) getActivity()).mostrarPublicidad(false, true);
                     break;
                 case EDIT_DELETE:
-                    ((FinanfyActivity) getActivity()).mostrarPublicidad(true, false);
+                    //((FinanfyActivity) getActivity()).mostrarPublicidad(true, false);
                     break;
             }
         }

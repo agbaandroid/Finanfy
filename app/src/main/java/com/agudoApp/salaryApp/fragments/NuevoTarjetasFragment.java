@@ -23,7 +23,6 @@ import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.activities.NuevoAddTarjetaActivity;
 import com.agudoApp.salaryApp.activities.NuevoEditTarjetaActivity;
 import com.agudoApp.salaryApp.database.GestionBBDD;
-import com.agudoApp.salaryApp.general.FinanfyActivity;
 import com.agudoApp.salaryApp.model.Tarjeta;
 import com.agudoApp.salaryApp.util.Util;
 import com.google.android.gms.ads.AdRequest;
@@ -52,6 +51,9 @@ public class NuevoTarjetasFragment extends Fragment {
     boolean isPremium = false;
     boolean isCategoriaPremium = false;
     boolean isSinPublicidad = false;
+
+    public NuevoTarjetasFragment() {
+    }
 
     public NuevoTarjetasFragment(boolean isUserPremium, boolean isUserSinpublicidad,
                                  boolean isUserCategoriaPremium) {
@@ -91,7 +93,7 @@ public class NuevoTarjetasFragment extends Fragment {
         // TODO Auto-generated method stub
         super.onActivityCreated(savedInstanceState);
 
-        ((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
+        //((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
 
         prefs = getActivity().getSharedPreferences("ficheroConf",
                 Context.MODE_PRIVATE);

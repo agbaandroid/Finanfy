@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.agudoApp.salaryApp.R;
 import com.agudoApp.salaryApp.database.GestionBBDD;
-import com.agudoApp.salaryApp.general.FinanfyActivity;
 import com.agudoApp.salaryApp.informes.DatosGrafico;
 import com.agudoApp.salaryApp.informes.DatosInforme;
 import com.agudoApp.salaryApp.informes.GraficoRoscoActivity;
@@ -43,6 +42,9 @@ public final class InformesFragment extends Fragment {
 	boolean isPremium = false;
 	boolean isCategoriaPremium = false;
 	boolean isSinPublicidad = false;
+
+	public InformesFragment() {
+	}
 
 	public InformesFragment(boolean isUserPremium, boolean isUserSinpublicidad,
 			boolean isUserCategoriaPremium) {
@@ -82,7 +84,7 @@ public final class InformesFragment extends Fragment {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 
-		((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
+		//((FinanfyActivity)getActivity()).mostrarPublicidad(true, false);
 
 		getActivity().getWindow().setSoftInputMode(
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);

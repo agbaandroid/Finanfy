@@ -345,7 +345,7 @@ public class Util {
     }
 
     public static String formatear(float cant, SharedPreferences prefs) {
-        boolean defecto = prefs.getBoolean("defecto", false);
+        boolean defecto = prefs.getBoolean("defecto", true);
         boolean der = prefs.getBoolean("derecha", true);
         String simboloPer = prefs.getString("simboloPer", "");
 
@@ -368,7 +368,7 @@ public class Util {
     }
 
     public static float formatearFloat(String cant, SharedPreferences prefs) {
-        boolean defecto = prefs.getBoolean("defecto", false);
+        boolean defecto = prefs.getBoolean("defecto", true);
         boolean der = prefs.getBoolean("derecha", true);
         String simboloPer = prefs.getString("simboloPer", "");
         String simboloDivisa;
@@ -390,7 +390,7 @@ public class Util {
                 if(der){
                     cant = cant.substring(0, posi - 1).trim();
                 }else{
-                    cant = cant.substring(posi + 1, cant.length()).trim();
+                    cant = cant.substring(simboloDivisa.length() + 1, cant.length()).trim();
                 }
             }
         }

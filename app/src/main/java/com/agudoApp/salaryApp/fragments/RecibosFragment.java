@@ -37,6 +37,9 @@ public class RecibosFragment extends Fragment {
 	boolean isCategoriaPremium = false;
 	boolean isSinPublicidad = false;
 
+	public RecibosFragment() {
+	}
+
 	public RecibosFragment(boolean isUserPremium, boolean isUserSinpublicidad,
 			boolean isUserCategoriaPremium) {
 		isPremium = isUserPremium;
