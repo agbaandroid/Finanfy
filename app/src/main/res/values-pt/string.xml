@@ -383,6 +383,7 @@
         <item>Mensal</item>
         <item>Intervalo de datas</item>
         <item>Anual</item>
+        <item>Diariamente</item>
     </string-array>
 
     <string-array name="tipoTarjeta">

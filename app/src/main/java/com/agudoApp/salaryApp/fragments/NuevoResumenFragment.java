@@ -95,6 +95,8 @@ public class NuevoResumenFragment extends Fragment {
     private LinearLayout mes;
     private LinearLayout anio;
     private TextView anioSelec;
+    private LinearLayout diario;
+    private TextView diaSelec;
     private LinearLayout mesAnterior;
     private LinearLayout mesSiguiente;
     private LinearLayout btnAceptarFiltros;
@@ -119,6 +121,8 @@ public class NuevoResumenFragment extends Fragment {
     private TextView txtFechaHasta;
     private TextView txtIntevaloFechas;
 
+    Date daySelect;
+
     private TextView txtTotal;
     private float total;
 
@@ -130,6 +134,10 @@ public class NuevoResumenFragment extends Fragment {
     private int mYear;
     private int mYearFiltro;
     private int mMonth;
+
+    private int mDaySelectFiltro;
+    private int mMonthSelectFiltro;
+    private int mYearSelectFiltro;
 
     private int mYearDesde;
     private int mMonthDesde;
@@ -231,6 +239,8 @@ public class NuevoResumenFragment extends Fragment {
         mes = (LinearLayout) getView().findViewById(R.id.mes);
         anio = (LinearLayout) getView().findViewById(R.id.anio);
         anioSelec = (TextView) getView().findViewById(R.id.anioSelec);
+        diario = (LinearLayout) getView().findViewById(R.id.diario);
+        diaSelec = (TextView) getView().findViewById(R.id.diaSelec);
         txtGasto = (TextView) getActivity().findViewById(R.id.txtGasto);
         txtIngreso = (TextView) getActivity().findViewById(R.id.txtIngreso);
         txtIntevaloFechas = (TextView) getActivity().findViewById(R.id.intervaloFecha);
@@ -274,6 +284,8 @@ public class NuevoResumenFragment extends Fragment {
                     }
                 } else if (tipoFecha == 2) {
                     mYearFiltro = mYearFiltro - 1;
+                }else if(tipoFecha == 3){
+                    daySelect = Util.obtenerDiaSelect(daySelect, false);
                 }
                 obtenerTexto();
                 new CargarMovimientosTask().execute();
@@ -293,6 +305,8 @@ public class NuevoResumenFragment extends Fragment {
                     }
                 }else if (tipoFecha == 2) {
                     mYearFiltro = mYearFiltro + 1;
+                }else if(tipoFecha == 3){
+                    daySelect = Util.obtenerDiaSelect(daySelect, true);
                 }
                 obtenerTexto();
                 new CargarMovimientosTask().execute();
@@ -313,6 +327,9 @@ public class NuevoResumenFragment extends Fragment {
                                                    } else if (position == 2) {
                                                        layoutFechas.setVisibility(View.GONE);
                                                        tipoFecha = 2;
+                                                   } else if (position == 3) {
+                                                       layoutFechas.setVisibility(View.GONE);
+                                                       tipoFecha = 3;
                                                    }
                                                }
 
@@ -575,7 +592,7 @@ public class NuevoResumenFragment extends Fragment {
             int tipoPago = spinnerTipoModoPago.getSelectedItemPosition();
             String idTarjeta = listTarjetas.get(spinnerTarjetas.getSelectedItemPosition()).getId();
 
-            listMov = gestion.getMovimientosFiltros(db, gastoPulsado, ingresoPulsado, tipoFecha, mYearFiltro, tipoFiltro,
+            listMov = gestion.getMovimientosFiltros(db, gastoPulsado, ingresoPulsado, tipoFecha, mYearFiltro, daySelect, tipoFiltro,
                     idCategoria, idSubcategoria, tipoPago, idTarjeta, mMonth, mYear, mDayDesde, mMonthDesde, mYearDesde,
                     mDayHasta, mMonthHasta, mYearHasta, idCuenta);
         }
@@ -934,6 +951,12 @@ public class NuevoResumenFragment extends Fragment {
         mDayDesde = c.get(Calendar.DAY_OF_MONTH);
 
         mYearFiltro = c.get(Calendar.YEAR);
+
+        mDaySelectFiltro = c.get(Calendar.DAY_OF_MONTH);
+        mMonthSelectFiltro = c.get(Calendar.MONTH);
+        mYearSelectFiltro = c.get(Calendar.YEAR);
+
+        daySelect = new Date(mYearSelectFiltro - 1900, mMonthSelectFiltro, mDaySelectFiltro);
     }
 
     public void obtenerCategorias() {
@@ -1106,6 +1129,9 @@ public class NuevoResumenFragment extends Fragment {
         } else if (posiFechas == 2) {
             layoutFechas.setVisibility(View.GONE);
             tipoFecha = 2;
+        } else if (posiFechas == 3) {
+            layoutFechas.setVisibility(View.GONE);
+            tipoFecha = 3;
         }
 
         int posiTipo = prefsFiltros.getInt("tipoFiltro", 0);
@@ -1290,6 +1316,8 @@ public class NuevoResumenFragment extends Fragment {
             }
         } else if (tipoFecha == 2) {
             anioSelec.setText(String.valueOf(mYearFiltro));
+        } else if (tipoFecha == 3){
+            diaSelec.setText(Util.formatearFecha(daySelect.toString(), prefs));
         }
     }
 
@@ -1402,17 +1430,26 @@ public class NuevoResumenFragment extends Fragment {
                 layoutIntervaloFecha.setVisibility(View.GONE);
                 mes.setVisibility(View.VISIBLE);
                 anio.setVisibility(View.GONE);
+                diario.setVisibility(View.GONE);
             } else if (tipoFecha == 1) {
                 txtIntevaloFechas.setText(txtFechaDesde.getText().toString().trim() + " - " + txtFechaHasta.getText().toString().trim());
                 layoutIntervaloFecha.setVisibility(View.VISIBLE);
                 layoutMeses.setVisibility(View.GONE);
                 mes.setVisibility(View.GONE);
                 anio.setVisibility(View.GONE);
+                diario.setVisibility(View.GONE);
             } else if (tipoFecha == 2) {
                 layoutMeses.setVisibility(View.VISIBLE);
                 layoutIntervaloFecha.setVisibility(View.GONE);
                 mes.setVisibility(View.GONE);
                 anio.setVisibility(View.VISIBLE);
+                diario.setVisibility(View.GONE);
+            }else if(tipoFecha == 3){
+                layoutMeses.setVisibility(View.VISIBLE);
+                layoutIntervaloFecha.setVisibility(View.GONE);
+                mes.setVisibility(View.GONE);
+                anio.setVisibility(View.GONE);
+                diario.setVisibility(View.VISIBLE);
             }
 
             obtenerTexto();

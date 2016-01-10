@@ -768,7 +768,7 @@ public class GestionBBDD {
     }
 
     // Metodo que obtiene listado de movimientos al iniciar la actividad
-    public ArrayList<Movimiento> getMovimientosFiltros(SQLiteDatabase db, boolean gasto, boolean ingreso, int tipoFecha, int yearFiltro,
+    public ArrayList<Movimiento> getMovimientosFiltros(SQLiteDatabase db, boolean gasto, boolean ingreso, int tipoFecha, int yearFiltro, Date daySelect,
                                                        int tipoFiltro, String idCategoria, String idSubcategoria, int tipoPago, String idTarjeta,
                                                        int month, int year, int diaDesde, int mesDesde, int anioDesde,
                                                        int diaHasta, int mesHasta, int anioHasta, int idCuenta) {
@@ -787,6 +787,9 @@ public class GestionBBDD {
         if(tipoFecha == 2){
             fechaDesde = new Date(yearFiltro - 1900, 0, 1);
             fechaHasta = new Date(yearFiltro - 1900, 11, 31);
+        }else if(tipoFecha == 3){
+            fechaDesde = daySelect;
+            fechaHasta = daySelect;
         }
 
         // Obtenemos los movimientos del mes entero

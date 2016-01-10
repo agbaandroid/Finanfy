@@ -409,6 +409,7 @@ trovare un errore, inviare una mail al seguente indirizzo: </string>
         <item>Mensile</item>
         <item>Intervallo date</item>
         <item>Annuo</item>
+        <item>Quotidiano</item>
     </string-array>
 
     <string-array name="tipoTarjeta">

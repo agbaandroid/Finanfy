@@ -414,6 +414,28 @@ public class Util {
         return fechaFin;
     }
 
+    public static Date obtenerDiaSelect(Date fechaIni, boolean suma) {
+        Date fechaFin;
+        Calendar c = Calendar.getInstance();
+        c.setTime(fechaIni);
+
+        if(suma){
+            c.add(Calendar.DAY_OF_MONTH, 1);
+        }else{
+            c.add(Calendar.DAY_OF_MONTH, -1);
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaFinAux = sdf.format(c.getTime());
+
+        int anio = Integer.parseInt(fechaFinAux.substring(0, 4));
+        int mes = Integer.parseInt(fechaFinAux.substring(5, 7));
+        int dia = Integer.parseInt(fechaFinAux.substring(8, 10));
+
+        fechaFin = new Date(anio - 1900, mes -1, dia);
+        return fechaFin;
+    }
+
     public static Date getFinMes(int mes, int anio) {
         Date fechaFin = null;
         switch (mes) {

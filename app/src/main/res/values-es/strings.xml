@@ -408,6 +408,7 @@ principal.</string>
         <item>Mensual</item>
         <item>Intervalo de fechas</item>
         <item>Anual</item>
+        <item>Diario</item>
     </string-array>
 
     <string-array name="tipoTarjeta">

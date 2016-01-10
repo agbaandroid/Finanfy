@@ -421,6 +421,7 @@
         <item>Mensuel</item>
         <item>Date de gamme</item>
         <item>Annuel</item>
+        <item>Journalier</item>
     </string-array>
 
     <string-array name="tipoTarjeta">
