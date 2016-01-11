@@ -506,7 +506,7 @@ public class FinanfyActivity extends AppCompatActivity {
 
     // Comprobamos si debemos mostrar la publicidad o no
     public void displayInterstitial() {
-        if (interstitial != null && interstitial.isLoaded() && mostrarAnuncioCompleto()) {
+        if (interstitial != null && interstitial.isLoaded() && !isPremium && !isSinPublicidad && mostrarAnuncioCompleto()) {
             interstitial.show();
         }
     }
