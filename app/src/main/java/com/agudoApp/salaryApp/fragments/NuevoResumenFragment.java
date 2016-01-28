@@ -2035,12 +2035,15 @@ public class NuevoResumenFragment extends Fragment {
         super.onResume();
         if (listAdapter != null) {
             listAdapter.notifyDataSetChanged();
+            txtTotal.setText(Util.formatear(total, prefs));
         }
         if (listAdapterCategorias != null) {
             listAdapterCategorias.notifyDataSetChanged();
+            txtTotal.setText(Util.formatear(total, prefs));
         }
         if (listAdapterSubcategorias != null) {
             listAdapterSubcategorias.notifyDataSetChanged();
+            txtTotal.setText(Util.formatear(total, prefs));
         }
     }
 }

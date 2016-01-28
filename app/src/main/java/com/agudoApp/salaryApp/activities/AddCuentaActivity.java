@@ -53,6 +53,7 @@ public class AddCuentaActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Bundle extras = getIntent().getExtras();
+
         if (extras != null) {
             isPremium = extras.getBoolean("isPremium", false);
             isSinPublicidad = extras.getBoolean("isSinPublicidad", false);
