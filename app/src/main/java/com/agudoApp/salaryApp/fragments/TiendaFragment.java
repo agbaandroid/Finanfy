@@ -66,9 +66,6 @@ public class TiendaFragment extends Fragment {
         }
     }
 
-    public TiendaFragment() {
-    }
-
     public TiendaFragment(boolean isUserPremium, boolean isUserSinpublicidad,
                           boolean isUserCategoriaPremium) {
         isPremium = isUserPremium;

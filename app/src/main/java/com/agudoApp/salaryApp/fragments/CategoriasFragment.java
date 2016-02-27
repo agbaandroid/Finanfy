@@ -41,9 +41,6 @@ public class CategoriasFragment extends Fragment {
 
 	private String mContent = "???";
 
-	public CategoriasFragment() {
-	}
-
 	public CategoriasFragment(boolean isPrem, boolean isUserSinpublicidad,
 			boolean isUserCategoriaPremium) {
 		isPremium = isPrem;

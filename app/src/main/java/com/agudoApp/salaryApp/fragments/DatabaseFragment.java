@@ -44,9 +44,6 @@ public class DatabaseFragment extends Fragment {
     boolean isCategoriaPremium = false;
     boolean isSinPublicidad = false;
 
-    public DatabaseFragment() {
-    }
-
     public DatabaseFragment(boolean isUserPremium, boolean isUserSinpublicidad,
                             boolean isUserCategoriaPremium) {
         isPremium = isUserPremium;

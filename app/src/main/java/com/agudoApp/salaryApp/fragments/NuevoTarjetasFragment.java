@@ -52,9 +52,6 @@ public class NuevoTarjetasFragment extends Fragment {
     boolean isCategoriaPremium = false;
     boolean isSinPublicidad = false;
 
-    public NuevoTarjetasFragment() {
-    }
-
     public NuevoTarjetasFragment(boolean isUserPremium, boolean isUserSinpublicidad,
                                  boolean isUserCategoriaPremium) {
         isPremium = isUserPremium;

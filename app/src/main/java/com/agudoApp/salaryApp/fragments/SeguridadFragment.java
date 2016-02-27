@@ -37,9 +37,6 @@ public class SeguridadFragment extends Fragment {
 	boolean isCategoriaPremium = false;
 	boolean isSinPublicidad = false;
 
-	public SeguridadFragment() {
-	}
-
 	public SeguridadFragment(boolean isUserPremium,
 			boolean isUserSinpublicidad, boolean isUserCategoriaPremium) {
 		isPremium = isUserPremium;

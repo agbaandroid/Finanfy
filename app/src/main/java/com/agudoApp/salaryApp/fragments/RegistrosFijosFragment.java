@@ -57,9 +57,6 @@ public class RegistrosFijosFragment extends Fragment {
 	boolean isCategoriaPremium = false;
 	boolean isSinPublicidad = false;
 
-	public RegistrosFijosFragment() {
-	}
-
 	public RegistrosFijosFragment(boolean isUserPremium, boolean isUserSinpublicidad,
 								  boolean isUserCategoriaPremium) {
 		isPremium = isUserPremium;

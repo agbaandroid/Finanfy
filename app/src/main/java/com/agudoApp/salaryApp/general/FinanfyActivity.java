@@ -720,14 +720,20 @@ public class FinanfyActivity extends AppCompatActivity {
         prefs = getSharedPreferences("ficheroConf", Context.MODE_PRIVATE);
         String fechaAct = mDay + "/" + (mMonth + 1) + "/" + mYear;
         String fechaAnuncio = prefs.getString("fechaAnuncio", "");
+        int diasGratis = prefs.getInt("diasGratis", 0);
 
         if (fechaAnuncio.equals(fechaAct)) {
             mostrarAnuncio = false;
         } else {
             editor = prefs.edit();
-            editor.putString("fechaAnuncio", fechaAct);
-            editor.putInt("contadorPubli", 0);
-            editor.putInt("ultimoNumPubli", 0);
+            if(diasGratis<2){
+                editor.putString("fechaAnuncio", fechaAct);
+                diasGratis = diasGratis + 1;
+                editor.putInt("diasGratis", diasGratis);
+                mostrarAnuncio = false;
+            }else{
+                editor.putString("fechaAnuncio", fechaAct);
+            }
             editor.commit();
         }
 

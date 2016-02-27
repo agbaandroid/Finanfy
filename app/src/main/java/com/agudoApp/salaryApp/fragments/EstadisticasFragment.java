@@ -44,9 +44,6 @@ public class EstadisticasFragment extends Fragment {
     boolean isCategoriaPremium = false;
     boolean isSinPublicidad = false;
 
-    public EstadisticasFragment() {
-    }
-
     public EstadisticasFragment(boolean isUserPremium,
                                 boolean isUserSinpublicidad, boolean isUserCategoriaPremium) {
         isPremium = isUserPremium;

@@ -170,9 +170,6 @@ public class NuevoResumenFragment extends Fragment {
         isSinPublicidad = isUserSinpublicidad;
     }
 
-    public NuevoResumenFragment() {
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
