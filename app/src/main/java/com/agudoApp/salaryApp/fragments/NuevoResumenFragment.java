@@ -163,23 +163,22 @@ public class NuevoResumenFragment extends Fragment {
 
     ProgressDialog progDailog;
 
-    public NuevoResumenFragment(boolean isUserPremium, boolean isUserSinpublicidad,
-                                boolean isUserCategoriaPremium) {
-        isPremium = isUserPremium;
-        isCategoriaPremium = isUserCategoriaPremium;
-        isSinPublicidad = isUserSinpublicidad;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setHasOptionsMenu(true);
 
+        Bundle bundle = getArguments();
+        isPremium = bundle.getBoolean("isPremium");
+        isCategoriaPremium = bundle.getBoolean("isCategoriaPremium");
+        isSinPublicidad = bundle.getBoolean("isSinPublicidad");
+
         if ((savedInstanceState != null)
                 && savedInstanceState.containsKey(KEY_CONTENT)) {
             mContent = savedInstanceState.getString(KEY_CONTENT);
         }
+
     }
 
     @Override

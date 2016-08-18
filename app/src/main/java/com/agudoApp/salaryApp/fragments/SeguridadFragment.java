@@ -37,19 +37,17 @@ public class SeguridadFragment extends Fragment {
 	boolean isCategoriaPremium = false;
 	boolean isSinPublicidad = false;
 
-	public SeguridadFragment(boolean isUserPremium,
-			boolean isUserSinpublicidad, boolean isUserCategoriaPremium) {
-		isPremium = isUserPremium;
-		isCategoriaPremium = isUserCategoriaPremium;
-		isSinPublicidad = isUserSinpublicidad;
-	}
-
 	private String mContent = "???";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
+
+		Bundle bundle = getArguments();
+		isPremium = bundle.getBoolean("isPremium");
+		isCategoriaPremium = bundle.getBoolean("isCategoriaPremium");
+		isSinPublicidad = bundle.getBoolean("isSinPublicidad");
 
 		if ((savedInstanceState != null)
 				&& savedInstanceState.containsKey(KEY_CONTENT)) {

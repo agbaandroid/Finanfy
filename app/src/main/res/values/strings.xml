@@ -319,6 +319,7 @@
         <item>Credit cards</item>
         <item>Invoices</item>
         <item>Security</item>
+        <item>Dropbox</item>
         <item>Database</item>
         <item>Statistics</item>
         <item>Rate the app</item>
@@ -334,6 +335,7 @@
         <item>CREDIT CARS</item>
         <item>INVOICES</item>
         <item>SECURITY</item>
+        <item>DROPBOX</item>
         <item>DATABASE</item>
         <item>STATISTICS</item>
         <item>RATE THE APP</item>
@@ -429,4 +431,29 @@
     <string name="formatoFecha">Date format</string>
     <string name="cambiarFormato">Change the date format</string>
     <string name="seleccionarFormato">Select a format</string>
+
+    <string name="msgInicioDropbox">Create and restore backups with Dropbox</string>
+    <string name="vincularDropbox">Link to Dropbox</string>
+
+    <string name="crearCopiaSeguridad">Create backup</string>
+    <string name="cerrarSesion">Sign off</string>
+    <string name="restaurar">Restore</string>
+    <string name="actualizar">Update</string>
+
+    <string name="errorDropbox">There was an error in communication with Dropbox. Please try again later.</string>
+
+    <string name="msgCrearCopia">Are you sure you want to create a backup in Dropbox? This process can take a few minutes.</string>
+    <string name="msgRestaurarCopia">Are you sure you want to restore the backup? All the Finanfy information will be overwritten with the data that is in Dropbox. This process can take a few minutes.</string>
+    <string name="msgActualizarCopia">Are you sure you want to update the backup? All the Dropbox information will be overwritten with the current Finanfy information. This process can take a few minutes.</string>
+    <string name="msgCerrarSesion">Are you sure you want to sign off Dropbox?</string>
+
+    <string name="msgCrearCopiaOK">The backup was successfully created.</string>
+    <string name="msgRestaurarCopiaOK">The backup was successfully restored.</string>
+    <string name="msgActualizarCopiaOK">The backup was successfully updated.</string>
+
+    <string name="selectOption">Select an option</string>
+    <string name="msgEliminarCopia">Are you sure you want to delete the backup? This process can take a few minutes.</string>
+    <string name="msgEliminarCopiaOK">The backup was successfully deleted.</string>
+
+    <string name="noBackups">You don´t have any backup in Dropbox.</string>
 </resources>

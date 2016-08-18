@@ -16,6 +16,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,6 +37,7 @@ import com.agudoApp.salaryApp.adapters.ListAdapterNavigator;
 import com.agudoApp.salaryApp.database.GestionBBDD;
 import com.agudoApp.salaryApp.fragments.CategoriasFragment;
 import com.agudoApp.salaryApp.fragments.DatabaseFragment;
+import com.agudoApp.salaryApp.fragments.DropBoxInicioFragment;
 import com.agudoApp.salaryApp.fragments.EstadisticasFragment;
 import com.agudoApp.salaryApp.fragments.GraficoFragment;
 import com.agudoApp.salaryApp.fragments.NuevoResumenFragment;
@@ -150,6 +152,8 @@ public class FinanfyActivity extends AppCompatActivity {
 
 
         navDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, Gravity.RIGHT);
+
         navList = (ListView) findViewById(R.id.left_drawer);
         left_drawer_cuentas = (LinearLayout) findViewById(R.id.left_drawer_cuentas);
         left_cuentas = (ListView) findViewById(R.id.left_cuentas);
@@ -177,6 +181,11 @@ public class FinanfyActivity extends AppCompatActivity {
 
             public void onDrawerOpened(View view) {
                 super.onDrawerOpened(view);
+
+                listCuentas = obtenerCuentas();
+                mAdapterCuentas = new ListAdapterCuentasNavigator(FinanfyActivity.this, listCuentas);
+                left_cuentas.setAdapter(mAdapterCuentas);
+
                 getSupportActionBar().setTitle(mDrawerTitle);
             }
         };
@@ -291,6 +300,10 @@ public class FinanfyActivity extends AppCompatActivity {
     private void selectItem(int position) {
 
         Fragment fragment = null;
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("isPremium", isPremium);
+        bundle.putBoolean("isCategoriaPremium", isCategoriaPremium);
+        bundle.putBoolean("isSinPublicidad", isSinPublicidad);
 
         switch (position - 1) {
             case -1:
@@ -306,38 +319,33 @@ public class FinanfyActivity extends AppCompatActivity {
                 }
                 break;
             case 0:
-                fragment = new NuevoResumenFragment(isPremium, isSinPublicidad,
-                        isCategoriaPremium);
+                fragment = new NuevoResumenFragment();
                 break;
             case 1:
-                fragment = new CategoriasFragment(isPremium, isSinPublicidad,
-                        isCategoriaPremium);
+                fragment = new CategoriasFragment();
                 break;
             case 2:
-                fragment = new GraficoFragment(isPremium, isSinPublicidad,
-                        isCategoriaPremium);
+                fragment = new GraficoFragment();
                 break;
             case 3:
-                fragment = new NuevoTarjetasFragment(isPremium, isSinPublicidad,
-                        isCategoriaPremium);
+                fragment = new NuevoTarjetasFragment();
                 break;
             case 4:
-                fragment = new RegistrosFijosFragment(isPremium, isSinPublicidad,
-                        isCategoriaPremium);
+                fragment = new RegistrosFijosFragment();
                 break;
             case 5:
-                fragment = new SeguridadFragment(isPremium, isSinPublicidad,
-                        isCategoriaPremium);
+                fragment = new SeguridadFragment();
                 break;
             case 6:
-                fragment = new DatabaseFragment(isPremium, isSinPublicidad,
-                        isCategoriaPremium);
+                fragment = new DropBoxInicioFragment();
                 break;
             case 7:
-                fragment = new EstadisticasFragment(isPremium, isSinPublicidad,
-                        isCategoriaPremium);
+                fragment = new DatabaseFragment();
                 break;
             case 8:
+                fragment = new EstadisticasFragment();
+                break;
+            case 9:
                 Intent intent1 = null;
                 intent1 = new Intent(
                         "android.intent.action.VIEW",
@@ -345,11 +353,10 @@ public class FinanfyActivity extends AppCompatActivity {
                 startActivity(intent1);
                 navDrawerLayout.closeDrawer(left_drawer_cuentas);
                 break;
-            case 9:
-                fragment = new TiendaFragment(isPremium, isSinPublicidad,
-                        isCategoriaPremium);
-                break;
             case 10:
+                fragment = new TiendaFragment();
+                break;
+            case 11:
                 LayoutInflater li = LayoutInflater.from(this);
 		        View view = null;
 		        AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -372,7 +379,7 @@ public class FinanfyActivity extends AppCompatActivity {
                 break;
             default:
                 break;
-            case 11:
+            case 12:
                 Intent intent = new Intent(this, PreferencesActivity.class);
                 startActivity(intent);
                 navDrawerLayout.closeDrawer(left_drawer_cuentas);
@@ -380,6 +387,7 @@ public class FinanfyActivity extends AppCompatActivity {
         }
 
         if (fragment != null) {
+            fragment.setArguments(bundle);
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame, fragment).commit();
@@ -590,8 +598,13 @@ public class FinanfyActivity extends AppCompatActivity {
                     Cuenta cuenta = listCuentas.get(posiSel);
                     seleccionarCuenta(cuenta.getIdCuenta());
 
-                    Fragment fragment = new NuevoResumenFragment(isPremium, isSinPublicidad,
-                            isCategoriaPremium);
+                    Bundle bundle = new Bundle();
+                    bundle.putBoolean("isPremium", isPremium);
+                    bundle.putBoolean("isCategoriaPremium", isCategoriaPremium);
+                    bundle.putBoolean("isSinPublicidad", isSinPublicidad);
+
+                    Fragment fragment = new NuevoResumenFragment();
+                    fragment.setArguments(bundle);
 
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     fragmentManager.beginTransaction()

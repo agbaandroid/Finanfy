@@ -347,6 +347,7 @@
         <item>Kreditkarten</item>
         <item>Rechnungen</item>
         <item>Sicherheit</item>
+        <item>Dropbox</item>
         <item>Datenbank</item>
         <item>Statistik</item>
         <item>Bewerten Sie die App</item>
@@ -362,6 +363,7 @@
         <item>KREDITKARTEN</item>
         <item>RECHNUNGEN</item>
         <item>SICHERHEIT</item>
+        <item>DROPBOX</item>
         <item>DATENBANK</item>
         <item>STATISTIK</item>
         <item>BEWERTEN SIE DIE APP</item>
@@ -458,4 +460,29 @@
     <string name="formatoFecha">Datumsformat</string>
     <string name="cambiarFormato">Ändern Sie das Datumsformat</string>
     <string name="seleccionarFormato">Wählen Sie ein Format</string>
+
+    <string name="msgInicioDropbox">Erstellen und Wiederherstellen von Backups mit Dropbox</string>
+    <string name="vincularDropbox">Link zu Dropbox</string>
+
+    <string name="crearCopiaSeguridad">Ein Backup erstellen</string>
+    <string name="cerrarSesion">Ausloggen</string>
+    <string name="restaurar">Wiederherstellen</string>
+    <string name="actualizar">Aktualisieren</string>
+
+    <string name="errorDropbox">Es gab einen Fehler bei der Kommunikation mit Dropbox. Bitte versuchen Sie es später noch einmal.</string>
+
+    <string name="msgCrearCopia">Sind Sie sicher, dass Sie ein Backup in Dropbox zu schaffen? Dieser Vorgang kann einige Minuten dauern.</string>
+    <string name="msgRestaurarCopia">Sind Sie sicher, dass Sie die Sicherung wiederherstellen? Alle Finanfy Informationen werden mit den Daten überschrieben werden, die in Dropbox ist. Dieser Vorgang kann einige Minuten dauern.</string>
+    <string name="msgActualizarCopia">Sind Sie sicher, dass Sie das Backup zu aktualisieren? Alle Dropbox Informationen werden mit der aktuellen Finanfy Informationen überschrieben werden. Dieser Vorgang kann einige Minuten dauern.</string>
+    <string name="msgCerrarSesion">Sind Sie sicher, dass Sie abmelden Dropbox wollen?</string>
+
+    <string name="msgCrearCopiaOK">Die Sicherung wurde erfolgreich erstellt.</string>
+    <string name="msgRestaurarCopiaOK">Die Sicherung wurde erfolgreich wiederhergestellt.</string>
+    <string name="msgActualizarCopiaOK">Die Sicherung wurde erfolgreich aktualisiert.</string>
+
+    <string name="selectOption">Wähle eine Option</string>
+    <string name="msgEliminarCopia">Sind Sie sicher, dass Sie das Backup zu löschen? Dieser Vorgang kann einige Minuten dauern.</string>
+    <string name="msgEliminarCopiaOK">Die Sicherung wurde erfolgreich gelöscht.</string>
+
+    <string name="noBackups">Sie haben wir keine Sicherung in Dropbox.</string>
 </resources>

@@ -343,6 +343,7 @@ trovare un errore, inviare una mail al seguente indirizzo: </string>
         <item>Carte di credito</item>
         <item>Fatture</item>
         <item>Sicurezza</item>
+        <item>Dropbox</item>
         <item>Database</item>
         <item>Statistica</item>
         <item>Valutare app</item>
@@ -358,6 +359,7 @@ trovare un errore, inviare una mail al seguente indirizzo: </string>
         <item>CARTE DI CREDITO</item>
         <item>FATTURE</item>
         <item>SICUREZZA</item>
+        <item>DROPBOX</item>
         <item>DATABASE</item>
         <item>STATISTICA</item>
         <item>VALUTARE APP</item>
@@ -453,4 +455,29 @@ trovare un errore, inviare una mail al seguente indirizzo: </string>
     <string name="formatoFecha">Formato data</string>
     <string name="cambiarFormato">Modificare il formato della data</string>
     <string name="seleccionarFormato">Selezionare un formato</string>
+
+    <string name="msgInicioDropbox">Creare e ripristinare backup con Dropbox</string>
+    <string name="vincularDropbox">Link a Dropbox</string>
+
+    <string name="crearCopiaSeguridad">Creare il backup</string>
+    <string name="cerrarSesion">Disconnettersi da Dropbox</string>
+    <string name="restaurar">Ripristinare</string>
+    <string name="actualizar">Aggiornare</string>
+
+    <string name="errorDropbox">Cè stato un errore nella comunicazione con Dropbox. Si prega di riprovare più tardi.</string>
+
+    <string name="msgCrearCopia">Sei sicuro che si desidera creare una copia di backup in Dropbox? Questo processo può richiedere alcuni minuti.</string>
+    <string name="msgRestaurarCopia">Sei sicuro di voler ripristinare il backup? Tutte le informazioni Finanfy essere sovrascritto con i dati in Dropbox. Questo processo può richiedere alcuni minuti.</string>
+    <string name="msgActualizarCopia">Sei sicuro che si desidera aggiornare il backup? Informazioni Dropbox viene sovrascritto con le informazioni correnti Finanfy. Questo processo può richiedere alcuni minuti.</string>
+    <string name="msgCerrarSesion">Sei sicuro che si desidera disconnettere da Dropbox?</string>
+
+    <string name="msgCrearCopiaOK">Il backup è stato creato con successo.</string>
+    <string name="msgRestaurarCopiaOK">Il backup è stato ripristinato con successo.</string>
+    <string name="msgActualizarCopiaOK">Il backup è stato aggiornato con successo.</string>
+
+    <string name="selectOption">Selezionare un´opzione</string>
+    <string name="msgEliminarCopia">Sei sicuro di voler eliminare il backup? Questo processo può richiedere alcuni minuti.</string>
+    <string name="msgEliminarCopiaOK">Il backup è stato rimosso con successo.</string>
+
+    <string name="noBackups">Non hai il backup su Dropbox.</string>
 </resources> 

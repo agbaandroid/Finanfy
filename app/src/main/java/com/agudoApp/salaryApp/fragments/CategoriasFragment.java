@@ -41,20 +41,16 @@ public class CategoriasFragment extends Fragment {
 
 	private String mContent = "???";
 
-	public CategoriasFragment(boolean isPrem, boolean isUserSinpublicidad,
-			boolean isUserCategoriaPremium) {
-		isPremium = isPrem;
-		isCategoriaPremium = isUserCategoriaPremium;
-		isSinPublicidad = isUserSinpublicidad;
-
-		// args.putBoolean("isPremium", isPremium);
-	}
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setHasOptionsMenu(true);
+
+		Bundle bundle = getArguments();
+		isPremium = bundle.getBoolean("isPremium");
+		isCategoriaPremium = bundle.getBoolean("isCategoriaPremium");
+		isSinPublicidad = bundle.getBoolean("isSinPublicidad");
 
 		if ((savedInstanceState != null)
 				&& savedInstanceState.containsKey(KEY_CONTENT)) {

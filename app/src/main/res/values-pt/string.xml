@@ -317,6 +317,7 @@
         <item>Cartões</item>
         <item>Recibos</item>
         <item>Segurança</item>
+        <item>Dropbox</item>
         <item>Banco de dados</item>
         <item>Estatísticas</item>
         <item>Taxa de Aplicação</item>
@@ -332,6 +333,7 @@
         <item>CARTÕES</item>
         <item>RECIBOS</item>
         <item>SEGURANÇA</item>
+        <item>DROPBOX</item>
         <item>BANCO DE DADOS</item>
         <item>ESTATÍSTICAS</item>
         <item>TAXA DE APLICAÇÃO</item>
@@ -427,4 +429,29 @@
     <string name="formatoFecha">Formato de data</string>
     <string name="cambiarFormato">Alterar o formato da data</string>
     <string name="seleccionarFormato">Escolha um formato</string>
+
+    <string name="msgInicioDropbox">Criar e restaurar backups com Dropbox</string>
+    <string name="vincularDropbox">Fazer a ligação com Dropbox</string>
+
+    <string name="crearCopiaSeguridad">Criar cópia de segurança</string>
+    <string name="cerrarSesion">Fechar Sessão</string>
+    <string name="restaurar">Restaurar</string>
+    <string name="actualizar">Atualizar</string>
+
+    <string name="errorDropbox">Houve um erro na comunicação com o Dropbox. Por favor, tente novamente mais tarde.</string>
+
+    <string name="msgCrearCopia">Tem certeza de que deseja criar um backup no Dropbox? Este processo pode demorar alguns minutos.</string>
+    <string name="msgRestaurarCopia">Tem certeza de que deseja restaurar o backup? Todas as informações Finanfy serão substituídos pelos dados que estão em Dropbox. Este processo pode demorar alguns minutos.</string>
+    <string name="msgActualizarCopia">Tem certeza de que deseja atualizar o backup? Dropbox toda a informação é sobrescrito com as informações atuais Finanfy. Este processo pode demorar alguns minutos.</string>
+    <string name="msgCerrarSesion">Tem certeza de que quer encerrar a sessão Dropbox?</string>
+
+    <string name="msgCrearCopiaOK">O backup foi criado com êxito.</string>
+    <string name="msgRestaurarCopiaOK">O backup foi restaurado com êxito.</string>
+    <string name="msgActualizarCopiaOK">O backup foi atualizado com êxito.</string>
+
+    <string name="selectOpcion">Selecione uma opção</string>
+    <string name="msgEliminarCopia">Tem certeza de que deseja apagar o backup? Este processo pode demorar vários minutos.</string>
+    <string name="msgEliminarCopiaOK">A cópia de segurança foi removida com sucesso.</string>
+
+    <string name="noBackups">Você não tem nenhuma cópia de segurança no Dropbox.</string>
 </resources>

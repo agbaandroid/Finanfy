@@ -60,17 +60,15 @@ public class TiendaFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
+        Bundle bundle = getArguments();
+        isPremium = bundle.getBoolean("isPremium");
+        isCategoriaPremium = bundle.getBoolean("isCategoriaPremium");
+        isSinPublicidad = bundle.getBoolean("isSinPublicidad");
+
         if ((savedInstanceState != null)
                 && savedInstanceState.containsKey(KEY_CONTENT)) {
             mContent = savedInstanceState.getString(KEY_CONTENT);
         }
-    }
-
-    public TiendaFragment(boolean isUserPremium, boolean isUserSinpublicidad,
-                          boolean isUserCategoriaPremium) {
-        isPremium = isUserPremium;
-        isCategoriaPremium = isUserCategoriaPremium;
-        isSinPublicidad = isUserSinpublicidad;
     }
 
     @Override

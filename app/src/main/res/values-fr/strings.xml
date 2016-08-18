@@ -355,6 +355,7 @@
         <item>Cartes de crédit</item>
         <item>Factures</item>
         <item>Sécurité</item>
+        <item>Dropbox</item>
         <item>Base de données</item>
         <item>Statistiques</item>
         <item>Évaluer l’application</item>
@@ -370,6 +371,7 @@
         <item>CARTES DE CRÉDIT</item>
         <item>FACTURES</item>
         <item>SÉCURITÉ</item>
+        <item>DROPBOX</item>
         <item>BASE DE DONÉES</item>
         <item>STATISTIQUES</item>
         <item>ÉVALUER L’APPLICATION</item>
@@ -465,4 +467,29 @@
     <string name="formatoFecha">Format de date</string>
     <string name="cambiarFormato">Changer le format de date</string>
     <string name="seleccionarFormato">Sélectionnez un format</string>
+
+    <string name="msgInicioDropbox">Créer et restaurer des sauvegardes avec Dropbox</string>
+    <string name="vincularDropbox">Lien vers Dropbox</string>
+
+    <string name="crearCopiaSeguridad">Créer une sauvegarde</string>
+    <string name="cerrarSesion">Se déconnecter</string>
+    <string name="restaurar">Restaurer</string>
+    <string name="actualizar">Mettre à jour</string>
+
+    <string name="errorDropbox">Il y avait une erreur dans la communication avec Dropbox. Veuillez réessayer plus tard.</string>
+
+    <string name="msgCrearCopia">Etes-vous sûr que vous voulez créer une sauvegarde dans Dropbox? Ce processus peut prendre quelques minutes.</string>
+    <string name="msgRestaurarCopia">Etes-vous sûr de vouloir restaurer la sauvegarde? Toutes les informations Finanfy seront écrasées avec les données qui se trouve dans Dropbox. Ce processus peut prendre quelques minutes.</string>
+    <string name="msgActualizarCopia">Etes-vous sûr que vous voulez mettre à jour la sauvegarde? Toutes les informations Dropbox sera remplacé par les informations actuelles Finanfy. Ce processus peut prendre quelques minutes.</string>
+    <string name="msgCerrarSesion">Êtes-vous sûr de vouloir signer Dropbox?</string>
+
+    <string name="msgCrearCopiaOK">La sauvegarde a été créée avec succès.</string>
+    <string name="msgRestaurarCopiaOK">La sauvegarde a été restauré avec succès.</string>
+    <string name="msgActualizarCopiaOK">La sauvegarde a été mis à jour avec succès.</string>
+
+    <string name="selectOption">Choisir une option</string>
+    <string name="msgEliminarCopia">Êtes-vous sûr de vouloir supprimer la sauvegarde? Ce processus peut prendre quelques minutes.</string>
+    <string name="msgEliminarCopiaOK">La sauvegarde a été supprimé.</string>
+
+    <string name="noBackups">Vous ne disposons pas de sauvegarde dans Dropbox.</string>
 </resources>

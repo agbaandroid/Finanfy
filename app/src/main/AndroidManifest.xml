@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.agudoApp.salaryApp"
-    android:versionCode="73"
-    android:versionName="4.3.4" >
+    android:versionCode="74"
+    android:versionName="4.3.5" >
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -292,6 +292,21 @@
         <activity
             android:name=".activities.FormatoFechaActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
+
+        <!-- DropBox -->
+        <activity
+            android:name="com.dropbox.client2.android.AuthActivity"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|keyboard">
+            <intent-filter>
+                <!-- Change this to be db- followed by your app key -->
+                <data android:scheme="db-yty5ua0nmg6nv9a" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
